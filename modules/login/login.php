@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/css/estilos.css" />
+  <link rel="stylesheet" href="../../css/estilos.css">
+
   <title>Login</title>
 </head>
 
@@ -13,7 +14,7 @@
   <section>
     <div class="login-box">
       <div class="login-value">
-        <form action="/modules/dashboard/dashboard.html" method="post">
+        <form action="../login/login_post.php" method="post">
           <h2>Inicio de sesion</h2>
           <div class="login-input">
             <label for="username">Usuario
@@ -22,7 +23,8 @@
           </div>
           <div class="login-input">
             <label for="password">Contrase&ntilde;a
-              <input type="text" name="password" id="password" placeholder="ingrese la contrase&ntilde;a" required />
+              <input type="password" name="password" id="password" placeholder="ingrese la contrase&ntilde;a"
+                required />
             </label>
           </div>
           <div class="forget">
@@ -33,10 +35,17 @@
           </div>
           <button type="submit">Ingresar</button>
         </form>
-
-        <span class="errormsj"> Error:Usuario no encontrado </span>
-
-        <span class="errormsj"> Error:Contrase&ntilde;a incorrecta </span>
+        <?php if (isset($_GET['error'])) { ?>
+          <?php if ($_GET['error'] == '1') { ?>
+            <span class='errormsj'>
+              Error:Usuario no encontrado
+            </span>
+          <?php } else { ?>
+            <span class='errormsj'>
+              Error:Contrase&ntilde;a incorrecta
+            </span>
+          <?php } ?>
+        <?php } ?>
       </div>
     </div>
   </section>

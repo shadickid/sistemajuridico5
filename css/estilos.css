@@ -94,3 +94,9 @@ button:hover{
   background:rgb(255, 255, 255);
   color: rgb(0, 0, 0);
 }
+.errormsj{
+  color:red;
+  margin:auto;
+  font-size: 20px;
+  display:block;
+}

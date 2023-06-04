@@ -1,17 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../../css/estilos.css">
-
+  <meta name="author" content="Renzo Nathaniel Tomàs" />
+    <meta name="description" content="Inicio de sesion" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../../img/Mi proyecto.png"
+    />
   <title>Login</title>
 </head>
 
 <body>
-  <section>
+  <section class="login">
     <div class="login-box">
       <div class="login-value">
         <form action="../login/login_post.php" method="post">

@@ -3,7 +3,7 @@
 	margin: 0;
 }
 
-section {
+.login {
 	display: flex;
 	justify-content: center;
 	align-items: center;

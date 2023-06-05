@@ -39,7 +39,7 @@
           <div class="forget">
             <a href="#">&iquest;Olvido el usuario?</a>
           </div>
-          <button type="submit">Ingresar</button>
+          <button  type="submit">Ingresar</button>
         </form>
         <?php if (isset($_GET['error'])) { ?>
           <?php if ($_GET['error'] == '1') { ?>

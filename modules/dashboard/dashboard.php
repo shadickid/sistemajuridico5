@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,18 +10,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../css/estilos.css" />
     <meta name="author" content="Renzo Nathaniel Tomàs" />
-    <meta name="description" content="Inicio de sesion" />
+    <meta name="description" content="Dashboard" />
     <link rel="icon" type="image/x-icon" href="../../img/Mi proyecto.png" />
     <title>Dashboard</title>
 </head>
 
 <body>
     <header>
-        <nav>
+        <nav class="navbar-side">
             <a href="#" class="icon">
                 <img src="../../img/Mi proyecto.png" height="152px" width="150px" class="logo" />
             </a>
-            <span>Hola,</span>
+            <span>Hola,<?php echo $_SESSION['usuario'] ?></span>
             <ul>
                 <li><a href="#">INICIO</a></li>
                 <li><a href="#">Cliente</a>
@@ -46,63 +49,47 @@
             </ul>
         </nav>
     </header>
+        <h1>Bienvenidos al sistema</h1>
     <section class="inicio">
-        <div>
-            <h1>Bienvenidos al sistema</h1>
-        </div>
-        <div>
+       
             <img src="../../img/shaking-hands-3091906_1280.jpg" width="434px" height="360px" />
-        </div>
-        <div>
+       
+      
             <ul>
                 <li>
                     Objetivo 1
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi autem
-                        debitis maxime odio? Fuga harum quod eos? Similique minima
-                        exercitationem, dolore corporis nam at vitae, neque eligendi, labore
-                        repellendus tempora.
+                    <p class="esconder">
+                        El sistema deberá registrar a las personas que no se hayan
+                        registrado anteriormente.
                     </p>
                 </li>
                 <li>
                     Objetivo 2
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi autem
-                        debitis maxime odio? Fuga harum quod eos? Similique minima
-                        exercitationem, dolore corporis nam at vitae, neque eligendi, labore
-                        repellendus tempora.
+                    <p class="esconder">
+                        El sistema deberá modificar a los expedientes que se hayan
+              registrados anteriormente.
                     </p>
                 </li>
                 <li>
                     Objetivo 3
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi autem
-                        debitis maxime odio? Fuga harum quod eos? Similique minima
-                        exercitationem, dolore corporis nam at vitae, neque eligendi, labore
-                        repellendus tempora.
+                    <p class="esconder">
+                        El sistema deberá registrar expedientes que no se hayan registrado
+              anteriormente.
                     </p>
                 </li>
                 <li>
                     Objetivo 4
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi autem
-                        debitis maxime odio? Fuga harum quod eos? Similique minima
-                        exercitationem, dolore corporis nam at vitae, neque eligendi, labore
-                        repellendus tempora.
-                    </p>
-                </li>
-                <li>
-                    Objetivo 5
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi autem
-                        debitis maxime odio? Fuga harum quod eos? Similique minima
-                        exercitationem, dolore corporis nam at vitae, neque eligendi, labore
-                        repellendus tempora.
+                    <p class="esconder">
+                        El sistema deberá mostrar una consulta de expedientes que se hayan
+                        registrado anteriormente.
                     </p>
                 </li>
             </ul>
-        </div>
+
     </section>
+    <footer>
+        <span>Creador por Renzo</span>
+    </footer>
 </body>
 
 </html>

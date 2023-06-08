@@ -71,7 +71,7 @@
 	text-decoration: underline;
 }
 
-button {
+.confirmacion {
 	margin: auto;
 	position: relative;
 	top: 100px;
@@ -108,7 +108,7 @@ header,.navbar-side{
 	background-color: #D9D9D9;
 }
 nav >ul li{
-	padding: 20px;
+	padding: 10px;
 }
 header,.navbar-side ul li{
 	font-size: 25px;
@@ -136,7 +136,7 @@ header,.navbar-side li a{
 	transition: 0.4s;
 }
 .navbar-side ul li:hover ul{
-	height: 60px;
+	height: 100px;
 }
 .logo{
 	display: block;

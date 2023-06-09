@@ -1,3 +1,6 @@
+<?php
+require_once('../../config/path.php');
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,13 +8,13 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../../css/estilos.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL;?>css/estilos.css">
   <meta name="author" content="Renzo Nathaniel Tomàs" />
     <meta name="description" content="Inicio de sesion" />
     <link
       rel="icon"
       type="image/x-icon"
-      href="../../img/Mi proyecto.png"
+      href="<?php echo BASE_URL;?>img/Mi proyecto.png"
     />
   <title>Login</title>
 </head>
@@ -20,7 +23,7 @@
   <section class="login">
     <div class="login-box">
       <div class="login-value">
-        <form action="../login/login_post.php" method="post">
+        <form action="<?php echo BASE_URL;?>modules/login/login_post.php" method="post">
           <h2>Inicio de sesion</h2>
           <div class="login-input">
             <label for="username">Usuario

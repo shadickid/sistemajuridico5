@@ -9,10 +9,10 @@ include ('../../config/connect.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../css/estilos.css" />
-    <meta name="author" content="Renzo Nathaniel Tomàs" />
-    <meta name="description" content="Dashboard" />
+    <meta name="author" content="Renzo Nathaniel Tomás" />
+    <meta name="description" content="Formulario de abogado" />
     <link rel="icon" type="image/x-icon" href="../../img/Mi proyecto.png" />
-    <title>Dashboard</title>
+    <title>Formulario de abogado</title>
 </head>
 <!-- <header>
     <nav class="navbar-side">
@@ -46,8 +46,8 @@ include ('../../config/connect.php');
             <li><a href="#">Cerrar Sesion</a></li>
         </ul>
     </nav>
-</header> -->
-
+</header>
+ -->
 <body>
     <h1>Registro de abogado</h1>
     <fieldset>

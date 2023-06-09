@@ -1,8 +1,9 @@
 <?php
 session_start();
 if (!isset($_SESSION['usuario'])) {
-    header('location:'. BASE_URL .'modules/login/login.php');
+    header('location:' . BASE_URL . 'modules/login/login.php');
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,36 +20,6 @@ if (!isset($_SESSION['usuario'])) {
 </head>
 
 <body>
- <header>
-        <nav class="navbar-side">
-            <a href="#" class="icon">
-                <img src="<?php echo BASE_URL ;?>img/Mi proyecto.png" height="152px" width="150px" class="logo" />
-            </a>
-            <span>Hola,<?php echo $_SESSION['usuario'] ?></span>
-            <ul>
-                <li><a href="#">INICIO</a></li>
-                <li><a href="#">Cliente</a>
-                    <ul>
-                        <li><a href="#">Listado</a></li>
-                        <li><a href="#">Nuevo</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Abogado</a>
-                    <ul>
-                        <li><a href="#">Listado</a></li>
-                        <li><a href="#">Nuevo</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Expediente</a>
-                    <ul>
-                        <li><a href="#">Listado</a></li>
-                        <li><a href="#">Nuevo</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Movimiento</a></li>
-                <li><a href="#">Reporte</a></li>
-                <li><a href="#">Informe</a></li>
-                <li><a href="../login/logout.php">Cerrar Sesion</a></li>
-            </ul>
-        </nav>
+    <header>
+        <h1>Bienvenidos al sistema</h1>
     </header>

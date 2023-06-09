@@ -1,5 +1,5 @@
 <?php
-include ('../../config/connect.php');
+include ('../../config/database/connect.php');
 $name=$_POST['name'];
 $lastname=$_POST['lastname'];
 $fec_nac=$_POST['fec_nac'];

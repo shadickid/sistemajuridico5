@@ -1,14 +1,11 @@
 <?php
 require_once('../../config/path.php');
-include(ROOT_PATH .'includes\header.php');
+include(ROOT_PATH . 'includes\header.php');
+include(ROOT_PATH . 'includes\nav.php')
 ?>
 <div class="contenedor">
-    <h1>Bienvenidos al sistema</h1>
     <section class="inicio">
-
-        <img src="<?php echo BASE_URL ;?>img/shaking-hands-3091906_1280.jpg" width="434px" height="360px" />
-
-
+        <img src="<?php echo BASE_URL; ?>img/shaking-hands-3091906_1280.jpg" width="434px" height="360px" />
         <ul>
             <li>
                 Objetivo 1

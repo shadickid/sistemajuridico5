@@ -1,5 +1,9 @@
 <?php
 require_once('../../config/path.php');
+session_start();
+if (isset($_SESSION['usuario'])) {
+    header('location:' . BASE_URL . 'modules/dashboard/dashboard.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -8,14 +12,10 @@ require_once('../../config/path.php');
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="<?php echo BASE_URL;?>css/estilos.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/estilos.css">
   <meta name="author" content="Renzo Nathaniel Tomàs" />
-    <meta name="description" content="Inicio de sesion" />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="<?php echo BASE_URL;?>img/Mi proyecto.png"
-    />
+  <meta name="description" content="Inicio de sesion" />
+  <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL; ?>img/Mi proyecto.png" />
   <title>Login</title>
 </head>
 
@@ -23,7 +23,7 @@ require_once('../../config/path.php');
   <section class="login">
     <div class="login-box">
       <div class="login-value">
-        <form action="<?php echo BASE_URL;?>modules/login/login_post.php" method="post">
+        <form action="<?php echo BASE_URL; ?>modules/login/login_post.php" method="post">
           <h2>Inicio de sesion</h2>
           <div class="login-input">
             <label for="username">Usuario
@@ -32,8 +32,7 @@ require_once('../../config/path.php');
           </div>
           <div class="login-input">
             <label for="password">Contrase&ntilde;a
-              <input type="password" name="password" id="password" placeholder="ingrese la contrase&ntilde;a"
-                required />
+              <input type="password" name="password" id="password" placeholder="ingrese la contrase&ntilde;a" required />
             </label>
           </div>
           <div class="forget">
@@ -59,8 +58,8 @@ require_once('../../config/path.php');
     </div>
   </section>
   <footer>
-      <span>Creador por Renzo</span>
-    </footer>
+    <span>Creador por Renzo</span>
+  </footer>
 </body>
 
 </html>

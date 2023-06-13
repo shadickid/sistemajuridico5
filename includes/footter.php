@@ -2,9 +2,9 @@
 
 ?>
 <footer>
-        <span>Creador por Renzo</span>
-    </footer>
+    <span>Creador por Renzo</span>
+</footer>
 
-    </body>
+</body>
 
 </html>

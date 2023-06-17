@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION['usuario'])) {
     header('location:' . BASE_URL . 'modules/login/login.php');
 }
-
+include (ROOT_PATH.'config\database\connect.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">

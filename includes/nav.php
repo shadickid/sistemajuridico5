@@ -14,12 +14,12 @@ function search($array, $key, $value)
     return $results;
 }
 //sql de la base de datos
-$sql='SELECT m.id_modulo,m.descripcion as modulo_desc ,nivel,orden,padre,ruta,id_perfil_modulo,pm.id_perfil,p.descripcion as perfil_desc ,id_usuario,usuario_nombre FROM modulo m 
+$sql = 'SELECT m.id_modulo,m.descripcion as modulo_desc ,nivel,orden,padre,ruta,id_perfil_modulo,pm.id_perfil,p.descripcion as perfil_desc ,id_usuario,usuario_nombre FROM modulo m 
     inner join perfilxmodulo pm on m.id_modulo=pm.id_modulo
     inner join perfil p on p.id_perfil=pm.id_perfil 
     inner join usuario u on p.id_perfil=u.id_perfil
     order by nivel,orden asc';
-$menues=$connect->query($sql);
+$menues = $connect->query($sql);
 //Se setean arrays de cada nivel de menu
 $menu_nivel1   =   array();
 $menu_nivel2   =   array();
@@ -52,25 +52,25 @@ foreach ($menues as $menu) {
 
     <ul>
         <?php
-            $html   =   "";
-            foreach ($menu_nivel1 as $menu1) {
-                $temp   =   array();
-                $temp   =   search($menu_nivel2, 'padre', $menu1['id_modulo']);   //Busca hijos del nivel 1   
-                if (empty($temp)) {   //No se encuentran hijos del nivel 1
-                    $html   .=   '<li> <a href="' .BASE_URL. $menu1['ruta'] . '">' . $menu1['modulo_desc'] . '</a> </li>';
-                    } else {   //Si se encuentran hijos del nivel 1
-							$html   .=   '<li class="dropdown">';
-								$html   .=   '<a href="#" class="dropbtn">' . $menu1['modulo_desc'] . '</a>';
-									$html   .=   '<ul>';
-									foreach ($temp as $menu2) {
-										$html   .=   '<li> <a href="'.BASE_URL . $menu2['ruta'] . '">' . $menu2['modulo_desc'] . '</a> </li>';
-									}
-									$html   .=   '</ul>';
-							$html   .=   '</li>';
-						}
-					} 
-					
-					echo $html;
+        $html   =   "";
+        foreach ($menu_nivel1 as $menu1) {
+            $temp   =   array();
+            $temp   =   search($menu_nivel2, 'padre', $menu1['id_modulo']);   //Busca hijos del nivel 1   
+            if (empty($temp)) {   //No se encuentran hijos del nivel 1
+                $html   .=   '<li> <a href="' . BASE_URL . $menu1['ruta'] . '">' . $menu1['modulo_desc'] . '</a> </li>';
+            } else {   //Si se encuentran hijos del nivel 1
+                $html   .=   '<li class="dropdown">';
+                $html   .=   '<a href="#" class="dropbtn">' . $menu1['modulo_desc'] . '</a>';
+                $html   .=   '<ul>';
+                foreach ($temp as $menu2) {
+                    $html   .=   '<li> <a href="' . BASE_URL . $menu2['ruta'] . '">' . $menu2['modulo_desc'] . '</a> </li>';
+                }
+                $html   .=   '</ul>';
+                $html   .=   '</li>';
+            }
+        }
+
+        echo $html;
         ?>
     </ul>
 </nav>
@@ -98,4 +98,4 @@ foreach ($menues as $menu) {
 <li><a href="#">Movimiento</a></li>
 <li><a href="#">Reporte</a></li>
 <li><a href="#">Informe</a></li>
-<li><a href="<?php echo BASE_URL; ?>modules/login/logout.php">Cerrar Sesion</a></li> -->
+<li><a href="-->modules/login/logout.php">Cerrar Sesion</a></li>

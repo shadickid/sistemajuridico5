@@ -1,7 +1,9 @@
 <?php
 require_once('../../config/path.php');
+
 include(ROOT_PATH . 'includes\header.php');
-include(ROOT_PATH . 'includes\nav.php')
+include(ROOT_PATH . 'includes\nav.php');
+
 ?>
 <div class="contenedor">
     <section class="inicio">

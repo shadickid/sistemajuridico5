@@ -48,11 +48,12 @@ include ('../../config/database/connect.php');
     </nav>
 </header>
  -->
+
 <body>
     <h1>Registro de abogado</h1>
     <fieldset>
         <form action="enviar_abogado.php" method="post">
-        <legend>Datos personales</legend>
+            <legend>Datos personales</legend>
             <br>
             <label for="name">Nombre</label>
             <input type="text" name="name" id="name">
@@ -84,35 +85,38 @@ include ('../../config/database/connect.php');
                 $resultado=$connect->query($query);
                 while ($reg=$resultado->fetch_assoc()){
                 ?>
-                <option value="<?php echo $reg['id_sexo']; ?>" ><?php echo $reg['nombre']; ?></option>
+                <option value="<?php echo $reg['id_sexo']; ?>">
+                    <?php echo $reg['nombre']; ?>
+                </option>
                 <?php }?>
             </select>
             <br>
             <label for="contacto">contacto</label>
             <select name="tipoContacto" id="tipoContacto">
-            <?php
+                <?php
                 $query="SELECT * FROM sistemajuridico.tipo_contacto;";
                 $resultado=$connect->query($query);
                 while ($reg=$resultado->fetch_assoc()){
                 ?>
-                <option value="<?php echo $reg['id_tipo_contacto']; ?>" ><?php echo $reg['tipo_contacto_nombre']; ?></option>
+                <option value="<?php echo $reg['id_tipo_contacto']; ?>"><?php echo $reg['tipo_contacto_nombre']; ?>
+                </option>
                 <?php }?>
             </select>
             <input type="text" name="contacto" id="">
             <br>
             <label for="Documento">Documento</label>
             <select name="tipoDocumento" id="tipoDocumento">
-            <?php
+                <?php
                 $query="SELECT * FROM sistemajuridico.documento;";
                 $resultado=$connect->query($query);
                 while ($reg=$resultado->fetch_assoc()){
                 ?>
-                <option value="<?php echo $reg['id_tipo_documento']; ?>" ><?php echo $reg['descripcion']; ?></option>
+                <option value="<?php echo $reg['id_tipo_documento']; ?>"><?php echo $reg['descripcion']; ?></option>
                 <?php }?>
             </select>
             <input type="text" name="Documento" id="Documento">
-            <button  type="submit">Guardar</button>
-            </form>
+            <button type="submit">Guardar</button>
+        </form>
     </fieldset>
 </body>
 

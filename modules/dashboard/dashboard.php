@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
 require_once('../../config/path.php');
+=======
+>>>>>>> 9f602b32bf7910f6fc7a6c3e998ca81084b3f2fa
 
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');

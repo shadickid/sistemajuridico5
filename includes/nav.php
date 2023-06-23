@@ -74,3 +74,28 @@ foreach ($menues as $menu) {
         ?>
     </ul>
 </nav>
+
+
+<!-- <li><a href="#">INICIO</a></li>
+<li><a href="#">Cliente</a>
+    <ul>
+        <li><a href="#">Listado</a></li>
+        <li><a href="#">Nuevo</a></li>
+    </ul>
+</li>
+<li><a href="#">Abogado</a>
+    <ul>
+        <li><a href="#">Listado</a></li>
+        <li><a href="#">Nuevo</a></li>
+    </ul>
+</li>
+<li><a href="#">Expediente</a>
+    <ul>
+        <li><a href="#">Listado</a></li>
+        <li><a href="#">Nuevo</a></li>
+    </ul>
+</li>
+<li><a href="#">Movimiento</a></li>
+<li><a href="#">Reporte</a></li>
+<li><a href="#">Informe</a></li>
+<li><a href="-->modules/login/logout.php">Cerrar Sesion</a></li>

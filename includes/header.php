@@ -4,7 +4,7 @@ if (!isset($_SESSION['usuario'])) {
     header('location:' . BASE_URL . 'modules/login/login.php');
 }
 require_once('../../config/path.php');
-include (ROOT_PATH.'config\database\connect.php');
+include(ROOT_PATH . 'config\database\connect.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,11 +16,11 @@ include (ROOT_PATH.'config\database\connect.php');
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/estilos.css" />
     <meta name="author" content="Renzo Nathaniel Tomàs" />
     <meta name="description" content="Dashboard" />
-    <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL; ?>img/Mi proyecto.png" />
+    <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL; ?>assets\img\Logo_Renzo_Law.png" />
     <title>Dashboard</title>
 </head>
 
 <body>
     <header>
-        <h1>Bienvenidos al sistema</h1>
+        <h1></h1>
     </header>

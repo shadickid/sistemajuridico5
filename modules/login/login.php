@@ -2,7 +2,7 @@
 require_once('../../config/path.php');
 session_start();
 if (isset($_SESSION['usuario'])) {
-    header('location:' . BASE_URL . 'modules/dashboard/dashboard.php');
+  header('location:' . BASE_URL . 'modules/dashboard/dashboard.php');
 }
 ?>
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ if (isset($_SESSION['usuario'])) {
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/estilos.css">
   <meta name="author" content="Renzo Nathaniel Tomàs" />
   <meta name="description" content="Inicio de sesion" />
-  <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL; ?>img/Mi proyecto.png" />
+  <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL; ?>assets/img/Mi proyecto.png" />
   <title>Login</title>
 </head>
 

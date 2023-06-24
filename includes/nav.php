@@ -1,4 +1,5 @@
 <?php
+$id_perfil = $_SESSION['id_perfil'];
 function search($array, $key, $value)
 {
 
@@ -14,11 +15,12 @@ function search($array, $key, $value)
     return $results;
 }
 //sql de la base de datos
-$sql = 'SELECT m.id_modulo,m.descripcion as modulo_desc ,nivel,orden,padre,ruta,id_perfil_modulo,pm.id_perfil,p.descripcion as perfil_desc ,id_usuario,usuario_nombre FROM modulo m 
+$sql = "SELECT m.id_modulo,m.descripcion as modulo_desc ,nivel,orden,padre,ruta,id_perfil_modulo,pm.id_perfil,p.descripcion as perfil_desc ,id_usuario,usuario_nombre FROM modulo m 
     inner join perfilxmodulo pm on m.id_modulo=pm.id_modulo
     inner join perfil p on p.id_perfil=pm.id_perfil 
     inner join usuario u on p.id_perfil=u.id_perfil
-    order by nivel,orden asc';
+    where p.id_perfil=$id_perfil
+    order by nivel,orden asc";
 $menues = $connect->query($sql);
 //Se setean arrays de cada nivel de menu
 $menu_nivel1   =   array();
@@ -44,58 +46,33 @@ foreach ($menues as $menu) {
 ?>
 <nav class="navbar-side">
     <a href="#" class="icon">
-        <img src="<?php echo BASE_URL; ?>img/Mi proyecto.png" height="152px" width="150px" class="logo" />
+        <img src="<?php echo BASE_URL; ?>assets\img\Logo_Renzo_Law.png" class="logo" />
     </a>
     <span>Hola <?php echo $_SESSION['nombre'] . '' . $_SESSION['apellido'] ?></span>
     <span>Perfil:<?php echo $_SESSION['perfil'] ?></span>
     <span>Usuario:<?php echo $_SESSION['usuario'] ?></span>
-
     <ul>
         <?php
-        $html   =   "";
         foreach ($menu_nivel1 as $menu1) {
             $temp   =   array();
-            $temp   =   search($menu_nivel2, 'padre', $menu1['id_modulo']);   //Busca hijos del nivel 1   
-            if (empty($temp)) {   //No se encuentran hijos del nivel 1
-                $html   .=   '<li> <a href="' . BASE_URL . $menu1['ruta'] . '">' . $menu1['modulo_desc'] . '</a> </li>';
-            } else {   //Si se encuentran hijos del nivel 1
-                $html   .=   '<li class="dropdown">';
-                $html   .=   '<a href="#" class="dropbtn">' . $menu1['modulo_desc'] . '</a>';
-                $html   .=   '<ul>';
-                foreach ($temp as $menu2) {
-                    $html   .=   '<li> <a href="' . BASE_URL . $menu2['ruta'] . '">' . $menu2['modulo_desc'] . '</a> </li>';
-                }
-                $html   .=   '</ul>';
-                $html   .=   '</li>';
-            }
-        }
-
-        echo $html;
+            $temp   =   search($menu_nivel2, 'padre', $menu1['id_modulo']); //Busca hijos del nivel 1   
         ?>
+            <?php
+            if (empty($temp)) { //No se encuentran hijos del nivel 1
+            ?>
+                <li><a href="<?php echo BASE_URL . $menu1['ruta'] ?>"><?php echo $menu1['modulo_desc'] ?></a></li>
+            <?php } else { // Si se encuentran hijos del nivel 1  
+            ?>
+                <li>
+                    <a href="#"><?php echo $menu1['modulo_desc'] ?></a>
+                    <ul>
+                        <?php foreach ($temp as $menu2) { ?>
+                            <li><a href="<?php echo BASE_URL . $menu2['ruta'] ?>"><?php echo $menu2['modulo_desc'] ?> </a></li>
+                        <?php } ?>
+                    </ul>
+                </li>
+            <?php } ?>
+        <?php } ?>
+        <li><a href="<?php echo BASE_URL ?>modules/login/logout.php">Cerrar Sesion</a></li>
     </ul>
 </nav>
-
-
-<!-- <li><a href="#">INICIO</a></li>
-<li><a href="#">Cliente</a>
-    <ul>
-        <li><a href="#">Listado</a></li>
-        <li><a href="#">Nuevo</a></li>
-    </ul>
-</li>
-<li><a href="#">Abogado</a>
-    <ul>
-        <li><a href="#">Listado</a></li>
-        <li><a href="#">Nuevo</a></li>
-    </ul>
-</li>
-<li><a href="#">Expediente</a>
-    <ul>
-        <li><a href="#">Listado</a></li>
-        <li><a href="#">Nuevo</a></li>
-    </ul>
-</li>
-<li><a href="#">Movimiento</a></li>
-<li><a href="#">Reporte</a></li>
-<li><a href="#">Informe</a></li>
-<li><a href="-->modules/login/logout.php">Cerrar Sesion</a></li>

@@ -1,14 +1,14 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
-include(ROOT_PATH . 'config/database/functions/documento.php');
+include(ROOT_PATH . 'config/database/functions/expediente.php');
 include(ROOT_PATH . 'config/database/functions/bd_functions .php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
-$id_tipo_documento = $_GET['id_tipo_documento'];
+$id_expediente_tipo = $_GET['id_expediente_tipo'];
 $conditional = [
-    'id_tipo_documento' => $id_tipo_documento
+    'id_expediente_tipo' => $id_expediente_tipo
 ];
-$records = selectall('documento', $conditional);
+$records = selectall('expediente_tipo', $conditional);
 foreach ($records as $reg) :
 
 ?>
@@ -18,8 +18,8 @@ foreach ($records as $reg) :
 <div class="contenedor">
     <section class="inicio">
         <form method="POST" action="procesarModificacion.php">
-            Nombre: <input type="text" name="nombre" value="<?php echo $reg['descripcion'] ?>">
-            <input type="hidden" name="id_tipo_documento" value="<?php echo $reg['id_tipo_documento'] ?>">
+            Nombre: <input type="text" name="nombre" value="<?php echo $reg['expediente_tipo_nombre'] ?>">
+            <input type="hidden" name="id_expediente_tipo" value="<?php echo $reg['id_expediente_tipo'] ?>">
             <input type="submit" value="Guardar">
         </form>
     </section>

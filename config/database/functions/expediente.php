@@ -2,6 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 require_once(ROOT_PATH . 'config/database/connect.php');
 
+/* ESTADO EXPEDIENTE */
 function agregarEstadoExpediente($nombre)
 {
     global $connect;
@@ -12,7 +13,6 @@ function agregarEstadoExpediente($nombre)
     $s->execute();
     $s->close();
 }
-
 function modificarEstadoExpediente($nombre, $id_expediente_estado)
 {
     global $connect;
@@ -32,6 +32,39 @@ function borrarEstadoExpediente($id_expediente_estado)
     $sql = "UPDATE `sistemajuridico`.`expediente_estado` 
     SET `estado` = '0' WHERE (`id_expediente_estado` = '$id_expediente_estado');";
 
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+}
+/* TIPO EXPEDIENTE */
+function agregarTipoExpediente($nombre)
+{
+    global $connect;
+
+    $sql = "INSERT INTO `sistemajuridico`.`expediente_tipo` (`expediente_tipo_nombre`, `estado`) 
+    VALUES ('$nombre', '1');";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+}
+function modificarTipoExpediente($nombre, $id_expediente_tipo)
+{
+    global $connect;
+    $sql = "UPDATE `sistemajuridico`.`expediente_tipo` 
+    SET `expediente_tipo_nombre` = '$nombre' WHERE (`id_expediente_tipo` = '$id_expediente_tipo');";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+}
+
+function borrarTipoExpediente($id_expediente_tipo)
+{
+    global $connect;
+    $sql = "UPDATE `sistemajuridico`.`expediente_tipo` 
+    SET `estado` = '0' WHERE (`id_expediente_tipo` = '$id_expediente_tipo');";
     $s = $connect->prepare($sql);
 
     $s->execute();

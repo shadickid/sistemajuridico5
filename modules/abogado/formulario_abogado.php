@@ -45,9 +45,9 @@ include(ROOT_PATH . 'includes\nav.php');
                     $resultado = $connect->query($query);
                     while ($reg = $resultado->fetch_assoc()) {
                     ?>
-                    <option value="<?php echo $reg['id_sexo']; ?>">
-                        <?php echo $reg['nombre']; ?>
-                    </option>
+                        <option value="<?php echo $reg['id_sexo']; ?>">
+                            <?php echo $reg['nombre']; ?>
+                        </option>
                     <?php } ?>
                 </select>
                 <br>
@@ -58,8 +58,8 @@ include(ROOT_PATH . 'includes\nav.php');
                     $resultado = $connect->query($query);
                     while ($reg = $resultado->fetch_assoc()) {
                     ?>
-                    <option value="<?php echo $reg['id_tipo_contacto']; ?>"><?php echo $reg['tipo_contacto_nombre']; ?>
-                    </option>
+                        <option value="<?php echo $reg['id_tipo_contacto']; ?>"><?php echo $reg['tipo_contacto_nombre']; ?>
+                        </option>
                     <?php } ?>
                 </select>
                 <input type="text" name="contacto" id="">
@@ -71,7 +71,7 @@ include(ROOT_PATH . 'includes\nav.php');
                     $resultado = $connect->query($query);
                     while ($reg = $resultado->fetch_assoc()) {
                     ?>
-                    <option value="<?php echo $reg['id_tipo_documento']; ?>"><?php echo $reg['descripcion']; ?></option>
+                        <option value="<?php echo $reg['id_tipo_documento']; ?>"><?php echo $reg['descripcion']; ?></option>
                     <?php } ?>
                 </select>
                 <input type="text" name="Documento" id="Documento">

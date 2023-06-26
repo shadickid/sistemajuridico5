@@ -1,9 +1,11 @@
 <?php
+/* require_once('../../../config/path.php'); */
+/* no funciona asi, pero si le pongo ../ si funciona */
+require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 session_start();
 if (!isset($_SESSION['usuario'])) {
     header('location:' . BASE_URL . 'modules/login/login.php');
 }
-require_once('../../config/path.php');
 include(ROOT_PATH . 'config\database\connect.php');
 ?>
 <!DOCTYPE html>
@@ -17,6 +19,8 @@ include(ROOT_PATH . 'config\database\connect.php');
     <meta name="author" content="Renzo Nathaniel Tomàs" />
     <meta name="description" content="Dashboard" />
     <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL; ?>assets\img\Logo_Renzo_Law.png" />
+    <link rel="stylesheet"
+        href="<?php echo BASE_URL; ?>assets\icons\uicons-regular-rounded\css\uicons-regular-rounded.css" />
     <title>Dashboard</title>
 </head>
 

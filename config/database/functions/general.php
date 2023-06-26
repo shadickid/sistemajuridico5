@@ -1,5 +1,6 @@
 <?php
-require_once('../connect.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
+require_once(ROOT_PATH . 'config/database/connect.php');
 
 function selectall($table, $conditions = [])
 {
@@ -7,12 +8,9 @@ function selectall($table, $conditions = [])
 
     global $connect;
     if (empty($conditions)) {
-        $sql = "select * from $table  ";
-
-
-
+        $sql = "SELECT * from $table  ";
     } else {
-        $sql = "select * from $table ";
+        $sql = "SELECT * from $table ";
         $i = 0;
         foreach ($conditions as $key => $valor) {
             if ($i == 0) {
@@ -21,10 +19,7 @@ function selectall($table, $conditions = [])
                 $sql = $sql . " and $key = '$valor'";
             }
             $i++;
-
         }
-
-
     }
     $s = $connect->prepare($sql);
 
@@ -37,24 +32,22 @@ function selectall($table, $conditions = [])
 
 
     return $records;
-
 }
 
-$condition = [
-    'id_tipo_documento' => 3,
-    'descripcion' => 'libreta'
+/* $condition = [
+    'id_tipo_contacto' => 1,
+    'tipo_contacto_nombre' => 'Celular',
+    ,
 
 
 
-];
+]; */
 
 
-
+/* 
 $records = selectall('tipo_documento', $condition);
 
 foreach ($records as $rec) {
     echo $rec['descripcion'] . "<br>";
 }
-
-
-?>
+ */

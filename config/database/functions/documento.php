@@ -30,7 +30,7 @@ function borrarDocumento($id_tipo_documento)
 {
     global $connect;
 
-    $sql = "DELETE FROM `sistemajuridico`.`documento` WHERE (`id_tipo_documento` = $id_tipo_documento);";
+    $sql = "UPDATE `sistemajuridico`.`documento` SET `estado` = '0' WHERE (`id_tipo_documento` = '$id_tipo_documento');";
     $s = $connect->prepare($sql);
 
     $s->execute();

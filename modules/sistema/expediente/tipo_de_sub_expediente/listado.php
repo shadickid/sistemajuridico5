@@ -7,17 +7,17 @@ include(ROOT_PATH . 'includes\nav.php');
 $conditional = [
     'estado' => 1
 ];
-$records = selectall('documento', $conditional);
+$records = selectall('expediente_subtipo', $conditional);
 ?>
 <div>
-    <h1> Documento</h1>
+    <h1> SUB TIPO DE EXPEDIENTE</h1>
 </div>
 <div class="contenedor">
     <section class="inicio">
-        <a href="alta.php">Nuevo tipo de documento</a>
+        <a href="alta.php">Nuevo sub tipo de expediente</a>
         <table>
             <tr>
-                <th>ID Documento</th>
+                <th>ID tipo</th>
                 <th>Nombre</th>
                 <th>Modificar</th>
                 <th>Borrar</th>
@@ -25,14 +25,14 @@ $records = selectall('documento', $conditional);
             </tr>
             <?php foreach ($records as $reg) : ?>
             <tr>
-                <td><?php echo $reg['id_tipo_documento'] ?></td>
-                <td><?php echo $reg['descripcion'] ?></td>
+                <td><?php echo $reg['id_expsubtipo'] ?></td>
+                <td><?php echo $reg['subtipo_exp'] ?></td>
                 <td>
-                    <a href="modificar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>"><i
+                    <a href="modificar.php?id_expsubtipo=<?php echo $reg['id_expsubtipo'] ?>"><i
                             class="fi fi-rr-edit"></i></a>
                 </td>
                 <td>
-                    <a href="eliminar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>"><i
+                    <a href="eliminar.php?id_expsubtipo=<?php echo $reg['id_expsubtipo'] ?>"><i
                             class="fi-rr-eraser"></i></a>
                 </td>
 

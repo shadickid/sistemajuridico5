@@ -12,7 +12,7 @@ include(ROOT_PATH . 'includes\nav.php');
         <div class="menu">
             <div class="menu-items">
                 <a href="<?php echo BASE_URL ?>modules/sistema/expediente/menu.php">Expediente</a>
-                <a href="#">Perfil</a>
+                <a href="<?php echo BASE_URL ?>modules/sistema/perfil/menu.php">Perfil</a>
                 <a href="#">Reporte</a>
                 <a href="#">Movimiento</a>
             </div>

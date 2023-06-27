@@ -32,8 +32,7 @@ function borrarContacto($id_tipo_contacto)
 {
     global $connect;
 
-    $sql = "DELETE FROM `sistemajuridico`.`tipo_contacto` 
-    WHERE (`id_tipo_contacto` = $id_tipo_contacto);";
+    $sql = "UPDATE `sistemajuridico`.`tipo_contacto` SET `estado` = '0' WHERE (`id_tipo_contacto` = '$id_tipo_contacto');";
     $s = $connect->prepare($sql);
 
     $s->execute();

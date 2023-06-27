@@ -15,7 +15,8 @@ include(ROOT_PATH . 'includes\nav.php');
                     Expediente</a>
                 <a href="<?php echo BASE_URL ?>modules\sistema\expediente\tipo_de_expediente\listado.php">Expediente
                     tipo</a>
-                <a href="#">Expediente subtipo</a>
+                <a href="<?php echo BASE_URL ?>modules\sistema\expediente\tipo_de_sub_expediente\listado.php">Expediente
+                    subtipo</a>
             </div>
         </div>
     </section>

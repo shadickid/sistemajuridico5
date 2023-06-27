@@ -70,3 +70,37 @@ function borrarTipoExpediente($id_expediente_tipo)
     $s->execute();
     $s->close();
 }
+/* SUB TIPO EXPEDIENTE */
+
+function agregarSubTipoExpediente($nombre)
+{
+    global $connect;
+    $sql = "INSERT INTO `sistemajuridico`.`expediente_subtipo` 
+    (`subtipo_exp`, `estado`) VALUES ('$nombre', '1');";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+}
+
+function modificarSubTipoExpediente($nombre, $id_expsubtipo)
+{
+    global $connect;
+    $sql = "UPDATE `sistemajuridico`.`expediente_subtipo` 
+    SET `subtipo_exp` = '$nombre' WHERE (`id_expsubtipo` = '$id_expsubtipo');";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+}
+
+function borrarSubTipoExpediente($id_expsubtipo)
+{
+    global $connect;
+    $sql = "UPDATE `sistemajuridico`.`expediente_subtipo` 
+    SET `estado` = '0' WHERE (`id_expsubtipo` = '$id_expsubtipo');";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+}

@@ -27,12 +27,12 @@ if (isset($_SESSION['usuario'])) {
           <h2>Inicio de sesion</h2>
           <div class="login-input">
             <label for="username">Usuario
-              <input type="text" name="username" id="username" placeholder="ingrese el usuario" required />
+              <input type="text" name="username" id="username" placeholder="ingrese el usuario" required autocomplete="off" />
             </label>
           </div>
           <div class="login-input">
             <label for="password">Contrase&ntilde;a
-              <input type="password" name="password" id="password" placeholder="ingrese la contrase&ntilde;a" required />
+              <input type="password" name="password" id="password" placeholder="ingrese la contrase&ntilde;a" required autocomplete="off" />
             </label>
           </div>
           <div class="forget">

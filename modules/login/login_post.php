@@ -1,20 +1,28 @@
 <?php
 require_once('../../config/path.php');
 include(ROOT_PATH . 'config\database\connect.php');
-$user = $_POST['username'];
-$pass = $_POST['password'];
+$user = trim($_POST['username']);
+$pass = trim($_POST['password']);
+$sql = "SELECT usuario_nombre FROM usuario where usuario_nombre = '{$user}' ";
 
-$sql = "SELECT p.id_perfil, usuario_nombre,usuario_contraseña,persona_nombre,persona_apellido,descripcion from sistemajuridico.perfil p
+/* $sql = "SELECT p.id_perfil, usuario_nombre,usuario_contraseña,persona_nombre,persona_apellido,descripcion from sistemajuridico.perfil p
 inner join usuario u on p.id_perfil=u.id_perfil
 inner join abogado a on u.id_perfil=a.id_abogado
-inner join persona_fisica pf on pf.id_persona_fisica=a.id_persona_fisica where usuario_nombre like '{$user}'";
+inner join persona_fisica pf on pf.id_persona_fisica=a.id_persona_fisica where usuario_nombre = '{$user}'"; */
 
 
 /* SELECT * FROM sistemajuridico.usuario where usuario_nombre like '{$user}'; */
 /* SELECT * FROM sistemajuridico.usuario where usuario_contraseña = '{$pass}'; */
 $datos_user = $connect->query($sql);
 if ($datos_user->num_rows == 1) {
-    $sql = "SELECT p.id_perfil , usuario_nombre,usuario_contraseña,persona_nombre,persona_apellido,descripcion from sistemajuridico.perfil p
+    $sql = "SELECT p.id_perfil , 
+                    u.usuario_nombre,
+                    u.usuario_contraseña,
+                    pf.persona_nombre,
+                    pf.persona_apellido,
+                    p.descripcion,
+                    u.id_usuario 
+                    from sistemajuridico.perfil p
     inner join usuario u on p.id_perfil=u.id_perfil
     inner join abogado a on u.id_perfil=a.id_abogado
     inner join persona_fisica pf on pf.id_persona_fisica=a.id_persona_fisica where usuario_contraseña = '{$pass}'";
@@ -27,6 +35,7 @@ if ($datos_user->num_rows == 1) {
             $nombre = $reg['persona_nombre'];
             $apellido = $reg['persona_apellido'];
             $id_perfil = $reg['id_perfil'];
+            $id_usuario = $reg['id_usuario'];
         }
         session_start();
         $_SESSION['perfil'] = $perfil;
@@ -34,6 +43,7 @@ if ($datos_user->num_rows == 1) {
         $_SESSION['nombre'] = $nombre;
         $_SESSION['apellido'] = $apellido;
         $_SESSION['id_perfil'] = $id_perfil;
+        $_SESSION['id_usuario'] = $id_usuario;
 
         header('location:' . BASE_URL . 'modules/dashboard/dashboard.php');
     } else {

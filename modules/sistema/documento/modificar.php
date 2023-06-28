@@ -18,7 +18,7 @@ foreach ($records as $reg) :
 <div class="contenedor">
     <section class="inicio">
         <form method="POST" action="procesarModificacion.php">
-            Nombre: <input type="text" name="nombre" value="<?php echo $reg['descripcion'] ?>">
+            Nombre: <input type="text" name="nombre" value="<?php echo $reg['descripcion'] ?>" autocomplete="off">
             <input type="hidden" name="id_tipo_documento" value="<?php echo $reg['id_tipo_documento'] ?>">
             <input type="submit" value="Guardar">
         </form>

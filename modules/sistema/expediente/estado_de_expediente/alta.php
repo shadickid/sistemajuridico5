@@ -12,7 +12,7 @@ include(ROOT_PATH . 'includes\nav.php');
         <h2>Alta de nuevo tipo de expediente</h2>
         <form action="procesarAlta.php" method="POST">
             <div class="input-control">
-                Nombre:<input type="text" name="nombre">
+                Nombre:<input type="text" name="nombre" autocomplete="off">
                 <input type="submit" value="Guardar">
             </div>
         </form>

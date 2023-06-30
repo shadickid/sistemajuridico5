@@ -5,10 +5,9 @@ require_once(ROOT_PATH . 'config/database/connect.php');
 function agregarDocumento($nombre)
 {
     global $connect;
-    $sql = "INSERT INTO `sistemajuridico`.`documento` (`descripcion`) 
-    VALUES ('$nombre');";
+    $sql = "INSERT INTO `sistemajuridico`.`documento` 
+            (`descripcion`, `estado`) VALUES ('$nombre', '1');";
     $s = $connect->prepare($sql);
-
     $s->execute();
     $s->close();
 }

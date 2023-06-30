@@ -17,7 +17,7 @@ $records = selectall('perfil', $conditional);
         <a href="alta.php">Nuevo Perfil</a>
         <table>
             <tr>
-                <th>ID Documento</th>
+                <th>ID Perfil</th>
                 <th>Nombre</th>
                 <th>Modificar</th>
                 <th>Borrar</th>

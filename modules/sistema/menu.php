@@ -14,7 +14,7 @@ include(ROOT_PATH . 'includes\nav.php');
                 <a href="<?php echo BASE_URL ?>modules/sistema/expediente/menu.php">Expediente</a>
                 <a href="<?php echo BASE_URL ?>modules/sistema/perfil/menu.php">Perfil</a>
                 <a href="#">Reporte</a>
-                <a href="#">Movimiento</a>
+                <a href="<?php echo BASE_URL ?>modules/sistema/movimientos/listado.php">Movimiento</a>
             </div>
             <div class="menu-items">
                 <a href="<?php echo BASE_URL ?>modules/sistema/contacto/listado.php">Contacto</a>

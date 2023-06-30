@@ -18,3 +18,7 @@ include(ROOT_PATH . 'includes\nav.php');
         </form>
     </section>
 </div>
+
+<?php
+include(ROOT_PATH . 'includes\footter.php');
+?>

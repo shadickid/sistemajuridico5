@@ -15,6 +15,10 @@ include(ROOT_PATH . 'includes\nav.php');
                 Nombre:<input type="text" name="nombre" autocomplete="off">
                 <input type="submit" value="Guardar">
             </div>
+
         </form>
     </section>
 </div>
+<?php
+include(ROOT_PATH . 'includes\footter.php');
+?>

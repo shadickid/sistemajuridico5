@@ -15,7 +15,7 @@ inner join persona_fisica pf on pf.id_persona_fisica=a.id_persona_fisica where u
 /* SELECT * FROM sistemajuridico.usuario where usuario_contraseña = '{$pass}'; */
 $datos_user = $connect->query($sql);
 if ($datos_user->num_rows == 1) {
-    $sql = "SELECT p.id_perfil , 
+    $sql = "SELECT  p.id_perfil , 
                     u.usuario_nombre,
                     u.usuario_contraseña,
                     pf.persona_nombre,
@@ -24,8 +24,8 @@ if ($datos_user->num_rows == 1) {
                     u.id_usuario 
                     from sistemajuridico.perfil p
     inner join usuario u on p.id_perfil=u.id_perfil
-    inner join abogado a on u.id_perfil=a.id_abogado
-    inner join persona_fisica pf on pf.id_persona_fisica=a.id_persona_fisica where usuario_contraseña = '{$pass}'";
+    inner join empleado e on u.id_perfil=e.id_empleado
+    inner join persona_fisica pf on pf.id_persona_fisica=e.id_persona_fisica where usuario_contraseña = '{$pass}'";
     $datos_pass = $connect->query($sql);
     if ($datos_pass->num_rows == 1) {
 

@@ -15,12 +15,21 @@ function search($array, $key, $value)
     return $results;
 }
 //sql de la base de datos
-$sql = "SELECT m.id_modulo,m.descripcion as modulo_desc ,nivel,orden,padre,ruta,id_perfil_modulo,pm.id_perfil,p.descripcion as perfil_desc ,id_usuario,usuario_nombre FROM modulo m 
-    inner join perfilxmodulo pm on m.id_modulo=pm.id_modulo
-    inner join perfil p on p.id_perfil=pm.id_perfil 
-    inner join usuario u on p.id_perfil=u.id_perfil
-    where p.id_perfil=$id_perfil
-    order by nivel,orden asc";
+$sql = "SELECT m.id_modulo,m.descripcion as modulo_desc ,
+                nivel,
+                orden,
+                padre,
+                ruta,
+                id_perfil_modulo,
+                pm.id_perfil,
+                p.descripcion as perfil_desc ,
+                id_usuario,usuario_nombre 
+                FROM modulo m 
+        inner join perfilxmodulo pm on m.id_modulo=pm.id_modulo
+        inner join perfil p on p.id_perfil=pm.id_perfil 
+        inner join usuario u on p.id_perfil=u.id_perfil
+        where p.id_perfil=$id_perfil
+        order by nivel,orden asc";
 $menues = $connect->query($sql);
 //Se setean arrays de cada nivel de menu
 $menu_nivel1   =   array();

@@ -11,16 +11,16 @@ include(ROOT_PATH . 'includes\nav.php');
     <section class="inicio">
         <div class="menu">
             <div class="menu-items">
-                <a href="<?php echo BASE_URL ?>modules/sistema/expediente/menu.php">Expediente</a>
-                <a href="<?php echo BASE_URL ?>modules/sistema/perfil/menu.php">Perfil</a>
-                <a href="#">Reporte</a>
-                <a href="<?php echo BASE_URL ?>modules/sistema/movimientos/listado.php">Movimiento</a>
+                <a href="<?php echo BASE_URL ?>modules/sistema/expediente/menu.php">Gestion de Expediente</a>
+                <a href="<?php echo BASE_URL ?>modules/sistema/gestion de usuario/menu.php">Gestion de usuarios</a>
+                <a href="<?php echo BASE_URL ?>modules/sistema/domicilio/menu.php">Domicilio</a>
+                <a href="<?php echo BASE_URL ?>modules/sistema/movimientos/listado.php">Tipo Movimiento</a>
             </div>
             <div class="menu-items">
-                <a href="<?php echo BASE_URL ?>modules/sistema/contacto/listado.php">Contacto</a>
-                <a href="<?php echo BASE_URL ?>modules/sistema/documento/listado.php">Documento</a>
-                <a href="#">Modulo</a>
-                <a href="#">Usuario</a>
+                <a href="<?php echo BASE_URL ?>modules/sistema/contacto/listado.php"> Tipo Contacto</a>
+                <a href="<?php echo BASE_URL ?>modules/sistema/documento/listado.php">Tipo Documento</a>
+                <a href="#">Gestion de especializacion</a>
+                <a href="#">Gestion de tipo empleado</a>
             </div>
         </div>
     </section>

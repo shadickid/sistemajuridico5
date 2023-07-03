@@ -4,22 +4,22 @@ include(ROOT_PATH . 'config/database/functions/expediente.php');
 include(ROOT_PATH . 'config/database/functions/bd_functions .php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
-$id_tipo_proceso = $_GET['id_tipo_proceso'];
+$id_pais = $_GET['id_pais'];
 $conditional = [
-    'id_tipo_proceso' => $id_tipo_proceso
+    'id_pais' => $id_pais
 ];
-$records = selectall('movimiento_tipo_proceso', $conditional);
+$records = selectall('pais', $conditional);
 foreach ($records as $reg) :
 
 ?>
     <div>
-        <h1> MOVIMIENTO</h1>
+        <h1>PAIS</h1>
     </div>
     <div class="contenedor">
         <section class="inicio">
             <form method="POST" action="procesarModificacion.php">
                 Nombre: <input type="text" name="nombre" value="<?php echo $reg['nombre'] ?>" autocomplete="off">
-                <input type="hidden" name="id_tipo_proceso" value="<?php echo $reg['id_tipo_proceso'] ?>">
+                <input type="hidden" name="id_pais" value="<?php echo $reg['id_pais'] ?>">
                 <input type="submit" value="Guardar">
             </form>
         </section>

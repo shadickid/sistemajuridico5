@@ -19,8 +19,10 @@ include(ROOT_PATH . 'includes\nav.php');
                 <a href="#">Barrio</a>
             </div>
             <div class="menu-items">
-                <a href="#">Atributos de domicilio</a>
-                <a href="#">Tipo domicilio</a>
+                <a href="<?php echo BASE_URL ?>modules/sistema/domicilio/atributo_de_domicilio/listado.php">Atributos de
+                    domicilio</a>
+                <a href="<?php echo BASE_URL ?>modules/sistema/domicilio/tipo_de_domicilio/listado.php">Tipo
+                    domicilio</a>
             </div>
         </div>
 

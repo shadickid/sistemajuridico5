@@ -108,3 +108,75 @@ function borrarLocalidad($id_localidad)
     $s->execute();
     $s->close();
 }
+
+/* Tipo domicilio */
+
+function agregarTipoDomicilio($nombre)
+{
+    global $connect;
+    $sql = "INSERT INTO `sistemajuridico`.`tipo_dom` (`valor`) 
+    VALUES ('$nombre');";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+}
+
+function modificarTipoDomicilio($nombre, $id_tipo_dom)
+{
+    global $connect;
+    $sql = "UPDATE `sistemajuridico`.`tipo_dom` 
+    SET `valor` = '$nombre' 
+    WHERE (`id_tipo_dom` = '$id_tipo_dom');";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+}
+
+function borrarTipoDomicilio($id_tipo_dom)
+{
+    global $connect;
+    $sql = "DELETE FROM `sistemajuridico`.`tipo_dom` 
+    WHERE (`id_tipo_dom` = '$id_tipo_dom');";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+}
+
+/* Atributo domicilio */
+
+function agregarAtributoDomicilio($nombre)
+{
+    global $connect;
+    $sql = "INSERT INTO `sistemajuridico`.`atributo_domiclio` (`valor`)
+     VALUES ('$nombre');";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+}
+
+function modificarAtributoDomicilio($nombre, $id_atri_dom)
+{
+    global $connect;
+    $sql = "UPDATE `sistemajuridico`.`atributo_domiclio` 
+    SET `valor` = '$nombre' 
+    WHERE (`id_atri_dom` = '$id_atri_dom');";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+}
+
+function borrarAtributoDomicilio($id_atri_dom)
+{
+    global $connect;
+    $sql = "DELETE FROM `sistemajuridico`.`atributo_domiclio` 
+    WHERE (`id_atri_dom` = '$id_atri_dom');";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+}

@@ -104,3 +104,33 @@ function borrarSubTipoExpediente($id_expsubtipo)
     $s->execute();
     $s->close();
 }
+
+/* Expediente */
+
+function listadoExpediente()
+{
+    global $connect;
+    $sql = "SELECT    persona_nombre,
+                    persona_apellido,
+                    expediente_nro,
+                    expediente_nombre,
+                    expediente_fecha_inicio,
+                    expediente_tipo_nombre,
+                    expesubt.subtipo_exp,
+                    expediente_estado_nombre,
+                    expediente_descripcon,
+                    expediente_fecha_fin
+            FROM persona persona 
+    inner join persona_fisica per_fisc on per_fisc.id_persona=persona.id_persona
+    inner join cliente cliente on per_fisc.id_persona_fisica=cliente.id_persona_fisica
+    inner join expediente expe on expe.id_persona=persona.id_persona
+    inner join expediente_tipo_subtipo exptipsub on exptipsub.id_exp_tipo_subtipo=expe.id_expediente_tipo_subtipo
+    inner join expediente_tipo exptipo on exptipo.id_expediente_tipo=exptipsub.id_expediente_tipo
+    inner join expediente_subtipo expesubt on expesubt.id_expsubtipo=exptipsub.id_expsubtipo
+    inner join expediente_estado expestado on expestado.id_expediente_estado=expe.id_expediente_estado;";
+    $s = $connect->prepare($sql);
+    $s->execute();
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+    $s->close();
+    return $records;
+}

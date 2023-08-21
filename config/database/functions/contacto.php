@@ -37,3 +37,16 @@ function borrarContacto($id_tipo_contacto)
     $s->execute();
     $s->close();
 }
+
+function agregarContactoEmpleado($id_persona, $contacto_detalle, $tipo_contacto)
+{
+    global $connect;
+    $sql = "INSERT INTO `sistemajuridico`.`contactoxpersona` 
+    (`id_persona`, `contacto_detalle`, `id_tipo_contacto`) 
+    VALUES ('$id_persona', '$contacto_detalle', '$tipo_contacto');";
+
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+}

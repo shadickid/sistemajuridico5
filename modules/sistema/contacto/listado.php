@@ -23,18 +23,24 @@ $records = selectall('tipo_contacto', $conditional);
                 <th>Borrar</th>
 
             </tr>
-            <?php foreach ($records as $reg) : ?>
-                <tr>
-                    <td><?php echo $reg['id_tipo_contacto'] ?></td>
-                    <td><?php echo $reg['tipo_contacto_nombre'] ?></td>
-                    <td>
-                        <a href="modificar.php?id_tipo_contacto=<?php echo $reg['id_tipo_contacto'] ?>"><i class="fi fi-rr-edit"></i></a>
-                    </td>
-                    <td>
-                        <a href="eliminar.php?id_tipo_contacto=<?php echo $reg['id_tipo_contacto'] ?>"><i class="fi-rr-eraser"></i></a>
-                    </td>
+            <?php foreach ($records as $reg): ?>
+            <tr>
+                <td>
+                    <?php echo $reg['id_tipo_contacto'] ?>
+                </td>
+                <td>
+                    <?php echo $reg['tipo_contacto_nombre'] ?>
+                </td>
+                <td>
+                    <a href="modificar.php?id_tipo_contacto=<?php echo $reg['id_tipo_contacto'] ?>"><i
+                            class="fi fi-rr-edit"></i></a>
+                </td>
+                <td>
+                    <a href="eliminar.php?id_tipo_contacto=<?php echo $reg['id_tipo_contacto'] ?>"><i
+                            class="fi-rr-eraser"></i></a>
+                </td>
 
-                </tr>
+            </tr>
             <?php endforeach ?>
         </table>
     </section>

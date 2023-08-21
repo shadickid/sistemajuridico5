@@ -3,13 +3,13 @@ $id_perfil = $_SESSION['id_perfil'];
 function search($array, $key, $value)
 {
 
-    $results   =   array();
+    $results = array();
     if (is_array($array)) {
         if (isset($array[$key]) && $array[$key] == $value) {
-            $results[]   =   $array;
+            $results[] = $array;
         }
         foreach ($array as $subarray) {
-            $results   =   array_merge($results, search($subarray, $key, $value));
+            $results = array_merge($results, search($subarray, $key, $value));
         }
     }
     return $results;
@@ -32,26 +32,26 @@ $sql = "SELECT m.id_modulo,m.descripcion as modulo_desc ,
         order by nivel,orden asc";
 $menues = $connect->query($sql);
 //Se setean arrays de cada nivel de menu
-$menu_nivel1   =   array();
-$menu_nivel2   =   array();
+$menu_nivel1 = array();
+$menu_nivel2 = array();
 
 foreach ($menues as $menu) {
     switch ($menu['nivel']) {
         case "1":
-            $menu_nivel1[$menu['id_modulo']]   =   $menu;
+            $menu_nivel1[$menu['id_modulo']] = $menu;
             break;
         case "2":
-            $menu_nivel2[$menu['id_modulo']]   =   $menu;
+            $menu_nivel2[$menu['id_modulo']] = $menu;
             break;
     }
 }
 /* array_multisort(array_column($menu_nivel1, 'nivel'),  SORT_ASC,
-							array_column($menu_nivel1, 'orden'), SORT_ASC,
-							$menu_nivel1);
+                            array_column($menu_nivel1, 'orden'), SORT_ASC,
+                            $menu_nivel1);
 
-			array_multisort(array_column($menu_nivel2, 'nivel'),  SORT_ASC,
-							array_column($menu_nivel2, 'orden'), SORT_ASC,
-							$menu_nivel2); */
+            array_multisort(array_column($menu_nivel2, 'nivel'),  SORT_ASC,
+                            array_column($menu_nivel2, 'orden'), SORT_ASC,
+                            $menu_nivel2); */
 ?>
 <nav class="navbar-side">
     <a href="#" class="icon">
@@ -61,7 +61,7 @@ foreach ($menues as $menu) {
     <span> Perfil:<?php echo $_SESSION['perfil'] ?></span>
     <span> Usuario:<?php echo $_SESSION['usuario'] ?></span>
     <ul>
-        <li><a>Editar mis Datos</a></li>
+        <li><a href="<?php echo BASE_URL?>modules\usuario\datos\datos.php">Editar mis Datos</a></li>
         <?php
         foreach ($menu_nivel1 as $menu1) {
             $temp   =   array();

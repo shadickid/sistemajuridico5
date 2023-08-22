@@ -14,7 +14,7 @@ $records = selectall('provincia');
 <div class="contenedor">
     <section class="inicio">
         <a href="alta.php">Nueva provincia</a>
-        <table>
+        <table class="tablamodal">
             <tr>
                 <th>ID Provincia</th>
                 <th>Nombre</th>
@@ -22,15 +22,21 @@ $records = selectall('provincia');
                 <th>Borrar</th>
 
             </tr>
-            <?php foreach ($records as $reg) : ?>
+            <?php foreach ($records as $reg): ?>
                 <tr>
-                    <td><?php echo $reg['id_provincia'] ?></td>
-                    <td><?php echo $reg['nombre'] ?></td>
                     <td>
-                        <a href="modificar.php?id_provincia=<?php echo $reg['id_provincia'] ?>"><i class="fi fi-rr-edit"></i></a>
+                        <?php echo $reg['id_provincia'] ?>
                     </td>
                     <td>
-                        <a href="eliminar.php?id_provincia=<?php echo $reg['id_provincia'] ?>"><i class="fi-rr-eraser"></i></a>
+                        <?php echo $reg['nombre'] ?>
+                    </td>
+                    <td>
+                        <a href="modificar.php?id_provincia=<?php echo $reg['id_provincia'] ?>"><i
+                                class="fi fi-rr-edit"></i></a>
+                    </td>
+                    <td>
+                        <a href="eliminar.php?id_provincia=<?php echo $reg['id_provincia'] ?>"><i
+                                class="fi-rr-eraser"></i></a>
                     </td>
 
                 </tr>

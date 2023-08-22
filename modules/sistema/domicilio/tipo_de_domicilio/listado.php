@@ -13,7 +13,7 @@ $records = selectall('tipo_dom');
 <div class="contenedor">
     <section class="inicio">
         <a href="alta.php">Nuevo tipo de domicilio</a>
-        <table>
+        <table class="tablamodal">
             <tr>
                 <th>ID tipo domicilio</th>
                 <th>Nombre</th>
@@ -21,15 +21,21 @@ $records = selectall('tipo_dom');
                 <th>Borrar</th>
 
             </tr>
-            <?php foreach ($records as $reg) : ?>
+            <?php foreach ($records as $reg): ?>
                 <tr>
-                    <td><?php echo $reg['id_tipo_dom'] ?></td>
-                    <td><?php echo $reg['valor'] ?></td>
                     <td>
-                        <a href="modificar.php?id_tipo_dom=<?php echo $reg['id_tipo_dom'] ?>"><i class="fi fi-rr-edit"></i></a>
+                        <?php echo $reg['id_tipo_dom'] ?>
                     </td>
                     <td>
-                        <a href="eliminar.php?id_tipo_dom=<?php echo $reg['id_tipo_dom'] ?>"><i class="fi-rr-eraser"></i></a>
+                        <?php echo $reg['valor'] ?>
+                    </td>
+                    <td>
+                        <a href="modificar.php?id_tipo_dom=<?php echo $reg['id_tipo_dom'] ?>"><i
+                                class="fi fi-rr-edit"></i></a>
+                    </td>
+                    <td>
+                        <a href="eliminar.php?id_tipo_dom=<?php echo $reg['id_tipo_dom'] ?>"><i
+                                class="fi-rr-eraser"></i></a>
                     </td>
 
                 </tr>

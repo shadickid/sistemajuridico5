@@ -13,7 +13,7 @@ $records = selectall('atributo_domiclio');
 <div class="contenedor">
     <section class="inicio">
         <a href="alta.php">Nuevo atributo de domicilio</a>
-        <table>
+        <table class="tablamodal">
             <tr>
                 <th>ID atributo</th>
                 <th>Nombre</th>
@@ -22,17 +22,19 @@ $records = selectall('atributo_domiclio');
 
             </tr>
             <?php foreach ($records as $reg) : ?>
-                <tr>
-                    <td><?php echo $reg['id_atri_dom'] ?></td>
-                    <td><?php echo $reg['valor'] ?></td>
-                    <td>
-                        <a href="modificar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>"><i class="fi fi-rr-edit"></i></a>
-                    </td>
-                    <td>
-                        <a href="eliminar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>"><i class="fi-rr-eraser"></i></a>
-                    </td>
+            <tr>
+                <td><?php echo $reg['id_atri_dom'] ?></td>
+                <td><?php echo $reg['valor'] ?></td>
+                <td>
+                    <a href="modificar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>"><i
+                            class="fi fi-rr-edit"></i></a>
+                </td>
+                <td>
+                    <a href="eliminar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>"><i
+                            class="fi-rr-eraser"></i></a>
+                </td>
 
-                </tr>
+            </tr>
             <?php endforeach ?>
         </table>
     </section>

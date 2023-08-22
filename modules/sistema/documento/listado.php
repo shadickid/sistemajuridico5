@@ -15,7 +15,7 @@ $records = selectall('documento', $conditional);
 <div class="contenedor">
     <section class="inicio">
         <a href="alta.php">Nuevo tipo de documento</a>
-        <table>
+        <table class="tablamodal">
             <tr>
                 <th>ID Documento</th>
                 <th>Nombre</th>
@@ -23,26 +23,30 @@ $records = selectall('documento', $conditional);
                 <th>Borrar</th>
 
             </tr>
-            <?php foreach ($records as $reg) : ?>
-            <tr>
-                <td><?php echo $reg['id_tipo_documento'] ?></td>
-                <td><?php echo $reg['descripcion'] ?></td>
-                <td>
-                    <a href="modificar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>"><i
-                            class="fi fi-rr-edit"></i></a>
-                </td>
-                <td>
-                    <a href="eliminar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>"><i
-                            class="fi-rr-eraser"></i></a>
-                </td>
+            <?php foreach ($records as $reg): ?>
+                <tr>
+                    <td>
+                        <?php echo $reg['id_tipo_documento'] ?>
+                    </td>
+                    <td>
+                        <?php echo $reg['descripcion'] ?>
+                    </td>
+                    <td>
+                        <a href="modificar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>"><i
+                                class="fi fi-rr-edit"></i></a>
+                    </td>
+                    <td>
+                        <a href="eliminar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>"><i
+                                class="fi-rr-eraser"></i></a>
+                    </td>
 
-            </tr>
+                </tr>
             <?php endforeach ?>
         </table>
-        <?php if (isset($_GET['error'])) : ?>
-        <span class=''>
-            Error:No se cargo nada
-        </span>
+        <?php if (isset($_GET['error'])): ?>
+            <span class=''>
+                Error:No se cargo nada
+            </span>
         <?php endif ?>
     </section>
 

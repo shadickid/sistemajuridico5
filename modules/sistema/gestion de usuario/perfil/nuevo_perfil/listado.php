@@ -15,7 +15,7 @@ $records = selectall('perfil', $conditional);
 <div class="contenedor">
     <section class="inicio">
         <a href="alta.php">Nuevo Perfil</a>
-        <table>
+        <table class="tablamodal">
             <tr>
                 <th>ID Perfil</th>
                 <th>Nombre</th>
@@ -23,18 +23,22 @@ $records = selectall('perfil', $conditional);
                 <th>Borrar</th>
 
             </tr>
-            <?php foreach ($records as $reg) : ?>
-            <tr>
-                <td><?php echo $reg['id_perfil'] ?></td>
-                <td><?php echo $reg['descripcion'] ?></td>
-                <td>
-                    <a href="modificar.php?id_perfil=<?php echo $reg['id_perfil'] ?>"><i class="fi fi-rr-edit"></i></a>
-                </td>
-                <td>
-                    <a href="eliminar.php?id_perfil=<?php echo $reg['id_perfil'] ?>"><i class="fi-rr-eraser"></i></a>
-                </td>
+            <?php foreach ($records as $reg): ?>
+                <tr>
+                    <td>
+                        <?php echo $reg['id_perfil'] ?>
+                    </td>
+                    <td>
+                        <?php echo $reg['descripcion'] ?>
+                    </td>
+                    <td>
+                        <a href="modificar.php?id_perfil=<?php echo $reg['id_perfil'] ?>"><i class="fi fi-rr-edit"></i></a>
+                    </td>
+                    <td>
+                        <a href="eliminar.php?id_perfil=<?php echo $reg['id_perfil'] ?>"><i class="fi-rr-eraser"></i></a>
+                    </td>
 
-            </tr>
+                </tr>
             <?php endforeach ?>
         </table>
     </section>

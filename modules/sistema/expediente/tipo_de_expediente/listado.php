@@ -15,7 +15,7 @@ $records = selectall('expediente_tipo', $conditional);
 <div class="contenedor">
     <section class="inicio">
         <a href="alta.php">Nuevo tipo de expediente</a>
-        <table>
+        <table class="tablamodal">
             <tr>
                 <th>ID tipo</th>
                 <th>Nombre</th>
@@ -23,15 +23,21 @@ $records = selectall('expediente_tipo', $conditional);
                 <th>Borrar</th>
 
             </tr>
-            <?php foreach ($records as $reg) : ?>
+            <?php foreach ($records as $reg): ?>
                 <tr>
-                    <td><?php echo $reg['id_expediente_tipo'] ?></td>
-                    <td><?php echo $reg['expediente_tipo_nombre'] ?></td>
                     <td>
-                        <a href="modificar.php?id_expediente_tipo=<?php echo $reg['id_expediente_tipo'] ?>"><i class="fi fi-rr-edit"></i></a>
+                        <?php echo $reg['id_expediente_tipo'] ?>
                     </td>
                     <td>
-                        <a href="eliminar.php?id_expediente_tipo=<?php echo $reg['id_expediente_tipo'] ?>"><i class="fi-rr-eraser"></i></a>
+                        <?php echo $reg['expediente_tipo_nombre'] ?>
+                    </td>
+                    <td>
+                        <a href="modificar.php?id_expediente_tipo=<?php echo $reg['id_expediente_tipo'] ?>"><i
+                                class="fi fi-rr-edit"></i></a>
+                    </td>
+                    <td>
+                        <a href="eliminar.php?id_expediente_tipo=<?php echo $reg['id_expediente_tipo'] ?>"><i
+                                class="fi-rr-eraser"></i></a>
                     </td>
 
                 </tr>

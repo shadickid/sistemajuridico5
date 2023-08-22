@@ -50,3 +50,14 @@ function agregarContactoEmpleado($id_persona, $contacto_detalle, $tipo_contacto)
     $s->execute();
     $s->close();
 }
+
+function borrarContactoEmpleado($id_contxper)
+{
+    global $connect;
+    $sql = "DELETE FROM `sistemajuridico`.`contactoxpersona` WHERE (`id_contxper` = '$id_contxper');";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+    $s->close();
+
+}

@@ -13,7 +13,7 @@ $records = selectall('pais');
 <div class="contenedor">
     <section class="inicio">
         <a href="alta.php">Nuevo Pais</a>
-        <table>
+        <table class="tablamodal">
             <tr>
                 <th>ID Pais</th>
                 <th>Nombre</th>
@@ -21,10 +21,14 @@ $records = selectall('pais');
                 <th>Borrar</th>
 
             </tr>
-            <?php foreach ($records as $reg) : ?>
+            <?php foreach ($records as $reg): ?>
                 <tr>
-                    <td><?php echo $reg['id_pais'] ?></td>
-                    <td><?php echo $reg['nombre'] ?></td>
+                    <td>
+                        <?php echo $reg['id_pais'] ?>
+                    </td>
+                    <td>
+                        <?php echo $reg['nombre'] ?>
+                    </td>
                     <td>
                         <a href="modificar.php?id_pais=<?php echo $reg['id_pais'] ?>"><i class="fi fi-rr-edit"></i></a>
                     </td>

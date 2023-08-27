@@ -57,31 +57,41 @@ foreach ($menues as $menu) {
     <a href="#" class="icon">
         <img src="<?php echo BASE_URL; ?>assets\img\Logo_Renzo_Law.png" class="logo" />
     </a>
-    <span>Hola <?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellido'] ?></span>
-    <span> Perfil:<?php echo $_SESSION['perfil'] ?></span>
-    <span> Usuario:<?php echo $_SESSION['usuario'] ?></span>
+    <div class="user-area">
+        <span class="user-name">Hola
+            <?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellido'] ?>
+        </span>
+        <span class="user-profile"> Perfil:
+            <?php echo $_SESSION['perfil'] ?>
+        </span>
+        <span class="username"> Usuario:
+            <?php echo $_SESSION['usuario'] ?>
+        </span>
+    </div>
     <ul>
-        <li><a href="<?php echo BASE_URL?>modules\usuario\datos\datos.php">Editar mis Datos</a></li>
+        <li><a href="<?php echo BASE_URL ?>modules\usuario\datos\datos.php">Editar mis Datos</a></li>
         <?php
         foreach ($menu_nivel1 as $menu1) {
-            $temp   =   array();
-            $temp   =   search($menu_nivel2, 'padre', $menu1['id_modulo']); //Busca hijos del nivel 1   
-        ?>
-        <?php
+            $temp = array();
+            $temp = search($menu_nivel2, 'padre', $menu1['id_modulo']); //Busca hijos del nivel 1   
+            ?>
+            <?php
             if (empty($temp)) { //No se encuentran hijos del nivel 1
-            ?>
-        <li><a href="<?php echo BASE_URL . $menu1['ruta'] ?>"><?php echo $menu1['modulo_desc'] ?></a></li>
-        <?php } else { // Si se encuentran hijos del nivel 1  
-            ?>
-        <li>
-            <a href="#"><?php echo $menu1['modulo_desc'] ?></a>
-            <ul>
-                <?php foreach ($temp as $menu2) { ?>
-                <li><a href="<?php echo BASE_URL . $menu2['ruta'] ?>"><?php echo $menu2['modulo_desc'] ?> </a></li>
-                <?php } ?>
-            </ul>
-        </li>
-        <?php } ?>
+                ?>
+                <li><a href="<?php echo BASE_URL . $menu1['ruta'] ?>"><?php echo $menu1['modulo_desc'] ?></a></li>
+            <?php } else { // Si se encuentran hijos del nivel 1  
+                ?>
+                <li>
+                    <a href="#">
+                        <?php echo $menu1['modulo_desc'] ?>
+                    </a>
+                    <ul>
+                        <?php foreach ($temp as $menu2) { ?>
+                            <li><a href="<?php echo BASE_URL . $menu2['ruta'] ?>"><?php echo $menu2['modulo_desc'] ?> </a></li>
+                        <?php } ?>
+                    </ul>
+                </li>
+            <?php } ?>
         <?php } ?>
         <li><a href="<?php echo BASE_URL ?>modules/login/logout.php">Cerrar Sesion</a></li>
     </ul>

@@ -128,42 +128,113 @@ button:hover {
 .user-profile {
   color: black;
 }
-
+/* Estilos generales */
 .navbar-side {
   position: fixed;
   width: 15vw;
-  height: 105%;
+  height: 100%;
   background-color: #d9d9d9;
-  top: 0px;
+  top: 0;
+  transition: width 0.3s;
+  overflow-y: auto; /* Agregamos scroll si es necesario */
+}
+
+.navbar-side .icon {
+  display: block;
+  text-align: center;
+  padding: 10px;
+}
+
+.navbar-side .logo {
+  max-width: 100%;
+}
+
+.user-area {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.user-name,
+.user-profile,
+.username {
+  display: block;
+  font-size: 14px;
+}
+
+/* Estilos de enlaces y listas */
+.navbar-side ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .navbar-side ul li {
   font-size: 25px;
   text-align: center;
-  list-style: none;
-  padding: 10px;
+  padding: 8px;
 }
 
-.navbar-side ul li:hover {
-  background-color: #2c7da0;
-  border-radius: 20px 20px 20px 20px;
-}
-.navbar-side ul li:hover a {
-  color: #fff;
-}
 .navbar-side li a {
   color: black;
   text-decoration: none;
+  transition: color 0.3s;
 }
 
+/* Efectos de hover */
+.navbar-side ul li:hover {
+  background-color: #2c7da0;
+  border-radius: 20px;
+}
+
+.navbar-side ul li:hover a {
+  color: #fff;
+}
+
+/* Efecto de submenú desplegable */
 .navbar-side ul li ul {
-  height: 1px;
+  height: 0;
   overflow: hidden;
-  transition: 0.4s;
+  transition: height 0.4s;
 }
+
 .navbar-side ul li:hover ul {
-  height: 100px;
+  height: auto;
+  padding: 10px 0;
 }
+
+/* Media query para responsividad */
+@media screen and (max-width: 768px) {
+  .navbar-side {
+    width: 100%;
+    height: auto;
+    position: static; /* Cambiamos a posición estática para que ocupe todo el ancho */
+  }
+
+  .navbar-side .user-area {
+    border-bottom: none;
+    text-align: center;
+  }
+
+  .navbar-side .user-name,
+  .navbar-side .user-profile,
+  .navbar-side .username {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .navbar-side ul li {
+    font-size: 20px;
+  }
+
+  .navbar-side ul li ul {
+    display: none;
+  }
+
+  .navbar-side ul li:hover ul {
+    height: 0;
+  }
+}
+
 .logo {
   display: block;
   margin: 0 auto;

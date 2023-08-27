@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora sin comila</title>
+</head>
+<body>
+    <form>
+        <label for="numero1">Numero 1</label>
+        <input  type="number" name="numero1" id="numero1">
+        <label for="numero2">Numero 2</label>
+        <input type="number" name="numero2" id="numero2">
+        <label for="resultado">Resultado</label>
+        <input type="number" name="resultado" id="resultado">
+        <button onclick="suma()" type="button">Suma</button>
+        <button onclick="resta()" type="button">Resta</button>
+        <button onclick="multiplicacion()" type="button">Multiplicacion</button>
+        <button onclick="division()" type="button">Division</button>
+
+
+    </form>
+</body>
+</html>
+<script>
+    function suma(){
+
+        var nro1=document.getElementById('numero1').value;
+        var nro2=document.getElementById('numero2').value;
+        var sum=parseInt(nro1)+parseInt(nro2);
+        document.getElementById('resultado').value=sum;
+        document.getElementById('resultado').style.backgroundColor="blue";
+        document.getElementById('resultado').style.color="white";
+    }
+    function resta(){
+        
+        var nro1=document.getElementById('numero1').value;
+        var nro2=document.getElementById('numero2').value;
+        var resta=parseInt(nro1)-parseInt(nro2);
+        document.getElementById('resultado').value=resta;
+        document.getElementById('resultado').style.backgroundColor="red";
+        document.getElementById('resultado').style.color="white";
+
+
+
+    }
+    function multiplicacion(){
+        var nro1=document.getElementById('numero1').value;
+        var nro2=document.getElementById('numero2').value;
+        var multiplicacion=parseInt(nro1)*parseInt(nro2);
+        document.getElementById('resultado').value=multiplicacion;
+        document.getElementById('resultado').style.backgroundColor="green";
+        document.getElementById('resultado').style.color="white";
+        
+    }
+    function division(){
+        var nro1=document.getElementById('numero1').value;
+        var nro2=document.getElementById('numero2').value;
+        var division=parseFloat(nro1)/parseFloat(nro2);
+        document.getElementById('resultado').value=division;
+        document.getElementById('resultado').style.backgroundColor="orange";
+
+    }
+</script>

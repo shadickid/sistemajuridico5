@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora sin comila</title>
+</head>
+<body>
+    <form>
+        <label for="numero1">Numero 1</label>
+        <input  type="number" name="numero1" id="numero1">
+        <label for="numero2">Numero 2</label>
+        <input type="number" name="numero2" id="numero2">
+        <label for="resultado">Resultado</label>
+        <input type="number" name="resultado" id="resultado">
+        <button onclick="calculadora('suma')" type="button">Suma</button>
+        <button onclick="calculadora('resta')" type="button">Resta</button>
+        <button onclick="calculadora('multiplicacion')" type="button">Multiplicacion</button>
+        <button onclick="calculadora('division')" type="button">Division</button>
+    </form>
+    <p onclick="prueba()">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum fuga non quasi, rerum modi, consectetur molestias qui provident, soluta quae id eum nihil. Animi maiores totam cupiditate incidunt expedita odio.</p>
+</body>
+</html>
+<script>
+    function calculadora(operacion){
+        const numero1=parseFloat(document.getElementById('numero1').value)
+        const numero2=parseFloat(document.getElementById('numero2').value)
+        let resultado;
+        switch (operacion){
+            case 'suma':
+                resultado=numero1+numero2;
+                document.getElementById('resultado').style.color="blue";
+                break;
+
+            case 'resta':
+                resultado=numero1-numero2;
+                document.getElementById('resultado').style.color="red";
+                break;
+            case 'multiplicacion':
+                resultado=numero1*numero2;
+                document.getElementById('resultado').style.color="green";
+                break;
+            case 'division':
+                resultado=numero1/numero2;
+                document.getElementById('resultado').style.color="orange";
+                break;
+            default:
+                resultado="Ni idea capo";
+                alert(resultado);
+                break;
+        }
+        document.getElementById('resultado').value=resultado; 
+
+    }
+    function prueba(){
+        calculadora("cualquiercosa");
+    }
+</script>

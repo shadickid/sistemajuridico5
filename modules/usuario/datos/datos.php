@@ -12,8 +12,9 @@ $conditional = [
     'estado' => 1
 ];
 $records = selectall('tipo_contacto', $conditional);
-$tipodoc = selectall('documento', $conditional)
-    ?>
+$tipodoc = selectall('documento', $conditional);
+$sexo = selectall('sexo');
+?>
 <div>
     <h1> Mi informacion</h1>
 </div>
@@ -32,7 +33,12 @@ $tipodoc = selectall('documento', $conditional)
                     <input class="formulario-input" type="date" name="fecnac" id="fecnac"
                         value="<?php echo $reg['persona_fec_nac'] ?>">
                     <label class="formulario-label" for="sex">Sexo</label>
-                    <input class="formulario-input" type="text" name="sex" id="sex" value="<?php echo $reg['nombre'] ?>">
+                    <select class="formulario-select">
+                        <option value="<?php echo $reg['id_sexo'] ?>"><?php echo $reg['nombre'] ?></option>
+                        <?php foreach ($sexo as $sex): ?>
+                            <option value="<?php echo $sex['id_sexo'] ?>"><?php echo $sex['nombre'] ?></option>
+                        <?php endforeach ?>
+                    </select>
                     <input class="formulario-submit" type="submit" value="Guardar cambios">
                 </form>
             </div>
@@ -60,9 +66,9 @@ $tipodoc = selectall('documento', $conditional)
                                 <?php endforeach ?>
                             </select>
                             <label for="contacto">Agregar contacto</label>
-                            <input type="text" name="valorcontacto">
+                            <input type="text" class="formulario-input" name="valorcontacto">
                             <input type="hidden" name="id_persona" value="<?php echo $reg['id_persona'] ?>">
-                            <input type="submit" value="Guardar">
+                            <input type="submit" class="formulario-submit" value="Guardar">
                         </form>
                         <table class="tablamodal">
                             <tr>
@@ -117,9 +123,9 @@ $tipodoc = selectall('documento', $conditional)
                                 <?php endforeach ?>
                             </select>
                             <label for="documento">Agregar documento</label>
-                            <input type="text" name="valordocumento">
+                            <input type="text" class="formulario-input" name="valordocumento">
                             <input type="hidden" name="id_persona" value="<?php echo $reg['id_persona'] ?>">
-                            <input type="submit" value="Guardar">
+                            <input type="submit" class="formulario-submit" value="Guardar">
                         </form>
                         <table class="tablamodal">
                             <tr>

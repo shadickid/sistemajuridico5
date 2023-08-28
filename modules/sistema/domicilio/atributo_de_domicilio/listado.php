@@ -12,7 +12,7 @@ $records = selectall('atributo_domiclio');
 </div>
 <div class="contenedor">
     <section class="inicio">
-        <a href="alta.php">Nuevo atributo de domicilio</a>
+        <a href="alta.php" class="a-alta">Nuevo atributo de domicilio</a>
         <table class="tablamodal">
             <tr>
                 <th>ID atributo</th>
@@ -21,17 +21,26 @@ $records = selectall('atributo_domiclio');
                 <th>Borrar</th>
 
             </tr>
-            <?php foreach ($records as $reg) : ?>
+            <?php foreach ($records as $reg): ?>
             <tr>
-                <td><?php echo $reg['id_atri_dom'] ?></td>
-                <td><?php echo $reg['valor'] ?></td>
                 <td>
-                    <a href="modificar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>"><i
-                            class="fi fi-rr-edit"></i></a>
+                    <?php echo $reg['id_atri_dom'] ?>
                 </td>
                 <td>
-                    <a href="eliminar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>"><i
-                            class="fi-rr-eraser"></i></a>
+                    <?php echo $reg['valor'] ?>
+                </td>
+                <td>
+                    <a href="modificar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>"> <button class="editarButton">
+                            <i class="fi fi-rr-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="eliminar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>">
+                        <button class="darDeBajaButton">
+                            <i class="fi-rr-eraser"></i>
+                        </button>
+                    </a>
                 </td>
 
             </tr>

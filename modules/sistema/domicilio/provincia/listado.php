@@ -13,7 +13,7 @@ $records = selectall('provincia');
 </div>
 <div class="contenedor">
     <section class="inicio">
-        <a href="alta.php">Nueva provincia</a>
+        <a href="alta.php" class="a-alta">Nueva provincia</a>
         <table class="tablamodal">
             <tr>
                 <th>ID Provincia</th>
@@ -23,23 +23,29 @@ $records = selectall('provincia');
 
             </tr>
             <?php foreach ($records as $reg): ?>
-                <tr>
-                    <td>
-                        <?php echo $reg['id_provincia'] ?>
-                    </td>
-                    <td>
-                        <?php echo $reg['nombre'] ?>
-                    </td>
-                    <td>
-                        <a href="modificar.php?id_provincia=<?php echo $reg['id_provincia'] ?>"><i
-                                class="fi fi-rr-edit"></i></a>
-                    </td>
-                    <td>
-                        <a href="eliminar.php?id_provincia=<?php echo $reg['id_provincia'] ?>"><i
-                                class="fi-rr-eraser"></i></a>
-                    </td>
+            <tr>
+                <td>
+                    <?php echo $reg['id_provincia'] ?>
+                </td>
+                <td>
+                    <?php echo $reg['nombre'] ?>
+                </td>
+                <td>
+                    <a href="modificar.php?id_provincia=<?php echo $reg['id_provincia'] ?>">
+                        <button class="editarButton">
+                            <i class="fi fi-rr-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="eliminar.php?id_provincia=<?php echo $reg['id_provincia'] ?>">
+                        <button class="darDeBajaButton">
+                            <i class="fi-rr-eraser"></i>
+                        </button>
+                    </a>
+                </td>
 
-                </tr>
+            </tr>
             <?php endforeach ?>
         </table>
     </section>

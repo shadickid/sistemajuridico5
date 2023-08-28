@@ -14,7 +14,7 @@ $records = selectall('tipo_contacto', $conditional);
 </div>
 <div class="contenedor">
     <section class="inicio">
-        <a href="alta.php">Nuevo tipo de contacto</a>
+        <a href="alta.php" class="a-alta">Nuevo tipo de contacto</a>
         <table class="tablamodal">
             <tr>
                 <th>ID Contacto</th>
@@ -32,12 +32,19 @@ $records = selectall('tipo_contacto', $conditional);
                         <?php echo $reg['tipo_contacto_nombre'] ?>
                     </td>
                     <td>
-                        <a href="modificar.php?id_tipo_contacto=<?php echo $reg['id_tipo_contacto'] ?>"><i
-                                class="fi fi-rr-edit"></i></a>
+                        <a href="modificar.php?id_tipo_contacto=<?php echo $reg['id_tipo_contacto'] ?>">
+                            <button class="editarButton">
+                                <i class="fi fi-rr-edit"></i>
+                            </button>
+                        </a>
                     </td>
                     <td>
-                        <a href="eliminar.php?id_tipo_contacto=<?php echo $reg['id_tipo_contacto'] ?>"><i
-                                class="fi-rr-eraser"></i></a>
+                        <a href="eliminar.php?id_tipo_contacto=<?php echo $reg['id_tipo_contacto'] ?>">
+                            <button class="darDeBajaButton">
+                                <i class="fi-rr-eraser"></i>
+                            </button>
+                        </a>
+
                     </td>
 
                 </tr>

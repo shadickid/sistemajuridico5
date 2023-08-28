@@ -12,7 +12,7 @@ $records = selectall('pais');
 </div>
 <div class="contenedor">
     <section class="inicio">
-        <a href="alta.php">Nuevo Pais</a>
+        <a href="alta.php" class="a-alta">Nuevo Pais</a>
         <table class="tablamodal">
             <tr>
                 <th>ID Pais</th>
@@ -30,10 +30,18 @@ $records = selectall('pais');
                         <?php echo $reg['nombre'] ?>
                     </td>
                     <td>
-                        <a href="modificar.php?id_pais=<?php echo $reg['id_pais'] ?>"><i class="fi fi-rr-edit"></i></a>
+                        <a href="modificar.php?id_pais=<?php echo $reg['id_pais'] ?>">
+                            <button class="editarButton">
+                                <i class="fi fi-rr-edit"></i>
+                            </button>
+                        </a>
                     </td>
                     <td>
-                        <a href="eliminar.php?id_pais=<?php echo $reg['id_pais'] ?>"><i class="fi-rr-eraser"></i></a>
+                        <a href="eliminar.php?id_pais=<?php echo $reg['id_pais'] ?>">
+                            <button class="darDeBajaButton">
+                                <i class="fi-rr-eraser"></i>
+                            </button>
+                        </a>
                     </td>
 
                 </tr>

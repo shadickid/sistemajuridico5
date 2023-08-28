@@ -14,7 +14,7 @@ $records = selectall('expediente_tipo', $conditional);
 </div>
 <div class="contenedor">
     <section class="inicio">
-        <a href="alta.php">Nuevo tipo de expediente</a>
+        <a href="alta.php" class="a-alta">Nuevo tipo de expediente</a>
         <table class="tablamodal">
             <tr>
                 <th>ID tipo</th>
@@ -24,23 +24,29 @@ $records = selectall('expediente_tipo', $conditional);
 
             </tr>
             <?php foreach ($records as $reg): ?>
-                <tr>
-                    <td>
-                        <?php echo $reg['id_expediente_tipo'] ?>
-                    </td>
-                    <td>
-                        <?php echo $reg['expediente_tipo_nombre'] ?>
-                    </td>
-                    <td>
-                        <a href="modificar.php?id_expediente_tipo=<?php echo $reg['id_expediente_tipo'] ?>"><i
-                                class="fi fi-rr-edit"></i></a>
-                    </td>
-                    <td>
-                        <a href="eliminar.php?id_expediente_tipo=<?php echo $reg['id_expediente_tipo'] ?>"><i
-                                class="fi-rr-eraser"></i></a>
-                    </td>
+            <tr>
+                <td>
+                    <?php echo $reg['id_expediente_tipo'] ?>
+                </td>
+                <td>
+                    <?php echo $reg['expediente_tipo_nombre'] ?>
+                </td>
+                <td>
+                    <a href="modificar.php?id_expediente_tipo=<?php echo $reg['id_expediente_tipo'] ?>">
+                        <button class="editarButton">
+                            <i class="fi fi-rr-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="eliminar.php?id_expediente_tipo=<?php echo $reg['id_expediente_tipo'] ?>">
+                        <button class="darDeBajaButton">
+                            <i class="fi-rr-eraser"></i>
+                        </button>
+                    </a>
+                </td>
 
-                </tr>
+            </tr>
             <?php endforeach ?>
         </table>
     </section>

@@ -13,7 +13,7 @@ $records = selectall('localidad');
 </div>
 <div class="contenedor">
     <section class="inicio">
-        <a href="alta.php">Nueva localidad</a>
+        <a href="alta.php" class="a-alta">Nueva localidad</a>
         <table class="tablamodal">
             <tr>
                 <th>ID localidad</th>
@@ -22,20 +22,30 @@ $records = selectall('localidad');
                 <th>Borrar</th>
 
             </tr>
-            <?php foreach ($records as $reg) : ?>
-            <tr>
-                <td><?php echo $reg['id_localidad'] ?></td>
-                <td><?php echo $reg['nombre'] ?></td>
-                <td>
-                    <a href="modificar.php?id_localidad=<?php echo $reg['id_localidad'] ?>"><i
-                            class="fi fi-rr-edit"></i></a>
-                </td>
-                <td>
-                    <a href="eliminar.php?id_localidad=<?php echo $reg['id_localidad'] ?>"><i
-                            class="fi-rr-eraser"></i></a>
-                </td>
+            <?php foreach ($records as $reg): ?>
+                <tr>
+                    <td>
+                        <?php echo $reg['id_localidad'] ?>
+                    </td>
+                    <td>
+                        <?php echo $reg['nombre'] ?>
+                    </td>
+                    <td>
+                        <a href="modificar.php?id_localidad=<?php echo $reg['id_localidad'] ?>">
+                            <button class="editarButton">
+                                <i class="fi fi-rr-edit"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="eliminar.php?id_localidad=<?php echo $reg['id_localidad'] ?>">
+                            <button class="darDeBajaButton">
+                                <i class="fi-rr-eraser"></i>
+                            </button>
+                        </a>
+                    </td>
 
-            </tr>
+                </tr>
             <?php endforeach ?>
         </table>
     </section>

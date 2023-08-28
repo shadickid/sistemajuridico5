@@ -9,12 +9,16 @@ include(ROOT_PATH . 'includes\nav.php');
 </div>
 <div class="contenedor">
     <section class="inicio">
-        <h2>Alta de nuevo tipo de expediente</h2>
-        <form action="procesarAlta.php" method="POST">
-            <div class="input-control">
-                Nombre:<input type="text" name="nombre" autocomplete="off">
-                <input type="submit" value="Guardar">
-            </div>
+        <div class="formulario-container">
+            <h2>Alta de nuevo tipo de expediente</h2>
+            <form action="procesarAlta.php" method="POST">
+                <div>
+                    <legend> Nombre:
+                        <input class="formulario-input" type="text" name="nombre" autocomplete="off">
+                        <input class="formulario-submit" type="submit" value="Guardar">
+                    </legend>
+                </div>
+        </div>
         </form>
     </section>
 </div>

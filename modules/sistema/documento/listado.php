@@ -14,7 +14,7 @@ $records = selectall('documento', $conditional);
 </div>
 <div class="contenedor">
     <section class="inicio">
-        <a href="alta.php">Nuevo tipo de documento</a>
+        <a href="alta.php" class="a-alta">Nuevo tipo de documento</a>
         <table class="tablamodal">
             <tr>
                 <th>ID Documento</th>
@@ -24,29 +24,35 @@ $records = selectall('documento', $conditional);
 
             </tr>
             <?php foreach ($records as $reg): ?>
-                <tr>
-                    <td>
-                        <?php echo $reg['id_tipo_documento'] ?>
-                    </td>
-                    <td>
-                        <?php echo $reg['descripcion'] ?>
-                    </td>
-                    <td>
-                        <a href="modificar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>"><i
-                                class="fi fi-rr-edit"></i></a>
-                    </td>
-                    <td>
-                        <a href="eliminar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>"><i
-                                class="fi-rr-eraser"></i></a>
-                    </td>
+            <tr>
+                <td>
+                    <?php echo $reg['id_tipo_documento'] ?>
+                </td>
+                <td>
+                    <?php echo $reg['descripcion'] ?>
+                </td>
+                <td>
+                    <a href="modificar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>">
+                        <button class="editarButton">
+                            <i class="fi fi-rr-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="eliminar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>">
+                        <button class="darDeBajaButton">
+                            <i class="fi-rr-eraser"></i>
+                        </button>
+                    </a>
+                </td>
 
-                </tr>
+            </tr>
             <?php endforeach ?>
         </table>
         <?php if (isset($_GET['error'])): ?>
-            <span class=''>
-                Error:No se cargo nada
-            </span>
+        <span class=''>
+            Error:No se cargo nada
+        </span>
         <?php endif ?>
     </section>
 

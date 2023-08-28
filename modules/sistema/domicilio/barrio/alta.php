@@ -13,18 +13,22 @@ $prov = selectall('provincia');
 </div>
 <div class="contenedor">
     <section class="inicio">
-        <h2>Alta de nueva localidad</h2>
-        <form action="procesarAlta.php" method="POST">
-            <div class="input-control">
-                <label for="id_provincia">Selecione la provincia </label>
-                <select name="id_provincia">
-                    <?php foreach ($prov as $reg) : ?>
+        <div class="formulario-container">
+            <h2>Alta de nueva localidad</h2>
+            <form action="procesarAlta.php" method="POST">
+                <div>
+                    <label class="formulario-label" for="id_provincia">Selecione la provincia </label>
+                    <select class="formulario-select" name="id_provincia">
+                        <?php foreach ($prov as $reg): ?>
                         <option value="<?php echo $reg['id_provincia'] ?>"><?php echo $reg['nombre'] ?></option>
-                    <?php endforeach ?>
-                </select>
-                Nombre:<input type="text" name="nombre" autocomplete="off">
-                <input type="submit" value="Guardar">
-            </div>
+                        <?php endforeach ?>
+                    </select>
+                    <legend> Nombre:
+                        <input class="formulario-input" type="text" name="nombre" autocomplete="off">
+                        <input class="formulario-submit" type="submit" value="Guardar">
+                    </legend>
+                </div>
+        </div>
         </form>
     </section>
 </div>

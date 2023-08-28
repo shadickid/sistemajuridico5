@@ -14,7 +14,7 @@ $records = selectall('expediente_subtipo', $conditional);
 </div>
 <div class="contenedor">
     <section class="inicio">
-        <a href="alta.php">Nuevo sub tipo de expediente</a>
+        <a href="alta.php" class="a-alta">Nuevo sub tipo de expediente</a>
         <table class="tablamodal">
             <tr>
                 <th>ID tipo</th>
@@ -24,23 +24,29 @@ $records = selectall('expediente_subtipo', $conditional);
 
             </tr>
             <?php foreach ($records as $reg): ?>
-                <tr>
-                    <td>
-                        <?php echo $reg['id_expsubtipo'] ?>
-                    </td>
-                    <td>
-                        <?php echo $reg['subtipo_exp'] ?>
-                    </td>
-                    <td>
-                        <a href="modificar.php?id_expsubtipo=<?php echo $reg['id_expsubtipo'] ?>"><i
-                                class="fi fi-rr-edit"></i></a>
-                    </td>
-                    <td>
-                        <a href="eliminar.php?id_expsubtipo=<?php echo $reg['id_expsubtipo'] ?>"><i
-                                class="fi-rr-eraser"></i></a>
-                    </td>
+            <tr>
+                <td>
+                    <?php echo $reg['id_expsubtipo'] ?>
+                </td>
+                <td>
+                    <?php echo $reg['subtipo_exp'] ?>
+                </td>
+                <td>
+                    <a href="modificar.php?id_expsubtipo=<?php echo $reg['id_expsubtipo'] ?>">
+                        <button class="editarButton">
+                            <i class="fi fi-rr-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="eliminar.php?id_expsubtipo=<?php echo $reg['id_expsubtipo'] ?>">
+                        <button class="darDeBajaButton">
+                            <i class="fi-rr-eraser"></i>
+                        </button>
+                    </a>
+                </td>
 
-                </tr>
+            </tr>
             <?php endforeach ?>
         </table>
     </section>

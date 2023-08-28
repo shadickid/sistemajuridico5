@@ -14,7 +14,7 @@ $records = selectall('expediente_estado', $conditional);
 </div>
 <div class="contenedor">
     <section class="inicio">
-        <a href="alta.php">Nuevo estado de expediente</a>
+        <a href="alta.php" class="a-alta">Nuevo estado de expediente</a>
         <table class="tablamodal">
             <tr>
                 <th>ID Documento</th>
@@ -24,23 +24,29 @@ $records = selectall('expediente_estado', $conditional);
 
             </tr>
             <?php foreach ($records as $reg): ?>
-                <tr>
-                    <td>
-                        <?php echo $reg['id_expediente_estado'] ?>
-                    </td>
-                    <td>
-                        <?php echo $reg['expediente_estado_nombre'] ?>
-                    </td>
-                    <td>
-                        <a href="modificar.php?id_expediente_estado=<?php echo $reg['id_expediente_estado'] ?>"><i
-                                class="fi fi-rr-edit"></i></a>
-                    </td>
-                    <td>
-                        <a href="eliminar.php?id_expediente_estado=<?php echo $reg['id_expediente_estado'] ?>"><i
-                                class="fi-rr-eraser"></i></a>
-                    </td>
+            <tr>
+                <td>
+                    <?php echo $reg['id_expediente_estado'] ?>
+                </td>
+                <td>
+                    <?php echo $reg['expediente_estado_nombre'] ?>
+                </td>
+                <td>
+                    <a href="modificar.php?id_expediente_estado=<?php echo $reg['id_expediente_estado'] ?>">
+                        <button class="editarButton">
+                            <i class="fi fi-rr-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="eliminar.php?id_expediente_estado=<?php echo $reg['id_expediente_estado'] ?>">
+                        <button class="darDeBajaButton">
+                            <i class="fi-rr-eraser"></i>
+                        </button>
+                    </a>
+                </td>
 
-                </tr>
+            </tr>
             <?php endforeach ?>
         </table>
     </section>

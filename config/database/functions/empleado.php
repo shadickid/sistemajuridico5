@@ -74,3 +74,17 @@ function datosPersonalesEmpleadoDocumento($id_usuario)
     $s->close();
     return $records;
 }
+function agregarEmpleadoUsuario($usuario, $contraseña, $perfil, $id_empleado)
+{
+    global $connect;
+    $sql = "INSERT INTO `sistemajuridico`.`usuario` 
+            (`usuario_nombre`,
+            `usuario_contraseña`,
+            `usuario_fec_creacion`,
+            `id_perfil`,
+            `id_empleado`) 
+          VALUES ('$usuario', '$contraseña',now(), '$perfil', '$id_empleado');";
+    $s = $connect->prepare($sql);
+    $s->execute();
+    $s->close();
+}

@@ -2,7 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 require_once(ROOT_PATH . 'config/database/connect.php');
 
-function agregarEmpleado($id_persona_fisica, $fecalta, $id_tipo_empleado)
+function agregarEmpleado($id_persona_fisica, $id_tipo_empleado)
 {
     global $connect;
     $sql = "INSERT INTO `sistemajuridico`.`empleado` 
@@ -10,7 +10,7 @@ function agregarEmpleado($id_persona_fisica, $fecalta, $id_tipo_empleado)
             `empleado_fec_alta`, 
             `estado`, 
             `id_tipo_empleado`) 
-            VALUES ('$id_persona_fisica', '$fecalta', '1', '$id_tipo_empleado');";
+            VALUES ('$id_persona_fisica', now(), '1', '$id_tipo_empleado');";
     $s = $connect->prepare($sql);
     $s->execute();
     $id_empleado = $connect->insert_id;

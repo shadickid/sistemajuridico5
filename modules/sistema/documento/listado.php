@@ -9,53 +9,52 @@ $conditional = [
 ];
 $records = selectall('documento', $conditional);
 ?>
-<div>
+<div class="dashboard">
     <h1> Documento</h1>
-</div>
-<div class="contenedor">
     <section class="inicio">
-        <a href="alta.php" class="a-alta">Nuevo tipo de documento</a>
-        <table class="tablamodal">
-            <tr>
-                <th>ID Documento</th>
-                <th>Nombre</th>
-                <th>Modificar</th>
-                <th>Borrar</th>
+        <div class="contenido">
+            <a href="alta.php" class="a-alta">Nuevo tipo de documento</a>
+            <table class="tablamodal">
+                <tr>
+                    <th>ID Documento</th>
+                    <th>Nombre</th>
+                    <th>Modificar</th>
+                    <th>Borrar</th>
 
-            </tr>
-            <?php foreach ($records as $reg): ?>
-            <tr>
-                <td>
-                    <?php echo $reg['id_tipo_documento'] ?>
-                </td>
-                <td>
-                    <?php echo $reg['descripcion'] ?>
-                </td>
-                <td>
-                    <a href="modificar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>">
-                        <button class="editarButton">
-                            <i class="fi fi-rr-edit"></i>
-                        </button>
-                    </a>
-                </td>
-                <td>
-                    <a href="eliminar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>">
-                        <button class="darDeBajaButton">
-                            <i class="fi-rr-eraser"></i>
-                        </button>
-                    </a>
-                </td>
+                </tr>
+                <?php foreach ($records as $reg): ?>
+                    <tr>
+                        <td>
+                            <?php echo $reg['id_tipo_documento'] ?>
+                        </td>
+                        <td>
+                            <?php echo $reg['descripcion'] ?>
+                        </td>
+                        <td>
+                            <a href="modificar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>">
+                                <button class="editarButton">
+                                    <i class="fi fi-rr-edit"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="eliminar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>">
+                                <button class="darDeBajaButton">
+                                    <i class="fi-rr-eraser"></i>
+                                </button>
+                            </a>
+                        </td>
 
-            </tr>
-            <?php endforeach ?>
-        </table>
-        <?php if (isset($_GET['error'])): ?>
-        <span class=''>
-            Error:No se cargo nada
-        </span>
-        <?php endif ?>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+            <?php if (isset($_GET['error'])): ?>
+                <span class=''>
+                    Error:No se cargo nada
+                </span>
+            <?php endif ?>
+        </div>
     </section>
-
 </div>
 
 <?php

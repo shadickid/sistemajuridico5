@@ -8,21 +8,20 @@ include(ROOT_PATH . 'includes\nav.php');
 $records = selectall('localidad');
 
 ?>
-<div>
+<div class="dashboard">
     <h1>Localidad</h1>
-</div>
-<div class="contenedor">
     <section class="inicio">
-        <a href="alta.php" class="a-alta">Nueva localidad</a>
-        <table class="tablamodal">
-            <tr>
-                <th>ID localidad</th>
-                <th>Nombre</th>
-                <th>Modificar</th>
-                <th>Borrar</th>
+        <div class="contenido">
+            <a href="alta.php" class="a-alta">Nueva localidad</a>
+            <table class="tablamodal">
+                <tr>
+                    <th>ID localidad</th>
+                    <th>Nombre</th>
+                    <th>Modificar</th>
+                    <th>Borrar</th>
 
-            </tr>
-            <?php foreach ($records as $reg): ?>
+                </tr>
+                <?php foreach ($records as $reg): ?>
                 <tr>
                     <td>
                         <?php echo $reg['id_localidad'] ?>
@@ -46,8 +45,9 @@ $records = selectall('localidad');
                     </td>
 
                 </tr>
-            <?php endforeach ?>
-        </table>
+                <?php endforeach ?>
+            </table>
+        </div>
     </section>
 </div>
 

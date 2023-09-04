@@ -8,46 +8,47 @@ include(ROOT_PATH . 'includes\nav.php');
 $records = selectall('localidad');
 
 ?>
-<div>
+<div class="dashboard">
     <h1>Localidad</h1>
-</div>
-<div class="contenedor">
     <section class="inicio">
-        <a href="alta.php" class="a-alta">Nueva localidad</a>
-        <table class="tablamodal">
-            <tr>
-                <th>ID localidad</th>
-                <th>Nombre</th>
-                <th>Modificar</th>
-                <th>Borrar</th>
+        <div class="contenido">
 
-            </tr>
-            <?php foreach ($records as $reg): ?>
-            <tr>
-                <td>
-                    <?php echo $reg['id_localidad'] ?>
-                </td>
-                <td>
-                    <?php echo $reg['nombre'] ?>
-                </td>
-                <td>
-                    <a href="modificar.php?id_localidad=<?php echo $reg['id_localidad'] ?>">
-                        <button class="editarButton">
-                            <i class="fi fi-rr-edit"></i>
-                        </button>
-                    </a>
-                </td>
-                <td>
-                    <a href="eliminar.php?id_localidad=<?php echo $reg['id_localidad'] ?>">
-                        <button class="darDeBajaButton">
-                            <i class="fi-rr-eraser"></i>
-                        </button>
-                    </a>
-                </td>
+            <a href="alta.php" class="a-alta">Nueva localidad</a>
+            <table class="tablamodal">
+                <tr>
+                    <th>ID localidad</th>
+                    <th>Nombre</th>
+                    <th>Modificar</th>
+                    <th>Borrar</th>
 
-            </tr>
-            <?php endforeach ?>
-        </table>
+                </tr>
+                <?php foreach ($records as $reg): ?>
+                <tr>
+                    <td>
+                        <?php echo $reg['id_localidad'] ?>
+                    </td>
+                    <td>
+                        <?php echo $reg['nombre'] ?>
+                    </td>
+                    <td>
+                        <a href="modificar.php?id_localidad=<?php echo $reg['id_localidad'] ?>">
+                            <button class="editarButton">
+                                <i class="fi fi-rr-edit"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="eliminar.php?id_localidad=<?php echo $reg['id_localidad'] ?>">
+                            <button class="darDeBajaButton">
+                                <i class="fi-rr-eraser"></i>
+                            </button>
+                        </a>
+                    </td>
+
+                </tr>
+                <?php endforeach ?>
+            </table>
+        </div>
     </section>
 </div>
 

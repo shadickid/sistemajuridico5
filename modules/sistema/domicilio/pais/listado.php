@@ -7,21 +7,21 @@ include(ROOT_PATH . 'includes\nav.php');
 
 $records = selectall('pais');
 ?>
-<div>
+<div class="dashboard">
     <h1>PAIS</h1>
-</div>
-<div class="contenedor">
     <section class="inicio">
-        <a href="alta.php" class="a-alta">Nuevo Pais</a>
-        <table class="tablamodal">
-            <tr>
-                <th>ID Pais</th>
-                <th>Nombre</th>
-                <th>Modificar</th>
-                <th>Borrar</th>
+        <div class="contenido">
 
-            </tr>
-            <?php foreach ($records as $reg): ?>
+            <a href="alta.php" class="a-alta">Nuevo Pais</a>
+            <table class="tablamodal">
+                <tr>
+                    <th>ID Pais</th>
+                    <th>Nombre</th>
+                    <th>Modificar</th>
+                    <th>Borrar</th>
+
+                </tr>
+                <?php foreach ($records as $reg): ?>
                 <tr>
                     <td>
                         <?php echo $reg['id_pais'] ?>
@@ -45,8 +45,9 @@ $records = selectall('pais');
                     </td>
 
                 </tr>
-            <?php endforeach ?>
-        </table>
+                <?php endforeach ?>
+            </table>
+        </div>
     </section>
 </div>
 

@@ -79,7 +79,7 @@ function agregarEmpleadoUsuario($usuario, $contraseña, $perfil, $id_empleado)
     global $connect;
     $sql = "INSERT INTO `sistemajuridico`.`usuario` 
             (`usuario_nombre`,
-            `usuario_contraseña`,
+            `usuario_contrasena`,
             `usuario_fec_creacion`,
             `id_perfil`,
             `id_empleado`) 
@@ -95,21 +95,57 @@ function agregarEmpleadoUsuario($usuario, $contraseña, $perfil, $id_empleado)
 function datosEmpleadoAbogado()
 {
     global $connect;
-    $sql = "SELECT    e.id_empleado,
-                    u.usuario_nombre,
-                    pf.persona_nombre,
-                    pf.persona_apellido,
-                    esp.descripcion 
-                    FROM sistemajuridico.persona p
-            inner join persona_fisica pf on p.id_persona=pf.id_persona
-            inner join empleado e on e.id_persona_fisica=pf.id_persona_fisica
-            inner join empleadoxespecializacion ee on e.id_empleado=ee.id_empleadoxespecializacion
-            inner join especializacion esp on ee.id_especializacion=esp.id_especializacion
-            inner join usuario u on u.id_empleado=e.id_empleado;";
+    $sql = "SELECT  e.id_empleado,
+    u.usuario_nombre,
+    pf.persona_nombre,
+    pf.persona_apellido,
+    esp.descripcion,
+    pf.id_persona_fisica 
+        FROM sistemajuridico.persona p
+    inner join persona_fisica pf on p.id_persona=pf.id_persona
+    inner join empleado e on e.id_persona_fisica=pf.id_persona_fisica
+    inner join empleadoxespecializacion ee on e.id_empleado=ee.id_empleadoxespecializacion
+    inner join especializacion esp on ee.id_especializacion=esp.id_especializacion
+    inner join usuario u on u.id_empleado=e.id_empleado
+    where e.estado=1;";
     $s = $connect->prepare($sql);
     $s->execute();
     $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
 
     $s->close();
     return $records;
+}
+
+function selectModificarDatosPersonalesEmpleado($idPersonaFisica)
+{
+    global $connect;
+    $sql = "SELECT 
+                    id_persona_fisica,
+                    persona_nombre,
+                    persona_apellido,
+                    persona_fec_nac,
+                    pf.id_sexo,
+                    pf.id_persona,
+                    sexo.nombre
+                    FROM persona
+                    inner join persona_fisica pf on persona.id_persona=pf.id_persona
+                    inner join sexo on sexo.id_sexo = pf.id_sexo
+                    where pf.id_persona_fisica=$idPersonaFisica;";
+    $s = $connect->prepare($sql);
+    $s->execute();
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}
+
+function ModificarDatosPersonalesEmpleado($idPersonaFisica, $nombre, $apellido, $fecnac)
+{
+    global $connect;
+    $sql = "UPDATE `sistemajuridico`.`persona_fisica` SET 
+            `persona_nombre` = '$nombre', `persona_apellido` = '$apellido', `persona_fec_nac` = '$fecnac' 
+            WHERE (`id_persona_fisica` = '$idPersonaFisica');";
+    $s = $connect->prepare($sql);
+    $s->execute();
+    $s->close();
 }

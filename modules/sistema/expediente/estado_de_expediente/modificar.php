@@ -12,17 +12,17 @@ $records = selectall('expediente_estado', $conditional);
 foreach ($records as $reg) :
 
 ?>
-<div>
+<div class="dashboard">
     <h1> ESTADO DE EXPEDIENTE</h1>
-</div>
-<div class="contenedor">
     <section class="inicio">
-        <form method="POST" action="procesarModificacion.php">
-            Nombre: <input type="text" name="nombre" value="<?php echo $reg['expediente_estado_nombre'] ?>"
-                autocomplete="off">
-            <input type="hidden" name="id_expediente_estado" value="<?php echo $reg['id_expediente_estado'] ?>">
-            <input type="submit" value="Guardar">
-        </form>
+        <div class="contenido">
+            <form method="POST" action="procesarModificacion.php">
+                Nombre: <input type="text" name="nombre" value="<?php echo $reg['expediente_estado_nombre'] ?>"
+                    autocomplete="off">
+                <input type="hidden" name="id_expediente_estado" value="<?php echo $reg['id_expediente_estado'] ?>">
+                <input type="submit" value="Guardar">
+            </form>
+        </div>
     </section>
 </div>
 <?php

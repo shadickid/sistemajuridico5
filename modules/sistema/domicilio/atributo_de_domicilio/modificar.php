@@ -9,21 +9,22 @@ $conditional = [
     'id_atri_dom' => $id_atri_dom
 ];
 $records = selectall('atributo_domiclio', $conditional);
-foreach ($records as $reg) :
+foreach ($records as $reg):
 
-?>
-    <div>
-        <h1>Atributo de domicilio</h1>
-    </div>
-    <div class="contenedor">
-        <section class="inicio">
+    ?>
+<div class="dashboard">
+    <h1>Atributo de domicilio</h1>
+    <section class="inicio">
+        <div class="contenido">
             <form method="POST" action="procesarModificacion.php">
                 Nombre: <input type="text" name="nombre" value="<?php echo $reg['valor'] ?>" autocomplete="off">
                 <input type="hidden" name="id_atri_dom" value="<?php echo $reg['id_atri_dom'] ?>">
                 <input type="submit" value="Guardar">
             </form>
-        </section>
-    </div>
+        </div>
+    </section>
+</div>
+
 <?php
 endforeach;
 include(ROOT_PATH . 'includes\footter.php');

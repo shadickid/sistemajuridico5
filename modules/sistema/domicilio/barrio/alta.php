@@ -8,28 +8,28 @@ include(ROOT_PATH . 'config/database/functions/bd_functions .php');
 
 $prov = selectall('provincia');
 ?>
-<div>
+<div class="dashboard">
     <h1> Nueva localidad</h1>
-</div>
-<div class="contenedor">
     <section class="inicio">
-        <div class="formulario-container">
-            <h2>Alta de nueva localidad</h2>
-            <form action="procesarAlta.php" method="POST">
-                <div>
-                    <label class="formulario-label" for="id_provincia">Selecione la provincia </label>
-                    <select class="formulario-select" name="id_provincia">
-                        <?php foreach ($prov as $reg): ?>
-                        <option value="<?php echo $reg['id_provincia'] ?>"><?php echo $reg['nombre'] ?></option>
-                        <?php endforeach ?>
-                    </select>
-                    <legend> Nombre:
-                        <input class="formulario-input" type="text" name="nombre" autocomplete="off">
-                        <input class="formulario-submit" type="submit" value="Guardar">
-                    </legend>
-                </div>
+        <div class="contenido">
+            <div class="formulario-container">
+                <h2>Alta de nueva localidad</h2>
+                <form action="procesarAlta.php" method="POST">
+                    <div>
+                        <label class="formulario-label" for="id_provincia">Selecione la provincia </label>
+                        <select class="formulario-select" name="id_provincia">
+                            <?php foreach ($prov as $reg): ?>
+                            <option value="<?php echo $reg['id_provincia'] ?>"><?php echo $reg['nombre'] ?></option>
+                            <?php endforeach ?>
+                        </select>
+                        <legend> Nombre:
+                            <input class="formulario-input" type="text" name="nombre" autocomplete="off">
+                            <input class="formulario-submit" type="submit" value="Guardar">
+                        </legend>
+                    </div>
+            </div>
+            </form>
         </div>
-        </form>
     </section>
 </div>
 <?php

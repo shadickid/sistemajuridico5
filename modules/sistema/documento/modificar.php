@@ -9,19 +9,20 @@ $conditional = [
     'id_tipo_documento' => $id_tipo_documento
 ];
 $records = selectall('documento', $conditional);
-foreach ($records as $reg) :
+foreach ($records as $reg):
 
-?>
-<div>
+    ?>
+<div class="dashboard">
     <h1> Documento</h1>
-</div>
-<div class="contenedor">
     <section class="inicio">
-        <form method="POST" action="procesarModificacion.php">
-            Nombre: <input type="text" name="nombre" value="<?php echo $reg['descripcion'] ?>" autocomplete="off">
-            <input type="hidden" name="id_tipo_documento" value="<?php echo $reg['id_tipo_documento'] ?>">
-            <input type="submit" value="Guardar">
-        </form>
+        <div class="contenido">
+
+            <form method="POST" action="procesarModificacion.php">
+                Nombre: <input type="text" name="nombre" value="<?php echo $reg['descripcion'] ?>" autocomplete="off">
+                <input type="hidden" name="id_tipo_documento" value="<?php echo $reg['id_tipo_documento'] ?>">
+                <input type="submit" value="Guardar">
+            </form>
+        </div>
     </section>
 </div>
 <?php

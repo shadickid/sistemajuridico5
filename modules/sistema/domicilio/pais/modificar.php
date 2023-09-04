@@ -9,21 +9,21 @@ $conditional = [
     'id_pais' => $id_pais
 ];
 $records = selectall('pais', $conditional);
-foreach ($records as $reg) :
+foreach ($records as $reg):
 
-?>
-    <div>
-        <h1>PAIS</h1>
-    </div>
-    <div class="contenedor">
-        <section class="inicio">
+    ?>
+<div class="dashboard">
+    <h1>PAIS</h1>
+    <section class="inicio">
+        <div class="contenido">
             <form method="POST" action="procesarModificacion.php">
                 Nombre: <input type="text" name="nombre" value="<?php echo $reg['nombre'] ?>" autocomplete="off">
                 <input type="hidden" name="id_pais" value="<?php echo $reg['id_pais'] ?>">
                 <input type="submit" value="Guardar">
             </form>
-        </section>
-    </div>
+        </div>
+    </section>
+</div>
 <?php
 endforeach;
 include(ROOT_PATH . 'includes\footter.php');

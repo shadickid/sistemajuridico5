@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arreglo en JS</title>
+  </head>
+  <body onload="verPersonas()"></body>
+</html>
+<script>
+  function verAuto() {
+    //var auto = ["BWM", "RENAUL", "FIAT"];
+    //alert(auto.length);
+    var auto = {
+      tipo: "urbano",
+      color: "rojo fosforesente",
+      marca: "RenzoKMO",
+      mostrarDatos: function () {
+        return this.color + "  " + this.tipo + "  " + this.marca + " ";
+      },
+    };
+    //alert(auto.marca);
+    //alert(auto["color"]);
+    //alert(auto.mostrarDatos());
+  }
+  function verPersonas() {
+    var persona = [
+      {
+        nombre: "Renzo",
+        apellido: "Nathaniel",
+        anioDeNacimiento: "2001",
+        CalcularEdad: function () {
+          const edad = 2023 - this.anioDeNacimiento;
+          return edad;
+        },
+      },
+      {
+        nombre: "Juan",
+        apellido: "Perez",
+        anioDeNacimiento: "1992",
+        CalcularEdad: function () {
+          const edad = 2023 - this.anioDeNacimiento;
+          return edad;
+        },
+      },
+      {
+        nombre: "Enzo",
+        apellido: "Arbol",
+        anioDeNacimiento: "2001",
+        CalcularEdad: function () {
+          const edad = 2023 - this.anioDeNacimiento;
+          return edad;
+        },
+      },
+      {
+        nombre: "Ramiro",
+        apellido: "Valle",
+        anioDeNacimiento: "1999",
+        CalcularEdad: function () {
+          const edad = 2023 - this.anioDeNacimiento;
+          return edad;
+        },
+      },
+    ];
+    alert(persona[3].CalcularEdad());
+  }
+</script>

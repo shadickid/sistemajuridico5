@@ -9,21 +9,23 @@ $conditional = [
     'id_tipo_contacto' => $id_tipo_contacto
 ];
 $records = selectall('tipo_contacto', $conditional);
-foreach ($records as $reg) :
+foreach ($records as $reg):
 
-?>
-<div>
+    ?>
+<div class="dashboard">
     <h1> Contacto</h1>
-</div>
-<div class="contenedor">
     <section class="inicio">
-        <form method="POST" action="procesarModificacion.php">
-            Nombre: <input type="text" name="nombre" value="<?php echo $reg['tipo_contacto_nombre'] ?>" autocomplete="off">
-            <input type="hidden" name="id_tipo_contacto" value="<?php echo $reg['id_tipo_contacto'] ?>">
-            <input type="submit" value="Guardar">
-        </form>
+        <div class="contenido">
+
+            <form method="POST" action="procesarModificacion.php">
+                Nombre: <input type="text" name="nombre" value="<?php echo $reg['tipo_contacto_nombre'] ?>"
+                    autocomplete="off">
+                <input type="hidden" name="id_tipo_contacto" value="<?php echo $reg['id_tipo_contacto'] ?>">
+                <input type="submit" value="Guardar">
+            </form>
     </section>
 </div>
+
 <?php
 endforeach;
 include(ROOT_PATH . 'includes\footter.php');

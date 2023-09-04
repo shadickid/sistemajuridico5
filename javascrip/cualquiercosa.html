@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mix de cosas</title>
+  </head>
+  <body>
+    <form onclick="prueba()">
+      <label for="name" class="prueba">Nombre</label>
+      <input type="text" name="name" id="name" class="prueba" />
+      <label for="lastname" class="prueba">Apellido</label>
+      <input type="text" name="lastname" id="lastname" class="prueba" />
+      <label for="fec_nac" class="prueba">Fecha de nacimiento</label>
+      <input type="date" name="fec_nac" id="fec_nac" />
+    </form>
+  </body>
+</html>
+<script>
+  function cambiarAspecto(elemento) {
+    //var etiquetas = document.getElementsByTagName(elemento);
+    //var etiquetas = document.getElementsByClassName(elemento);
+    //alert(etiquetas);
+    etiquetas[0].style.backgroundColor = "yellow";
+    etiquetas[1].style.backgroundColor = "red";
+  }
+  function prueba() {
+    var elemento = document.querySelectorAll(".prueba");
+    var x;
+    // se puede usar x dentro de for con var o let
+    for (x = 0; x < elemento.length; x++) {
+      elemento[x].style.backgroundColor = "red";
+    }
+  }
+</script>

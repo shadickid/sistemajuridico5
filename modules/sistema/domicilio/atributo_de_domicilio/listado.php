@@ -7,47 +7,49 @@ include(ROOT_PATH . 'includes\nav.php');
 
 $records = selectall('atributo_domiclio');
 ?>
-<div>
+<div class="dashboard">
     <h1> ATRIBUTO DE DOMICILIO</h1>
-</div>
-<div class="contenedor">
     <section class="inicio">
-        <a href="alta.php" class="a-alta">Nuevo atributo de domicilio</a>
-        <table class="tablamodal">
-            <tr>
-                <th>ID atributo</th>
-                <th>Nombre</th>
-                <th>Modificar</th>
-                <th>Borrar</th>
+        <div class="contenido">
+            <a href="alta.php" class="a-alta">Nuevo atributo de domicilio</a>
+            <table class="tablamodal">
+                <tr>
+                    <th>ID atributo</th>
+                    <th>Nombre</th>
+                    <th>Modificar</th>
+                    <th>Borrar</th>
 
-            </tr>
-            <?php foreach ($records as $reg): ?>
-            <tr>
-                <td>
-                    <?php echo $reg['id_atri_dom'] ?>
-                </td>
-                <td>
-                    <?php echo $reg['valor'] ?>
-                </td>
-                <td>
-                    <a href="modificar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>"> <button class="editarButton">
-                            <i class="fi fi-rr-edit"></i>
-                        </button>
-                    </a>
-                </td>
-                <td>
-                    <a href="eliminar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>">
-                        <button class="darDeBajaButton">
-                            <i class="fi-rr-eraser"></i>
-                        </button>
-                    </a>
-                </td>
+                </tr>
+                <?php foreach ($records as $reg): ?>
+                    <tr>
+                        <td>
+                            <?php echo $reg['id_atri_dom'] ?>
+                        </td>
+                        <td>
+                            <?php echo $reg['valor'] ?>
+                        </td>
+                        <td>
+                            <a href="modificar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>"> <button
+                                    class="editarButton">
+                                    <i class="fi fi-rr-edit"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="eliminar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>">
+                                <button class="darDeBajaButton">
+                                    <i class="fi-rr-eraser"></i>
+                                </button>
+                            </a>
+                        </td>
 
-            </tr>
-            <?php endforeach ?>
-        </table>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+        </div>
     </section>
 </div>
+
 
 <?php
 include(ROOT_PATH . 'includes\footter.php');

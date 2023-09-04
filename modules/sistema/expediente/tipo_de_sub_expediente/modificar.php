@@ -12,16 +12,16 @@ $records = selectall('expediente_subtipo', $conditional);
 foreach ($records as $reg) :
 
 ?>
-<div>
+<div class="dashboard">
     <h1> SUB TIPO DE EXPEDIENTE</h1>
-</div>
-<div class="contenedor">
     <section class="inicio">
-        <form method="POST" action="procesarModificacion.php">
-            Nombre: <input type="text" name="nombre" value="<?php echo $reg['subtipo_exp'] ?>" autocomplete="off">
-            <input type="hidden" name="id_expsubtipo" value="<?php echo $reg['id_expsubtipo'] ?>">
-            <input type="submit" value="Guardar">
-        </form>
+        <div class="contenido">
+            <form method="POST" action="procesarModificacion.php">
+                Nombre: <input type="text" name="nombre" value="<?php echo $reg['subtipo_exp'] ?>" autocomplete="off">
+                <input type="hidden" name="id_expsubtipo" value="<?php echo $reg['id_expsubtipo'] ?>">
+                <input type="submit" value="Guardar">
+            </form>
+        </div>
     </section>
 </div>
 <?php

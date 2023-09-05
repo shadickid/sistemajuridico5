@@ -7,8 +7,20 @@ include(ROOT_PATH . 'includes\nav.php');
 
 $records = selectall('pais');
 ?>
+<div class="breadcrumbs">
+    <a href="<?php echo BASE_URL; ?>">INICIO</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\domicilio\menu.php">Domicilio</a>
+    <span>/</span>
+    <span>Pais</span>
+</div>
+
 <div class="dashboard">
     <h1>PAIS</h1>
+    <a href="#" onclick="window.history.go(-1); return false;" class="volver-atras-button">Volver Atr&aacute;s</a>
+
     <section class="inicio">
         <div class="contenido">
 
@@ -22,29 +34,29 @@ $records = selectall('pais');
 
                 </tr>
                 <?php foreach ($records as $reg): ?>
-                <tr>
-                    <td>
-                        <?php echo $reg['id_pais'] ?>
-                    </td>
-                    <td>
-                        <?php echo $reg['nombre'] ?>
-                    </td>
-                    <td>
-                        <a href="modificar.php?id_pais=<?php echo $reg['id_pais'] ?>">
-                            <button class="editarButton">
-                                <i class="fi fi-rr-edit"></i>
-                            </button>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="eliminar.php?id_pais=<?php echo $reg['id_pais'] ?>">
-                            <button class="darDeBajaButton">
-                                <i class="fi-rr-eraser"></i>
-                            </button>
-                        </a>
-                    </td>
+                    <tr>
+                        <td>
+                            <?php echo $reg['id_pais'] ?>
+                        </td>
+                        <td>
+                            <?php echo $reg['nombre'] ?>
+                        </td>
+                        <td>
+                            <a href="modificar.php?id_pais=<?php echo $reg['id_pais'] ?>">
+                                <button class="editarButton">
+                                    <i class="fi fi-rr-edit"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="eliminar.php?id_pais=<?php echo $reg['id_pais'] ?>">
+                                <button class="darDeBajaButton">
+                                    <i class="fi-rr-eraser"></i>
+                                </button>
+                            </a>
+                        </td>
 
-                </tr>
+                    </tr>
                 <?php endforeach ?>
             </table>
         </div>

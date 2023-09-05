@@ -5,7 +5,7 @@ $user = trim($_POST['username']);
 $pass = trim($_POST['password']);
 $sql = "SELECT usuario_nombre,usuario_contrasena  FROM usuario
         inner join empleado on empleado.id_empleado=usuario.id_empleado
-        where usuario_nombre = 'admin' and empleado.estado=1";
+        where usuario_nombre = '{$user}' and empleado.estado=1";
 
 /* $sql = "SELECT p.id_perfil, usuario_nombre,usuario_contraseña,persona_nombre,persona_apellido,descripcion from sistemajuridico.perfil p
 inner join usuario u on p.id_perfil=u.id_perfil

@@ -15,8 +15,16 @@ $sexo = selectall('sexo');
 $metodocontacto = selectall('tipo_contacto', $conditional2);
 $tipodocumento = selectall('documento', $conditional2)
     ?>
+<div class="breadcrumbs">
+    <a href="<?php echo BASE_URL; ?>">INICIO</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\abogado\listado.php">Abogado</a>
+    <span>/</span>
+    <span>Registro de Abogado</span>
+</div>
 <div class="dashboard">
     <h1>Registro de abogado</h1>
+    <a href="#" onclick="window.history.go(-1); return false;" class="volver-atras-button">Volver Atrás</a>
 
     <section class="inicio">
         <div class="contenido">
@@ -39,9 +47,9 @@ $tipodocumento = selectall('documento', $conditional2)
                         <select class="formulario-select" name="esp" id="esp">
                             <option>Escoga la especializacion</option>
                             <?php foreach ($especializacion as $registroesp): ?>
-                            <option value="<?php echo $registroesp['id_especializacion'] ?>">
-                                <?php echo $registroesp['descripcion'] ?>
-                            </option>
+                                <option value="<?php echo $registroesp['id_especializacion'] ?>">
+                                    <?php echo $registroesp['descripcion'] ?>
+                                </option>
                             <?php endforeach ?>
                         </select>
                         <br>
@@ -49,8 +57,8 @@ $tipodocumento = selectall('documento', $conditional2)
                         <select class="formulario-select" name="sex" id="sex">
                             <option>Escoga el sexo</option>
                             <?php foreach ($sexo as $registrosexo): ?>
-                            <option value="<?php echo $registrosexo['id_sexo'] ?>"><?php echo $registrosexo['nombre'] ?>
-                            </option>
+                                <option value="<?php echo $registrosexo['id_sexo'] ?>"><?php echo $registrosexo['nombre'] ?>
+                                </option>
                             <?php endforeach ?>
                         </select>
                         <br>
@@ -58,9 +66,9 @@ $tipodocumento = selectall('documento', $conditional2)
                         <select class="formulario-select" name="tipoContacto" id="tipoContacto">
                             <option>Escoga su metodo de contacto</option>
                             <?php foreach ($metodocontacto as $registrocontacto): ?>
-                            <option value="<?php echo $registrocontacto['id_tipo_contacto'] ?>">
-                                <?php echo $registrocontacto['tipo_contacto_nombre'] ?></option>
-                            </option>
+                                <option value="<?php echo $registrocontacto['id_tipo_contacto'] ?>">
+                                    <?php echo $registrocontacto['tipo_contacto_nombre'] ?></option>
+                                </option>
 
                             <?php endforeach ?>
                         </select>
@@ -70,9 +78,9 @@ $tipodocumento = selectall('documento', $conditional2)
                         <select class="formulario-select" name="tipoDocumento" id="tipoDocumento">
                             <option>Escoga su documento</option>
                             <?php foreach ($tipodocumento as $registrodocumento): ?>
-                            <option value="<?php echo $registrodocumento['id_tipo_documento'] ?>">
-                                <?php echo $registrodocumento['descripcion'] ?>
-                            </option>
+                                <option value="<?php echo $registrodocumento['id_tipo_documento'] ?>">
+                                    <?php echo $registrodocumento['descripcion'] ?>
+                                </option>
                             <?php endforeach ?>
                         </select>
                         <input class="formulario-input" type="text" name="Documento" id="Documento" autocomplete="off">

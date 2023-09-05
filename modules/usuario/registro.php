@@ -6,6 +6,15 @@ include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 $id_empleado = $_GET['id_empleado'];
 ?>
+<div class="breadcrumbs">
+    <a href="<?php echo BASE_URL; ?>">INICIO</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\abogado\listado.php">Abogado</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\abogado\formulario_abogado.php">Registro de Abogado</a>
+    <span>/</span>
+    <span>Registro de Usuario</span>
+</div>
 <div class="dashboard">
     <h1>Registro de Usuario</h1>
 

@@ -120,16 +120,18 @@ function selectModificarDatosPersonalesEmpleado($idPersonaFisica)
 {
     global $connect;
     $sql = "SELECT 
-                    id_persona_fisica,
+                    pf.id_persona_fisica,
                     persona_nombre,
                     persona_apellido,
                     persona_fec_nac,
                     pf.id_sexo,
                     pf.id_persona,
-                    sexo.nombre
+                    sexo.nombre,
+                    id_empleado
                     FROM persona
                     inner join persona_fisica pf on persona.id_persona=pf.id_persona
                     inner join sexo on sexo.id_sexo = pf.id_sexo
+                    inner join empleado on empleado.id_persona_fisica=pf.id_persona_fisica
                     where pf.id_persona_fisica=$idPersonaFisica;";
     $s = $connect->prepare($sql);
     $s->execute();
@@ -148,4 +150,29 @@ function ModificarDatosPersonalesEmpleado($idPersonaFisica, $nombre, $apellido, 
     $s = $connect->prepare($sql);
     $s->execute();
     $s->close();
+}
+
+function borrarPersonaEmpleado($idEmpleado)
+{
+    global $connect;
+    $sql = "UPDATE `sistemajuridico`.`empleado` SET `estado` = '0' WHERE (`id_empleado` = '$idEmpleado');";
+    $s = $connect->prepare($sql);
+    $s->execute();
+    $s->close();
+}
+function obtenerDatoAlumno($id_persona)
+{
+    global $connect;
+
+    $sql = "SELECT * FROM sistbook.personas where id_personas=$id_persona;";
+
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+
+    return $records;
 }

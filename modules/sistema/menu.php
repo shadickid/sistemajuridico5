@@ -4,8 +4,15 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 ?>
+<div class="breadcrumbs">
+    <a href="<?php echo BASE_URL; ?>">INICIO</a>
+    <span>/</span>
+    <span>Sistema</span>
+</div>
+
 <div class="dashboard">
     <h1>SISTEMA</h1>
+    <a href="#" onclick="window.history.go(-1); return false;" class="volver-atras-button">Volver Atrás</a>
     <section class="inicio">
         <div class="contenido">
             <div class="menu">

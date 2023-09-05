@@ -597,8 +597,7 @@ legend {
   bottom: 0;
   background-color: #111111bd;
   display: flex;
-  opacity: 0;
-  pointer-events: none;
+  opacity: 1;
 }
 .modal_container {
   margin: auto;
@@ -614,10 +613,10 @@ legend {
   place-items: center;
   grid-auto-columns: 100%;
 }
-.modal --show {
+/* .modal--show {
   opacity: 1;
   pointer-events: unset;
-}
+} */
 .modal_title {
   font-size: 3.5rem;
   background-color: red;
@@ -634,15 +633,82 @@ legend {
 .modal_close {
   text-decoration: none;
   color: #fff;
-  background-color: #185e83;
+  background-color: rgb(92, 92, 92);
   padding: 1em 3em;
   border: 1px solid;
   border-radius: 6px;
   display: inline-block;
   font-weight: 300;
   transition: background-color 0.3s;
+  margin: 10px;
 }
 .modal_close:hover {
   color: #333;
   background-color: #fff;
+}
+.modal_aceptar {
+  text-decoration: none;
+  color: #fff;
+  background-color: rgb(255, 81, 81);
+  padding: 1em 3em;
+  border: 1px solid;
+  border-radius: 6px;
+  display: inline-block;
+  font-weight: 300;
+  transition: background-color 0.3s;
+  margin: 10px;
+}
+.modal_aceptar:hover {
+  color: #333;
+  background-color: #fff;
+}
+.btn-modal-posisionamientoterritorial {
+  display: flex;
+  justify-content: center;
+}
+.volver-atras-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.volver-atras-button:hover {
+  background-color: #2980b9;
+}
+/* Estilo para las migas de pan */
+.breadcrumbs {
+  position: fixed;
+  top: 0;
+  left: 15vw; /* Ancho del menú vertical */
+  padding: 10px; /* Añade espacio alrededor de las migas de pan */
+  background-color: #f5f5f5; /* Cambia el fondo según tu preferencia */
+  border-bottom: 1px solid #ccc; /* Agrega una línea de separación opcional */
+  width: calc(100% - 15vw); /* Ancho total - Ancho del menú vertical */
+  z-index: 2; /* Asegura que las migas estén sobre el navbar-side */
+  display: flex; /* Alinea los elementos horizontalmente */
+  align-items: center; /* Centra verticalmente el contenido */
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: #3498db;
+  font-weight: bold;
+  margin: 0 10px; /* Espacio entre elementos de migas de pan */
+}
+
+/* Estilo para el separador "/" */
+.breadcrumbs span {
+  color: #999;
+}
+
+/* Estilo para el enlace activo */
+.breadcrumbs .active {
+  color: #333;
+  font-weight: normal;
 }

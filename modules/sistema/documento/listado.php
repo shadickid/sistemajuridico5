@@ -9,8 +9,16 @@ $conditional = [
 ];
 $records = selectall('documento', $conditional);
 ?>
+<div class="breadcrumbs">
+    <a href="<?php echo BASE_URL; ?>">INICIO</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
+    <span>/</span>
+    <span>Documento</span>
+</div>
 <div class="dashboard">
     <h1> Documento</h1>
+    <a href="#" onclick="window.history.go(-1); return false;" class="volver-atras-button">Volver Atrás</a>
     <section class="inicio">
         <div class="contenido">
             <a href="alta.php" class="a-alta">Nuevo tipo de documento</a>

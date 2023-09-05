@@ -9,8 +9,16 @@ $conditional = [
 ];
 $records = selectall('tipo_contacto', $conditional);
 ?>
+<div class="breadcrumbs">
+    <a href="<?php echo BASE_URL; ?>">INICIO</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
+    <span>/</span>
+    <span>Contacto</span>
+</div>
 <div class="dashboard">
     <h1> Contacto</h1>
+    <a href="#" onclick="window.history.go(-1); return false;" class="volver-atras-button">Volver Atrás</a>
     <section class="inicio">
         <div class="contenido">
             <a href="alta.php" class="a-alta">Nuevo tipo de contacto</a>

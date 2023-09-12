@@ -468,7 +468,7 @@ footer {
 .tablamodal th,
 .tablamodal td {
   padding: 10px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ccc;
 }
 
@@ -497,10 +497,6 @@ footer {
   cursor: pointer;
 }
 
-.darDeBajaButton img {
-  vertical-align: middle;
-  margin-right: 5px;
-}
 .editarButton {
   background-color: #3498db;
   color: white;
@@ -508,11 +504,6 @@ footer {
   padding: 5px 10px;
   border-radius: 3px;
   cursor: pointer;
-}
-
-.editarButton img {
-  vertical-align: middle;
-  margin-right: 5px;
 }
 
 /* Estilos del formulario */

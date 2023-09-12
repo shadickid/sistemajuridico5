@@ -21,3 +21,6 @@
         </div>
     </section>
 </div>
+<?php
+include(ROOT_PATH . 'includes\footter.php');
+?>

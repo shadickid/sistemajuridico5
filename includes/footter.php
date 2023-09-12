@@ -9,3 +9,4 @@
 </body>
 
 </html>
+<script src="<?php echo BASE_URL; ?>javascrip\main.js"></script>

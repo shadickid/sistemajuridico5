@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 include(ROOT_PATH . 'config/database/functions/documento.php');
-include(ROOT_PATH . 'config/database/functions/bd_functions .php');
+include(ROOT_PATH . 'config/database/functions/bd_functions.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 $id_tipo_documento = $_GET['id_tipo_documento'];
@@ -9,9 +9,9 @@ $conditional = [
     'id_tipo_documento' => $id_tipo_documento
 ];
 $records = selectall('documento', $conditional);
-foreach ($records as $reg):
+foreach ($records as $reg) :
 
-    ?>
+?>
 <div class="breadcrumbs">
     <a href="<?php echo BASE_URL; ?>">INICIO</a>
     <span>/</span>

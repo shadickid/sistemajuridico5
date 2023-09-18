@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 include(ROOT_PATH . 'config/database/functions/expediente.php');
-include(ROOT_PATH . 'config/database/functions/bd_functions .php');
+include(ROOT_PATH . 'config/database/functions/bd_functions.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 $id_pais = $_GET['id_pais'];
@@ -9,9 +9,9 @@ $conditional = [
     'id_pais' => $id_pais
 ];
 $records = selectall('pais', $conditional);
-foreach ($records as $reg):
+foreach ($records as $reg) :
 
-    ?>
+?>
 <div class="breadcrumbs">
     <a href="<?php echo BASE_URL; ?>">INICIO</a>
     <span>/</span>
@@ -25,6 +25,9 @@ foreach ($records as $reg):
 </div>
 <div class="dashboard">
     <h1>PAIS</h1>
+    <a href="<?php echo BASE_URL ?>modules\sistema\domicilio\pais\listado.php" class="volver-atras-button">Volver
+        Atr&aacute;s</a>
+
     <section class="inicio">
         <div class="contenido">
             <form method="POST" action="procesarModificacion.php">

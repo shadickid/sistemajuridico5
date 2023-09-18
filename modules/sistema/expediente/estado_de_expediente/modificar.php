@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 include(ROOT_PATH . 'config/database/functions/expediente.php');
-include(ROOT_PATH . 'config/database/functions/bd_functions .php');
+include(ROOT_PATH . 'config/database/functions/bd_functions.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 $id_expediente_estado = $_GET['id_expediente_estado'];
@@ -9,9 +9,9 @@ $conditional = [
     'id_expediente_estado' => $id_expediente_estado
 ];
 $records = selectall('expediente_estado', $conditional);
-foreach ($records as $reg):
+foreach ($records as $reg) :
 
-    ?>
+?>
 <div class="breadcrumbs">
     <a href="<?php echo BASE_URL; ?>">INICIO</a>
     <span>/</span>

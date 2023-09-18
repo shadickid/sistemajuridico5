@@ -26,6 +26,8 @@ include(ROOT_PATH . 'includes\nav.php');
                         tipo</a>
                     <a href="<?php echo BASE_URL ?>modules\sistema\expediente\tipo_de_sub_expediente\listado.php">Expediente
                         subtipo</a>
+                    <a href="<?php echo BASE_URL ?>modules\sistema\movimientos\listado.php">Movimientos del
+                        expediente</a>
                 </div>
             </div>
         </div>

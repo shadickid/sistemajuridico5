@@ -1,14 +1,14 @@
 <?php
 /* require_once('../../../config/path.php'); */
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
-include(ROOT_PATH . 'config/database/functions/bd_functions .php');
+include(ROOT_PATH . 'config/database/functions/bd_functions.php');
 include(ROOT_PATH . 'config/database/functions/empleado.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 $idPersonaFisica = $_GET['idPersonaFisica'];
 $datosEmpleado = selectModificarDatosPersonalesEmpleado($idPersonaFisica);
-foreach ($datosEmpleado as $regemp):
-    ?>
+foreach ($datosEmpleado as $regemp) :
+?>
 <div class="dashboard">
     <h1>Listado de abogados</h1>
     <section class="inicio">

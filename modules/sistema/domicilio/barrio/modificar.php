@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 include(ROOT_PATH . 'config/database/functions/expediente.php');
-include(ROOT_PATH . 'config/database/functions/bd_functions .php');
+include(ROOT_PATH . 'config/database/functions/bd_functions.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 
@@ -20,7 +20,7 @@ $records = selectall('localidad', $conditional);
 
             <form method="POST" action="procesarModificacion.php">
 
-                <?php foreach ($records as $reg): ?>
+                <?php foreach ($records as $reg) : ?>
                 Nombre: <input type="text" name="nombre" value="<?php echo $reg['nombre'] ?>" autocomplete="off">
                 <input type="hidden" name="id_localidad" value="<?php echo $reg['id_localidad'] ?>">
                 <label for="provincia">Selecione la provincia
@@ -29,7 +29,7 @@ $records = selectall('localidad', $conditional);
                                 'id_provincia' => $reg['id_provincia']
                             ];
                             $pais = selectall('provincia', $conditional_prov); ?>
-                        <?php foreach ($pais as $reg): ?>
+                        <?php foreach ($pais as $reg) : ?>
                         <option value="<?php echo $reg['id_provincia'] ?>"><?php echo $reg['nombre'] ?></option>
                         <?php endforeach ?>
                     </select>
@@ -42,4 +42,4 @@ $records = selectall('localidad', $conditional);
 <?php
                 endforeach;
                 include(ROOT_PATH . 'includes\footter.php');
-                ?>
+?>

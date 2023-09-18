@@ -19,7 +19,8 @@ include(ROOT_PATH . 'config\database\connect.php');
     <meta name="author" content="Renzo Nathaniel Tomas" />
     <meta name="description" content="Dashboard" />
     <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL; ?>assets\img\Logo_Renzo_Law.png" />
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets\icons\uicons-regular-rounded\css\uicons-regular-rounded.css" />
+    <link rel="stylesheet"
+        href="<?php echo BASE_URL; ?>assets\icons\uicons-regular-rounded\css\uicons-regular-rounded.css" />
     <title>Dashboard</title>
 </head>
 

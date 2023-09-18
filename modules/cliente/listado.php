@@ -1,11 +1,10 @@
 <?php
 /* require_once('../../../config/path.php'); */
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
-include(ROOT_PATH . 'config/database/functions/bd_functions .php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
-include(ROOT_PATH . 'config\database\functions\empleado.php');
-
+include(ROOT_PATH . 'config\database\functions\cliente.php');
+$datosclientes = datosClientes();
 ?>
 <div class="breadcrumbs">
     <a href="<?php echo BASE_URL; ?>">INICIO</a>
@@ -21,31 +20,30 @@ include(ROOT_PATH . 'config\database\functions\empleado.php');
             <div>
                 <a href="formularioCliente.php" class="a-alta">Nuevo Cliente</a>
             </div>
-            <table>
+            <table class="tablamodal">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nombres y Apellidos</th>
-                        <th>Tipo de Cliente</th>
+                        <th>Nombres y Apellidos/Razon Social</th>
+                        <th>Tipo de Persona</th>
+                        <th>Modificar</th>
                         <th>Borrar</th>
                     </tr>
                 </thead>
+                <?php foreach ($datosclientes as $regcliente) : ?>
                 <tbody>
                     <tr>
-                        <td></td>
-                        <td></td>
+
+                        <td><?php echo $regcliente['nombre'] .' '. $regcliente['apellido'] ?></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tfoot>
+                <?php endforeach ?>
             </table>
         </div>
     </section>
 </div>
+<?php
+include(ROOT_PATH . 'includes\footter.php');
+?>

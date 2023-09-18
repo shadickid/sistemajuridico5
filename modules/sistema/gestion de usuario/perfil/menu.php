@@ -4,16 +4,17 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 ?>
-<div>
+<div class="dashboard">
     <h1>Perfil</h1>
-</div>
-<div class="contenedor">
+    <a href="#" onclick="window.history.go(-1); return false;" class="volver-atras-button">Volver Atr&aacute;s</a>
     <section class="inicio">
-        <div class="menu">
-            <div class="menu-items">
-                <a href="<?php echo BASE_URL ?>modules/sistema/perfil/nuevo_perfil/listado.php">Nuevo Perfil</a>
-                <a href="#">Asignar Perfil</a>
-                <a href="#"></a>
+        <div class="contenido">
+            <div class="menu">
+                <div class="menu-items">
+                    <a href="<?php echo BASE_URL ?>"></a>
+                    <a href="<?php echo BASE_URL ?>"></a>
+                    <a href="<?php echo BASE_URL ?>"></a>
+                </div>
             </div>
         </div>
     </section>

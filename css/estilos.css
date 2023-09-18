@@ -703,3 +703,88 @@ legend {
   color: #333;
   font-weight: normal;
 }
+/* Estilo para el menú principal */
+.menu ul {
+  list-style: none;
+  padding: 10px 0px;
+  background-color: #5488a3;
+  border-radius: 20px;
+  color: #f2f2f2;
+}
+
+.menu ul li {
+  position: relative;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+}
+
+.menu ul li .submenu-toggle {
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-block;
+  padding-right: 10px; /* Agrega espacio a la derecha del texto */
+}
+
+.menu ul li:hover .submenu {
+  display: block;
+}
+
+/* Estilo para los submenús */
+.menu ul li .submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background-color: #ffffff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  z-index: 1;
+}
+
+.menu ul li .submenu li {
+  padding: 8px 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.menu ul li .submenu li:last-child {
+  border-bottom: none;
+}
+
+.menu ul li .submenu a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+.menu ul li .submenu a:hover {
+  background-color: #f0f0f0;
+}
+.menu ul li .menu-item {
+  text-decoration: none;
+  color: #f2f2f2;
+  display: inline-block; /* Para que se comporte como los otros elementos */
+  padding-right: 10px; /* Espacio a la derecha del texto como los otros elementos */
+  font-weight: bold; /* Puedes ajustar esto según sea necesario */
+}
+
+.menu ul li .menu-item:hover {
+  color: #333;
+}
+.msj-success {
+  display: none; /* Por defecto, muestra el mensaje */
+  color: #008000; /* Color verde para el texto de éxito */
+  font-weight: bold;
+  background-color: #d9ffd9; /* Fondo verde claro */
+  border: 1px solid #008000; /* Borde verde */
+  padding: 10px; /* Espaciado interior */
+  margin-bottom: 10px; /* Margen inferior */
+}
+/* Estilo para mostrar el mensaje */
+.show {
+  display: block !important; /* Mostrar el mensaje */
+}
+
+/* Estilo para ocultar el mensaje */
+.hidden {
+  display: none !important; /* Ocultar el mensaje */
+}

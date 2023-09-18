@@ -16,7 +16,6 @@ function agregarEmpleado($id_persona_fisica, $id_tipo_empleado)
     $id_empleado = $connect->insert_id;
     $s->close();
     return $id_empleado;
-
 }
 function datosPersonalesEmpleado($id_usuario)
 {
@@ -101,13 +100,13 @@ function datosEmpleadoAbogado()
     pf.persona_apellido,
     esp.descripcion,
     pf.id_persona_fisica 
-        FROM sistemajuridico.persona p
+    FROM sistemajuridico.persona p
     inner join persona_fisica pf on p.id_persona=pf.id_persona
     inner join empleado e on e.id_persona_fisica=pf.id_persona_fisica
     inner join empleadoxespecializacion ee on e.id_empleado=ee.id_empleadoxespecializacion
     inner join especializacion esp on ee.id_especializacion=esp.id_especializacion
     inner join usuario u on u.id_empleado=e.id_empleado
-    where e.estado=1;";
+    where e.estado=1 and pf.tipo_persona_fisica=1;";
     $s = $connect->prepare($sql);
     $s->execute();
     $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -151,7 +150,19 @@ function ModificarDatosPersonalesEmpleado($idPersonaFisica, $nombre, $apellido, 
     $s->execute();
     $s->close();
 }
+function modificarDatosEmpleados($idPersonaFisica, $nombre, $apellido, $fecnac, $idSexo)
+{
+    global $connect;
+    $connect->begin_transaction();
 
+    $sql = "UPDATE `sistemajuridico`.`persona_fisica` 
+    SET 
+    `persona_nombre`        = '$nombre', 
+    `persona_apellido`      = '$apellido', 
+    `persona_fec_nac`       = '$fecnac', 
+    `id_sexo`               = ''                   WHERE 
+    (`id_persona_fisica`    = '$idPersonaFisica');";
+}
 function borrarPersonaEmpleado($idEmpleado)
 {
     global $connect;

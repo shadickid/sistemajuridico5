@@ -1,5 +1,5 @@
 <?php
-/* require_once('../../../config/path.php'); */
+/* require_once('../../config/path.php'); */
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
@@ -11,24 +11,24 @@ include(ROOT_PATH . 'includes\nav.php');
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\menu.php">Usuario</a>
     <span>/</span>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\perfil\nuevo_perfil\listado.php">Listado de
-        perfiles</a>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\sexo\listado.php">Listado de sexo</a>
     <span>/</span>
-    <span>Alta de nuevo perfil </span>
+    <span>Alta de sexo</span>
 </div>
 <div class="dashboard">
-    <h1> PERFIL</h1>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\perfil\nuevo_perfil\listado.php" class="volver-atras-button">Volver
-        Atr&aacute;s</a>
+    <h1> Sexo</h1>
+    <a href="listado.php" class="volver-atras-button">Volver Atr&aacute;s</a>
+
     <section class="inicio">
         <div class="contenido">
             <div class="formulario-container">
-                <h2>Alta de nuevo perfil</h2>
-                <form action="procesarAlta.php" method="POST">
+                <h2>Alta de nuevo tipo de sexo</h2>
+                <form id="form-sex" action="procesarAlta.php" method="POST">
                     <div>
                         <legend> Nombre:
-                            <input class="formulario-input" type="text" name="nombre" autocomplete="off">
-                            <input class="formulario-submit" type="submit" value="Guardar">
+                            <input class="formulario-input" type="text" name="nombre" id="nombre" autocomplete="off">
+                            <button onclick="validar()" id="formulario-submit" class="formulario-submit" type="button"
+                                value="Guardar">Guardar</button>
                         </legend>
                     </div>
                 </form>

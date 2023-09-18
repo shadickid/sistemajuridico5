@@ -1,7 +1,7 @@
 <?php
 /* require_once('../../../config/path.php'); */
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
-include(ROOT_PATH . 'config/database/functions/bd_functions .php');
+include(ROOT_PATH . 'config/database/functions/bd_functions.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 $conditional = [
@@ -30,36 +30,36 @@ $records = selectall('documento', $conditional);
                     <th>Borrar</th>
 
                 </tr>
-                <?php foreach ($records as $reg): ?>
-                    <tr>
-                        <td>
-                            <?php echo $reg['id_tipo_documento'] ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['descripcion'] ?>
-                        </td>
-                        <td>
-                            <a href="modificar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>">
-                                <button class="editarButton">
-                                    <i class="fi fi-rr-edit"></i>
-                                </button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="eliminar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>">
-                                <button class="darDeBajaButton">
-                                    <i class="fi-rr-eraser"></i>
-                                </button>
-                            </a>
-                        </td>
+                <?php foreach ($records as $reg) : ?>
+                <tr>
+                    <td>
+                        <?php echo $reg['id_tipo_documento'] ?>
+                    </td>
+                    <td>
+                        <?php echo $reg['descripcion'] ?>
+                    </td>
+                    <td>
+                        <a href="modificar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>">
+                            <button class="editarButton">
+                                <i class="fi fi-rr-edit"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="eliminar.php?id_tipo_documento=<?php echo $reg['id_tipo_documento'] ?>">
+                            <button class="darDeBajaButton">
+                                <i class="fi-rr-eraser"></i>
+                            </button>
+                        </a>
+                    </td>
 
-                    </tr>
+                </tr>
                 <?php endforeach ?>
             </table>
-            <?php if (isset($_GET['error'])): ?>
-                <span class=''>
-                    Error:No se cargo nada
-                </span>
+            <?php if (isset($_GET['error'])) : ?>
+            <span class=''>
+                Error:No se cargo nada
+            </span>
             <?php endif ?>
         </div>
     </section>

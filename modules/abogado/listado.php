@@ -1,7 +1,7 @@
 <?php
 /* require_once('../../../config/path.php'); */
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
-include(ROOT_PATH . 'config/database/functions/bd_functions .php');
+include(ROOT_PATH . 'config/database/functions/bd_functions.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 include(ROOT_PATH . 'config\database\functions\empleado.php');
@@ -31,7 +31,7 @@ $datosempleado = datosEmpleadoAbogado();
                     <th>Borrar</th>
                 </tr>
                 <tr>
-                    <?php foreach ($datosempleado as $regempleado): ?>
+                    <?php foreach ($datosempleado as $regempleado) : ?>
                         <td>
                             <?php echo $regempleado['id_empleado'] ?>
                         </td>
@@ -45,24 +45,22 @@ $datosempleado = datosEmpleadoAbogado();
                             <?php echo $regempleado['usuario_nombre'] ?>
                         </td>
                         <td>
-                            <a
-                                href="<?php echo BASE_URL ?>modules\abogado\modificar.php?idPersonaFisica=<?php echo $regempleado['id_persona_fisica'] ?>">
+                            <a href="<?php echo BASE_URL ?>modules\abogado\modificar.php?idPersonaFisica=<?php echo $regempleado['id_persona_fisica'] ?>">
                                 <button class="editarButton">
                                     <i class="fi fi-rr-edit"></i>
                                 </button>
                             </a>
                         </td>
                         <td>
-                            <a href="<?php echo BASE_URL ?>modules\abogado\modal_borrar.php?idPersonaFisica=<?php echo $regempleado['id_persona_fisica'] ?>"
-                                class="openModal">
+                            <a href="<?php echo BASE_URL ?>modules\abogado\modal_borrar.php?idPersonaFisica=<?php echo $regempleado['id_persona_fisica'] ?>" class="openModal">
                                 <button class="darDeBajaButton">
                                     <i class="fi-rr-eraser"></i>
                                 </button>
                             </a>
                         </td>
-                    </tr>
+                </tr>
 
-                <?php endforeach ?>
+            <?php endforeach ?>
             </table>
         </div>
     </section>

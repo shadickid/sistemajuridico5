@@ -1,7 +1,7 @@
 <?php
 /* require_once('../../../config/path.php'); */
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
-include(ROOT_PATH . 'config/database/functions/bd_functions .php');
+include(ROOT_PATH . 'config/database/functions/bd_functions.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 $conditional = [
@@ -32,30 +32,30 @@ $records = selectall('expediente_tipo', $conditional);
                     <th>Borrar</th>
 
                 </tr>
-                <?php foreach ($records as $reg): ?>
-                    <tr>
-                        <td>
-                            <?php echo $reg['id_expediente_tipo'] ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_tipo_nombre'] ?>
-                        </td>
-                        <td>
-                            <a href="modificar.php?id_expediente_tipo=<?php echo $reg['id_expediente_tipo'] ?>">
-                                <button class="editarButton">
-                                    <i class="fi fi-rr-edit"></i>
-                                </button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="eliminar.php?id_expediente_tipo=<?php echo $reg['id_expediente_tipo'] ?>">
-                                <button class="darDeBajaButton">
-                                    <i class="fi-rr-eraser"></i>
-                                </button>
-                            </a>
-                        </td>
+                <?php foreach ($records as $reg) : ?>
+                <tr>
+                    <td>
+                        <?php echo $reg['id_expediente_tipo'] ?>
+                    </td>
+                    <td>
+                        <?php echo $reg['expediente_tipo_nombre'] ?>
+                    </td>
+                    <td>
+                        <a href="modificar.php?id_expediente_tipo=<?php echo $reg['id_expediente_tipo'] ?>">
+                            <button class="editarButton">
+                                <i class="fi fi-rr-edit"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="eliminar.php?id_expediente_tipo=<?php echo $reg['id_expediente_tipo'] ?>">
+                            <button class="darDeBajaButton">
+                                <i class="fi-rr-eraser"></i>
+                            </button>
+                        </a>
+                    </td>
 
-                    </tr>
+                </tr>
                 <?php endforeach ?>
             </table>
         </div>

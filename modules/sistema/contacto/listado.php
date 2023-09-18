@@ -1,7 +1,7 @@
 <?php
 /* require_once('../../../config/path.php'); */
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
-include(ROOT_PATH . 'config/database/functions/bd_functions .php');
+include(ROOT_PATH . 'config\database\functions\bd_functions.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 $conditional = [
@@ -30,7 +30,7 @@ $records = selectall('tipo_contacto', $conditional);
                     <th>Borrar</th>
 
                 </tr>
-                <?php foreach ($records as $reg): ?>
+                <?php foreach ($records as $reg) : ?>
                     <tr>
                         <td>
                             <?php echo $reg['id_tipo_contacto'] ?>
@@ -40,14 +40,14 @@ $records = selectall('tipo_contacto', $conditional);
                         </td>
                         <td>
                             <a href="modificar.php?id_tipo_contacto=<?php echo $reg['id_tipo_contacto'] ?>">
-                                <button class="editarButton">
+                                <button type="button" class="editarButton">
                                     <i class="fi fi-rr-edit"></i>
                                 </button>
                             </a>
                         </td>
                         <td>
                             <a href="eliminar.php?id_tipo_contacto=<?php echo $reg['id_tipo_contacto'] ?>">
-                                <button class="darDeBajaButton">
+                                <button type="button" class="darDeBajaButton">
                                     <i class="fi-rr-eraser"></i>
                                 </button>
                             </a>

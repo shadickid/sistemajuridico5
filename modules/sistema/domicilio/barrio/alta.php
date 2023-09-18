@@ -4,7 +4,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
-include(ROOT_PATH . 'config/database/functions/bd_functions .php');
+include(ROOT_PATH . 'config/database/functions/bd_functions.php');
 
 $prov = selectall('provincia');
 ?>
@@ -18,7 +18,7 @@ $prov = selectall('provincia');
                     <div>
                         <label class="formulario-label" for="id_provincia">Selecione la provincia </label>
                         <select class="formulario-select" name="id_provincia">
-                            <?php foreach ($prov as $reg): ?>
+                            <?php foreach ($prov as $reg) : ?>
                             <option value="<?php echo $reg['id_provincia'] ?>"><?php echo $reg['nombre'] ?></option>
                             <?php endforeach ?>
                         </select>

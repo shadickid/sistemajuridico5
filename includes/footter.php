@@ -7,6 +7,6 @@
 </footer>
 
 </body>
+<script src="<?php echo BASE_URL; ?>js\main.js"></script>
 
 </html>
-<script src="<?php echo BASE_URL; ?>javascrip\main.js"></script>

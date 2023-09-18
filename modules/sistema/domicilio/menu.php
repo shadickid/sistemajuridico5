@@ -23,7 +23,7 @@ include(ROOT_PATH . 'includes\nav.php');
                 </div>
                 <div class="menu-items">
                     <a href="<?php echo BASE_URL ?>modules/sistema/domicilio/localidad/listado.php">Localidad</a>
-                    <a href="#">Barrio</a>
+                    <a href="modules\sistema\domicilio\barrio\listado.php">Barrio</a>
                 </div>
                 <div class="menu-items">
                     <a href="<?php echo BASE_URL ?>modules/sistema/domicilio/atributo_de_domicilio/listado.php">Atributos

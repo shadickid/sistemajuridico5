@@ -1,7 +1,7 @@
 <?php
 /* require_once('../../../config/path.php'); */
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
-include(ROOT_PATH . 'config/database/functions/bd_functions .php');
+include(ROOT_PATH . 'config/database/functions/bd_functions.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 $conditional = [
@@ -9,47 +9,58 @@ $conditional = [
 ];
 $records = selectall('perfil', $conditional);
 ?>
-<div>
-    <h1> PERFIL</h1>
+<div class="breadcrumbs">
+    <a href="<?php echo BASE_URL; ?>">INICIO</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\menu.php">Usuario</a>
+    <span>/</span>
+    <span>Listado de perfiles</span>
 </div>
-<div class="contenedor">
+<div class="dashboard">
+    <h1>Listado de perfiles</h1>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\menu.php" class="volver-atras-button">Volver
+        Atr&aacute;s</a>
     <section class="inicio">
-        <a href="alta.php" class="a-alta">Nuevo Perfil</a>
-        <table class="tablamodal">
-            <tr>
-                <th>ID Perfil</th>
-                <th>Nombre</th>
-                <th>Modificar</th>
-                <th>Borrar</th>
-
-            </tr>
-            <?php foreach ($records as $reg): ?>
-            <tr>
-                <td>
-                    <?php echo $reg['id_perfil'] ?>
-                </td>
-                <td>
-                    <?php echo $reg['descripcion'] ?>
-                </td>
-                <td>
-                    <a href="modificar.php?id_perfil=<?php echo $reg['id_perfil'] ?>"><i class="fi fi-rr-edit">
-                            <button class="editarButton">
-                                <i class="fi fi-rr-edit"></i>
-                            </button>
-                    </a>
-                </td>
-                <td>
-                    <a href="eliminar.php?id_perfil=<?php echo $reg['id_perfil'] ?>">
-                        <button class="darDeBajaButton">
-                            <i class="fi-rr-eraser"></i>
-                        </button>
-                    </a>
-                </td>
-
-            </tr>
-            <?php endforeach ?>
-        </table>
+        <div class="contenido">
+            <div>
+                <a href="alta.php" class="a-alta">Nuevo perfil</a>
+            </div>
+            <table class="tablamodal">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Modificar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <?php foreach ($records as $regperf) : ?>
+                <tbody>
+                    <tr>
+                        <td><?php echo $regperf['id_perfil'] ?></td>
+                        <td><?php echo $regperf['descripcion'] ?></td>
+                        <td><a href="modificar.php?id_perfil=<?php echo $regperf['id_perfil'] ?>">
+                                <button class="editarButton">
+                                    <i class="fi fi-rr-edit"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td><a href="eliminar.php?id_perfl=<?php echo $regperf['id_perfil'] ?>">
+                                <button class="darDeBajaButton">
+                                    <i class="fi-rr-eraser"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+                <?php endforeach ?>
+            </table>
+        </div>
     </section>
+
+
 </div>
 
 <?php

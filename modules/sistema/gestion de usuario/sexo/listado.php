@@ -24,7 +24,7 @@ $sexos = selectall('sexo');
             <div>
                 <a href="alta.php" class="a-alta">Nuevo tipo sexo</a>
             </div>
-            <span class="msj-success hidden">Se ha agregado correctamente</span>
+            <span class="msj-success show">Se ha agregado correctamente</span>
             <span class="msj-error hidden">Se ha borrado correctamente</span>
             <span class="msj-modify hidden">Se ha modificado correctamente</span>
 
@@ -37,7 +37,7 @@ $sexos = selectall('sexo');
                         <th>Borrar</th>
                     </tr>
                 </thead>
-                <?php foreach ($sexos as $regsex) : ?>
+                <?php foreach ($sexos as $regsex): ?>
                     <tbody>
                         <tr>
                             <td>
@@ -47,14 +47,16 @@ $sexos = selectall('sexo');
                                 <?php echo $regsex['nombre'] ?>
                             </td>
                             <td>
-                                <a href="<?php echo BASE_URL ?>modules\sistema\gestion de usuario\sexo\modificar.php?idsexo=<?php echo $regsex['id_sexo'] ?>">
+                                <a
+                                    href="<?php echo BASE_URL ?>modules\sistema\gestion de usuario\sexo\modificar.php?idsexo=<?php echo $regsex['id_sexo'] ?>">
                                     <button class="editarButton">
                                         <i class="fi fi-rr-edit"></i>
                                     </button>
                                 </a>
                             </td>
                             <td>
-                                <a href="<?php echo BASE_URL ?>modules\sistema\gestion de usuario\sexo\borrar.php?idsexo=<?php echo $regsex['id_sexo'] ?>">
+                                <a
+                                    href="<?php echo BASE_URL ?>modules\sistema\gestion de usuario\sexo\borrar.php?idsexo=<?php echo $regsex['id_sexo'] ?>">
                                     <button class="darDeBajaButton">
                                         <i class="fi-rr-eraser"></i>
                                     </button>

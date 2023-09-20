@@ -21,10 +21,8 @@ $prov = selectall('provincia');
 </div>
 
 <div class="dashboard">
-    <h1>Localidad</h1>
     <a href="<?php echo BASE_URL ?>modules\sistema\domicilio\localidad\listado.php" class="volver-atras-button">Volver
         Atr&aacute;s</a>
-    <h1> Nueva localidad</h1>
     <section class="inicio">
         <div class="contenido">
             <h2>Alta de nueva localidad</h2>
@@ -33,7 +31,7 @@ $prov = selectall('provincia');
                     <label class="formulario-label" for="id_provincia">Selecione la provincia </label>
                     <select class="formulario-select" name="id_provincia">
                         <?php foreach ($prov as $reg) : ?>
-                            <option value="<?php echo $reg['id_provincia'] ?>"><?php echo $reg['nombre'] ?></option>
+                        <option value="<?php echo $reg['id_provincia'] ?>"><?php echo $reg['nombre'] ?></option>
                         <?php endforeach ?>
                     </select>
                     Nombre:<input class="formulario-input" type="text" name="nombre" autocomplete="off">

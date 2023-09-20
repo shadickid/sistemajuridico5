@@ -25,39 +25,39 @@ $records = selectall('barrio');
     <section class="inicio">
         <div class="contenido">
 
-            <a href="alta.php" class="a-alta">Nueva localidad</a>
+            <a href="alta.php" class="a-alta">Nuevo Barrio</a>
             <table class="tablamodal">
                 <tr>
-                    <th>ID localidad</th>
+                    <th>ID Barrio</th>
                     <th>Nombre</th>
                     <th>Modificar</th>
                     <th>Borrar</th>
 
                 </tr>
                 <?php foreach ($records as $reg) : ?>
-                    <tr>
-                        <td>
-                            <?php echo $reg['id_barrio'] ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['nombre'] ?>
-                        </td>
-                        <td>
-                            <a href="modificar.php?id_localidad=<?php echo $reg['id_localidad'] ?>">
-                                <button class="editarButton">
-                                    <i class="fi fi-rr-edit"></i>
-                                </button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="eliminar.php?id_localidad=<?php echo $reg['id_localidad'] ?>">
-                                <button class="darDeBajaButton">
-                                    <i class="fi-rr-eraser"></i>
-                                </button>
-                            </a>
-                        </td>
+                <tr>
+                    <td>
+                        <?php echo $reg['id_barrio'] ?>
+                    </td>
+                    <td>
+                        <?php echo $reg['nombre'] ?>
+                    </td>
+                    <td>
+                        <a href="modificar.php?id_barrio=<?php echo $reg['id_barrio'] ?>">
+                            <button class="editarButton">
+                                <i class="fi fi-rr-edit"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="eliminar.php?id_barrio=<?php echo $reg['id_barrio'] ?>">
+                            <button class="darDeBajaButton">
+                                <i class="fi-rr-eraser"></i>
+                            </button>
+                        </a>
+                    </td>
 
-                    </tr>
+                </tr>
                 <?php endforeach ?>
             </table>
         </div>

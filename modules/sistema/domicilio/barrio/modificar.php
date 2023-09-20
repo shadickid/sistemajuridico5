@@ -6,25 +6,20 @@ include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 
 
-$id_localidad = $_GET['id_localidad'];
-$conditional = [
-    'id_localidad' => $id_localidad
-];
-$records = selectall('localidad', $conditional);
+$id_barrio = $_GET['id_barrio'];
+$records = selectall('localidad');
 
 ?>
 <div class="dashboard">
-    <h1> LOCALIDAD</h1>
+    <h1>Modificar Barrio</h1>
     <section class="inicio">
         <div class="contenido">
-
             <form method="POST" action="procesarModificacion.php">
-
-                <?php foreach ($records as $reg) : ?>
                 Nombre: <input type="text" name="nombre" value="<?php echo $reg['nombre'] ?>" autocomplete="off">
                 <input type="hidden" name="id_localidad" value="<?php echo $reg['id_localidad'] ?>">
                 <label for="provincia">Selecione la provincia
                     <select name="provincia">
+                        <?php foreach ($records as $reg) : ?>
                         <?php $conditional_prov = [
                                 'id_provincia' => $reg['id_provincia']
                             ];

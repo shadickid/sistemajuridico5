@@ -9,7 +9,7 @@ include(ROOT_PATH . 'includes\nav.php');
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
     <span>/</span>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\expediente\menu.php">Expediente</a>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">Expediente</a>
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\expediente\estado_de_expediente\listado.php">Estado de
         expediente</a>
@@ -18,7 +18,7 @@ include(ROOT_PATH . 'includes\nav.php');
 </div>
 <div class="dashboard">
     <h1> ESTADO DE EXPEDIENTE</h1>
-    <a href="#" onclick="window.history.go(-1); return false;" class="volver-atras-button">Volver Atr&aacute;s</a>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\expediente\estado_de_expediente\listado.php" class="volver-atras-button">Volver Atr&aacute;s</a>
     <section class="inicio">
         <div class="contenido">
             <div class="formulario-container">

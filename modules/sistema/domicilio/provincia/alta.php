@@ -31,7 +31,7 @@ $pais = selectall('pais');
                     <label class="formulario-label" for="id_pais">Selecione el pais </label>
                     <select name="id_pais" class="formulario-select">
                         <?php foreach ($pais as $reg) : ?>
-                            <option value="<?php echo $reg['id_pais'] ?>"><?php echo $reg['nombre'] ?></option>
+                        <option value="<?php echo $reg['id_pais'] ?>"><?php echo $reg['nombre'] ?></option>
                         <?php endforeach ?>
                     </select>
                     Nombre:<input type="text" class="formulario-input" name="nombre" autocomplete="off">

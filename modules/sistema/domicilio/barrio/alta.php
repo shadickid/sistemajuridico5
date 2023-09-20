@@ -31,7 +31,7 @@ $localidad = selectall('localidad',);
                         <label class="formulario-label" for="id_localidad">Selecione la localidad </label>
                         <select class="formulario-select" name="id_localidad">
                             <?php foreach ($localidad as $reg) : ?>
-                            <option value="<?php echo $reg['id_localidad'] ?>"><?php echo $reg['nombre'] ?></option>
+                                <option value="<?php echo $reg['id_localidad'] ?>"><?php echo $reg['nombre'] ?></option>
                             <?php endforeach ?>
                         </select>
                         <legend> Nombre:

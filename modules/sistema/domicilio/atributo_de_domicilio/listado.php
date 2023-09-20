@@ -19,7 +19,7 @@ $records = selectall('atributo_domiclio');
 
 <div class="dashboard">
     <h1> ATRIBUTO DE DOMICILIO</h1>
-    <a href="<?php echo BASE_URL ?>modules\sistema\domicilio\menu.php" class="volver-atras-button">Volver
+    <a href="<?php echo BASE_URL ?>modules\sistema\menu.php" class="volver-atras-button">Volver
         Atr&aacute;s</a>
     <section class="inicio">
         <div class="contenido">

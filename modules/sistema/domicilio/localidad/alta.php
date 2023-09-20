@@ -31,7 +31,7 @@ $prov = selectall('provincia');
                     <label class="formulario-label" for="id_provincia">Selecione la provincia </label>
                     <select class="formulario-select" name="id_provincia">
                         <?php foreach ($prov as $reg) : ?>
-                        <option value="<?php echo $reg['id_provincia'] ?>"><?php echo $reg['nombre'] ?></option>
+                            <option value="<?php echo $reg['id_provincia'] ?>"><?php echo $reg['nombre'] ?></option>
                         <?php endforeach ?>
                     </select>
                     Nombre:<input class="formulario-input" type="text" name="nombre" autocomplete="off">

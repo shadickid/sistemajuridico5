@@ -10,8 +10,9 @@ $id_provincia = $_GET['id_provincia'];
 $conditional_prov = [
     'id_provincia' => $id_provincia
 ];
-$records = selectall('provincia', $conditional_prov);
-
+$pais = selectAll('pais');
+$provincia = selectall('provincia', $conditional_prov);
+foreach ($provincia as $regprovincia) :
 ?>
 <div class="breadcrumbs">
     <a href="<?php echo BASE_URL; ?>">INICIO</a>
@@ -31,27 +32,27 @@ $records = selectall('provincia', $conditional_prov);
     <section class="inicio">
         <div class="contenido">
             <form method="POST" action="procesarModificacion.php">
-
-                <?php foreach ($records as $reg) : ?>
-                    Nombre: <input type="text" class="formulario-input" name="nombre" value="<?php echo $reg['nombre'] ?>" autocomplete="off">
-                    <input type="hidden" name="id_provincia" value="<?php echo $reg['id_provincia'] ?>">
-                    <label class="formulario-label" for="pais">Selecione el pais
-                        <select class="formulario-select" name="pais">
-                            <?php $conditional_pais = [
-                                'id_pais' => $reg['id_pais']
-                            ];
-                            $pais = selectall('pais', $conditional_pais); ?>
-                            <?php foreach ($pais as $reg) : ?>
-                                <option value="<?php echo $reg['id_pais'] ?>"><?php echo $reg['nombre'] ?></option>
-                            <?php endforeach ?>
-                        </select>
-                    </label>
+                <input type="hidden" name="id_provincia" value="<?php echo $id_provincia; ?>">
+                <div class="input-control">
+                    <label class="formulario-label" for="pais">Seleccione el pais:</label>
+                    <select name="pais" class="formulario-select">
+                        <?php foreach ($pais as $regpais) : ?>
+                        <option value="<?php echo $regpais['id_pais']; ?>"
+                            <?php if ($regprovincia['id_pais'] == $regpais['id_pais']) echo 'selected'; ?>>
+                            <?php echo $regpais['nombre'] ?>
+                        </option>
+                        <?php endforeach ?>
+                    </select>
+                    <label class="formulario-label" for="nombre">Nombre:</label>
+                    <input type="text" class="formulario-input" name="nombre"
+                        value="<?php echo $regprovincia['nombre'];  ?>" autocomplete="off">
                     <input type="submit" class="formulario-submit" value="Guardar">
+                </div>
             </form>
         </div>
     </section>
 </div>
 <?php
-                endforeach;
-                include(ROOT_PATH . 'includes\footter.php');
+endforeach;
+include(ROOT_PATH . 'includes\footter.php');
 ?>

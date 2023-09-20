@@ -23,16 +23,18 @@ foreach ($records as $reg) :
 </div>
 <div class="dashboard">
     <h1> Documento</h1>
-    <a href="#" onclick="window.history.go(-1); return false;" class="volver-atras-button">Volver Atrás</a>
+    <a href="<?php echo BASE_URL ?>modules\sistema\documento\listado.php" class="volver-atras-button">Volver Atrás</a>
     <section class="inicio">
         <div class="contenido">
-
-            <form method="POST" action="procesarModificacion.php">
-                Nombre:<input class="formulario-input" type="text" name="nombre"
-                    value="<?php echo $reg['descripcion'] ?>" autocomplete="off">
-                <input type="hidden" name="id_tipo_documento" value="<?php echo $reg['id_tipo_documento'] ?>">
-                <input class="formulario-submit" type="submit" value="Guardar">
-            </form>
+            <div class="formulario-container">
+                <h2>Modificacion de tipo de documento</h2>
+                <form method="POST" action="procesarModificacion.php">
+                    Nombre:<input class="formulario-input" type="text" name="nombre"
+                        value="<?php echo $reg['descripcion'] ?>" autocomplete="off">
+                    <input type="hidden" name="id_tipo_documento" value="<?php echo $reg['id_tipo_documento'] ?>">
+                    <input class="formulario-submit" type="submit" value="Guardar">
+                </form>
+            </div>
         </div>
     </section>
 </div>

@@ -15,7 +15,7 @@ include(ROOT_PATH . 'includes\nav.php');
 </div>
 <div class="dashboard">
     <h1> Contacto</h1>
-    <a href="#" onclick="window.history.go(-1); return false;" class="volver-atras-button">Volver Atrás</a>
+    <a href="<?php echo BASE_URL ?>modules\sistema\contacto\listado.php" class="volver-atras-button">Volver Atrás</a>
     <section class="inicio">
         <div class="contenido">
             <div class="formulario-container">

@@ -17,7 +17,7 @@ foreach ($records as $reg) :
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
     <span>/</span>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\expediente\menu.php">Expediente</a>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">Expediente</a>
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\expediente\tipo_de_sub_expediente\listado.php">subtipo de
         expediente</a>
@@ -26,15 +26,19 @@ foreach ($records as $reg) :
 </div>
 <div class="dashboard">
     <h1> SUB TIPO DE EXPEDIENTE</h1>
-    <a href="#" onclick="window.history.go(-1); return false;" class="volver-atras-button">Volver Atr&aacute;s</a>
-
+    <a href="<?php echo BASE_URL; ?>modules\sistema\expediente\tipo_de_sub_expediente\listado.php">
+        class="volver-atras-button">Volver Atr&aacute;s</a>
     <section class="inicio">
         <div class="contenido">
-            <form method="POST" action="procesarModificacion.php">
-                Nombre: <input type="text" name="nombre" value="<?php echo $reg['subtipo_exp'] ?>" autocomplete="off">
-                <input type="hidden" name="id_expsubtipo" value="<?php echo $reg['id_expsubtipo'] ?>">
-                <input type="submit" value="Guardar">
-            </form>
+            <div class="formulario-container">
+                <h2>Modificacion de tipo de sub tipo</h2>
+                <form method="POST" action="procesarModificacion.php">
+                    Nombre: <input type="text" name="nombre" value="<?php echo $reg['subtipo_exp'] ?>"
+                        autocomplete="off">
+                    <input type="hidden" name="id_expsubtipo" value="<?php echo $reg['id_expsubtipo'] ?>">
+                    <input type="submit" value="Guardar">
+                </form>
+            </div>
         </div>
     </section>
 </div>

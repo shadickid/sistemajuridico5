@@ -12,6 +12,7 @@
 //     modal.classList.remove('modal--show');
 // });
 window.onload = notiBaja();
+
 function notiBaja() {
   let darBaja = document.getElementsByClassName("darDeBajaButton");
 
@@ -20,7 +21,7 @@ function notiBaja() {
       let ventanaconfir = confirm("¿Estas seguro de querer borrar?");
       if (ventanaconfir) {
         href = darBaja[i].getAttribute("href");
-        alert(hreft);
+        alert(href);
       } else {
         ev.preventDefault();
         return;

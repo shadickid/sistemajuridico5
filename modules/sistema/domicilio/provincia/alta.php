@@ -13,31 +13,35 @@ $pais = selectall('pais');
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
     <span>/</span>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\domicilio\menu.php">Domicilio</a>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">Domicilio</a>
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\domicilio\provincia\listado.php">Provincia</a>
     <span>/</span>
     <span>Alta de provincia</span>
 </div>
 <div class="dashboard">
-    <h1> Nueva Provincia</h1>
+    <h1>Provincia</h1>
     <a href="<?php echo BASE_URL ?>modules\sistema\domicilio\provincia\listado.php" class="volver-atras-button">Volver
         Atr&aacute;s</a>
     <section class="inicio">
         <div class="contenido">
+
             <h2>Alta de nueva provincia</h2>
             <form action="procesarAlta.php" method="POST">
-                <div class="input-control">
-                    <label class="formulario-label" for="id_pais">Selecione el pais </label>
-                    <select name="id_pais" class="formulario-select">
-                        <?php foreach ($pais as $reg) : ?>
+
+                <label class="formulario-label" for="id_pais">Selecione el pais </label>
+                <select name="id_pais" class="formulario-select">
+                    <option value="0">---Seleccione---</option>
+                    <?php foreach ($pais as $reg) : ?>
                         <option value="<?php echo $reg['id_pais'] ?>"><?php echo $reg['nombre'] ?></option>
-                        <?php endforeach ?>
-                    </select>
-                    Nombre:<input type="text" class="formulario-input" name="nombre" autocomplete="off">
-                    <input type="submit" class="formulario-submit" value="Guardar">
-                </div>
+                    <?php endforeach ?>
+                </select>
+                <label for="nombre" class="formulario-label">Nombre:</label>
+                <input type="text" class="formulario-input" name="nombre" autocomplete="off">
+                <input type="submit" class="formulario-submit" value="Guardar">
+
             </form>
+
         </div>
     </section>
 </div>

@@ -11,7 +11,14 @@
 //     e.preventDefault();
 //     modal.classList.remove('modal--show');
 // });
-window.onload = notiBaja();
+window.onload = function () {
+  notiBaja();
+  document
+    .getElementById("formulario")
+    .addEventListener("submit", validarInput);
+  //validarInput();
+  //validar();
+};
 
 function notiBaja() {
   let darBaja = document.getElementsByClassName("darDeBajaButton");
@@ -37,4 +44,19 @@ function validar() {
   } else {
     document.getElementById("form-sex").submit();
   }
+}
+
+function validarInput(evento) {
+  evento.preventDefault();
+
+  let inputNombre = document.getElementById("nombre");
+  let inputNombreValue = inputNombre.value;
+
+  if (inputNombreValue.trim() === "") {
+    inputNombre.classList.add("error");
+    return;
+  } else {
+    inputNombre.classList.remove("error");
+  }
+  this.submit();
 }

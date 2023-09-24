@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 include(ROOT_PATH . 'config/database/functions/domicilio.php');
-$id_localidad = $_GET['id_localidad'];
+$id_barrio = $_GET['id_barrio'];
 
-borrarLocalidad($id_localidad);
+borrarBarrio($id_barrio);
 header("location: listado.php");

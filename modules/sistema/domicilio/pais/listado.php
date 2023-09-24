@@ -12,7 +12,7 @@ $records = selectall('pais');
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
     <span>/</span>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\domicilio\menu.php">Domicilio</a>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">Domicilio</a>
     <span>/</span>
     <span>Pais</span>
 </div>

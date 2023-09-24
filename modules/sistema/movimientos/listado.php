@@ -14,13 +14,13 @@ $records = selectall('movimiento_tipo_proceso', $conditional);
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
     <span>/</span>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\expediente\menu.php">Expediente</a>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">Expediente</a>
     <span>/</span>
     <span>Movimiento de expediente</span>
 </div>
 <div class="dashboard">
     <h1> MOVIMIENTO DE EXPEDIENTE</h1>
-    <a href="<?php echo BASE_URL ?>modules\sistema\expediente\menu.php" class="volver-atras-button">Volver
+    <a href="<?php echo BASE_URL ?>modules\sistema\menu.php" class="volver-atras-button">Volver
         Atr&aacute;s</a>
     <section class="inicio">
         <div class="contenido">
@@ -34,29 +34,29 @@ $records = selectall('movimiento_tipo_proceso', $conditional);
 
                 </tr>
                 <?php foreach ($records as $reg) : ?>
-                    <tr>
-                        <td>
-                            <?php echo $reg['id_tipo_proceso'] ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['nombre'] ?>
-                        </td>
-                        <td>
-                            <a href="modificar.php?id_tipo_proceso=<?php echo $reg['id_tipo_proceso'] ?>">
-                                <button class="editarButton">
-                                    <i class="fi fi-rr-edit"></i>
-                                </button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="eliminar.php?id_tipo_proceso=<?php echo $reg['id_tipo_proceso'] ?>">
-                                <button class="darDeBajaButton">
-                                    <i class="fi-rr-eraser"></i>
-                                </button>
-                            </a>
-                        </td>
+                <tr>
+                    <td>
+                        <?php echo $reg['id_tipo_proceso'] ?>
+                    </td>
+                    <td>
+                        <?php echo $reg['nombre'] ?>
+                    </td>
+                    <td>
+                        <a href="modificar.php?id_tipo_proceso=<?php echo $reg['id_tipo_proceso'] ?>">
+                            <button class="editarButton">
+                                <i class="fi fi-rr-edit"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="eliminar.php?id_tipo_proceso=<?php echo $reg['id_tipo_proceso'] ?>">
+                            <button class="darDeBajaButton">
+                                <i class="fi-rr-eraser"></i>
+                            </button>
+                        </a>
+                    </td>
 
-                    </tr>
+                </tr>
                 <?php endforeach ?>
             </table>
         </div>

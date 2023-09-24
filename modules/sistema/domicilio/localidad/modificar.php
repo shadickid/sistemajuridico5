@@ -10,8 +10,9 @@ $id_localidad = $_GET['id_localidad'];
 $conditional = [
     'id_localidad' => $id_localidad
 ];
-$records = selectall('localidad', $conditional);
-
+$localidad = selectall('localidad', $conditional);
+$provincia = selectall('provincia');
+foreach ($localidad as $reglocalidad) :
 ?>
 <div class="breadcrumbs">
     <a href="<?php echo BASE_URL; ?>">INICIO</a>
@@ -29,33 +30,33 @@ $records = selectall('localidad', $conditional);
     <h1>Localidad</h1>
     <a href="<?php echo BASE_URL ?>modules\sistema\domicilio\localidad\listado.php" class="volver-atras-button">Volver
         Atr&aacute;s</a>
-    <div class="dashboard">
-        <h1> Modificaci&oacute;n localidad</h1>
-        <section class="inicio">
-            <div class="contenido">
+    <section class="inicio">
+        <div class="contenido">
+            <h2>Modificacion de localidad</h2>
+            <form method="POST" action="procesarModificacion.php">
 
-                <form method="POST" action="procesarModificacion.php">
+                <label for="nombre">Nombre:</label>
+                <input class="formulario-input" type="text" name="nombre" value="<?php echo $reglocalidad['nombre'] ?>"
+                    autocomplete="off">
+                <input type="hidden" name="id_localidad" value="<?php echo $reglocalidad['id_localidad'] ?>">
+                <label class="formulario-label" for="provincia">Selecione la provincia</label>
+                <select class="formulario-select" name="provincia">
+                    <option value="0">--Seleccione--</option>
+                    <?php foreach ($provincia as $regprovincia) : ?>
+                    <option value="<?php echo $regprovincia['id_provincia']; ?>"
+                        <?php if ($regprovincia['id_provincia'] == $reglocalidad['id_provincia']) echo 'selected'; ?>>
+                        <?php echo $regprovincia['nombre'] ?>
+                    </option>
+                    <?php endforeach ?>
+                </select>
 
-                    <?php foreach ($records as $reg) : ?>
-                        Nombre: <input class="formulario-input" type="text" name="nombre" value="<?php echo $reg['nombre'] ?>" autocomplete="off">
-                        <input type="hidden" name="id_localidad" value="<?php echo $reg['id_localidad'] ?>">
-                        <label class="formulario-label" for="provincia">Selecione la provincia
-                            <select class="formulario-select" name="provincia">
-                                <?php $conditional_prov = [
-                                    'id_provincia' => $reg['id_provincia']
-                                ];
-                                $pais = selectall('provincia', $conditional_prov); ?>
-                                <?php foreach ($pais as $reg) : ?>
-                                    <option value="<?php echo $reg['id_provincia'] ?>"><?php echo $reg['nombre'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </label>
-                        <input class="formulario-submit" type="submit" value="Guardar">
-                </form>
-            </div>
-        </section>
-    </div>
+                <input class="formulario-submit" type="submit" value="Guardar">
+            </form>
+        </div>
+    </section>
+</div>
+
 <?php
-                    endforeach;
-                    include(ROOT_PATH . 'includes\footter.php');
+endforeach;
+include(ROOT_PATH . 'includes\footter.php');
 ?>

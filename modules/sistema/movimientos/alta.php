@@ -17,15 +17,15 @@ include(ROOT_PATH . 'includes\nav.php');
 </div>
 <div class="dashboard">
     <h1>MOVIMIENTO DE EXPEDIENTE</h1>
-    <a href="<?php echo BASE_URL ?>modules\sistema\movimientos\listado.php"
-        class="volver-atras-button">VolverAtr&aacute;s</a>
+    <a href="<?php echo BASE_URL ?>modules\sistema\movimientos\listado.php" class="volver-atras-button">VolverAtr&aacute;s</a>
     <section class="inicio">
         <div class="contenido">
             <div class="formulario-container">
                 <h2>Alta de nuevo movimiento</h2>
                 <form action="procesarAlta.php" method="POST">
                     <div class="input-control">
-                        Nombre:<input type="text" class="formulario-input" name="nombre" autocomplete="off">
+                        <label for="nombre" class="formulario-label">Nombre:</label>
+                        <input type="text" class="formulario-input" name="nombre" autocomplete="off">
                         <input type="submit" class="formulario-submit" value="Guardar">
                     </div>
                 </form>

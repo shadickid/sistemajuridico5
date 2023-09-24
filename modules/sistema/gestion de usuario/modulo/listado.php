@@ -1,13 +1,10 @@
 <?php
-/* require_once('../../../config/path.php'); */
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
-include(ROOT_PATH . 'config/database/functions/bd_functions.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
-$conditional = [
-    'activo' => 1
-];
-$records = selectall('perfil', $conditional);
+include(ROOT_PATH . 'config/database/functions/bd_functions.php');
+$modulos = selectall('modulo');
+
 ?>
 <div class="breadcrumbs">
     <a href="<?php echo BASE_URL; ?>">INICIO</a>
@@ -16,58 +13,51 @@ $records = selectall('perfil', $conditional);
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">Usuario</a>
     <span>/</span>
-    <span>Listado de perfiles</span>
+    <span>Modulo</span>
 </div>
 <div class="dashboard">
-    <h1>Perfil</h1>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php" class="volver-atras-button">Volver
-        Atr&aacute;s</a>
+    <h1>Modulo</h1>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php" class="volver-atras-button">Volver Atr&aacute;s</a>
     <section class="inicio">
         <div class="contenido">
             <div>
-                <a href="alta.php" class="a-alta">Nuevo perfil</a>
+                <a href="alta.php" class="a-alta">Nuevo modulo</a>
             </div>
             <table class="tablamodal">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
+                        <th>Modulo</th>
+                        <th>Ruta</th>
                         <th>Modificar</th>
                         <th>Borrar</th>
-                        <th>Asignar Modulo</th>
                     </tr>
                 </thead>
-                <?php foreach ($records as $regperf) : ?>
+                <?php foreach ($modulos as $regmodulos) : ?>
                     <tbody>
                         <tr>
-                            <td><?php echo $regperf['id_perfil'] ?></td>
-                            <td><?php echo $regperf['descripcion'] ?></td>
-                            <td><a href="modificar.php?id_perfil=<?php echo $regperf['id_perfil'] ?>">
+                            <td><?php echo $regmodulos['id_modulo'] ?></td>
+                            <td><?php echo $regmodulos['descripcion'] ?></td>
+                            <td><?php echo $regmodulos['ruta'] ?></td>
+                            <td><a href="modificar.php?id_modulo=<?php echo $regmodulos['id_modulo'] ?>">
                                     <button class="editarButton">
                                         <i class="fi fi-rr-edit"></i>
                                     </button>
                                 </a>
                             </td>
-                            <td><a href="eliminar.php?id_perfil=<?php echo $regperf['id_perfil'] ?>">
+                            <td><a href="eliminar.php?id_modulo=<?php echo $regmodulos['id_modulo'] ?>">
                                     <button class="darDeBajaButton">
                                         <i class="fi-rr-eraser"></i>
                                     </button>
                                 </a>
                             </td>
-                            <td><a href="asignarModulo?id_perfil=<?php echo $regperf['id_perfil'] ?>">
-                                    <button class="darDeAltaModuloButton">
-                                        <i class="fi fi-rr-add"></i>
-                                    </button></td>
                         </tr>
                     </tbody>
-                <?php endforeach ?>
+                <?php endforeach; ?>
             </table>
         </div>
     </section>
-
-
 </div>
-
 <?php
 include(ROOT_PATH . 'includes\footter.php');
 ?>

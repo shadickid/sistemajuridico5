@@ -37,6 +37,56 @@ function borrarPais($id_pais)
 
 /* Provincia */
 
+function consultarProvinciaPais()
+{
+    global $connect;
+    $sql = "SELECT pais.id_pais,pais.nombre as paisnombre, provincia.id_provincia, provincia.nombre as provincianombre  from pais 
+            inner join provincia on pais.id_pais=provincia.id_pais";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+
+    return $records;
+}
+
+function consultarLocalidadProvincia()
+{
+    global $connect;
+    $sql = "SELECT  provincia.id_provincia,
+                    provincia.nombre,
+                    localidad.id_localidad,
+                    localidad.nombre as nombrelocalidad from provincia
+            inner join localidad on localidad.id_provincia=provincia.id_provincia;";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+
+    return $records;
+}
+function consultarBarrioLocalidad()
+{
+    global $connect;
+    $sql = "SELECT localidad.id_localidad,localidad.nombre as nombrelocalidad,barrio.id_barrio,barrio.nombre as nombrebarrio from localidad
+    inner join barrio on localidad.id_localidad=barrio.id_localidad";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+
+    return $records;
+}
+
 function agregarProvincia($nombre, $id_pais)
 {
     global $connect;
@@ -108,6 +158,58 @@ function borrarLocalidad($id_localidad)
     $s->execute();
     $s->close();
 }
+
+// Barrio
+
+function agregarBarrio($id_localidad, $nombre)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "INSERT INTO `sistemajuridico`.`barrio` (`nombre`, `id_localidad`) VALUES ('$nombre', '$id_localidad');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}
+
+function modificarBarrio($nombre, $id_localidad, $id_barrio)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "UPDATE `sistemajuridico`.`barrio` SET `nombre` = '$nombre', `id_localidad` = '$id_localidad' WHERE (`id_barrio` = '$id_barrio');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}
+
+
+function borrarBarrio($id_barrio)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "DELETE FROM `sistemajuridico`.`barrio` WHERE (`id_barrio` = '$id_barrio');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}
+
 
 /* Tipo domicilio */
 

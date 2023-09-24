@@ -12,7 +12,7 @@ include(ROOT_PATH . 'includes\nav.php');
 
 <div class="dashboard">
     <h1>SISTEMA</h1>
-    <a href="#" onclick="window.history.go(-1); return false;" class="volver-atras-button">Volver Atrás</a>
+    <a href="<?php echo BASE_URL; ?>index.php" class="volver-atras-button">Volver Atrás</a>
     <section class="inicio">
         <div class="contenido">
             <div class="menu">
@@ -60,7 +60,9 @@ include(ROOT_PATH . 'includes\nav.php');
                                     href="<?php echo BASE_URL ?>modules\sistema\gestion de usuario\perfil\nuevo_perfil\listado.php">Perfil
                                 </a>
                             </li>
-                            <li><a href="#">Modulos</a></li>
+                            <li><a
+                                    href="<?php echo BASE_URL ?>modules\sistema\gestion de usuario\modulo\listado.php">Modulos</a>
+                            </li>
                             <li><a href="#">Usuarios</a></li>
                             <li><a
                                     href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\sexo\listado.php">Sexo</a>

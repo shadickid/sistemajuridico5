@@ -9,7 +9,7 @@ include(ROOT_PATH . 'includes\nav.php');
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
     <span>/</span>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\menu.php">Usuario</a>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">Usuario</a>
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\perfil\nuevo_perfil\listado.php">Listado de
         perfiles</a>
@@ -17,7 +17,7 @@ include(ROOT_PATH . 'includes\nav.php');
     <span>Alta de nuevo perfil </span>
 </div>
 <div class="dashboard">
-    <h1> PERFIL</h1>
+    <h1> Perfil</h1>
     <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\perfil\nuevo_perfil\listado.php" class="volver-atras-button">Volver
         Atr&aacute;s</a>
     <section class="inicio">
@@ -26,10 +26,9 @@ include(ROOT_PATH . 'includes\nav.php');
                 <h2>Alta de nuevo perfil</h2>
                 <form action="procesarAlta.php" method="POST">
                     <div>
-                        <legend> Nombre:
-                            <input class="formulario-input" type="text" name="nombre" autocomplete="off">
-                            <input class="formulario-submit" type="submit" value="Guardar">
-                        </legend>
+                        <label for="nombre" class="formulario-label"> Nombre: </label>
+                        <input class="formulario-input" type="text" name="nombre" autocomplete="off">
+                        <input class="formulario-submit" type="submit" value="Guardar">
                     </div>
                 </form>
             </div>

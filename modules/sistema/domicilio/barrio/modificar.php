@@ -7,34 +7,54 @@ include(ROOT_PATH . 'includes\nav.php');
 
 
 $id_barrio = $_GET['id_barrio'];
-$records = selectall('localidad');
-
+$conditional = [
+    'id_barrio' => $id_barrio
+];
+$barrio = selectall('barrio', $conditional);
+$localidad = selectall('localidad');
+foreach ($barrio as $regbarrio) :
 ?>
+<div class="breadcrumbs">
+    <a href="<?php echo BASE_URL; ?>">INICIO</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">Domicilio</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\domicilio\barrio\listado.php">Barrio</a>
+    <span>/</span>
+    <span>Modificaci&oacute;n de barrio</span>
+</div>
+
 <div class="dashboard">
-    <h1>Modificar Barrio</h1>
+    <h1>Barrio</h1>
+    <a href="<?php echo BASE_URL ?>modules\sistema\domicilio\barrio\listado.php" class="volver-atras-button">Volver
+        Atr&aacute;s</a>
     <section class="inicio">
         <div class="contenido">
+            <h2>Modificacion barrio</h2>
             <form method="POST" action="procesarModificacion.php">
-                Nombre: <input type="text" name="nombre" value="<?php echo $reg['nombre'] ?>" autocomplete="off">
-                <input type="hidden" name="id_localidad" value="<?php echo $reg['id_localidad'] ?>">
-                <label for="provincia">Selecione la provincia
-                    <select name="provincia">
-                        <?php foreach ($records as $reg) : ?>
-                        <?php $conditional_prov = [
-                                'id_provincia' => $reg['id_provincia']
-                            ];
-                            $pais = selectall('provincia', $conditional_prov); ?>
-                        <?php foreach ($pais as $reg) : ?>
-                        <option value="<?php echo $reg['id_provincia'] ?>"><?php echo $reg['nombre'] ?></option>
-                        <?php endforeach ?>
-                    </select>
-                </label>
-                <input type="submit" value="Guardar">
+                <label for="nombre" class="formulario-label">Nombre:</label>
+                <input type="text" class="formulario-input" name="nombre" value="<?php echo $regbarrio['nombre'] ?>"
+                    autocomplete="off">
+                <input type="hidden" name="id_barrio" value="<?php echo $regbarrio['id_barrio'] ?>">
+                <label for="localidad" class="formulario-label">Selecione la localidad</label>
+                <select name="localidad" class="formulario-select">
+                    <option value="0">--Seleccione--</option>
+                    <?php foreach ($localidad as $reglocalidad) : ?>
+                    <option value="<?php echo $reglocalidad['id_localidad']; ?>"
+                        <?php if ($regbarrio['id_localidad'] == $reglocalidad['id_localidad']) echo 'selected'; ?>>
+                        <?php echo $reglocalidad['nombre'] ?>
+                    </option>
+                    <?php endforeach ?>
+                </select>
+
+                <input type="submit" class="formulario-submit" value="Guardar">
             </form>
         </div>
     </section>
 </div>
 <?php
-                endforeach;
-                include(ROOT_PATH . 'includes\footter.php');
+endforeach;
+include(ROOT_PATH . 'includes\footter.php');
 ?>

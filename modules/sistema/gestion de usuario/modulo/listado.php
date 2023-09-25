@@ -3,7 +3,10 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 include(ROOT_PATH . 'config/database/functions/bd_functions.php');
-$modulos = selectall('modulo');
+$conditional = [
+    'estado_logico' => 1
+];
+$modulos = selectall('modulo',$conditional);
 
 ?>
 <div class="breadcrumbs">
@@ -34,25 +37,25 @@ $modulos = selectall('modulo');
                     </tr>
                 </thead>
                 <?php foreach ($modulos as $regmodulos) : ?>
-                    <tbody>
-                        <tr>
-                            <td><?php echo $regmodulos['id_modulo'] ?></td>
-                            <td><?php echo $regmodulos['descripcion'] ?></td>
-                            <td><?php echo $regmodulos['ruta'] ?></td>
-                            <td><a href="modificar.php?id_modulo=<?php echo $regmodulos['id_modulo'] ?>">
-                                    <button class="editarButton">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                </a>
-                            </td>
-                            <td><a href="eliminar.php?id_modulo=<?php echo $regmodulos['id_modulo'] ?>">
-                                    <button class="darDeBajaButton">
-                                        <i class="fi-rr-eraser"></i>
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
+                <tbody>
+                    <tr>
+                        <td><?php echo $regmodulos['id_modulo'] ?></td>
+                        <td><?php echo $regmodulos['descripcion'] ?></td>
+                        <td><?php echo $regmodulos['ruta'] ?></td>
+                        <td><a href="modificar.php?id_modulo=<?php echo $regmodulos['id_modulo'] ?>">
+                                <button class="editarButton">
+                                    <i class="fi fi-rr-edit"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td><a href="eliminar.php?id_modulo=<?php echo $regmodulos['id_modulo'] ?>">
+                                <button class="darDeBajaButton">
+                                    <i class="fi-rr-eraser"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
                 <?php endforeach; ?>
             </table>
         </div>

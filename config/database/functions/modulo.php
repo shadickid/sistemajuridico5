@@ -17,3 +17,33 @@ function agregarModulo($nombre)
         return 0;
     }
 }
+function modificarModulo($nombre, $id_modulo)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "UPDATE `sistemajuridico`.`modulo` SET `descripcion` = '$nombre' WHERE (`id_modulo` = '$id_modulo');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}
+function borrarModulo($id_modulo)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "UPDATE `sistemajuridico`.`modulo` SET `estado_logico` = '0' WHERE (`id_modulo` = '$id_modulo');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}

@@ -63,7 +63,9 @@ include(ROOT_PATH . 'includes\nav.php');
                             <li><a
                                     href="<?php echo BASE_URL ?>modules\sistema\gestion de usuario\modulo\listado.php">Modulos</a>
                             </li>
-                            <li><a href="#">Usuarios</a></li>
+                            <li><a
+                                    href="<?php echo BASE_URL ?>modules\sistema\gestion de usuario\usuario\listado.php">Usuarios</a>
+                            </li>
                             <li><a
                                     href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\sexo\listado.php">Sexo</a>
                             </li>

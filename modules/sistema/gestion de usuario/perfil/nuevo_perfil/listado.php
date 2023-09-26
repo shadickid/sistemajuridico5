@@ -16,7 +16,7 @@ $records = selectall('perfil', $conditional);
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">Usuario</a>
     <span>/</span>
-    <span>Listado de perfiles</span>
+    <span>Perfil</span>
 </div>
 <div class="dashboard">
     <h1>Perfil</h1>
@@ -38,28 +38,31 @@ $records = selectall('perfil', $conditional);
                     </tr>
                 </thead>
                 <?php foreach ($records as $regperf) : ?>
-                    <tbody>
-                        <tr>
-                            <td><?php echo $regperf['id_perfil'] ?></td>
-                            <td><?php echo $regperf['descripcion'] ?></td>
-                            <td><a href="modificar.php?id_perfil=<?php echo $regperf['id_perfil'] ?>">
-                                    <button class="editarButton">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                </a>
-                            </td>
-                            <td><a href="eliminar.php?id_perfil=<?php echo $regperf['id_perfil'] ?>">
-                                    <button class="darDeBajaButton">
-                                        <i class="fi-rr-eraser"></i>
-                                    </button>
-                                </a>
-                            </td>
-                            <td><a href="asignarModulo?id_perfil=<?php echo $regperf['id_perfil'] ?>">
-                                    <button class="darDeAltaModuloButton">
-                                        <i class="fi fi-rr-add"></i>
-                                    </button></td>
-                        </tr>
-                    </tbody>
+                <tbody>
+                    <tr>
+                        <td><?php echo $regperf['id_perfil'] ?></td>
+                        <td><?php echo $regperf['descripcion'] ?></td>
+                        <td><a href="modificar.php?id_perfil=<?php echo $regperf['id_perfil'] ?>">
+                                <button class="editarButton">
+                                    <i class="fi fi-rr-edit"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td><a href="eliminar.php?id_perfil=<?php echo $regperf['id_perfil'] ?>">
+                                <button class="darDeBajaButton">
+                                    <i class="fi-rr-eraser"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td><a
+                                href="asignarModulo.php?id_perfil=<?php echo $regperf['id_perfil'] ?>&descripcion=<?php echo $regperf['descripcion'] ?>">
+                                <button class="darDeAltaModuloButton">
+                                    <i class="fi fi-rr-add"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
                 <?php endforeach ?>
             </table>
         </div>

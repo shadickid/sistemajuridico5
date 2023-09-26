@@ -171,19 +171,3 @@ function borrarPersonaEmpleado($idEmpleado)
     $s->execute();
     $s->close();
 }
-function obtenerDatoAlumno($id_persona)
-{
-    global $connect;
-
-    $sql = "SELECT * FROM sistbook.personas where id_personas=$id_persona;";
-
-    $s = $connect->prepare($sql);
-
-    $s->execute();
-
-    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
-
-    $s->close();
-
-    return $records;
-}

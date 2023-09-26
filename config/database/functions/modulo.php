@@ -47,3 +47,20 @@ function borrarModulo($id_modulo)
         return 0;
     }
 }
+
+function consultarPerfilxModulo($id_perfil)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "SELECT * from modulo m
+            inner join perfilxmodulo pxm on pxm.id_modulo=m.id_modulo
+            inner join perfil p on p.id_perfil=pxm.id_perfil
+            where p.id_perfil=$id_perfil;";
+    $s = $connect->prepare($sql);
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}

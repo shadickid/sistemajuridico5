@@ -506,7 +506,8 @@ footer {
   cursor: pointer;
 }
 
-.darDeAltaModuloButton {
+.darDeAltaModuloButton,
+.greenButton {
   background-color: #3ce761;
   color: white;
   border: none;

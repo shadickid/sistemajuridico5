@@ -114,6 +114,28 @@ function datosEmpleadoAbogado()
     $s->close();
     return $records;
 }
+function datosEmpleadoAbogadosinUser()
+{
+    global $connect;
+    $sql = "SELECT  e.id_empleado,
+    pf.persona_nombre,
+    pf.persona_apellido,
+    esp.descripcion,
+    pf.id_persona_fisica 
+    FROM sistemajuridico.persona p
+    inner join persona_fisica pf on p.id_persona=pf.id_persona
+    inner join empleado e on e.id_persona_fisica=pf.id_persona_fisica
+    inner join empleadoxespecializacion ee on e.id_empleado=ee.id_empleadoxespecializacion
+    inner join especializacion esp on ee.id_especializacion=esp.id_especializacion  
+    left join usuario u on u.id_empleado=e.id_empleado
+    where e.estado=1 and pf.tipo_persona_fisica=1 and u.id_usuario is null;";
+    $s = $connect->prepare($sql);
+    $s->execute();
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}
 
 function selectModificarDatosPersonalesEmpleado($idPersonaFisica)
 {

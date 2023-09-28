@@ -508,7 +508,7 @@ footer {
 
 .darDeAltaModuloButton,
 .greenButton {
-  background-color: #3ce761;
+  background-color: #b97129;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -519,7 +519,6 @@ footer {
 /* Estilos del formulario */
 .formulario-container {
   width: 100%;
-  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
   background-color: #ffffff;
@@ -558,7 +557,6 @@ footer {
 }
 .error {
   padding: 8px;
-
   border: 1px solid #df5757;
   border-radius: 3px;
   margin-top: 5px;

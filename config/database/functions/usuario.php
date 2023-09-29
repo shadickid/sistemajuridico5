@@ -21,3 +21,9 @@ function consultarUsuarioPerfil()
     $s->close();
     return $records;
 }
+
+
+function consultarUsurioModificar($id_usuario){
+    global $connect;
+    $sql="";
+}

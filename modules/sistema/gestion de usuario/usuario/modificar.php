@@ -31,3 +31,6 @@ $id_usuario = $_GET['id_usuario'];
         </div>
     </section>
 </div>
+<?php
+include(ROOT_PATH . 'includes\footter.php');
+?>

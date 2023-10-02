@@ -132,6 +132,24 @@ button:hover {
 .user-profile {
   color: black;
 }
+.user-edit {
+  margin-top: 10px; /* Espacio superior */
+}
+
+.user-edit a {
+  display: inline-block;
+  background-color: #0073e6; /* Color de fondo azul */
+  color: #fff; /* Color de texto blanco */
+  padding: 10px 10px 10px 10px; /* Espaciado interior */
+  text-decoration: none; /* Sin subrayado */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s ease-in-out; /* Transición suave */
+}
+
+.user-edit a:hover {
+  background-color: #005bb5; /* Cambio de color de fondo al pasar el mouse */
+}
+
 /* Estilos generales de navbar-side */
 .navbar-side {
   position: fixed;
@@ -518,10 +536,10 @@ footer {
 
 /* Estilos del formulario */
 .formulario-container {
-  width: 100%;
   margin: 0 auto;
   padding: 20px;
   background-color: #ffffff;
+  display: block;
   /*   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
 }
@@ -544,8 +562,11 @@ footer {
 }
 
 .formulario-label {
+  text-align: left;
+  padding: 25px;
   font-size: 18px;
   margin-top: 10px;
+  margin-right: 25px;
 }
 
 .formulario-input {
@@ -555,6 +576,10 @@ footer {
   margin-top: 5px;
   font-size: 14px;
 }
+
+.input-control {
+}
+
 .error {
   padding: 8px;
   border: 1px solid #df5757;
@@ -803,6 +828,34 @@ legend {
   padding: 10px; /* Espaciado interior */
   margin-bottom: 10px; /* Margen inferior */
 }
+.msj-modify {
+  display: none; /* Por defecto, oculta el mensaje */
+  color: #ff6600; /* Color naranja para el texto de modificación */
+  font-weight: bold;
+  background-color: #ffedb3; /* Fondo naranja claro */
+  border: 1px solid #ff6600; /* Borde naranja */
+  padding: 10px; /* Espaciado interior */
+  margin-bottom: 10px; /* Margen inferior */
+}
+.msj-delete {
+  display: none; /* Por defecto, oculta el mensaje */
+  color: #ff0000; /* Color rojo para el texto de eliminación */
+  font-weight: bold;
+  background-color: #ffd9d9; /* Fondo rojo claro */
+  border: 1px solid #ff0000; /* Borde rojo */
+  padding: 10px; /* Espaciado interior */
+  margin-bottom: 10px; /* Margen inferior */
+}
+.msj-error {
+  display: none; /* Por defecto, oculta el mensaje */
+  color: #ff3333; /* Color rojo oscuro para el texto de error */
+  font-weight: bold;
+  background-color: #ffcccc; /* Fondo rojo claro */
+  border: 1px solid #ff3333; /* Borde rojo oscuro */
+  padding: 10px; /* Espaciado interior */
+  margin-bottom: 10px; /* Margen inferior */
+}
+
 /* Estilo para mostrar el mensaje */
 .show {
   display: block !important; /* Mostrar el mensaje */

@@ -7,6 +7,13 @@ if (!isset($_SESSION['usuario'])) {
     header('location:' . BASE_URL . 'modules/login/login.php');
 }
 include(ROOT_PATH . 'config\database\connect.php');
+$vali = null;
+if (isset($_GET['vali']) && $_GET['vali'] !== null) {
+    $vali = intval($_GET['vali']);
+
+} else {
+    $vali = null;
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">

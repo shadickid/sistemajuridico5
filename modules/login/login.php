@@ -2,7 +2,7 @@
 require_once('../../config/path.php');
 session_start();
 if (isset($_SESSION['usuario'])) {
-  header('location:' . BASE_URL . 'modules/dashboard/dashboard.php');
+    header('location:' . BASE_URL . 'modules/dashboard/dashboard.php');
 }
 ?>
 <!DOCTYPE html>
@@ -27,14 +27,12 @@ if (isset($_SESSION['usuario'])) {
                     <h2>Inicio de sesion</h2>
                     <div class="login-input">
                         <label for="username">Usuario
-                            <input type="text" name="username" id="username" placeholder="ingrese el usuario" required
-                                autocomplete="off" />
+                            <input type="text" name="username" id="username" placeholder="ingrese el usuario" required autocomplete="off" />
                         </label>
                     </div>
                     <div class="login-input">
                         <label for="password">Contrase&ntilde;a
-                            <input type="password" name="password" id="password"
-                                placeholder="ingrese la contrase&ntilde;a" required autocomplete="off" />
+                            <input type="password" name="password" id="password" placeholder="ingrese la contrase&ntilde;a" required autocomplete="off" />
                         </label>
                     </div>
                     <div class="forget">
@@ -46,15 +44,15 @@ if (isset($_SESSION['usuario'])) {
                     <button class="confirmacion" type="submit">Ingresar</button>
                 </form>
                 <?php if (isset($_GET['error'])) { ?>
-                <?php if ($_GET['error'] == '1') { ?>
-                <span class='errormsj'>
-                    Error:Usuario no encontrado
-                </span>
-                <?php } else { ?>
-                <span class='errormsj'>
-                    Error:Contrase&ntilde;a incorrecta
-                </span>
-                <?php } ?>
+                    <?php if ($_GET['error'] == '1') { ?>
+                        <span class='errormsj'>
+                            Error:Usuario no encontrado
+                        </span>
+                    <?php } else { ?>
+                        <span class='errormsj'>
+                            Error:Contrase&ntilde;a incorrecta
+                        </span>
+                    <?php } ?>
                 <?php } ?>
             </div>
         </div>

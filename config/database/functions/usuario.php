@@ -11,7 +11,8 @@ function consultarUsuarioPerfil()
                     u.usuario_nombre,
                     p.descripcion,
                     u.id_empleado from usuario u
-                    inner join perfil p on p.id_perfil=u.id_perfil;";
+                    inner join perfil p on p.id_perfil=u.id_perfil
+                    where u.estado_logico=1;";
     $s = $connect->prepare($sql);
 
     $s->execute();
@@ -29,6 +30,7 @@ function consultarUsurioModificar($id_usuario)
     $sql = "SELECT    u.id_usuario,
                     u.usuario_contrasena,
                     u.usuario_nombre,
+                    p.id_perfil,
                     p.descripcion,
                     pf.persona_nombre,
                     pf.persona_apellido,
@@ -45,4 +47,43 @@ function consultarUsurioModificar($id_usuario)
 
     $s->close();
     return $records;
+}
+
+function ModificarUsuario($usarioNombre, $perfil, $idUsuario)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "UPDATE `sistemajuridico`.`usuario` 
+    SET `usuario_nombre`= '$usarioNombre',
+    `id_perfil`         = '$perfil' 
+    WHERE (`id_usuario` = '$idUsuario');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+        return 1;
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}
+
+function borrarUsuario($idUsuario)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "UPDATE `sistemajuridico`.`usuario` 
+    SET `estado_logico` = '0' 
+    WHERE (`id_usuario` = '$idUsuario');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+        return 1;
+    } else {
+        $connect->rollback();
+        return 0;
+    }
 }

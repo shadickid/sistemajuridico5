@@ -7,3 +7,4 @@ $contraseña = $_POST['contrasena'];
 $idempleado = $_POST['empleado'];
 $hash = password_hash($contraseña, PASSWORD_DEFAULT);
 agregarEmpleadoUsuario($usuario, $hash, $perfil, $idempleado);
+header("location: listado.php?vali=1");

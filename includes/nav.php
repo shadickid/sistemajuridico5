@@ -67,31 +67,38 @@ foreach ($menues as $menu) {
         <span class="username"> Usuario:
             <?php echo $_SESSION['usuario'] ?>
         </span>
+        <span class="user-edit">
+            <a href="<?php echo BASE_URL ?>modules\usuario\datos\datos.php"><i class="fa fi-rr-pen-circle"></i></a>
+        </span>
     </div>
     <ul>
-        <li><a href="<?php echo BASE_URL ?>modules\usuario\datos\datos.php">Editar mis Datos</a></li>
+        <!-- <li><a href="<?php echo BASE_URL ?>modules\usuario\datos\datos.php">Editar mis Datos</a></li> -->
         <?php
         foreach ($menu_nivel1 as $menu1) {
             $temp = array();
             $temp = search($menu_nivel2, 'padre', $menu1['id_modulo']); //Busca hijos del nivel 1   
             ?>
-        <?php
+            <?php
             if (empty($temp)) { //No se encuentran hijos del nivel 1
                 ?>
-        <li><a href="<?php echo BASE_URL . $menu1['ruta'] ?>"><?php echo $menu1['modulo_desc'] ?></a></li>
-        <?php } else { // Si se encuentran hijos del nivel 1  
+                <li><a href="<?php echo BASE_URL . $menu1['ruta'] ?>">
+                        <?php echo $menu1['modulo_desc'] ?>
+                    </a></li>
+            <?php } else { // Si se encuentran hijos del nivel 1  
                 ?>
-        <li>
-            <a href="#">
-                <?php echo $menu1['modulo_desc'] ?>
-            </a>
-            <ul>
-                <?php foreach ($temp as $menu2) { ?>
-                <li><a href="<?php echo BASE_URL . $menu2['ruta'] ?>"><?php echo $menu2['modulo_desc'] ?> </a></li>
-                <?php } ?>
-            </ul>
-        </li>
-        <?php } ?>
+                <li>
+                    <a href="#">
+                        <?php echo $menu1['modulo_desc'] ?>
+                    </a>
+                    <ul>
+                        <?php foreach ($temp as $menu2) { ?>
+                            <li><a href="<?php echo BASE_URL . $menu2['ruta'] ?>">
+                                    <?php echo $menu2['modulo_desc'] ?>
+                                </a></li>
+                        <?php } ?>
+                    </ul>
+                </li>
+            <?php } ?>
         <?php } ?>
         <li><a href="<?php echo BASE_URL ?>modules/login/logout.php">Cerrar Sesi&oacute;n</a></li>
     </ul>

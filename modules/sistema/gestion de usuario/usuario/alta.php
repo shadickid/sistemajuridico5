@@ -22,41 +22,49 @@ $empleados = datosEmpleadoAbogadosinUser();
 </div>
 <div class="dashboard">
     <h1> Usuario</h1>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\usuario\listado.php" class="volver-atras-button">Volver
+    <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\usuario\listado.php"
+        class="volver-atras-button">Volver
         Atr&aacute;s</a>
     <section class="inicio">
         <div class="contenido">
             <h2>Alta de nuevo usuario</h2>
             <form action="procesarAlta.php" method="POST" class="formulario-form">
                 <div class="formulario-container">
-                    <label for="empleado" class="formulario-label">Empleado:</label>
-                    <select class="formulario-select" id="empleado" name="empleado">
-                        <option value="0">--Seleccionar--</option>
-                        <?php foreach ($empleados as $regempleado) : ?>
-                            <option value="<?php echo $regempleado['id_empleado'] ?>">
-                                <?php echo $regempleado['persona_nombre'] . ' ' . $regempleado['persona_apellido'] ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                    <br>
-                    <label for="perfil" class="formulario-label">Perfil:</label>
-                    <select class="formulario-select" id="perfil" name="perfil">
-                        <option value="0">--Seleccionar--</option>
-                        <?php foreach ($perfiles as $regperfiles) : ?>
-                            <option value="<?php echo $regperfiles['id_perfil'] ?>">
-                                <?php echo $regperfiles['descripcion'] ?>
-                            </option>
-                        <?php endforeach ?>
-                    </select>
-                    <br>
-                    <label for="usuario" class="formulario-label">Ingrese nombre de usuario:</label>
+                    <div class="input-control">
+                        <label for="empleado" class="formulario-label">Empleado:</label>
+                        <select class="formulario-select" id="empleado" name="empleado">
+                            <option value="0">--Seleccionar--</option>
+                            <?php foreach ($empleados as $regempleado): ?>
+                                <option value="<?php echo $regempleado['id_empleado'] ?>">
+                                    <?php echo $regempleado['persona_nombre'] . ' ' . $regempleado['persona_apellido'] ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="input-control">
+                        <label for="perfil" class="formulario-label">Perfil:</label>
+                        <select class="formulario-select" id="perfil" name="perfil">
+                            <option value="0">--Seleccionar--</option>
+                            <?php foreach ($perfiles as $regperfiles): ?>
+                                <option value="<?php echo $regperfiles['id_perfil'] ?>">
+                                    <?php echo $regperfiles['descripcion'] ?>
+                                </option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <div class="input-control">
+                        <label for="usuario" class="formulario-label">Ingrese nombre de usuario:</label>
+                        <input class="formulario-input" id="usuario" type="text" name="usuario" autocomplete="off">
+                    </div>
+                    <div class="input-control">
+                        <label for="contrasena" class="formulario-label"> Contrase&ntilde;a: </label>
+                        <input class="formulario-input" type="password" value="12345" readonly name="contrasena"
+                            id="contrasena" autocomplete="off">
+                    </div>
+                    <div class="input-control">
+                        <input class="formulario-submit" type="submit" value="Guardar">
 
-                    <input class="formulario-input" id="usuario" type="text" name="usuario" autocomplete="off">
-                    <br>
-                    <label for="contrasena" class="formulario-label"> Contrase&ntilde;a: </label>
-                    <input class="formulario-input" type="password" value="12345" readonly name="contrasena" id="contrasena" autocomplete="off">
-                    <br>
-                    <input class="formulario-submit" type="submit" value="Guardar">
+                    </div>
                 </div>
             </form>
         </div>

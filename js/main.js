@@ -28,7 +28,6 @@ function notiBaja() {
       let ventanaconfir = confirm("¿Estas seguro de querer borrar?");
       if (ventanaconfir) {
         href = darBaja[i].getAttribute("href");
-        alert(href);
       } else {
         ev.preventDefault();
         return;

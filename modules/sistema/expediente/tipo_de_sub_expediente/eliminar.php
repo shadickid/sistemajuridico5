@@ -4,4 +4,4 @@ include(ROOT_PATH . 'config/database/functions/expediente.php');
 $id_expsubtipo = $_GET['id_expsubtipo'];
 
 borrarSubTipoExpediente($id_expsubtipo);
-header("location: listado.php");
+header("location: listado.php?vali=3");

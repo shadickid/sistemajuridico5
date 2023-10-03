@@ -23,7 +23,27 @@ $records = selectall('atributo_domiclio');
         Atr&aacute;s</a>
     <section class="inicio">
         <div class="contenido">
-            <a href="alta.php" class="a-alta">Nuevo atributo de domicilio</a>
+            <div>
+                <a href="alta.php" class="a-alta">Nuevo atributo de domicilio</a>
+            </div>
+            <div class="msj-container" id="msj-container">
+                <?php switch ($vali):
+                case 1: ?>
+                <span class="msj-success show">Se ha agregado correctamente</span>
+                <?php
+                    break;
+                case 2: ?>
+                <span class="msj-modify show">Se ha modificado correctamente</span>
+                <?php
+                    break;
+                case 3: ?>
+                <span class="msj-delete show">Se ha borrado un correctamente</span>
+                <?php
+                    break;
+                case 4: ?>
+                <span class="msj-error show">Se ha producido un error correctamente</span>
+                <?php endswitch ?>
+            </div>
             <table class="tablamodal">
                 <tr>
                     <th>ID atributo</th>
@@ -33,28 +53,29 @@ $records = selectall('atributo_domiclio');
 
                 </tr>
                 <?php foreach ($records as $reg) : ?>
-                    <tr>
-                        <td>
-                            <?php echo $reg['id_atri_dom'] ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['valor'] ?>
-                        </td>
-                        <td>
-                            <a href="modificar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>"> <button class="editarButton">
-                                    <i class="fi fi-rr-edit"></i>
-                                </button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="eliminar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>">
-                                <button class="darDeBajaButton">
-                                    <i class="fi-rr-eraser"></i>
-                                </button>
-                            </a>
-                        </td>
+                <tr>
+                    <td>
+                        <?php echo $reg['id_atri_dom'] ?>
+                    </td>
+                    <td>
+                        <?php echo $reg['valor'] ?>
+                    </td>
+                    <td>
+                        <a href="modificar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>"> <button
+                                class="editarButton">
+                                <i class="fi fi-rr-edit"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="eliminar.php?id_atri_dom=<?php echo $reg['id_atri_dom'] ?>">
+                            <button class="darDeBajaButton">
+                                <i class="fi-rr-eraser"></i>
+                            </button>
+                        </a>
+                    </td>
 
-                    </tr>
+                </tr>
                 <?php endforeach ?>
             </table>
         </div>

@@ -7,4 +7,4 @@ $nombre = $_POST['nombre'];
 $id_expediente_estado = $_POST['id_expediente_estado'];
 
 modificarEstadoExpediente($nombre, $id_expediente_estado);
-header("location: listado.php");
+header("location: listado.php?vali=2");

@@ -4,4 +4,4 @@ include(ROOT_PATH . 'config/database/functions/movimiento.php');
 $nombre = $_POST['nombre'];
 
 agregarMovimiento($nombre);
-header("location: listado.php");
+header("location: listado.php?vali=1");

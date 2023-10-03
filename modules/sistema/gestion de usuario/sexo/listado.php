@@ -11,23 +11,37 @@ $sexos = selectall('sexo');
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
     <span>/</span>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\menu.php">Usuario</a>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">Usuario</a>
     <span>/</span>
     <span>Listado de sexo</span>
 </div>
 <div class="dashboard">
     <h1>Sexo</h1>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\menu.php" class="volver-atras-button">Volver
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php" class="volver-atras-button">Volver
         Atr&aacute;s</a>
     <section class="inicio">
         <div class="contenido">
             <div>
                 <a href="alta.php" class="a-alta">Nuevo tipo sexo</a>
             </div>
-            <span class="msj-success show">Se ha agregado correctamente</span>
-            <span class="msj-error hidden">Se ha borrado correctamente</span>
-            <span class="msj-modify hidden">Se ha modificado correctamente</span>
-
+            <div class="msj-container" id="msj-container">
+                <?php switch ($vali):
+                    case 1: ?>
+                        <span class="msj-success show">Se ha agregado correctamente</span>
+                        <?php
+                        break;
+                    case 2: ?>
+                        <span class="msj-modify show">Se ha modificado correctamente</span>
+                        <?php
+                        break;
+                    case 3: ?>
+                        <span class="msj-delete show">Se ha borrado un correctamente</span>
+                        <?php
+                        break;
+                    case 4: ?>
+                        <span class="msj-error show">Se ha producido un error correctamente</span>
+                <?php endswitch ?>
+            </div>
             <table class="tablamodal">
                 <thead>
                     <tr>

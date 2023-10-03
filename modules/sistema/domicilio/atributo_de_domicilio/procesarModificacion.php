@@ -7,4 +7,4 @@ $nombre = $_POST['nombre'];
 $id_atri_dom = $_POST['id_atri_dom'];
 
 modificarAtributoDomicilio($nombre, $id_atri_dom);
-header("location: listado.php");
+header("location: listado.php?vali=2");

@@ -23,7 +23,27 @@ $records = selectall('expediente_subtipo', $conditional);
     <a href="<?php echo BASE_URL ?>modules\sistema\menu.php" class="volver-atras-button">Volver Atr&aacute;s</a>
     <section class="inicio">
         <div class="contenido">
-            <a href="alta.php" class="a-alta">Nuevo sub tipo de expediente</a>
+            <div>
+                <a href="alta.php" class="a-alta">Nuevo sub tipo de expediente</a>
+            </div>
+            <div class="msj-container" id="msj-container">
+                <?php switch ($vali):
+                    case 1: ?>
+                        <span class="msj-success show">Se ha agregado correctamente</span>
+                        <?php
+                        break;
+                    case 2: ?>
+                        <span class="msj-modify show">Se ha modificado correctamente</span>
+                        <?php
+                        break;
+                    case 3: ?>
+                        <span class="msj-delete show">Se ha borrado un correctamente</span>
+                        <?php
+                        break;
+                    case 4: ?>
+                        <span class="msj-error show">Se ha producido un error correctamente</span>
+                <?php endswitch ?>
+            </div>
             <table class="tablamodal">
                 <tr>
                     <th>ID tipo</th>
@@ -32,7 +52,7 @@ $records = selectall('expediente_subtipo', $conditional);
                     <th>Borrar</th>
 
                 </tr>
-                <?php foreach ($records as $reg) : ?>
+                <?php foreach ($records as $reg): ?>
                     <tr>
                         <td>
                             <?php echo $reg['id_expsubtipo'] ?>

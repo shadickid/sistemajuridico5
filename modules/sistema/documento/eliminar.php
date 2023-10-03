@@ -4,4 +4,4 @@ include(ROOT_PATH . 'config/database/functions/documento.php');
 $id_tipo_documento = $_GET['id_tipo_documento'];
 
 borrarDocumento($id_tipo_documento);
-header("location: listado.php");
+header("location: listado.php?vali=3");

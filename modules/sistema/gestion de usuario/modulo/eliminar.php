@@ -4,4 +4,4 @@ include(ROOT_PATH . 'config/database/functions/modulo.php');
 $id_modulo = $_GET['id_modulo'];
 
 borrarModulo($id_modulo);
-header("location: listado.php");
+header("location: listado.php?vali=3");

@@ -4,4 +4,4 @@ include(ROOT_PATH . 'config/database/functions/perfil.php');
 $nombre = $_POST['nombre'];
 
 agregarPerfil($nombre);
-header("location: listado.php");
+header("location: listado.php?vali=1");

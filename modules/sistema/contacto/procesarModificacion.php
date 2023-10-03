@@ -7,4 +7,4 @@ $nombre = $_POST['nombre'];
 $id_tipo_contacto = $_POST['id_tipo_contacto'];
 
 modificarContacto($nombre, $id_tipo_contacto);
-header("location: listado.php");
+header("location: listado.php?vali=2");

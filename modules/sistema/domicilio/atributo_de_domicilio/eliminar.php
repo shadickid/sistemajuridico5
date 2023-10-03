@@ -4,4 +4,4 @@ include(ROOT_PATH . 'config/database/functions/contacto.php');
 $id_atri_dom = $_GET['id_atri_dom'];
 
 ($id_atri_dom);
-header("location: listado.php");
+header("location: listado.php?vali=3");

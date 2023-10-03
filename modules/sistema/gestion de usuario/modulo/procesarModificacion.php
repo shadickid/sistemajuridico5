@@ -5,4 +5,4 @@ $nombre = $_POST['nombre'];
 $id_modulo = $_POST['id_modulo'];
 
 modificarModulo($nombre, $id_modulo);
-header("location: listado.php");
+header("location: listado.php?vali=2");

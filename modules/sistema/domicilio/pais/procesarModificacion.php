@@ -5,4 +5,4 @@ $nombre = $_POST['nombre'];
 $id_pais = $_POST['id_pais'];
 
 modificarPais($nombre, $id_pais);
-header("location: listado.php");
+header("location: listado.php?vali=2");

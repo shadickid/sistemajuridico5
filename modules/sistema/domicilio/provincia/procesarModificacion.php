@@ -13,7 +13,7 @@ if (empty($nombre)) {
 if ($id_pais != 0) {
     modificarProvincia($nombre, $id_pais, $id_provincia);
 
-    header("location: listado.php");
+    header("location: listado.php?vali=2");
 } else {
     echo "Tiene que selecionar algun campo en el select";
 }

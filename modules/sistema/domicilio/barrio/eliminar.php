@@ -4,4 +4,4 @@ include(ROOT_PATH . 'config/database/functions/domicilio.php');
 $id_barrio = $_GET['id_barrio'];
 
 borrarBarrio($id_barrio);
-header("location: listado.php");
+header("location: listado.php?vali=3");

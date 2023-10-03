@@ -9,7 +9,7 @@ if (empty($nombre)) {
 }
 if ($id_localidad != 0) {
     agregarBarrio($id_localidad, $nombre);
-    header("location: listado.php");
+    header("location: listado.php?vali=1");
 } else {
     echo "Tiene que selecionar algun campo en el select";
 }

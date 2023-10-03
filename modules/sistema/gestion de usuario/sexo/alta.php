@@ -9,7 +9,7 @@ include(ROOT_PATH . 'includes\nav.php');
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
     <span>/</span>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\menu.php">Usuario</a>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">Usuario</a>
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\sexo\listado.php">Listado de sexo</a>
     <span>/</span>

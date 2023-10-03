@@ -4,4 +4,4 @@ include(ROOT_PATH . 'config/database/functions/domicilio.php');
 $id_tipo_dom = $_GET['id_tipo_dom'];
 
 borrarTipoDomicilio($id_tipo_dom);
-header("location: listado.php");
+header("location: listado.php?vali=3");

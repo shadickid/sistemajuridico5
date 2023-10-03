@@ -4,4 +4,4 @@ include(ROOT_PATH . 'config/database/functions/perfil.php');
 $id_perfil = $_GET['id_perfil'];
 
 borrarPerfil($id_perfil);
-header("location: listado.php");
+header("location: listado.php?vali=3");

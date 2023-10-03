@@ -4,4 +4,4 @@ include(ROOT_PATH . 'config/database/functions/expediente.php');
 $nombre = $_POST['nombre'];
 
 agregarTipoExpediente($nombre);
-header("location: listado.php");
+header("location: listado.php?vali=1");

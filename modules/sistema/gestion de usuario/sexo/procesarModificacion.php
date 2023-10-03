@@ -4,5 +4,6 @@ include(ROOT_PATH . 'config\database\functions\persona.php');
 $idsexo = $_POST['idsexo'];
 $nombre = $_POST['nombre'];
 
+
 modificarSexo($idsexo, $nombre);
-header("location: listado.php");
+header("location: listado.php?vali=2");

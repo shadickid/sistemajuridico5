@@ -5,4 +5,4 @@ $nombre = $_POST['nombre'];
 $id_perfil = $_POST['id_perfil'];
 
 modificarPerfil($nombre, $id_perfil);
-header("location: listado.php");
+header("location: listado.php?vali=2");

@@ -5,4 +5,4 @@ $nombre = $_POST['nombre'];
 $id_tipo_proceso = $_POST['id_tipo_proceso'];
 
 modificarMovimiento($nombre, $id_tipo_proceso);
-header("location: listado.php");
+header("location: listado.php?vali=2");

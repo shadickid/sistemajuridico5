@@ -7,4 +7,4 @@ $nombre = $_POST['nombre'];
 $id_tipo_documento = $_POST['id_tipo_documento'];
 
 modificarDocumento($nombre, $id_tipo_documento);
-header("location: listado.php");
+header("location: listado.php?vali=2");

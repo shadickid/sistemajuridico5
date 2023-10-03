@@ -24,22 +24,25 @@ $usuario = consultarUsuarioPerfil();
             <div>
                 <a href="alta.php" class="a-alta">Nuevo usuario</a>
             </div>
-            <?php switch ($vali):
-                case 1: ?>
-            <span class="msj-success show">Se ha agregado correctamente</span>
-            <?php
-                    break;
-                case 2: ?>
-            <span class="msj-modify show">Se ha modificado correctamente</span>
-            <?php
-                    break;
-                case 3: ?>
-            <span class="msj-delete show">Se ha borrado un correctamente</span>
-            <?php
-                    break;
-                case 4: ?>
-            <span class="msj-error show">Se ha producido un error correctamente</span>
-            <?php endswitch ?>
+            <div class="msj-container" id="msj-container">
+                <?php switch ($vali):
+                    case 1: ?>
+                        <span class="msj-success show">Se ha agregado correctamente</span>
+                        <?php
+                        break;
+                    case 2: ?>
+                        <span class="msj-modify show">Se ha modificado correctamente</span>
+                        <?php
+                        break;
+                    case 3: ?>
+                        <span class="msj-delete show">Se ha borrado un correctamente</span>
+                        <?php
+                        break;
+                    case 4: ?>
+                        <span class="msj-error show">Se ha producido un error correctamente</span>
+                <?php endswitch ?>
+            </div>
+
             <table class="tablamodal">
                 <thead>
                     <tr>
@@ -52,38 +55,38 @@ $usuario = consultarUsuarioPerfil();
                     </tr>
                 </thead>
                 <?php foreach ($usuario as $regusuarios): ?>
-                <tbody>
-                    <tr>
-                        <td>
-                            <?php echo $regusuarios['id_usuario'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regusuarios['usuario_nombre'] ?>
-                        </td>
-                        <td><a href="contrasena.php?id_usuario=<?php echo $regusuarios['id_usuario'] ?>">
-                                <button class="greenButton">
-                                    <i class="fi-rr-unlock"></i>
-                                </button>
-                            </a>
-                        </td>
-                        </td>
-                        <td>
-                            <?php echo $regusuarios['descripcion'] ?>
-                        </td>
-                        <td><a href="modificar.php?id_usuario=<?php echo $regusuarios['id_usuario'] ?>">
-                                <button class="editarButton">
-                                    <i class="fi fi-rr-edit"></i>
-                                </button>
-                            </a>
-                        </td>
-                        <td><a href="eliminar.php?id_usuario=<?php echo $regusuarios['id_usuario'] ?>">
-                                <button class="darDeBajaButton">
-                                    <i class="fi-rr-eraser"></i>
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <?php echo $regusuarios['id_usuario'] ?>
+                            </td>
+                            <td>
+                                <?php echo $regusuarios['usuario_nombre'] ?>
+                            </td>
+                            <td><a href="contrasena.php?id_usuario=<?php echo $regusuarios['id_usuario'] ?>">
+                                    <button class="greenButton">
+                                        <i class="fi-rr-unlock"></i>
+                                    </button>
+                                </a>
+                            </td>
+                            </td>
+                            <td>
+                                <?php echo $regusuarios['descripcion'] ?>
+                            </td>
+                            <td><a href="modificar.php?id_usuario=<?php echo $regusuarios['id_usuario'] ?>">
+                                    <button class="editarButton">
+                                        <i class="fi fi-rr-edit"></i>
+                                    </button>
+                                </a>
+                            </td>
+                            <td><a href="eliminar.php?id_usuario=<?php echo $regusuarios['id_usuario'] ?>">
+                                    <button class="darDeBajaButton">
+                                        <i class="fi-rr-eraser"></i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
                 <?php endforeach; ?>
             </table>
         </div>

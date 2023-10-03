@@ -11,7 +11,7 @@ if (empty($nombre)) {
 }
 if ($id_localidad != 0) {
     modificarBarrio($nombre, $id_localidad, $id_barrio);
-    header("location: listado.php");
+    header("location: listado.php?vali=2");
 } else {
     echo "Tiene que selecionar algun campo en el select";
 }

@@ -26,6 +26,24 @@ $modulos = selectall('modulo', $conditional);
             <div>
                 <a href="alta.php" class="a-alta">Nuevo modulo</a>
             </div>
+            <div class="msj-container" id="msj-container">
+                <?php switch ($vali):
+                case 1: ?>
+                <span class="msj-success show">Se ha agregado correctamente</span>
+                <?php
+                    break;
+                case 2: ?>
+                <span class="msj-modify show">Se ha modificado correctamente</span>
+                <?php
+                    break;
+                case 3: ?>
+                <span class="msj-delete show">Se ha borrado un correctamente</span>
+                <?php
+                    break;
+                case 4: ?>
+                <span class="msj-error show">Se ha producido un error correctamente</span>
+                <?php endswitch ?>
+            </div>
             <table class="tablamodal">
                 <thead>
                     <tr>
@@ -37,25 +55,25 @@ $modulos = selectall('modulo', $conditional);
                     </tr>
                 </thead>
                 <?php foreach ($modulos as $regmodulos) : ?>
-                    <tbody>
-                        <tr>
-                            <td><?php echo $regmodulos['id_modulo'] ?></td>
-                            <td><?php echo $regmodulos['descripcion'] ?></td>
-                            <td><?php echo $regmodulos['ruta'] ?></td>
-                            <td><a href="modificar.php?id_modulo=<?php echo $regmodulos['id_modulo'] ?>">
-                                    <button class="editarButton">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                </a>
-                            </td>
-                            <td><a href="eliminar.php?id_modulo=<?php echo $regmodulos['id_modulo'] ?>">
-                                    <button class="darDeBajaButton">
-                                        <i class="fi-rr-eraser"></i>
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
+                <tbody>
+                    <tr>
+                        <td><?php echo $regmodulos['id_modulo'] ?></td>
+                        <td><?php echo $regmodulos['descripcion'] ?></td>
+                        <td><?php echo $regmodulos['ruta'] ?></td>
+                        <td><a href="modificar.php?id_modulo=<?php echo $regmodulos['id_modulo'] ?>">
+                                <button class="editarButton">
+                                    <i class="fi fi-rr-edit"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td><a href="eliminar.php?id_modulo=<?php echo $regmodulos['id_modulo'] ?>">
+                                <button class="darDeBajaButton">
+                                    <i class="fi-rr-eraser"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
                 <?php endforeach; ?>
             </table>
         </div>

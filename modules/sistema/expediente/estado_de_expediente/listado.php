@@ -24,7 +24,27 @@ $records = selectall('expediente_estado', $conditional);
         Atr&aacute;s</a>
     <section class="inicio">
         <div class="contenido">
-            <a href="alta.php" class="a-alta">Nuevo estado de expediente</a>
+            <div>
+                <a href="alta.php" class="a-alta">Nuevo estado de expediente</a>
+            </div>
+            <div class="msj-container" id="msj-container">
+                <?php switch ($vali):
+                    case 1: ?>
+                        <span class="msj-success show">Se ha agregado correctamente</span>
+                        <?php
+                        break;
+                    case 2: ?>
+                        <span class="msj-modify show">Se ha modificado correctamente</span>
+                        <?php
+                        break;
+                    case 3: ?>
+                        <span class="msj-delete show">Se ha borrado un correctamente</span>
+                        <?php
+                        break;
+                    case 4: ?>
+                        <span class="msj-error show">Se ha producido un error correctamente</span>
+                <?php endswitch ?>
+            </div>
             <table class="tablamodal">
                 <tr>
                     <th>ID Documento</th>
@@ -32,30 +52,30 @@ $records = selectall('expediente_estado', $conditional);
                     <th>Modificar</th>
                     <th>Borrar</th>
                 </tr>
-                <?php foreach ($records as $reg) : ?>
-                <tr>
-                    <td>
-                        <?php echo $reg['id_expediente_estado'] ?>
-                    </td>
-                    <td>
-                        <?php echo $reg['expediente_estado_nombre'] ?>
-                    </td>
-                    <td>
-                        <a href="modificar.php?id_expediente_estado=<?php echo $reg['id_expediente_estado'] ?>">
-                            <button class="editarButton">
-                                <i class="fi fi-rr-edit"></i>
-                            </button>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="eliminar.php?id_expediente_estado=<?php echo $reg['id_expediente_estado'] ?>">
-                            <button class="darDeBajaButton">
-                                <i class="fi-rr-eraser"></i>
-                            </button>
-                        </a>
-                    </td>
+                <?php foreach ($records as $reg): ?>
+                    <tr>
+                        <td>
+                            <?php echo $reg['id_expediente_estado'] ?>
+                        </td>
+                        <td>
+                            <?php echo $reg['expediente_estado_nombre'] ?>
+                        </td>
+                        <td>
+                            <a href="modificar.php?id_expediente_estado=<?php echo $reg['id_expediente_estado'] ?>">
+                                <button class="editarButton">
+                                    <i class="fi fi-rr-edit"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="eliminar.php?id_expediente_estado=<?php echo $reg['id_expediente_estado'] ?>">
+                                <button class="darDeBajaButton">
+                                    <i class="fi-rr-eraser"></i>
+                                </button>
+                            </a>
+                        </td>
 
-                </tr>
+                    </tr>
                 <?php endforeach ?>
             </table>
         </div>

@@ -7,4 +7,4 @@ $nombre = $_POST['nombre'];
 $id_expsubtipo = $_POST['id_expsubtipo'];
 
 modificarSubTipoExpediente($nombre, $id_expsubtipo);
-header("location: listado.php");
+header("location: listado.php?vali=2");

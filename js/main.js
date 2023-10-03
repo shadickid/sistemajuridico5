@@ -59,3 +59,15 @@ function validarInput(evento) {
   }
   this.submit();
 }
+
+function ocultarMensajes() {
+  let contenedorMensajes = document.getElementById("msj-container");
+  let mensajes = contenedorMensajes.querySelectorAll(".show");
+  mensajes.forEach(function (mensaje) {
+    setTimeout(function () {
+      mensaje.classList.add("hidden");
+    }, 3000);
+  });
+}
+
+window.addEventListener("load", ocultarMensajes);

@@ -4,7 +4,7 @@ include(ROOT_PATH . 'config/database/functions/documento.php');
 $nombre = $_POST['nombre'];
 if (!empty(trim($nombre))) {
     agregarDocumento($nombre);
-    header("location: listado.php");
+    header("location: listado.php?vali=1");
 } else {
     header("location: listado.php?error=1");
 }

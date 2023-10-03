@@ -7,4 +7,4 @@ if (empty($nombre)) {
     exit;
 }
 agregarModulo($nombre);
-header("location: listado.php");
+header("location: listado.php?vali=1");

@@ -5,4 +5,4 @@ $nombre = $_POST['nombre'];
 $id_tipo_dom = $_POST['id_tipo_dom'];
 
 modificarTipoDomicilio($nombre, $id_tipo_dom);
-header("location: listado.php");
+header("location: listado.php?vali=2");

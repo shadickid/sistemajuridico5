@@ -16,7 +16,7 @@ $sexos = selectall('sexo', $conditional);
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
     <span>/</span>
-    <a href="<?php echo BASE_URL; ?>modules\sistema\gestion de usuario\menu.php">Usuario</a>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">Usuario</a>
     <span>/</span>
     <span>Listado de sexo</span>
 </div>
@@ -30,11 +30,13 @@ $sexos = selectall('sexo', $conditional);
                 <h2>Modificar tipo de sexo</h2>
                 <form id="form-sex" action="procesarModificacion.php" method="POST">
                     <div>
-                        <?php foreach ($sexos as $regsex) : ?>
+                        <?php foreach ($sexos as $regsex): ?>
                             <legend> Nombre:
                                 <input type="hidden" name="idsexo" value="<?php echo $regsex['id_sexo'] ?>" />
-                                <input class="formulario-input" type="text" name="nombre" id="nombre" autocomplete="off" value="<?php echo $regsex['nombre'] ?>">
-                                <button onclick="validar()" id="formulario-submit" class="formulario-submit" type="button" value="Guardar">Guardar</button>
+                                <input class="formulario-input" type="text" name="nombre" id="nombre" autocomplete="off"
+                                    value="<?php echo $regsex['nombre'] ?>">
+                                <button onclick="validar()" id="formulario-submit" class="formulario-submit" type="button"
+                                    value="Guardar">Guardar</button>
                             </legend>
                         <?php endforeach ?>
                     </div>

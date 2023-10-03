@@ -7,4 +7,4 @@ $nombre = $_POST['nombre'];
 $id_expediente_tipo = $_POST['id_expediente_tipo'];
 
 modificarTipoExpediente($nombre, $id_expediente_tipo);
-header("location: listado.php");
+header("location: listado.php?vali=2");

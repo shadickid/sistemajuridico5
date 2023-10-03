@@ -4,4 +4,4 @@ include(ROOT_PATH . 'config/database/functions/domicilio.php');
 $nombre = $_POST['nombre'];
 
 agregarPais($nombre);
-header("location: listado.php");
+header("location: listado.php?vali=1");

@@ -11,7 +11,7 @@ if (empty($nombre)) {
 if ($id_pais != 0) {
     agregarProvincia($nombre, $id_pais);
 
-    header("location: listado.php");
+    header("location: listado.php?vali=1");
 } else {
     echo "Tiene que selecionar algun campo en el select";
 }

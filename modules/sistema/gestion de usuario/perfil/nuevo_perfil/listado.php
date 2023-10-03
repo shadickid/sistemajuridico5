@@ -27,6 +27,24 @@ $records = selectall('perfil', $conditional);
             <div>
                 <a href="alta.php" class="a-alta">Nuevo perfil</a>
             </div>
+            <div class="msj-container" id="msj-container">
+                <?php switch ($vali):
+                    case 1: ?>
+                        <span class="msj-success show">Se ha agregado correctamente</span>
+                        <?php
+                        break;
+                    case 2: ?>
+                        <span class="msj-modify show">Se ha modificado correctamente</span>
+                        <?php
+                        break;
+                    case 3: ?>
+                        <span class="msj-delete show">Se ha borrado un correctamente</span>
+                        <?php
+                        break;
+                    case 4: ?>
+                        <span class="msj-error show">Se ha producido un error correctamente</span>
+                <?php endswitch ?>
+            </div>
             <table class="tablamodal">
                 <thead>
                     <tr>
@@ -37,32 +55,36 @@ $records = selectall('perfil', $conditional);
                         <th>Asignar Modulo</th>
                     </tr>
                 </thead>
-                <?php foreach ($records as $regperf) : ?>
-                <tbody>
-                    <tr>
-                        <td><?php echo $regperf['id_perfil'] ?></td>
-                        <td><?php echo $regperf['descripcion'] ?></td>
-                        <td><a href="modificar.php?id_perfil=<?php echo $regperf['id_perfil'] ?>">
-                                <button class="editarButton">
-                                    <i class="fi fi-rr-edit"></i>
-                                </button>
-                            </a>
-                        </td>
-                        <td><a href="eliminar.php?id_perfil=<?php echo $regperf['id_perfil'] ?>">
-                                <button class="darDeBajaButton">
-                                    <i class="fi-rr-eraser"></i>
-                                </button>
-                            </a>
-                        </td>
-                        <td><a
-                                href="asignarModulo.php?id_perfil=<?php echo $regperf['id_perfil'] ?>&descripcion=<?php echo $regperf['descripcion'] ?>">
-                                <button class="darDeAltaModuloButton">
-                                    <i class="fi fi-rr-add"></i>
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
+                <?php foreach ($records as $regperf): ?>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <?php echo $regperf['id_perfil'] ?>
+                            </td>
+                            <td>
+                                <?php echo $regperf['descripcion'] ?>
+                            </td>
+                            <td><a href="modificar.php?id_perfil=<?php echo $regperf['id_perfil'] ?>">
+                                    <button class="editarButton">
+                                        <i class="fi fi-rr-edit"></i>
+                                    </button>
+                                </a>
+                            </td>
+                            <td><a href="eliminar.php?id_perfil=<?php echo $regperf['id_perfil'] ?>">
+                                    <button class="darDeBajaButton">
+                                        <i class="fi-rr-eraser"></i>
+                                    </button>
+                                </a>
+                            </td>
+                            <td><a
+                                    href="asignarModulo.php?id_perfil=<?php echo $regperf['id_perfil'] ?>&descripcion=<?php echo $regperf['descripcion'] ?>">
+                                    <button class="darDeAltaModuloButton">
+                                        <i class="fi fi-rr-add"></i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
                 <?php endforeach ?>
             </table>
         </div>

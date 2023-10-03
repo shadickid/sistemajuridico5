@@ -811,57 +811,61 @@ legend {
 .menu ul li .menu-item {
   text-decoration: none;
   color: #f2f2f2;
-  display: inline-block; /* Para que se comporte como los otros elementos */
-  padding-right: 10px; /* Espacio a la derecha del texto como los otros elementos */
-  font-weight: bold; /* Puedes ajustar esto según sea necesario */
+  display: inline-block;
+  padding-right: 10px;
+  font-weight: bold;
 }
 
 .menu ul li .menu-item:hover {
   color: #333;
 }
 .msj-success {
-  display: none; /* Por defecto, muestra el mensaje */
-  color: #008000; /* Color verde para el texto de éxito */
+  display: none;
+  color: #008000;
   font-weight: bold;
-  background-color: #d9ffd9; /* Fondo verde claro */
-  border: 1px solid #008000; /* Borde verde */
-  padding: 10px; /* Espaciado interior */
-  margin-bottom: 10px; /* Margen inferior */
+  background-color: #d9ffd9;
+  border: 1px solid #008000;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 .msj-modify {
-  display: none; /* Por defecto, oculta el mensaje */
-  color: #ff6600; /* Color naranja para el texto de modificación */
+  display: none;
+  color: #ff6600;
   font-weight: bold;
-  background-color: #ffedb3; /* Fondo naranja claro */
-  border: 1px solid #ff6600; /* Borde naranja */
-  padding: 10px; /* Espaciado interior */
-  margin-bottom: 10px; /* Margen inferior */
+  background-color: #ffedb3;
+  border: 1px solid #ff6600;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 .msj-delete {
-  display: none; /* Por defecto, oculta el mensaje */
-  color: #ff0000; /* Color rojo para el texto de eliminación */
+  display: none;
+  color: #ff0000;
   font-weight: bold;
-  background-color: #ffd9d9; /* Fondo rojo claro */
-  border: 1px solid #ff0000; /* Borde rojo */
-  padding: 10px; /* Espaciado interior */
-  margin-bottom: 10px; /* Margen inferior */
+  background-color: #ffd9d9;
+  border: 1px solid #ff0000;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 .msj-error {
-  display: none; /* Por defecto, oculta el mensaje */
-  color: #ff3333; /* Color rojo oscuro para el texto de error */
+  display: none;
+  color: #ff3333;
   font-weight: bold;
-  background-color: #ffcccc; /* Fondo rojo claro */
-  border: 1px solid #ff3333; /* Borde rojo oscuro */
-  padding: 10px; /* Espaciado interior */
-  margin-bottom: 10px; /* Margen inferior */
+  background-color: #ffcccc;
+  border: 1px solid #ff3333;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 /* Estilo para mostrar el mensaje */
 .show {
-  display: block !important; /* Mostrar el mensaje */
+  display: block !important;
 }
 
 /* Estilo para ocultar el mensaje */
 .hidden {
-  display: none !important; /* Ocultar el mensaje */
+  display: none !important;
+}
+
+.msj-container {
+  margin-top: 10px;
 }

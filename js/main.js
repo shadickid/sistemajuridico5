@@ -1,23 +1,6 @@
-// const openModal = document.querySelector('.openModal');
-// const modal = document.querySelector('.modal');
-// const closeModal = document.querySelector('.modal_close');
-
-// openModal.addEventListener('click', (e)=>{
-//     e.preventDefault();
-//     modal.classList.add('modal--show');
-// });
-
-// closeModal.addEventListener('click', (e)=>{
-//     e.preventDefault();
-//     modal.classList.remove('modal--show');
-// });
 window.onload = function () {
   notiBaja();
-  document
-    .getElementById("formulario")
-    .addEventListener("submit", validarInput);
-  //validarInput();
-  //validar();
+  ocultarMensajes(); // Agregamos la función ocultarMensajes
 };
 
 function notiBaja() {
@@ -25,9 +8,10 @@ function notiBaja() {
 
   for (let i = 0; i < darBaja.length; i++) {
     darBaja[i].addEventListener("click", (ev) => {
-      let ventanaconfir = confirm("¿Estas seguro de querer borrar?");
+      let ventanaconfir = confirm("¿Estás seguro de querer borrar?");
       if (ventanaconfir) {
-        href = darBaja[i].getAttribute("href");
+        // Corregimos la asignación de href
+        window.location.href = darBaja[i].getAttribute("href");
       } else {
         ev.preventDefault();
         return;
@@ -35,39 +19,49 @@ function notiBaja() {
     });
   }
 }
-function validar() {
-  let inputName = document.getElementById("nombre").value;
-  if (inputName.length == 0 || inputName.trim() == "") {
-    alert("Campo vacio");
-    return;
-  } else {
-    document.getElementById("form-sex").submit();
-  }
-}
-
-function validarInput(evento) {
-  evento.preventDefault();
-
-  let inputNombre = document.getElementById("nombre");
-  let inputNombreValue = inputNombre.value;
-
-  if (inputNombreValue.trim() === "") {
-    inputNombre.classList.add("error");
-    return;
-  } else {
-    inputNombre.classList.remove("error");
-  }
-  this.submit();
-}
-
 function ocultarMensajes() {
   let contenedorMensajes = document.getElementById("msj-container");
-  let mensajes = contenedorMensajes.querySelectorAll(".show");
-  mensajes.forEach(function (mensaje) {
-    setTimeout(function () {
-      mensaje.classList.add("hidden");
-    }, 3000);
-  });
+  if (contenedorMensajes) {
+    let mensajes = contenedorMensajes.querySelectorAll(".show");
+    mensajes.forEach(function (mensaje) {
+      setTimeout(function () {
+        mensaje.classList.add("hidden");
+      }, 3000);
+    });
+  }
 }
 
 window.addEventListener("load", ocultarMensajes);
+
+document.getElementById("btnFisicos").addEventListener("click", function () {
+  let filas = document.querySelectorAll(".clienteFisico, .clienteJuridico");
+  filas.forEach(function (fila) {
+    fila.style.display = "none";
+  });
+
+  let filasFisicas = document.querySelectorAll(".clienteFisico");
+  filasFisicas.forEach(function (filaFisica) {
+    filaFisica.style.display = "table-row";
+  });
+});
+
+document.getElementById("btnJuridicos").addEventListener("click", function () {
+  let filas = document.querySelectorAll(".clienteFisico, .clienteJuridico");
+  filas.forEach(function (fila) {
+    fila.style.display = "none";
+  });
+
+  let filasJuridicas = document.querySelectorAll(".clienteJuridico");
+  filasJuridicas.forEach(function (filaJuridica) {
+    filaJuridica.style.display = "table-row";
+  });
+});
+
+document
+  .getElementById("btnMostrarTodos")
+  .addEventListener("click", function () {
+    let filas = document.querySelectorAll(".clienteFisico, .clienteJuridico");
+    filas.forEach(function (fila) {
+      fila.style.display = "table-row";
+    });
+  });

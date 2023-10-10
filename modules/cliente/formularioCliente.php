@@ -1,5 +1,9 @@
 <?php
-
+/* require_once('../../../config/path.php'); */
+require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
+include(ROOT_PATH . 'includes\header.php');
+include(ROOT_PATH . 'includes\nav.php');
+include(ROOT_PATH . 'config\database\functions\cliente.php');
 ?>
 <div class="breadcrumbs">
     <a href="<?php echo BASE_URL; ?>">INICIO</a>
@@ -13,11 +17,8 @@
     <a href="<?php echo BASE_URL; ?>modules\cliente\listado.php" class="volver-atras-button">Volver Atrás</a>
     <section class="inicio">
         <div class="contenido">
-            <fieldset>
-                <legend>Datos del cliente</legend>
-                <form class="formulario-form" action="enviarCliente.php" method="post">
+            <form class="formulario-form" action="enviarCliente.php" method="post">
 
-            </fieldset>
         </div>
     </section>
 </div>

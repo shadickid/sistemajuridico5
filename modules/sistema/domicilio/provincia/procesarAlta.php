@@ -6,12 +6,13 @@ $id_pais = $_POST['id_pais'];
 
 if (empty($nombre)) {
     echo "Tiene que tener algun campo el nombre";
-    exit;
+    header("location: listado.php?vali=4");
 }
 if ($id_pais != 0) {
     agregarProvincia($nombre, $id_pais);
 
     header("location: listado.php?vali=1");
 } else {
+    header("location: listado.php?vali=4");
     echo "Tiene que selecionar algun campo en el select";
 }

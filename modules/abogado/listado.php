@@ -55,7 +55,7 @@ $datosempleado = datosEmpleadoAbogado();
                         <td>
                             <a href="<?php echo BASE_URL ?>modules\abogado\modal_borrar.php?idPersonaFisica=<?php echo $regempleado['id_persona_fisica'] ?>"
                                 class="openModal">
-                                <button class="darDeBajaButton">
+                                <button class="darDeBajaButtonv2">
                                     <i class="fi-rr-eraser"></i>
                                 </button>
                             </a>

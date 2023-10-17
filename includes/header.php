@@ -29,6 +29,8 @@ if (isset($_GET['vali']) && $_GET['vali'] !== null) {
     <link rel="stylesheet"
         href="<?php echo BASE_URL; ?>assets\icons\uicons-regular-rounded\css\uicons-regular-rounded.css" />
     <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
 </head>
 
 <body>

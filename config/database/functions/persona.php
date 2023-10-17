@@ -21,10 +21,9 @@ function agregarPersonaFisicaEmpleado($nombre, $apellido, $fecnac, $sex, $id_per
             (`persona_nombre`, 
             `persona_apellido`, 
             `persona_fec_nac`, 
-            `tipo_persona_fisica`, 
             `id_sexo`, 
             `id_persona`) 
-            VALUES ('$nombre', '$apellido', '$fecnac', '1', '$sex', '$id_persona');";
+            VALUES ('$nombre', '$apellido', '$fecnac', '$sex', '$id_persona');";
     $s = $connect->prepare($sql);
 
     $s->execute();

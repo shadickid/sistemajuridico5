@@ -23,6 +23,10 @@ $datosClientesJuridico = datosClientesJuridicos();
                 <button type="button" id="btnMostrarTodos" class="btn-filtro">Ver Todos</button>
                 <button type="button" id="btnFisicos" class="btn-filtro">Ver Persona F&iacute;sica</button>
                 <button type="button" id="btnJuridicos" class="btn-filtro">Ver Persona Jur&iacute;dica</button>
+                <div>
+                    <a href="formularioClienteF.php" class="a-alta">Nuevo cliente fisico</a>
+                    <a href="formularioClienteJ.php" class="a-alta">Nuevo cliente Juridico</a>
+                </div>
             </div>
 
             <table class="tablamodal">

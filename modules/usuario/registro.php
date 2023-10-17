@@ -29,7 +29,8 @@ $id_empleado = $_GET['id_empleado'];
                         <label class="formulario-label" for="usuario">Ingrese un usuario:</label>
                         <input class="formulario-input" type="text" name="usuario" id="usuario" autocomplete="off">
                         <label class="formulario-label">Ingrese una contrase&ntilde;a:</label>
-                        <input class="formulario-input" type="password" name="password" id="password" autocomplete="off">
+                        <input class="formulario-input" type="password" name="password" id="password"
+                            autocomplete="off">
                         <button class="formulario-submit" type="submit">Confirmar</button>
                     </form>
             </div>

@@ -35,3 +35,22 @@ function borrarMovimiento($id_tipo_proceso)
     $s->execute();
     $s->close();
 }
+
+function consultarMovimientoExpediente($idExpediente)
+{
+    global $connect;
+    $sql = "SELECT * from expediente
+            inner join expedientexmovxtipo on expedientexmovxtipo.id_expediente=expediente.id_expediente
+            inner join movimiento_tipo_proceso on movimiento_tipo_proceso.id_tipo_proceso=expedientexmovxtipo.id_tipo_proceso
+            inner join detalle_movimiento on detalle_movimiento.id_expedientemovimientotipo=expedientexmovxtipo.id_expedientemovimientotipo
+            where expediente.id_expediente=$idExpediente";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+
+    return $records;
+}

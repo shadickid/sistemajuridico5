@@ -16,12 +16,21 @@ $contacto = $_POST['contacto'];
 $tipoDocumento = $_POST['tipoDocumento'];
 $documento = $_POST['Documento'];
 $tipopersona = $_POST['tipopersona'];
+
 $id_persona = agregarPersona($tipopersona);
+
 agregarContactoEmpleado($id_persona, $contacto, $tipoContacto);
+
 agregarEmpleadoDocumento($documento, $id_persona, $tipoDocumento);
+
 $idPersonaFisica = agregarPersonaFisicaEmpleado($name, $lastname, $fec_nac, $sex, $id_persona);
 $idtipoempleado = 1;
-$id_empleado = agregarEmpleado($id_persona, $idtipoempleado);
+$id_empleado = agregarEmpleado($idPersonaFisica, $idtipoempleado);
 agregarEspEmpleado($id_empleado, $esp);
-$localizacion = BASE_URL . "modules/usuario/registro.php?id_empleado=" . $id_empleado;
-header("location:$localizacion");
+
+
+//
+header("location:modal.php?id_empleado=" . $id_empleado);
+
+// $localizacion = BASE_URL . "modules/usuario/registro.php?id_empleado=" . $id_empleado;
+// header("location:$localizacion");

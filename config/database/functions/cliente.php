@@ -37,3 +37,9 @@ function datosClientesJuridicos()
     $s->close();
     return $records;
 }
+
+
+function agregarCliente()
+{
+
+}

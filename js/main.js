@@ -1,8 +1,73 @@
-window.onload = function () {
+$(document).ready(function () {
   notiBaja();
-  ocultarMensajes(); // Agregamos la función ocultarMensajes
-};
+  ocultarMensajes();
 
+  $("#formularioClienteF").validate({
+    errorClass: "validacion-error",
+    rules: {
+      nombre: "required",
+      apellido: "required",
+      fec_nac: "required",
+      sexo: { ForSex: true },
+      tipodocumento: { ForDoc: true },
+      doc: {
+        required: true,
+        digits: true,
+      },
+    },
+    messages: {
+      nombre: "Por favor ingrese el nombre del cliente",
+      apellido: "Por favor ingree el apellido",
+      fec_nac: "Por favor ingrese la fecha de nacimiento",
+    },
+  });
+  $.validator.addMethod(
+    "ForSex",
+    function (value, element, param) {
+      return value != "0";
+    },
+    "Por favor seleccione el genero"
+  );
+  $.validator.addMethod(
+    "ForDoc",
+    function (value, element, param) {
+      return value != "0";
+    },
+    "Por favor seleccione el documento"
+  );
+
+  $("#formularioClienteJ").validate({
+    errorClass: "validacion-error",
+    rules: {
+      razonSocial: "required",
+      obraSocial: "required",
+      nroIngresoBruto: {
+        required: true,
+        digits: true,
+      },
+      cc: { ForCC: true },
+    },
+    messages: {
+      razonSocial: "Por favor ingrese la razon social",
+      obraSocial: "Por favor ingrese la obra social",
+      nroIngresoBruto: "Por favor ingrese el nro de ingreso Bruto",
+    },
+  });
+  $.validator.addMethod(
+    "ForCC",
+    function (value, element, param) {
+      return value != "0";
+    },
+    "Por favor seleccione el contrato constitutivo"
+  );
+
+  let fechaHoy = new Date();
+  fechaHoy.setMinutes(fechaHoy.getMinutes() - fechaHoy.getTimezoneOffset());
+
+  let fechaFormateada = fechaHoy.toISOString().split("T")[0];
+
+  $("#fechaInicio").val(fechaFormateada);
+});
 function notiBaja() {
   let darBaja = document.getElementsByClassName("darDeBajaButton");
 
@@ -65,3 +130,29 @@ document
       fila.style.display = "table-row";
     });
   });
+
+function formularioCliente() {
+  //let tipoPersona = document.getElementById("tipoPersona").value;
+  let tipoPersona = $("#tipoPersona").val();
+  //let formPersonaFisica = document.getElementById("formPersonaFisica");
+  let formPersonaFisica = $("#formPersonaFisica");
+  //let formPersonaJuridica = document.getElementById("formPersonaJuridica");
+  let formPersonaJuridica = $("#formPersonaJuridica");
+
+  if (tipoPersona == 2) {
+    //formPersonaFisica.style.display = "block";
+    //formPersonaJuridica.style.display = "none";
+    formPersonaFisica.show();
+    formPersonaJuridica.hide();
+  } else if (tipoPersona == 1) {
+    //formPersonaJuridica.style.display = "block";
+    //formPersonaFisica.style.display = "none";
+    formPersonaJuridica.show();
+    formPersonaFisica.hide();
+  } else if (tipoPersona == 0) {
+    //formPersonaJuridica.style.display = "none";
+    //formPersonaFisica.style.display = "none";
+    formPersonaFisica.hide();
+    formPersonaJuridica.hide();
+  }
+}

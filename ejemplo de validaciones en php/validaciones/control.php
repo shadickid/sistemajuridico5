@@ -1,16 +1,17 @@
 <?php
 
-$error_nombre   = false;
+$error_nombre = false;
 $error_apellido = false;
-$error_dni      = false;
-$validacion_ok  = false;
+$error_dni = false;
+$validacion_ok = false;
 
-$error_nombre_mensaje   = "";
+$error_nombre_mensaje = "";
 $error_apellido_mensaje = "";
-$error_dni_mensaje      = "";
+$error_dni_mensaje = "";
 
 
-function validar($nombre, $apellido, $dni) {
+function validar($nombre, $apellido, $dni)
+{
     if (empty($nombre)) {
         $error_nombre = true;
         $error_nombre_mensaje = 'Ingrese el nombre';
@@ -37,7 +38,8 @@ function validar($nombre, $apellido, $dni) {
     }
 }
 
-function alta($nombre, $apellido, $dni) {
+function alta($nombre, $apellido, $dni)
+{
     //exito e insercion en la bd
 
 

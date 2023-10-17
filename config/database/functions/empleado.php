@@ -106,7 +106,7 @@ function datosEmpleadoAbogado()
     inner join empleadoxespecializacion ee on e.id_empleado=ee.id_empleadoxespecializacion
     inner join especializacion esp on ee.id_especializacion=esp.id_especializacion
     inner join usuario u on u.id_empleado=e.id_empleado
-    where e.estado=1 and pf.tipo_persona_fisica=1;";
+    where e.estado=1";
     $s = $connect->prepare($sql);
     $s->execute();
     $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -128,7 +128,7 @@ function datosEmpleadoAbogadosinUser()
     inner join empleadoxespecializacion ee on e.id_empleado=ee.id_empleadoxespecializacion
     inner join especializacion esp on ee.id_especializacion=esp.id_especializacion  
     left join usuario u on u.id_empleado=e.id_empleado
-    where e.estado=1 and pf.tipo_persona_fisica=1 and u.id_usuario is null;";
+    where e.estado=1 and u.id_usuario is null;";
     $s = $connect->prepare($sql);
     $s->execute();
     $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -161,7 +161,30 @@ function selectModificarDatosPersonalesEmpleado($idPersonaFisica)
     $s->close();
     return $records;
 }
+function selectModificarDatosEmpleado($id_empleado)
+{
+    global $connect;
+    $sql = "SELECT 
+                    pf.id_persona_fisica,
+                    persona_nombre,
+                    persona_apellido,
+                    persona_fec_nac,
+                    pf.id_sexo,
+                    pf.id_persona,
+                    sexo.nombre,
+                    id_empleado
+                    FROM persona
+                    inner join persona_fisica pf on persona.id_persona=pf.id_persona
+                    inner join sexo on sexo.id_sexo = pf.id_sexo
+                    inner join empleado on empleado.id_persona_fisica=pf.id_persona_fisica
+                    where empleado.id_empleado=$id_empleado;";
+    $s = $connect->prepare($sql);
+    $s->execute();
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
 
+    $s->close();
+    return $records;
+}
 function ModificarDatosPersonalesEmpleado($idPersonaFisica, $nombre, $apellido, $fecnac)
 {
     global $connect;

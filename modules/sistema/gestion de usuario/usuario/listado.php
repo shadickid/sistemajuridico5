@@ -40,7 +40,12 @@ $usuario = consultarUsuarioPerfil();
                         break;
                     case 4: ?>
                         <span class="msj-error show">Se ha producido un error correctamente</span>
-                <?php endswitch ?>
+                        <?php
+                        break;
+                    case 5: ?>
+                        <span class="msj-success show">Se ha reseteado la contrase&ntilde;a correctamente</span>
+                    <?php
+                endswitch ?>
             </div>
 
             <table class="tablamodal">

@@ -69,6 +69,25 @@ function ModificarUsuario($usarioNombre, $perfil, $idUsuario)
     }
 }
 
+function ModificarContra($idUsuario, $contra)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "UPDATE `sistemajuridico`.`usuario` SET 
+    `usuario_contrasena` = '$contra' 
+    WHERE (`id_usuario` = '$idUsuario');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+        return 1;
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}
+
 function borrarUsuario($idUsuario)
 {
     global $connect;

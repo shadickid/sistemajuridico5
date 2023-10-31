@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario</title>
+
+    <style>
+      form {
+        width: 300px;
+        margin: 0 auto;
+      }
+
+      form input[type="text"],
+      form input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      form button[type="submit"] {
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        color: white;
+        background-color: #007bff;
+      }
+
+      form button[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .error {
+        border: 1px solid #df5757;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <h2>Formulario de usuario</h2>
+    </div>
+    <form action="" autocomplete="off" id="formulario">
+      <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" value="holaaaa" />
+        <span class="hidden error">El campo es nulo</span>
+      </div>
+      <div>
+        <label for="apellido">Apellido:</label>
+        <input type="text" name="apellido" id="apellido" value="hola2" />
+        <span class="hidden error">El campo es nulo</span>
+      </div>
+      <div>
+        <label for="usuario">Usuario:</label>
+        <input type="text" name="usuario" id="usuario" value="hola" />
+        <span class="hidden error">El campo es nulo</span>
+      </div>
+      <div>
+        <label for="contrasena">Contraseña:</label>
+        <input type="text" name="contrasena" id="contrasena" />
+        <span class="hidden error">El campo es nulo</span>
+      </div>
+      <div>
+        <label for="repetircontra">Repetir Contraseña:</label>
+        <input type="text" name="repetircontra" id="repetircontra" />
+        <span class="hidden error">El campo es nulo</span>
+      </div>
+      <div>
+        <button type="submit" value="Guardar">Guardar</button>
+      </div>
+    </form>
+
+    <button type="button" onclick="probaAlgo()">
+      Presiona aquí para probar algo
+    </button>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#formulario").submit(function (e) {
+        e.preventDefault();
+        $(".error").removeClass("error");
+        $("span.hidden").hide();
+
+        let inputs = $("div input");
+        let hasErrors = false;
+
+        inputs.each(function () {
+          let inputValue = $(this).val().trim();
+          if (inputValue === "") {
+            hasErrors = true;
+            $(this).addClass("error");
+            $(this).next("span").show();
+          }
+        });
+
+        if (hasErrors) {
+          // Handle errors, e.g., show a message or prevent form submission.
+        } else {
+          // Form submission logic can go here.
+        }
+      });
+    });
+
+    function probaAlgo() {
+      // Add your code for testing something here.
+    }
+  </script>
+</html>

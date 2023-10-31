@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario</title>
+
+    <style>
+      form {
+        width: 300px;
+        margin: 0 auto;
+      }
+
+      form input[type="text"],
+      form input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      form button[type="submit"] {
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        color: white;
+        background-color: #007bff;
+      }
+
+      form button[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+
+      .error {
+        padding: 8px;
+        border: 1px solid #df5757;
+        border-radius: 3px;
+        margin: 500px 10px 10px 10px;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <h2>Formulario de usuario</h2>
+    </div>
+    <form action="" autocomplete="of" id="formulario">
+      <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" />
+        <span>El campo es nulo</span>
+      </div>
+      <div>
+        <label for="apellido">Apellido:</label>
+        <input type="text" name="apellido" id="apellido" />
+        <span>El campo es nulo</span>
+      </div>
+      <div>
+        <label for="usuario">Usuario:</label>
+        <input type="text" name="usuario" id="usuario" />
+        <span>El campo es nulo</span>
+      </div>
+      <div>
+        <label for="contrasena">Contrase&ntilde;a</label>
+        <input type="text" name="contrasena" id="contrasena" />
+        <span>El campo es nulo</span>
+      </div>
+      <div>
+        <label for="repetircontra">Repetir Contrase&ntilde;a</label>
+        <input type="text" name="repetircontra" id="repetircontra" />
+        <span>El campo es nulo</span>
+      </div>
+      <div>
+        <button type="submit" value="Guardar">Guardar</button>
+      </div>
+    </form>
+
+    <button type="button" onclick="probaAlgo()">
+      Preisona aca para probar algo
+    </button>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      //puedo usar div input + span pero por ahora solo usare en span normal no?
+      let spans = $("span").hide();
+      $("#formulario").submit(function (e) {
+        e.preventDefault();
+        let inputs = $("div input");
+
+        let inputsError = true;
+
+        inputs.each(function () {
+          let inputValue = $(this).val().trim();
+          if (inputValue === "") {
+            inputsError = false;
+            $(this).next("span").addClass("error").show();
+          } else {
+            inputsError = true;
+            $(this).next("span").hide();
+          }
+        });
+
+        if (inputsError === true) {
+          $("#formulario").submit();
+        }
+      });
+    });
+  </script>
+</html>

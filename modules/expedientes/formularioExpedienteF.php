@@ -23,86 +23,97 @@ $tipo = selectall('expediente_tipo', $conditional);
     <span>Registro de Expediente Fisico</span>
 </div>
 <div class="dashboard">
-    <h1>Listado de clientes</h1>
+    <h1>Listado de expedientes</h1>
     <a href="<?php echo BASE_URL; ?>modules\expedientes\listado.php" class="volver-atras-button">Volver Atrás</a>
     <section class="inicio">
         <div class="contenido">
-            <h2>Registro de Expediente f&iacute;sico</h2>
-            <form action="procesarExpedienteF.php" method="post" id="formularioExpedienteF">
-                <div id="">
-                    <div>
-                        <label for="nroExpediente" class="formulario-label">Numero de Expediente:</label>
-                        <input type="text" id="nroExpediente" name="nroExpediente" placeholder="Nº de Expediente"
-                            class="formulario-input">
-                    </div>
-                    <div>
-                        <label for="caratula" class="formulario-label">Car&aacute;tula:</label>
-                        <input type="text" id="caratula" name="caratula" placeholder="Car&aacute;tula"
-                            class="formulario-input">
-                    </div>
-                    <div>
-                        <label for="fechaInicio" class="formulario-label">Fecha de Inicio:</label>
-                        <input type="date" id="fechaInicio" name="fechaInicio" class="formulario-input">
-                    </div>
-                    <div>
-                        <label for="fechaFin" class="formulario-label">Fecha de Finalizaci&oacute;n:</label>
-                        <input type="date" id="fechaFin" name="fechaFin" class="formulario-input">
+            <div class="msj-container" id="msj-container">
+                <?php switch ($vali):
+                    case 1: ?>
+                        <span class="msj-error show">El expediente ya esta registrado</span>
+                        <?php
+                        break;
+                    case 2: ?>
+                        <span class="msj-modify show">Se ha modificado correctamente</span>
 
+                <?php endswitch ?>
+                <h2>Registro de Expediente f&iacute;sico</h2>
+                <form action="procesarExpedienteF.php" method="post" id="formularioExpedienteF">
+                    <div id="">
+                        <div>
+                            <label for="nroExpediente" class="formulario-label">Numero de Expediente:</label>
+                            <input type="text" id="nroExpediente" name="nroExpediente" placeholder="Nº de Expediente"
+                                class="formulario-input">
+                        </div>
+                        <div>
+                            <label for="caratula" class="formulario-label">Car&aacute;tula:</label>
+                            <input type="text" id="caratula" name="caratula" placeholder="Car&aacute;tula"
+                                class="formulario-input">
+                        </div>
+                        <div>
+                            <label for="fechaInicio" class="formulario-label">Fecha de Inicio:</label>
+                            <input type="date" id="fechaInicio" name="fechaInicio" class="formulario-input">
+                        </div>
+                        <div>
+                            <label for="fechaFin" class="formulario-label">Fecha de Finalizaci&oacute;n:</label>
+                            <input type="date" id="fechaFin" name="fechaFin" class="formulario-input">
+
+                        </div>
+                        <div>
+                            <label for="clienteF" class="formulario-label">Clientes:</label>
+                            <select name="clienteF" id="clienteF" name="clienteF" class="formulario-select">
+                                <option value="0">--Seleccione--</option>
+                                <?php foreach ($clientesF as $regcliente): ?>
+                                    <option value="<?php echo $regcliente['id_persona'] ?>">
+                                        <?php echo $regcliente['persona_nombre'] . ' ' . $regcliente['persona_apellido'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div>
+                            <lable for="estadoExp" class="formulario-label">Estado:</lable>
+                            <select name="estadoExp" id="estadoExp" name="estadoExp" class="formulario-select">
+                                <option value="0">--Seleccione--</option>
+                                <?php foreach ($estado as $regestado): ?>
+                                    <option value="<?php echo $regestado['id_expediente_estado'] ?>">
+                                        <?php echo $regestado['expediente_estado_nombre'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+
+                        </div>
+
+                        <div>
+                            <label for="expTipo" class="formulario-label">Tipo:</label>
+                            <select name="expTipo" class="formulario-select" id="expTipo"
+                                onchange="cargarTipo(this.value)">
+                                <option value="0">--Seleccione--</option>
+                                <?php foreach ($tipo as $regtipo): ?>
+                                    <option value="<?php echo $regtipo['id_expediente_tipo'] ?>">
+                                        <?php echo $regtipo['expediente_tipo_nombre'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="expSubTipo" class="formulario-label">Sub Tipo:</label>
+                            <select name="expSubTipo" id="expSubTipo" class="formulario-select">
+                                <option value="0">--Seleccione--</option>
+                            </select>
+                        </div>
+
+
+                        <div>
+                            <label for="descripcion" class="formulario-label">Comentario:</label>
+                            <textarea class="formulario-input" name="comentario"></textarea>
+                        </div>
                     </div>
                     <div>
-                        <label for="clienteF" class="formulario-label">Clientes:</label>
-                        <select name="clienteF" id="clienteF" name="clienteF" class="formulario-select">
-                            <option value="0">--Seleccione--</option>
-                            <?php foreach ($clientesF as $regcliente): ?>
-                                <option value="<?php echo $regcliente['id_persona'] ?>">
-                                    <?php echo $regcliente['persona_nombre'] . ' ' . $regcliente['persona_apellido'] ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
+                        <button type="submit" name="submit" id="guardar" class="formulario-submit"> Guardar </button>
                     </div>
-                    <div>
-                        <lable for="estadoExp" class="formulario-label">Estado:</lable>
-                        <select name="estadoExp" id="estadoExp" name="estadoExp" class="formulario-select">
-                            <option value="0">--Seleccione--</option>
-                            <?php foreach ($estado as $regestado): ?>
-                                <option value="<?php echo $regestado['id_expediente_estado'] ?>">
-                                    <?php echo $regestado['expediente_estado_nombre'] ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-
-                    </div>
-
-                    <div>
-                        <label for="expTipo" class="formulario-label">Tipo:</label>
-                        <select name="expTipo" class="formulario-select" id="expTipo" onchange="cargarTipo(this.value)">
-                            <option value="0">--Seleccione--</option>
-                            <?php foreach ($tipo as $regtipo): ?>
-                                <option value="<?php echo $regtipo['id_expediente_tipo'] ?>">
-                                    <?php echo $regtipo['expediente_tipo_nombre'] ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="expSubTipo" class="formulario-label">Sub Tipo:</label>
-                        <select name="expSubTipo" id="expSubTipo" class="formulario-select">
-                            <option value="0">--Seleccione--</option>
-                        </select>
-                    </div>
-
-
-                    <div>
-                        <label for="descripcion" class="formulario-label">Comentario:</label>
-                        <textarea class="formulario-input"></textarea>
-                    </div>
-                </div>
-                <div>
-                    <button type="submit" name="submit" id="guardar" class="formulario-submit"> Guardar </button>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
     </section>
 </div>
 

@@ -35,7 +35,7 @@ $(document).ready(function () {
     },
     "Por favor seleccione el documento"
   );
-
+  //Formulario de cliente juridico
   $("#formularioClienteJ").validate({
     errorClass: "validacion-error",
     rules: {
@@ -68,6 +68,52 @@ $(document).ready(function () {
 
   $("#fechaInicio").val(fechaFormateada);
 });
+
+//validacion de Formulario Fisico
+$("#formularioExpedienteF").validate({
+  errorClass: "validacion-error",
+  rules: {
+    nroExpediente: "required",
+    caratula: "required",
+    clienteF: { ForCliente: true },
+    estadoExp: { ForEstado: true },
+    expTipo: { ForTipo: true },
+    expSubTipo: { ForSubTipo: true },
+  },
+  messages: {
+    nroExpediente: "Por favor ingrese el nro de expediente",
+    caratula: "Por favor ingree la caratula",
+  },
+});
+
+$.validator.addMethod(
+  "ForCliente",
+  function (value, element, param) {
+    return value != "0";
+  },
+  "Por favor seleccione el cliente"
+);
+$.validator.addMethod(
+  "ForEstado",
+  function (value, element, param) {
+    return value != "0";
+  },
+  "Por favor seleccione el estado del expediente"
+);
+$.validator.addMethod(
+  "ForTipo",
+  function (value, element, param) {
+    return value != "0";
+  },
+  "Por favor seleccione el tipo del expediente"
+);
+$.validator.addMethod(
+  "ForSubTipo",
+  function (value, element, param) {
+    return value != "0";
+  },
+  "Por favor seleccione el subTipo del expediente"
+);
 function notiBaja() {
   let darBaja = document.getElementsByClassName("darDeBajaButton");
 

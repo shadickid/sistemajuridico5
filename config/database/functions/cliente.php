@@ -20,6 +20,60 @@ function datosClientesFisicos()
     $s->close();
     return $records;
 }
+function buscarClientePersona($idPersona)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "SELECT * FROM persona
+    inner join persona_fisica on persona_fisica.id_persona=persona.id_persona
+    inner join cliente on cliente.id_persona =persona.id_persona
+    where cliente.estado=1 and persona.id_persona=$idPersona;";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}
+function datosClientesFisicosModificar($idPersona)
+{
+    global $connect;
+    $connect->begin_transaction();
+
+
+    $sql = "SELECT * FROM persona
+            inner join persona_fisica on persona_fisica.id_persona=persona.id_persona
+            inner join cliente on cliente.id_persona =persona.id_persona
+            inner join documentoxpersona on documentoxpersona.id_persona=persona.id_persona
+            where cliente.estado=1 and persona.id_persona=$idPersona;";
+    $s = $connect->prepare($sql);
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}
+
+function bajaClientesFisicos($idCliente)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "UPDATE `sistemajuridico`.`cliente` SET 
+    `cliente_fec_baja` = now(), `estado` = '0' WHERE (`id_cliente` = '$idCliente');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+        return 1;
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}
 function datosClientesJuridicos()
 {
     global $connect;
@@ -39,7 +93,21 @@ function datosClientesJuridicos()
 }
 
 
-function agregarCliente()
+function agregarCliente($idPersona)
 {
-
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "INSERT INTO `sistemajuridico`.`cliente` 
+            (`cliente_fec_alta`, `estado`, `id_persona`) 
+            VALUES (now(), '1', '$idPersona');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+        return 1;
+    } else {
+        $connect->rollback();
+        return 0;
+    }
 }

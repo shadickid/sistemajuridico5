@@ -47,112 +47,112 @@ $expedieneJ = listadoExpedienteJ();
                 </tr>
             </thead>
             <?php foreach ($expedienteF as $regExpF): ?>
-                <tbody>
+            <tbody>
 
-                    <tr class="clienteFisico">
-                        <td>
-                            <?php echo $regExpF['persona_nombre'] . ' ' . $regExpF['persona_apellido'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpF['expediente_nro'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpF['expediente_nombre'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpF['expediente_fecha_inicio'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpF['expediente_fecha_fin'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpF['expediente_tipo_nombre'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpF['subtipo_exp'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpF['expediente_estado_nombre'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpF['expediente_descripcon'] ?>
-                        </td>
-                        <td>
-                            <a href="<?php echo BASE_URL ?>modules\expedientes\movimiento_archivo\nuevo_mov.php?id_expediente=<?php echo $regExpF['id_expediente'] ?>"
-                                class="mov">
-                                <span class="material-symbols-outlined">
-                                    library_add</span>
-                            </a>
-                        </td>
-                        <td>
-                            <a
-                                href="<?php echo BASE_URL ?>modules\abogado\modificar.php?idPersonaFisica=<?php echo $regclientefisico['id_persona_fisica'] ?>">
-                                <button class="editarButton">
-                                    <i class="fi fi-rr-edit"></i>
-                                </button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="<?php echo BASE_URL ?>modules\abogado\modal_borrar.php?idPersonaFisica=<?php echo $regclientefisico['id_persona_fisica'] ?>"
-                                <button class="darDeBajaButton">
-                                <i class="fi-rr-eraser"></i>
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
+                <tr class="clienteFisico">
+                    <td>
+                        <?php echo $regExpF['persona_nombre'] . ' ' . $regExpF['persona_apellido'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpF['expediente_nro'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpF['expediente_nombre'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpF['expediente_fecha_inicio'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpF['expediente_fecha_fin'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpF['expediente_tipo_nombre'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpF['subtipo_exp'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpF['expediente_estado_nombre'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpF['expediente_descripcon'] ?>
+                    </td>
+                    <td>
+                        <a href="<?php echo BASE_URL ?>modules\expedientes\movimiento_archivo\nuevo_mov.php?id_expediente=<?php echo $regExpF['id_expediente'] ?>"
+                            class="mov">
+                            <span class="material-symbols-outlined">
+                                library_add</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a
+                            href="<?php echo BASE_URL ?>modules\abogado\modificar.php?idPersonaFisica=<?php echo $regclientefisico['id_persona_fisica'] ?>">
+                            <button class="editarButton">
+                                <i class="fi fi-rr-edit"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="<?php echo BASE_URL ?>modules\abogado\modal_borrar.php?idPersonaFisica=<?php echo $regclientefisico['id_persona_fisica'] ?>"
+                            <button class="darDeBajaButton">
+                            <i class="fi-rr-eraser"></i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
                 <?php endforeach ?>
                 <?php foreach ($expedieneJ as $regExpJ): ?>
-                    <tr class="clienteJuridico">
-                        <td>
-                            <?php echo $regExpJ['razon_social'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpJ['expediente_nro'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpJ['expediente_nombre'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpJ['expediente_fecha_inicio'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpJ['expediente_fecha_fin'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpJ['expediente_tipo_nombre'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpJ['subtipo_exp'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpJ['expediente_estado_nombre'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regExpJ['expediente_descripcon'] ?>
-                        </td>
-                        <td>
-                            <a href="<?php echo BASE_URL ?>modules\expedientes\movimiento_archivo\nuevo_mov.php?id_expediente= <?php echo $regExpJ['id_expediente'] ?>"
-                                class="mov">
-                                <span class="material-symbols-outlined mov">
-                                    library_add
-                                </span>
-                            </a>
-                        </td>
-                        <td>
-                            <a
-                                href="<?php echo BASE_URL ?>modules\abogado\modificar.php?idPersonaJuridica=<?php echo $regClienteJuridico['id_persona_juridica'] ?>">
-                                <button class="editarButton">
-                                    <i class="fi fi-rr-edit"></i>
-                                </button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="<?php echo BASE_URL ?>modules\abogado\modal_borrar.php?idPersonaJuridica=<?php echo $regClienteJuridico['id_persona_juridica'] ?>"
-                                <button class="darDeBajaButton">
-                                <i class="fi-rr-eraser"></i>
-                                </button>
-                            </a>
-                        </td>
+                <tr class="clienteJuridico">
+                    <td>
+                        <?php echo $regExpJ['razon_social'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpJ['expediente_nro'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpJ['expediente_nombre'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpJ['expediente_fecha_inicio'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpJ['expediente_fecha_fin'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpJ['expediente_tipo_nombre'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpJ['subtipo_exp'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpJ['expediente_estado_nombre'] ?>
+                    </td>
+                    <td>
+                        <?php echo $regExpJ['expediente_descripcon'] ?>
+                    </td>
+                    <td>
+                        <a href="<?php echo BASE_URL ?>modules\expedientes\movimiento_archivo\nuevo_mov.php?id_expediente= <?php echo $regExpJ['id_expediente'] ?>"
+                            class="mov">
+                            <span class="material-symbols-outlined mov">
+                                library_add
+                            </span>
+                        </a>
+                    </td>
+                    <td>
+                        <a
+                            href="<?php echo BASE_URL ?>modules\abogado\modificar.php?idPersonaJuridica=<?php echo $regClienteJuridico['id_persona_juridica'] ?>">
+                            <button class="editarButton">
+                                <i class="fi fi-rr-edit"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="<?php echo BASE_URL ?>modules\abogado\modal_borrar.php?idPersonaJuridica=<?php echo $regClienteJuridico['id_persona_juridica'] ?>"
+                            <button class="darDeBajaButton">
+                            <i class="fi-rr-eraser"></i>
+                            </button>
+                        </a>
+                    </td>
                     <?php endforeach ?>
                 </tr>
 

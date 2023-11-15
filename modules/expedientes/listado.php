@@ -15,7 +15,24 @@ $expedieneJ = listadoExpedienteJ();
 <div class="dashboard">
     <h1>Listado de Expedientes</h1>
     <a href="<?php echo BASE_URL; ?>modules\dashboard\dashboard.php" class="volver-atras-button">Volver Atrás</a>
-
+    <div class="msj-container" id="msj-container">
+        <?php switch ($vali):
+                    case 1: ?>
+        <span class="msj-success show">Se ha agregado correctamente</span>
+        <?php
+                        break;
+                    case 2: ?>
+        <span class="msj-modify show">Se ha modificado correctamente</span>
+        <?php
+                        break;
+                    case 3: ?>
+        <span class="msj-delete show">Se ha borrado un correctamente</span>
+        <?php
+                        break;
+                    case 4: ?>
+        <span class="msj-error show">Se ha producido un error correctamente</span>
+        <?php endswitch ?>
+    </div>
     <section class="inicio">
 
         <div class="btn-filtro-container">
@@ -23,10 +40,10 @@ $expedieneJ = listadoExpedienteJ();
             <button type="button" id="btnMostrarTodos" class="btn-filtro">Ver Todos</button>
             <button type="button" id="btnFisicos" class="btn-filtro">Ver Expediente F&iacute;sica</button>
             <button type="button" id="btnJuridicos" class="btn-filtro">Ver Expediente Jur&iacute;dica</button>
-            <div>
+            <!-- <div>
                 <a href="formularioExpedienteF.php" class="a-alta">Nuevo Expediente fisico</a>
                 <a href="formularioExpedienteJ.php" class="a-alta">Nuevo Expediente Juridico</a>
-            </div>
+            </div> -->
         </div>
 
         <table class="tablamodal">

@@ -11,6 +11,7 @@ $conditional = [
 ];
 
 $contratoconstitutivo = selectall('contrato_constitutivo');
+$idPersona = $_GET['idPersona'];
 
 
 
@@ -31,15 +32,15 @@ $contratoconstitutivo = selectall('contrato_constitutivo');
             <div class="msj-container" id="msj-container">
                 <?php switch ($vali):
                     case 1: ?>
-                <span class="msj-error show">El cliente ya esta registrado</span>
-                <?php
+                        <span class="msj-error show">El cliente ya esta registrado</span>
+                        <?php
                         break;
                     case 2: ?>
-                <span class="msj-modify show">Se ha modificado correctamente</span>
+                        <span class="msj-modify show">Se ha modificado correctamente</span>
 
                 <?php endswitch ?>
             </div>
-            <h2>Registro de Cliente</h2>
+            <h2>Modificar de Cliente</h2>
             <form action="procesarClienteJ.php" method="post" id="formularioClienteJ">
                 <input type="hidden" value="2" name="tipopersona">
 
@@ -65,9 +66,9 @@ $contratoconstitutivo = selectall('contrato_constitutivo');
                         <select id="cc" class="formulario-select" name="cc">
                             <option value="0">--Seleccione--</option>
                             <?php foreach ($contratoconstitutivo as $regcc): ?>
-                            <option value="<?php echo $regcc['id_contrato_cons'] ?>">
-                                <?php echo $regcc['nombre'] ?>
-                            </option>
+                                <option value="<?php echo $regcc['id_contrato_cons'] ?>">
+                                    <?php echo $regcc['nombre'] ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
                     </div>

@@ -64,7 +64,7 @@ $datosClientesJuridico = datosClientesJuridicos();
                             </td>
                             <td>F&iacute;sica</td>
                             <td> <a
-                                    href="<?php echo BASE_URL ?>modules\cliente\modifiicarClienteF.php?idPersona=<?php echo $regclientefisico['id_persona'] ?>">
+                                    href="<?php echo BASE_URL ?>modules\cliente\modificarClienteF.php?idPersona=<?php echo $regclientefisico['id_persona'] ?>">
                                     <button class="editarButton">
                                         <i class="fi fi-rr-edit"></i>
                                     </button>
@@ -87,14 +87,14 @@ $datosClientesJuridico = datosClientesJuridicos();
                             </td>
                             <td>Jur&iacute;dica</td>
                             <td> <a
-                                    href="<?php echo BASE_URL ?>modules\abogado\modificar.php?idPersonaJuridica=<?php echo $regClienteJuridico['id_persona_juridica'] ?>">
+                                    href="<?php echo BASE_URL ?>modules\cliente\modificarClienteJ.php?idPersona=<?php echo $regClienteJuridico['id_persona'] ?>">
                                     <button class="editarButton">
                                         <i class="fi fi-rr-edit"></i>
                                     </button>
                                 </a>
                             </td>
                             <td>
-                                <a href="<?php echo BASE_URL ?>modules\abogado\modal_borrar.php?idPersonaJuridica=<?php echo $regClienteJuridico['id_persona_juridica'] ?>"
+                                <a href="<?php echo BASE_URL ?>modules\cliente\modificarClienteJ.php<?php echo $regClienteJuridico['id_persona_juridica'] ?>"
                                     <button class="darDeBajaButton">
                                     <i class="fi-rr-eraser"></i>
                                     </button>

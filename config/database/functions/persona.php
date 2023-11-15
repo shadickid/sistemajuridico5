@@ -32,6 +32,49 @@ function agregarPersonaFisicaEmpleado($nombre, $apellido, $fecnac, $sex, $id_per
     return $id_persona_fisica;
 }
 
+
+function modificarPersonaFisicaEmpleado($nombre, $apellido, $fecnac, $sexo, $id)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "UPDATE `sistemajuridico`.`persona_fisica` SET 
+    `persona_nombre` = '$nombre', 
+    `persona_apellido` = '$apellido',
+    `persona_fec_nac` = '$fecnac', 
+    `id_sexo` = '$sexo' 
+     WHERE (`id_persona_fisica` = '$id');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}
+function agregarPersonaJuridica($razonSocial, $nroIngresoBruto, $cc, $fechadeconstitucion, $idpersona)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "INSERT INTO `sistemajuridico`.`persona_juridica` (
+        `id_persona`, 
+        `fecha_de_constitucion`, 
+        `id_contrato_constitutivo`, 
+        `numero_de_ing_bruto`, 
+        `razon_social`)
+         VALUES ('$idpersona', '$fechadeconstitucion', '$cc', '$nroIngresoBruto', '$razonSocial');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}
+
 function agregarSexo($nombre)
 {
     global $connect;

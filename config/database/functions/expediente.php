@@ -180,31 +180,49 @@ inner join expediente_estado expestado on expestado.id_expediente_estado=expe.id
 }
 
 
-function agregarExpediente($nroExpediente, $caratula, $fechaInicio, $fechaFin = null, $descripcion, $estado, $tipo, $persona)
+function agregarExpediente($nroExpediente, $caratula, $fechaInicio, $fechaFin, $descripcion, $estado, $tipo, $persona)
 {
     global $connect;
     $connect->begin_transaction();
-    $sql = "INSERT INTO `sistemajuridico`.`expediente` (
-        `expediente_nro`, 
-        `expediente_nombre`,
-        `expediente_fecha_inicio`,
-        `expediente_fecha_fin`,
-        `expediente_descripcon`,
-        `id_expediente_estado`, 
-        `id_expediente_tipo_subtipo`,
-        `id_persona`) 
-        VALUES (
-        '$nroExpediente', 
-        '$caratula', 
-        '$fechaInicio',
-        '$fechaFin', 
-        '$descripcion', 
-        '$estado', 
-        '$tipo', 
-        '$persona');";
 
-    //return $sql;
-    //exit;
+
+    if ($fechaFin !== "") {
+        $sql = "INSERT INTO `sistemajuridico`.`expediente` (
+            `expediente_nro`, 
+            `expediente_nombre`,
+            `expediente_fecha_inicio`,
+            `expediente_fecha_fin`,
+            `expediente_descripcon`,
+            `id_expediente_estado`, 
+            `id_expediente_tipo_subtipo`,
+            `id_persona`) 
+            VALUES (
+            '$nroExpediente', 
+            '$caratula', 
+            '$fechaInicio',
+            '$fechaFin', 
+            '$descripcion', 
+            '$estado', 
+            '$tipo', 
+            $persona);";
+    } else {
+        $sql = "INSERT INTO `sistemajuridico`.`expediente` (
+            `expediente_nro`, 
+            `expediente_nombre`,
+            `expediente_fecha_inicio`,
+            `expediente_descripcon`,
+            `id_expediente_estado`, 
+            `id_expediente_tipo_subtipo`,
+            `id_persona`) 
+            VALUES (
+            '$nroExpediente', 
+            '$caratula', 
+            '$fechaInicio',
+            '$descripcion', 
+            '$estado', 
+            '$tipo', 
+            $persona);";
+    }
     $s = $connect->prepare($sql);
     if ($s) {
         $s->execute();

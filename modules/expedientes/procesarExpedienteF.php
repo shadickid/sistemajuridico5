@@ -6,7 +6,7 @@ $nroExpediente = $_POST['nroExpediente'];
 $caratula = $_POST['caratula'];
 $fechaInicio = $_POST['fechaInicio'];
 $fechaFin = $_POST['fechaFin'];
-$clienteF = $_POST['clienteF'];
+$cliente = $_POST['cliente'];
 $estadoExp = $_POST['estadoExp'];
 $expSubTipo = $_POST['expSubTipo'];
 $comentario = $_POST['comentario'];
@@ -17,8 +17,17 @@ $sql = "SELECT * from expediente where  expediente_nro like '$nroExpediente';";
 $verificar_datos_expediente = $connect->query($sql);
 
 if ($verificar_datos_expediente->num_rows > 0) {
-    header("location: formularioExpedienteF.php?vali=1");
+    header("location: formularioExpediente.php?vali=1");
 } else {
-    agregarExpediente($nroExpediente, $caratula, $fechaInicio, null, $comentario, $estadoExp, $expSubTipo, $clienteF);
+    if ($fechaFin !== "") {
+        agregarExpediente($nroExpediente, $caratula, $fechaInicio, $fechaFin, $comentario, $estadoExp, $expSubTipo, $cliente);
+        header("location: listado.php?vali=1");
+
+
+    } else {
+        agregarExpediente($nroExpediente, $caratula, $fechaInicio, $fechaFin, $comentario, $estadoExp, $expSubTipo, $cliente);
+        header("location: listado.php?vali=1");
+
+    }
 
 }

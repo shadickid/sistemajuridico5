@@ -40,7 +40,10 @@ $(document).ready(function () {
     errorClass: "validacion-error",
     rules: {
       razonSocial: "required",
-      obraSocial: "required",
+      cuit: {
+        required: true,
+        digits: true,
+      },
       nroIngresoBruto: {
         required: true,
         digits: true,
@@ -49,6 +52,7 @@ $(document).ready(function () {
     },
     messages: {
       razonSocial: "Por favor ingrese la razon social",
+      cuit: "Por favor ingrese el cuit de la empresa",
       obraSocial: "Por favor ingrese la obra social",
       nroIngresoBruto: "Por favor ingrese el nro de ingreso Bruto",
     },

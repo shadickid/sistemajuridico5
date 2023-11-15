@@ -281,7 +281,7 @@ h1 {
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 60px;
-  min-width: 200px; /* Establece un ancho mínimo */
+  min-width: 500px; /* Establece un ancho mínimo */
   min-height: 0; /* Establece una altura mínima */
 }
 

@@ -178,3 +178,41 @@ inner join expediente_estado expestado on expestado.id_expediente_estado=expe.id
     $s->close();
     return $records;
 }
+
+
+function agregarExpediente($nroExpediente, $caratula, $fechaInicio, $fechaFin = null, $descripcion, $estado, $tipo, $persona)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "INSERT INTO `sistemajuridico`.`expediente` (
+        `expediente_nro`, 
+        `expediente_nombre`,
+        `expediente_fecha_inicio`,
+        `expediente_fecha_fin`,
+        `expediente_descripcon`,
+        `id_expediente_estado`, 
+        `id_expediente_tipo_subtipo`,
+        `id_persona`) 
+        VALUES (
+        '$nroExpediente', 
+        '$caratula', 
+        '$fechaInicio',
+        '$fechaFin', 
+        '$descripcion', 
+        '$estado', 
+        '$tipo', 
+        '$persona');";
+
+    //return $sql;
+    //exit;
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $connect->commit();
+        $s->close();
+        return 1;
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}

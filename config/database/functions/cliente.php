@@ -101,6 +101,14 @@ function datosClientesJuridicosModificar($idPersona)
             inner join cliente on cliente.id_persona =persona.id_persona
             inner join documentoxpersona on documentoxpersona.id_persona=persona.id_persona
             where cliente.estado=1 and persona.id_persona=$idPersona;";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
 }
 function agregarCliente($idPersona)
 {

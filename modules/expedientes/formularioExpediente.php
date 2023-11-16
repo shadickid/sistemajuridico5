@@ -31,11 +31,11 @@ $tipo = selectall('expediente_tipo', $conditional);
             <div class="msj-container" id="msj-container">
                 <?php switch ($vali):
                     case 1: ?>
-                        <span class="msj-error show">El expediente ya esta registrado</span>
-                        <?php
+                <span class="msj-error show">El expediente ya esta registrado</span>
+                <?php
                         break;
                     case 2: ?>
-                        <span class="msj-modify show">Se ha modificado correctamente</span>
+                <span class="msj-modify show">Se ha modificado correctamente</span>
 
                 <?php endswitch ?>
                 <h2>Registro de Expediente</h2>
@@ -66,15 +66,15 @@ $tipo = selectall('expediente_tipo', $conditional);
                                 <option value="0">--Seleccione--</option>
 
                                 <?php foreach ($clientesF as $regcliente): ?>
-                                    <option value="<?php echo $regcliente['id_persona'] ?>">
-                                        <?php echo $regcliente['persona_nombre'] . ' ' . $regcliente['persona_apellido'] ?>
-                                    </option>
+                                <option value="<?php echo $regcliente['id_persona'] ?>">
+                                    <?php echo $regcliente['persona_nombre'] . ' ' . $regcliente['persona_apellido'] ?>
+                                </option>
                                 <?php endforeach; ?>
 
                                 <?php foreach ($clientesJ as $regclientej): ?>
-                                    <option value="<?php echo $regclientej['id_persona'] ?>">
-                                        <?php echo $regclientej['razon_social'] ?>
-                                    </option>
+                                <option value="<?php echo $regclientej['id_persona'] ?>">
+                                    <?php echo $regclientej['razon_social'] ?>
+                                </option>
                                 <?php endforeach; ?>
 
                             </select>
@@ -84,9 +84,9 @@ $tipo = selectall('expediente_tipo', $conditional);
                             <select name="estadoExp" id="estadoExp" name="estadoExp" class="formulario-select">
                                 <option value="0">--Seleccione--</option>
                                 <?php foreach ($estado as $regestado): ?>
-                                    <option value="<?php echo $regestado['id_expediente_estado'] ?>">
-                                        <?php echo $regestado['expediente_estado_nombre'] ?>
-                                    </option>
+                                <option value="<?php echo $regestado['id_expediente_estado'] ?>">
+                                    <?php echo $regestado['expediente_estado_nombre'] ?>
+                                </option>
                                 <?php endforeach; ?>
                             </select>
 
@@ -98,9 +98,9 @@ $tipo = selectall('expediente_tipo', $conditional);
                                 onchange="cargarTipo(this.value)">
                                 <option value="0">--Seleccione--</option>
                                 <?php foreach ($tipo as $regtipo): ?>
-                                    <option value="<?php echo $regtipo['id_expediente_tipo'] ?>">
-                                        <?php echo $regtipo['expediente_tipo_nombre'] ?>
-                                    </option>
+                                <option value="<?php echo $regtipo['id_expediente_tipo'] ?>">
+                                    <?php echo $regtipo['expediente_tipo_nombre'] ?>
+                                </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -127,104 +127,104 @@ $tipo = selectall('expediente_tipo', $conditional);
 </div>
 
 <script>
-    function cargarTipo(id_tipo) {
-        let resultado;
-        let datos_atributos;
-        let nuevaOpcion;
+function cargarTipo(id_tipo) {
+    let resultado;
+    let datos_atributos;
+    let nuevaOpcion;
 
-        if (id_tipo != 0) {
-            $('#expSubTipo').val('0');
+    if (id_tipo != 0) {
+        $('#expSubTipo').val('0');
 
-            //AJAX
+        //AJAX
 
-            let xmlhttp;
-            if (window.XMLHttpRequest) { //code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else { // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
+        let xmlhttp;
+        if (window.XMLHttpRequest) { //code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else { // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
 
-            xmlhttp.onreadystatechange = function () { //Cuando cambia el estado de la petición
-                if (xmlhttp.readyState == 4 && xmlhttp.status ==
-                    200) { //4 significa que terminó y 200 es la rpta OK del server
-                    resultado = xmlhttp.responseText;
-
-
+        xmlhttp.onreadystatechange = function() { //Cuando cambia el estado de la petición
+            if (xmlhttp.readyState == 4 && xmlhttp.status ==
+                200) { //4 significa que terminó y 200 es la rpta OK del server
+                resultado = xmlhttp.responseText;
 
 
 
 
 
 
-                    //ACA MANIPULO LA RESPUESTA DEL SERVIDOR
 
-                    if (resultado != 0) {
-                        datos_atributos = JSON.parse(resultado); //El json en texto plano, se convierte en OBJETO json
-                        $("#expSubTipo").html("");
-                        //document.getElementById('tipoAtributo').innerHTML = "";
 
-                        // Crear una option con value igual a 0
-                        var optionElement = document.createElement("option");
-                        optionElement.value = "0";
-                        optionElement.text = "--Seleccione--";
+                //ACA MANIPULO LA RESPUESTA DEL SERVIDOR
 
-                        // Agregar la opción al select
-                        document.getElementById('expSubTipo').appendChild(optionElement);
-                        //("#expSubTipo").append(optionElement)
-                        for (let i = 0; i < datos_atributos.length; i++) {
-                            nuevaOpcion = new Option(datos_atributos[i]['subtipo_exp'], datos_atributos[i][
-                                'id_exp_tipo_subtipo'
-                            ]);
-                            //$("#expSubTipo").add(nuevaOpcion, undefined);
-                            document.getElementById('expSubTipo').add(nuevaOpcion, undefined);
-                        }
-                    } else {
+                if (resultado != 0) {
+                    datos_atributos = JSON.parse(resultado); //El json en texto plano, se convierte en OBJETO json
+                    $("#expSubTipo").html("");
+                    //document.getElementById('tipoAtributo').innerHTML = "";
 
-                        alert('Sin Atributos');
-                        document.getElementById('tipoAtributo').innerHTML = "";
-                        $("#expSubTipo").html("");
-                        // Crear una option con value igual a 0
-                        var optionElement = document.createElement("option");
-                        optionElement.value = "0";
-                        optionElement.text = "--Seleccione--";
+                    // Crear una option con value igual a 0
+                    var optionElement = document.createElement("option");
+                    optionElement.value = "0";
+                    optionElement.text = "--Seleccione--";
 
-                        // Agregar la opción al select
-                        document.getElementById('tipoAtributo').appendChild(optionElement);
-                        $("#expSubTipo").append(optionElement);
-
+                    // Agregar la opción al select
+                    document.getElementById('expSubTipo').appendChild(optionElement);
+                    //("#expSubTipo").append(optionElement)
+                    for (let i = 0; i < datos_atributos.length; i++) {
+                        nuevaOpcion = new Option(datos_atributos[i]['subtipo_exp'], datos_atributos[i][
+                            'id_exp_tipo_subtipo'
+                        ]);
+                        //$("#expSubTipo").add(nuevaOpcion, undefined);
+                        document.getElementById('expSubTipo').add(nuevaOpcion, undefined);
                     }
+                } else {
 
+                    alert('Sin Atributos');
+                    document.getElementById('tipoAtributo').innerHTML = "";
+                    $("#expSubTipo").html("");
+                    // Crear una option con value igual a 0
+                    var optionElement = document.createElement("option");
+                    optionElement.value = "0";
+                    optionElement.text = "--Seleccione--";
 
-
-
-
-
-
-
-
-
-
+                    // Agregar la opción al select
+                    document.getElementById('tipoAtributo').appendChild(optionElement);
+                    $("#expSubTipo").append(optionElement);
 
                 }
+
+
+
+
+
+
+
+
+
+
+
+
             }
-            xmlhttp.open("POST", "controlSubtipo.php", true);
-            xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'); //Modo en que se envia el dato
-            xmlhttp.send("function=leerSubTipo&idTipo=" + id_tipo);
-        } else {
-            alert('Debe seleccionar una Tipo');
-            $("#expSubTipo").html("");
-            //document.getElementById('tipoAtributo').innerHTML = "";
-
-            // Crear una option con value igual a 0
-            var optionElement = document.createElement("option");
-            optionElement.value = "0";
-            optionElement.text = "--Seleccione--";
-
-            // Agregar la opción al select
-            document.getElementById('expSubTipo').appendChild(optionElement);
-            return;
         }
+        xmlhttp.open("POST", "controlSubtipo.php", true);
+        xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'); //Modo en que se envia el dato
+        xmlhttp.send("function=leerSubTipo&idTipo=" + id_tipo);
+    } else {
+        alert('Debe seleccionar una Tipo');
+        $("#expSubTipo").html("");
+        //document.getElementById('tipoAtributo').innerHTML = "";
+
+        // Crear una option con value igual a 0
+        var optionElement = document.createElement("option");
+        optionElement.value = "0";
+        optionElement.text = "--Seleccione--";
+
+        // Agregar la opción al select
+        document.getElementById('expSubTipo').appendChild(optionElement);
+        return;
     }
+}
 </script>
 <?php
 include(ROOT_PATH . 'includes\footter.php');

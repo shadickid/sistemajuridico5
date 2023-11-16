@@ -140,7 +140,7 @@ function listadoExpedienteFisico()
             FROM persona persona
     inner join persona_fisica per_fisc on per_fisc.id_persona=persona.id_persona
     inner join expediente expe on expe.id_persona=persona.id_persona
-    inner join expediente_tipo_subtipo exptipsub on exptipsub.id_exp_tipo_subtipo=expe.id_expediente_tipo_subtipo
+    inner join expediente_tipo_subtipo exptipsub on exptipsub.id_exp_tipo_subtipo=expe.id_exp_tipo_subtipo
     inner join expediente_tipo exptipo on exptipo.id_expediente_tipo=exptipsub.id_expediente_tipo
     inner join expediente_subtipo expesubt on expesubt.id_expsubtipo=exptipsub.id_expsubtipo
     inner join expediente_estado expestado on expestado.id_expediente_estado=expe.id_expediente_estado;";
@@ -168,7 +168,7 @@ function listadoExpedienteJ()
 FROM persona persona
 inner join persona_juridica pers_juridica on pers_juridica.id_persona=persona.id_persona
 inner join expediente expe on expe.id_persona=persona.id_persona
-inner join expediente_tipo_subtipo exptipsub on exptipsub.id_exp_tipo_subtipo=expe.id_expediente_tipo_subtipo
+inner join expediente_tipo_subtipo exptipsub on exptipsub.id_exp_tipo_subtipo=expe.id_exp_tipo_subtipo
 inner join expediente_tipo exptipo on exptipo.id_expediente_tipo=exptipsub.id_expediente_tipo
 inner join expediente_subtipo expesubt on expesubt.id_expsubtipo=exptipsub.id_expsubtipo
 inner join expediente_estado expestado on expestado.id_expediente_estado=expe.id_expediente_estado;";
@@ -233,4 +233,30 @@ function agregarExpediente($nroExpediente, $caratula, $fechaInicio, $fechaFin, $
         $connect->rollback();
         return 0;
     }
+}
+
+function obtenerListadoExpediente($subTipo,$expTipo)
+{
+    global $connect;
+
+    $connect->begin_transaction();
+    $sql = "SELECT id_expediente,
+                                persona_nombre,
+                                persona_apellido,
+                                expediente_nro,
+                                expediente_nombre,
+                                expediente_fecha_inicio,
+                                expediente_tipo_nombre,
+                                expesubt.subtipo_exp,
+                                expediente_estado_nombre,
+                                expediente_descripcon,
+                                expediente_fecha_fin FROM persona persona
+                                inner join persona_fisica per_fisc on per_fisc.id_persona=persona.id_persona
+                                inner join expediente expe on expe.id_persona=persona.id_persona
+                                inner join expediente_tipo_subtipo exptipsub on exptipsub.id_exp_tipo_subtipo=expe.id_exp_tipo_subtipo
+                                inner join expediente_tipo exptipo on exptipo.id_expediente_tipo=exptipsub.id_expediente_tipo
+                                inner join expediente_subtipo expesubt on expesubt.id_expsubtipo=exptipsub.id_expsubtipo
+                                inner join expediente_estado expestado on expestado.id_expediente_estado=expe.id_expediente_estado";
+
+    if ()
 }

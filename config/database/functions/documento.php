@@ -95,3 +95,20 @@ function verificarDocumento($documento)
     $s->close();
     return $records;
 }
+function verificarDocumentoJuridico($documento)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "SELECT * FROM persona
+    INNER JOIN persona_juridica ON persona_juridica.id_persona = persona.id_persona
+    INNER JOIN documentoxpersona ON persona.id_persona = documentoxpersona.id_persona
+    WHERE  documentoxpersona.detalle = $documento";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}

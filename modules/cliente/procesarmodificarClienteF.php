@@ -13,13 +13,16 @@ $sexo = $_POST['sexo'];
 $tipodocumento = $_POST['tipodocumento'];
 $documento = $_POST['documento'];
 
-
-
+$dnicliente = null;
+$id_persona_fisica = null;
+$id_documentoxpersona = null;
 $verificar_datos_cliente = verificarDocumento($documento);
 foreach ($verificar_datos_cliente as $cliente) {
     $dnicliente = $cliente["detalle"];
     $id_persona_fisica = $cliente['id_persona_fisica'];
     $id_documentoxpersona = $cliente['id_documentoxpersona'];
+
+
 }
 
 
@@ -28,7 +31,7 @@ if ($dnicliente == $documento) {
 } else {
     modificarPersonaFisicaEmpleado($nombre, $apellido, $fec_nac, $sexo, $id_persona_fisica);
     modificarPersonaDocumento($documento, $idPersona, $tipodocumento, $id_documentoxpersona);
-    header("location: listado.php?vali=2");
+    // header("location: listado.php?vali=2");
 }
 
 ?>

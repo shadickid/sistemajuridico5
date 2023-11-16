@@ -9,7 +9,8 @@ $expedieneJ = listadoExpedienteJ();
 $conditional = [
     'estado' => 1
 ];
-
+$expTipo = null;
+$expSubTipo = null;
 if (isset($_GET['expTipo'])) {
     $expTipo = $_GET['expTipo'];
     $expSubTipo = $_GET['expSubTipo'];
@@ -18,7 +19,7 @@ if (isset($_GET['expTipo'])) {
     $filtro = null;
 }
 $tipo = selectall('expediente_tipo', $conditional);
-$registro = obtenerListadoExpediente($expSubTipo,$expTipo);
+$registro = obtenerListadoExpediente($expSubTipo, $expTipo);
 
 
 ?>
@@ -52,36 +53,86 @@ $registro = obtenerListadoExpediente($expSubTipo,$expTipo);
                     <div>
                         <label for="expSubTipo" class="formulario-label">Sub Tipo:</label>
                         <select name="expSubTipo" id="expSubTipo" class="formulario-select">
-                            <option value="0">--Seleccione--</option>
+                            <option value="0">--Selecione--</option>
                         </select>
                     </div>
-                    <input type="submit" value="Filtrar">
+
+                    <input type="submit" value="Filtrar" class="btn-filtro">
+
                 </form>
-
+                <div>
+                    <button id="generarReporteBtn" class="btn-filtro">Generar Reporte</button>
+                </div>
             </div>
 
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>cosa</th>
-                            <th>cosa</th>
-                            <th>cosa</th>
-                            <th>cosa</th>
-                            <th>cosa</th>
-                            <th>cosa</th>
 
-                        </tr>
-                    </thead>
-                    <?php foreach ($registro as $reg): ?>
-                    <tbody>
-                        <tr>
-                            <td><?php echo $reg[''] ?></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+
+
         </div>
+
+        <div class="">
+            <table class="tablamodal">
+                <thead>
+                    <tr>
+                        <th>ID Expediente</th>
+                        <th>Nombre Persona</th>
+                        <th>Número Expediente</th>
+                        <th>Nombre Expediente</th>
+                        <th>Fecha Inicio</th>
+                        <th>Tipo Expediente</th>
+                        <th>Subtipo Expediente</th>
+                        <th>Estado Expediente</th>
+                        <th>Descripción Expediente</th>
+                        <th>Fecha Fin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($registro as $reg): ?>
+                    <tr>
+                        <td>
+                            <?php echo $reg['id_expediente']; ?>
+                        </td>
+                        <td>
+                            <?php echo $reg['persona_nombre'] . ' ' . $reg['persona_apellido']; ?>
+                        </td>
+                        <td>
+                            <?php echo $reg['expediente_nro']; ?>
+                        </td>
+                        <td>
+                            <?php echo $reg['expediente_nombre']; ?>
+                        </td>
+                        <td>
+                            <?php echo $reg['expediente_fecha_inicio']; ?>
+                        </td>
+                        <td>
+                            <?php echo $reg['expediente_tipo_nombre']; ?>
+                        </td>
+                        <td>
+                            <?php echo $reg['subtipo_exp']; ?>
+                        </td>
+                        <td>
+                            <?php echo $reg['expediente_estado_nombre']; ?>
+                        </td>
+                        <td>
+                            <?php echo $reg['expediente_descripcon']; ?>
+                        </td>
+                        <td>
+                            <?php echo $reg['expediente_fecha_fin']; ?>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="contenido">
+            <p>Total de expedientes:
+                <?php echo count($registro); ?>
+            </p>
+        </div>
+
+
 
     </section>
 </div>
@@ -95,97 +146,56 @@ function cargarTipo(id_tipo) {
     if (id_tipo != 0) {
         $('#expSubTipo').val('0');
 
-        //AJAX
+        // AJAX
 
         let xmlhttp;
-        if (window.XMLHttpRequest) { //code for IE7+, Firefox, Chrome, Opera, Safari
+        if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
-        } else { // code for IE6, IE5
+        } else {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
 
-        xmlhttp.onreadystatechange = function() { //Cuando cambia el estado de la petición
-            if (xmlhttp.readyState == 4 && xmlhttp.status ==
-                200) { //4 significa que terminó y 200 es la rpta OK del server
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 resultado = xmlhttp.responseText;
 
-
-
-
-
-
-
-
-                //ACA MANIPULO LA RESPUESTA DEL SERVIDOR
-
                 if (resultado != 0) {
-                    datos_atributos = JSON.parse(resultado); //El json en texto plano, se convierte en OBJETO json
+                    datos_atributos = JSON.parse(resultado);
+
                     $("#expSubTipo").html("");
-                    //document.getElementById('tipoAtributo').innerHTML = "";
-
-                    // Crear una option con value igual a 0
-                    var optionElement = document.createElement("option");
-                    optionElement.value = "0";
-                    optionElement.text = "--Seleccione--";
-
-                    // Agregar la opción al select
-                    document.getElementById('expSubTipo').appendChild(optionElement);
-                    //("#expSubTipo").append(optionElement)
                     for (let i = 0; i < datos_atributos.length; i++) {
                         nuevaOpcion = new Option(datos_atributos[i]['subtipo_exp'], datos_atributos[i][
                             'id_exp_tipo_subtipo'
                         ]);
-                        //$("#expSubTipo").add(nuevaOpcion, undefined);
                         document.getElementById('expSubTipo').add(nuevaOpcion, undefined);
                     }
                 } else {
-
-
                     document.getElementById('tipoAtributo').innerHTML = "";
                     $("#expSubTipo").html("");
-                    // Crear una option con value igual a 0
                     var optionElement = document.createElement("option");
                     optionElement.value = "0";
                     optionElement.text = "--Seleccione--";
-
-                    // Agregar la opción al select
                     document.getElementById('tipoAtributo').appendChild(optionElement);
                     $("#expSubTipo").append(optionElement);
-
                 }
-
-
-
-
-
-
-
-
-
-
-
-
             }
-        }
+        };
+
         xmlhttp.open("POST", "controlSubtipo.php", true);
-        xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'); //Modo en que se envia el dato
+        xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xmlhttp.send("function=leerSubTipo&idTipo=" + id_tipo);
     } else {
         alert('Debe seleccionar una Tipo');
         $("#expSubTipo").html("");
-        //document.getElementById('tipoAtributo').innerHTML = "";
-
-        // Crear una option con value igual a 0
         var optionElement = document.createElement("option");
         optionElement.value = "0";
         optionElement.text = "--Seleccione--";
-
-        // Agregar la opción al select
         document.getElementById('expSubTipo').appendChild(optionElement);
         return;
     }
 }
 </script>
+
 <?php
 include(ROOT_PATH . 'includes\footter.php');
 ?>

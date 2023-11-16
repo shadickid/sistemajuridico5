@@ -75,6 +75,26 @@ function agregarPersonaJuridica($razonSocial, $nroIngresoBruto, $cc, $fechadecon
     }
 }
 
+function modificarPersonaJuridico($razonSocial, $documento, $nroIngresoBruto, $cc, $fechadeconstitucion, $id_persona_juridica)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "UPDATE `sistemajuridico`.`persona_juridica` SET 
+            `fecha_de_constitucion` = '$fechadeconstitucion', 
+            `id_contrato_constitutivo` = '$cc',
+            `numero_de_ing_bruto` = '$nroIngresoBruto',
+            `razon_social` = '$razonSocial' 
+            WHERE (`id_persona_juridica` = '$id_persona_juridica');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}
 function agregarSexo($nombre)
 {
     global $connect;

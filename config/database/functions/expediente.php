@@ -235,36 +235,49 @@ function agregarExpediente($nroExpediente, $caratula, $fechaInicio, $fechaFin, $
     }
 }
 
-function obtenerListadoExpediente($subTipo,$expTipo)
+function obtenerListadoExpediente($subTipo, $expTipo)
 {
     global $connect;
 
     $connect->begin_transaction();
     $sql = "SELECT id_expediente,
-                                persona_nombre,
-                                persona_apellido,
-                                expediente_nro,
-                                expediente_nombre,
-                                expediente_fecha_inicio,
-                                expediente_tipo_nombre,
-                                expesubt.subtipo_exp,
-                                expediente_estado_nombre,
-                                expediente_descripcon,
-                                expediente_fecha_fin FROM persona persona
-                                inner join persona_fisica per_fisc on per_fisc.id_persona=persona.id_persona
-                                inner join expediente expe on expe.id_persona=persona.id_persona
-                                inner join expediente_tipo_subtipo exptipsub on exptipsub.id_exp_tipo_subtipo=expe.id_exp_tipo_subtipo
-                                inner join expediente_tipo exptipo on exptipo.id_expediente_tipo=exptipsub.id_expediente_tipo
-                                inner join expediente_subtipo expesubt on expesubt.id_expsubtipo=exptipsub.id_expsubtipo
-                                inner join expediente_estado expestado on expestado.id_expediente_estado=expe.id_expediente_estado";
+                    persona_nombre,
+                    persona_apellido,
+                    expediente_nro,
+                    expediente_nombre,
+                    expediente_fecha_inicio,
+                    expediente_tipo_nombre,
+                    expesubt.subtipo_exp,
+                    expediente_estado_nombre,
+                    expediente_descripcon,
+                    expediente_fecha_fin FROM persona persona
+                    INNER JOIN persona_fisica per_fisc ON per_fisc.id_persona=persona.id_persona
+                    INNER JOIN expediente expe ON expe.id_persona=persona.id_persona
+                    INNER JOIN expediente_tipo_subtipo exptipsub ON exptipsub.id_exp_tipo_subtipo=expe.id_exp_tipo_subtipo
+                    INNER JOIN expediente_tipo exptipo ON exptipo.id_expediente_tipo=exptipsub.id_expediente_tipo
+                    INNER JOIN expediente_subtipo expesubt ON expesubt.id_expsubtipo=exptipsub.id_expsubtipo
+                    INNER JOIN expediente_estado expestado ON expestado.id_expediente_estado=expe.id_expediente_estado";
 
-    if ($expTipo == 50){
+    if ($expTipo == 50) {
         $s = $connect->prepare($sql);
         $s->execute();
         $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
         $s->close();
         return $records;
-    }else if(){
+    } else {
+        // Aquí puedes agregar lógica para filtrar por subtipo si es diferente de 0
+        // Asumiendo que $subTipo contiene el valor seleccionado en el segundo select.
+        if ($subTipo != 0) {
+            $sql .= " WHERE expesubt.id_expsubtipo = ?";
+            $s = $connect->prepare($sql);
+            $s->bind_param("i", $subTipo); // "i" indica que $subTipo es un entero.
+        } else {
+            $s = $connect->prepare($sql);
+        }
 
+        $s->execute();
+        $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+        $s->close();
+        return $records;
     }
 }

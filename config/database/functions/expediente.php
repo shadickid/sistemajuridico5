@@ -258,5 +258,13 @@ function obtenerListadoExpediente($subTipo,$expTipo)
                                 inner join expediente_subtipo expesubt on expesubt.id_expsubtipo=exptipsub.id_expsubtipo
                                 inner join expediente_estado expestado on expestado.id_expediente_estado=expe.id_expediente_estado";
 
-    if ()
+    if ($expTipo == 50){
+        $s = $connect->prepare($sql);
+        $s->execute();
+        $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+        $s->close();
+        return $records;
+    }else if(){
+
+    }
 }

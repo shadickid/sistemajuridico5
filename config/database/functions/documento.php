@@ -66,11 +66,11 @@ function modificarPersonaDocumento($valor, $id_persona, $tipo_documento, $id_doc
         return 0;
     }
 }
-function borrarEmpleadoDocumento($id_tipo_documento)
+function borrarEmpleadoDocumento($id_documentoxpersona)
 {
     global $connect;
     $sql = "DELETE FROM `sistemajuridico`.`documentoxpersona` 
-    WHERE (`id_documentoxpersona` = '$id_tipo_documento');";
+    WHERE (`id_documentoxpersona` = '$id_documentoxpersona');";
     $s = $connect->prepare($sql);
 
     $s->execute();

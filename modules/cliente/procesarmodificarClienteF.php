@@ -12,26 +12,25 @@ $fec_nac = $_POST['fec_nac'];
 $sexo = $_POST['sexo'];
 $tipodocumento = $_POST['tipodocumento'];
 $documento = $_POST['documento'];
+$docuviejo = $_POST['docuviejo'];
 
-$dnicliente = null;
-$id_persona_fisica = null;
-$id_documentoxpersona = null;
 $verificar_datos_cliente = verificarDocumento($documento);
 foreach ($verificar_datos_cliente as $cliente) {
     $dnicliente = $cliente["detalle"];
-    $id_persona_fisica = $cliente['id_persona_fisica'];
-    $id_documentoxpersona = $cliente['id_documentoxpersona'];
-
-
 }
 
 
+$datos = verificarDocumento($docuviejo);
+foreach ($datos as $cliente)
+    echo $dnicliente;
+exit;
 if ($dnicliente == $documento) {
     header("location: modificarClienteF.php?idPersona=$idPersona&vali=1");
 } else {
     modificarPersonaFisicaEmpleado($nombre, $apellido, $fec_nac, $sexo, $id_persona_fisica);
-    modificarPersonaDocumento($documento, $idPersona, $tipodocumento, $id_documentoxpersona);
-    // header("location: listado.php?vali=2");
+    borrarEmpleadoDocumento($id_documentoxpersona);
+    agregarEmpleadoDocumento($documento, $idPersona, $tipodocumento);
+    header("location: listado.php?vali=2");
 }
 
 ?>

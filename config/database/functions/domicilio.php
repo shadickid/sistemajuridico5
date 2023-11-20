@@ -2,6 +2,48 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 require_once(ROOT_PATH . 'config/database/connect.php');
 /* Pais */
+function consultarProvincia($idPais)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "SELECT * FROM sistemajuridico.provincia WHERE id_pais=$idPais;";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}
+function consultarLocalidades($idProvincia)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "SELECT * FROM sistemajuridico.localidad where id_provincia=$idProvincia;";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}
+function consultarBarrios($idLocalidad)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "SELECT * FROM sistemajuridico.barrio where id_localidad=$idLocalidad;";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}
 function agregarPais($nombre)
 {
     global $connect;
@@ -281,4 +323,73 @@ function borrarAtributoDomicilio($id_atri_dom)
 
     $s->execute();
     $s->close();
+}
+
+function agregarDomicilio($idBarrio)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "INSERT INTO `sistemajuridico`.`domicilio` 
+    (`id_barrio`) VALUES ('$idBarrio');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $idBarrio = $connect->insert_id;
+        $s->close();
+        $connect->commit();
+        return $idBarrio;
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}
+
+function DomicilioAtributo($idDomicilio, $atributoDomicilio, $valorAtributo)
+{
+    global $connect;
+    $connect->begin_transaction();
+
+    for ($i = 0; $i < count($atributoDomicilio); $i++) {
+        $id_atributoDomicilio = $atributoDomicilio[$i];
+        $valor = $valorAtributo[$i];
+
+        $sql = "INSERT INTO `sistemajuridico`.`dom_atri_dom` 
+        (`valor`, `id_domicilio`, `id_atri_dom`) VALUES (?, ?, ?);";
+
+        $s = $connect->prepare($sql);
+
+        if ($s) {
+            $s->bind_param('sii', $valor, $idDomicilio, $id_atributoDomicilio);
+            $s->execute();
+            $s->close();
+        } else {
+            $connect->rollback();
+            return 0;
+        }
+    }
+
+    $connect->commit();
+    return 1;
+}
+
+function DomicilioPersonaTipoDom($idDomicilio, $tipoDom, $idPersona)
+{
+    global $connect;
+    $connect->begin_transaction();
+
+    $sql = "INSERT INTO `sistemajuridico`.`persona_dom` 
+    (`id_domicilio`, `id_tipo_dom`, `id_persona`) 
+    VALUES ('$idDomicilio', '$tipoDom', '$idPersona');";
+    $s = $connect->prepare($sql);
+
+    if ($s) {
+        $s->execute();
+
+        $s->close();
+        $connect->commit();
+        return 1;
+    } else {
+        $connect->rollback();
+        return 0;
+    }
 }

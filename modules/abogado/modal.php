@@ -15,7 +15,7 @@ $id_empleado = $_GET['id_empleado'];
             <section class="modal">
                 <div class="modal_container">
                     <img src="<?php echo BASE_URL ?>assets\img\user.png" class="modal_img">
-                    <h2 class="modal_title">Atencion!</h2>
+                    <h2 class="modal_titlev2">Atencion!</h2>
                     <p class="modal_parrafo">¿Quieres asignar un usuario al empleado ahora?
                     </p>
                     <div class="btn-modal-posisionamientoterritorial">

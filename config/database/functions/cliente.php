@@ -46,7 +46,6 @@ function datosClientesFisicosModificar($idPersona)
     $sql = "SELECT * FROM persona
             inner join persona_fisica on persona_fisica.id_persona=persona.id_persona
             inner join cliente on cliente.id_persona =persona.id_persona
-            inner join documentoxpersona on documentoxpersona.id_persona=persona.id_persona
             where cliente.estado=1 and persona.id_persona=$idPersona;";
     $s = $connect->prepare($sql);
     $s->execute();
@@ -127,4 +126,24 @@ function agregarCliente($idPersona)
         $connect->rollback();
         return 0;
     }
+}
+
+function obtenerDatosClienteDocumentoFisico($idPersona)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "SELECT * from persona
+            inner join persona_fisica on persona_fisica.id_persona=persona.id_persona
+            inner join documentoxpersona on documentoxpersona.id_persona=persona.id_persona
+            inner join documento on documento.id_tipo_documento=documentoxpersona.id_tipo_documento
+            inner join cliente on cliente.id_persona=persona.id_persona
+            where persona.id_persona=$idPersona";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
 }

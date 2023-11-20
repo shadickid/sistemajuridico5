@@ -21,19 +21,19 @@ $datosClientesJuridico = datosClientesJuridicos();
             <div class="msj-container" id="msj-container">
                 <?php switch ($vali):
                     case 1: ?>
-                        <span class="msj-success show">Se ha agregado correctamente</span>
-                        <?php
+                <span class="msj-success show">Se ha agregado correctamente</span>
+                <?php
                         break;
                     case 2: ?>
-                        <span class="msj-modify show">Se ha modificado correctamente</span>
-                        <?php
+                <span class="msj-modify show">Se ha modificado correctamente</span>
+                <?php
                         break;
                     case 3: ?>
-                        <span class="msj-delete show">Se ha borrado un correctamente</span>
-                        <?php
+                <span class="msj-delete show">Se ha borrado el cliente correctamente</span>
+                <?php
                         break;
                     case 4: ?>
-                        <span class="msj-error show">Se ha producido un error correctamente</span>
+                <span class="msj-error show">Se ha producido un error correctamente</span>
                 <?php endswitch ?>
             </div>
             <div class="btn-filtro-container">
@@ -58,49 +58,49 @@ $datosClientesJuridico = datosClientesJuridicos();
                 </thead>
                 <tbody>
                     <?php foreach ($datosclientesFisicos as $regclientefisico): ?>
-                        <tr class="clienteFisico">
-                            <td>
-                                <?php echo $regclientefisico['persona_nombre'] . ' ' . $regclientefisico['persona_apellido'] ?>
-                            </td>
-                            <td>F&iacute;sica</td>
-                            <td> <a
-                                    href="<?php echo BASE_URL ?>modules\cliente\modificarClienteF.php?idPersona=<?php echo $regclientefisico['id_persona'] ?>">
-                                    <button class="editarButton">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                </a>
-                            </td>
-                            <td>
-                                <a
-                                    href="<?php echo BASE_URL ?>modules\cliente\borrarClienteF.php?idPersona=<?php echo $regclientefisico['id_persona'] ?>">
-                                    <button class="darDeBajaButton">
-                                        <i class="fi-rr-eraser"></i>
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
+                    <tr class="clienteFisico">
+                        <td>
+                            <?php echo $regclientefisico['persona_nombre'] . ' ' . $regclientefisico['persona_apellido'] ?>
+                        </td>
+                        <td>F&iacute;sica</td>
+                        <td> <a
+                                href="<?php echo BASE_URL ?>modules\cliente\modificarClienteF.php?idPersona=<?php echo $regclientefisico['id_persona'] ?>">
+                                <button class="editarButton">
+                                    <i class="fi fi-rr-edit"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                href="<?php echo BASE_URL ?>modules\cliente\borrarClienteF.php?idPersona=<?php echo $regclientefisico['id_persona'] ?>">
+                                <button class="darDeBajaButton">
+                                    <i class="fi-rr-eraser"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
                     <?php endforeach ?>
                     <?php foreach ($datosClientesJuridico as $regClienteJuridico): ?>
-                        <tr class="clienteJuridico">
-                            <td>
-                                <?php echo $regClienteJuridico['razon_social'] ?>
-                            </td>
-                            <td>Jur&iacute;dica</td>
-                            <td> <a
-                                    href="<?php echo BASE_URL ?>modules\cliente\modificarClienteJ.php?idPersona=<?php echo $regClienteJuridico['id_persona'] ?>">
-                                    <button class="editarButton">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="<?php echo BASE_URL ?>modules\cliente\modificarClienteJ.php<?php echo $regClienteJuridico['id_persona_juridica'] ?>"
-                                    <button class="darDeBajaButton">
-                                    <i class="fi-rr-eraser"></i>
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
+                    <tr class="clienteJuridico">
+                        <td>
+                            <?php echo $regClienteJuridico['razon_social'] ?>
+                        </td>
+                        <td>Jur&iacute;dica</td>
+                        <td> <a
+                                href="<?php echo BASE_URL ?>modules\cliente\modificarClienteJ.php?idPersona=<?php echo $regClienteJuridico['id_persona'] ?>">
+                                <button class="editarButton">
+                                    <i class="fi fi-rr-edit"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="<?php echo BASE_URL ?>modules\cliente\modificarClienteJ.php<?php echo $regClienteJuridico['id_persona_juridica'] ?>"
+                                <button class="darDeBajaButton">
+                                <i class="fi-rr-eraser"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
                     <?php endforeach ?>
                 </tbody>
             </table>

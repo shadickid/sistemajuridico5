@@ -19,8 +19,8 @@ include(ROOT_PATH . 'includes\nav.php');
         <div class="contenido">
             <div>
                 <div>
-                    <a href="<?php echo BASE_URL ?>modules\reportes\expedientes\listado.php">
-                        <button type="button">Expedientes</button>
+                    <a href="<?php echo BASE_URL ?>modules\reportes\expedientes\menu.php">
+                        <button type="button" class="generar">Expedientes</button>
                     </a>
                 </div>
                 <div>

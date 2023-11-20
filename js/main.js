@@ -1,4 +1,24 @@
 $(document).ready(function () {
+  tinymce.init({
+    selector: "textarea#mytextarea",
+    plugins:
+      "ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss save",
+    toolbar:
+      "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat | save",
+    tinycomments_mode: "embedded",
+    tinycomments_author: "Author name",
+    save_onsavecallback: function () {
+      guardarContenido();
+    },
+    mergetags_list: [
+      { value: "First.Name", title: "First Name" },
+      { value: "Email", title: "Email" },
+    ],
+    ai_request: (request, respondWith) =>
+      respondWith.string(() =>
+        Promise.reject("See docs to implement AI Assistant")
+      ),
+  });
   notiBaja();
   ocultarMensajes();
 
@@ -71,6 +91,34 @@ $(document).ready(function () {
   let fechaFormateada = fechaHoy.toISOString().split("T")[0];
 
   $("#fechaInicio").val(fechaFormateada);
+
+  $("#tabs").tabs();
+  $("#formularioMovExp").validate({
+    errorClass: "validacion-error",
+    rules: {
+      descripcion: "required",
+      movimiento: {
+        required: true,
+        min: 1,
+      },
+      "archivo[]": {
+        required: true,
+        extension: "pdf|doc|docx",
+      },
+    },
+    messages: {
+      descripcion: "Por favor ingrese la descripción del movimiento",
+      movimiento: {
+        required: "Por favor seleccione el tipo de movimiento",
+        min: "Por favor seleccione el tipo de movimiento",
+      },
+      "archivo[]": {
+        required: "Por favor seleccione al menos un archivo",
+        extension:
+          "Por favor seleccione un archivo con una extensión válida (pdf, doc, docx)",
+      },
+    },
+  });
 });
 
 //validacion de Formulario Fisico
@@ -206,3 +254,75 @@ function formularioCliente() {
     formPersonaJuridica.hide();
   }
 }
+
+function cargarProvincias(idPais) {
+  if (idPais != 0) {
+    $.post(
+      "provincia.php", //archivo  del php de la url
+      {
+        id_pais: idPais,
+      }, // paramtro que le paso (nombre de variable:variable) nombre de que lo amos a usar y el otro del jquery
+      function (data) {
+        provincias = JSON.parse(data); // funcion de respuesta que me va dar el servidor
+        $("#provincias").empty();
+        for (let i = 0; i < provincias.length; i++) {
+          let option = $("<option>")
+            .val(provincias[i]["id_provincia"])
+            .text(provincias[i]["nombre"]);
+          $("#provincias").append(option);
+        }
+      }
+    );
+  } else {
+    alert("selecicone un pais");
+  }
+}
+
+function cargarLocalidades(idProvincia) {
+  if (idProvincia != 0) {
+    $.post(
+      "localidad.php",
+      {
+        idProvincia: idProvincia,
+      },
+      function (data) {
+        localidades = JSON.parse(data);
+        $("#localidad").empty();
+        for (let i = 0; i < localidades.length; i++) {
+          let option = $("<option>")
+            .val(localidades[i]["id_localidad"])
+            .text(localidades[i]["nombre"]);
+          $("#localidad").append(option);
+        }
+      }
+    );
+  }
+}
+function cargarBarrios(idLocalidad) {
+  if (idLocalidad != 0) {
+    $.post(
+      "barrio.php",
+      {
+        idLocalidad: idLocalidad,
+      },
+      function (data) {
+        barrios = JSON.parse(data);
+        $("#barrio").empty();
+        for (let i = 0; i < barrios.length; i++) {
+          let option = $("<option>")
+            .val(barrios[i]["id_barrio"])
+            .text(barrios[i]["nombre"]);
+          $("#barrio").append(option);
+        }
+      }
+    );
+  }
+}
+document.getElementById("pdfForm").addEventListener("submit", function () {
+  // Actualiza la acción del formulario con los valores de los filtros
+  var filtroForm = document.getElementById("filtroForm");
+  this.action =
+    "generarReportePDF.php" +
+    "?" +
+    new URLSearchParams(new FormData(filtroForm)).toString();
+});

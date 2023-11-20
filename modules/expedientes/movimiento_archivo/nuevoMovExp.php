@@ -17,8 +17,8 @@ $expediente = selectall('expediente', $conditional);
 
 foreach ($expediente as $regExp) {
     $caratula = $regExp['expediente_nombre'];
+    $idExpediente = $regExp['id_expediente'];
 }
-$empleado = datosEmpleadoAbogado();
 ?>
 <div class="breadcrumbs">
     <a href="<?php echo BASE_URL; ?>">INICIO</a>
@@ -35,53 +35,65 @@ $empleado = datosEmpleadoAbogado();
     </h1>
     <a href="<?php echo BASE_URL; ?>modules\expedientes\movimiento_archivo\nuevo_mov.php?id_expediente=<?php echo $id_expediente ?>"
         class="volver-atras-button">Volver Atr&aacute;s</a>
+
     <section class="inicio">
         <div class="contenido">
-            <h2>Nuevo movimiento de
-                <?php echo $caratula ?>
-            </h2>
-            <form action="" method="" id="">
-                <div>
+            <div id="tabs">
+                <ul>
+                    <li><a href="#movimientoTab">Generar Movimiento</a></li>
+                    <li><a href="#escritoTab">Generar Escrito</a></li>
+                </ul>
+
+                <div id="movimientoTab">
+                    <h2>Nuevo movimiento de
+                        <?php echo $caratula ?>
+                    </h2>
+                    <form action="procesarMovExp.php" method="post" id="formularioMovExp" enctype="multipart/form-data">
+                        <!-- <div>
                     <label for="fechamov" class="formulario-label">Fecha y Hora:</label>
                     <input type="date" name="fechamov" id="fechamov" class="formulario-input">
-                </div>
-                <div>
-                    <label for="descripcion" class="formulario-label">Descripcion:</label>
-                    <textarea class="formulario-input" name="descripcion" id="descripcion"></textarea>
-                </div>
-                <div>
-                    <label for="abogado" class="formulario-label">Responsable:</label>
-                    <select name="abogado" id="abogado" class="formulario-select">
-                        <option value="0">--Seleccione--</option>
-                        <?php foreach ($empleado as $regempl): ?>
-                            <option value="<?php echo $regempl['id_empleado'] ?>">
-                                <?php echo $regempl['persona_nombre'] . " " . $regempl['persona_apellido'] ?>
-                            </option>
-                        <?php endforeach ?>
-                    </select>
-                </div>
-                <div>
-                    <label for="movimiento" class="formulario-label">Tipo de movimiento:</label>
-                    <select name="movimiento" id="movimiento" class="formulario-select">
-                        <option value="0">--Seleccione--</option>
-                        <?php foreach ($movimiento as $regmov): ?>
-                            <option value="<?php echo $regmov['id_tipo_proceso'] ?>">
-                                <?php echo $regmov['nombre'] ?>
-                            </option>
-                        <?php endforeach ?>
-                    </select>
-                </div>
-                <div>
-                    <label for="file" class="formulario-label">Archivo:</label>
-                    <div class="file-input-container">
-                        <input type="file" size="60" name="file" id="myfile" class="formulario-file">
-                    </div>
-                </div>
-                <div>
-                    <button type="submit" name="submit" id="guardar" class="formulario-submit"> Guardar </button>
-                </div>
-            </form>
+                </div> -->
+                        <div>
+                            <label for="descripcion" class="formulario-label">Descripcion:</label>
+                            <textarea class="formulario-input" name="descripcion" id="descripcion"></textarea>
+                        </div>
+                        <div>
+                            <label for="movimiento" class="formulario-label">Tipo de movimiento:</label>
+                            <select name="movimiento" id="movimiento" class="formulario-select">
+                                <option value="0">--Seleccione--</option>
+                                <?php foreach ($movimiento as $regmov): ?>
+                                    <option value="<?php echo $regmov['id_tipo_proceso'] ?>">
+                                        <?php echo $regmov['nombre'] ?>
+                                    </option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <input type="hidden" value="<?php echo $_SESSION['id_usuario'] ?>" name="usuario">
+                        <div>
+                            <label for="archivo" class="formulario-label">Archivo:</label>
+                            <div class="file-input-container">
+                                <input type="file" name="archivo[]" id="myfile" multiple class="formulario-file">
+                            </div>
+                        </div>
+                        <input type="hidden" value="<?php echo $idExpediente ?>" name="idExpediente">
 
+                        <div>
+                            <button type="submit" name="submit" id="guardar" class="formulario-submit"> Guardar
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+                <div id="escritoTab">
+                    <form method="post" id="escrito" action="procesarEscrito.php">
+                        <textarea id="mytextarea" name="contenido">Por favor escriba algo aqui!</textarea>
+                        <div>
+                            <button type="submit" name="submit" id="guardar" class="formulario-submit"> Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
     </section>

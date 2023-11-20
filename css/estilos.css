@@ -666,8 +666,9 @@ legend {
 }
 .modal_titlev2 {
   font-size: 3.5rem;
-  background-color: red;
-  color: white;
+  background-color: rgb(224, 184, 98);
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
 }
 
 .modal_parrafo {
@@ -919,14 +920,53 @@ label.validacion-error {
 .file-input-container {
   position: relative;
   display: inline-block;
-  background-color: #f0f0f0; /* Gris claro */
+  background-color: #f0f0f0;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
 }
 
-/* Estilo para el texto dentro del contenedor */
 .formulario-file {
-  color: #1e90ff; /* Azul claro */
+  color: #1e90ff;
   font-weight: bold;
+}
+.generar {
+  background-color: #008000;
+  padding: 10px;
+  border: none;
+  margin: 10px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.generar:hover {
+  background-color: #0b620b;
+  transform: scale(1.05);
+}
+
+.tablaDomicilio {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.tableDomicilio table,
+table tr,
+table tr th,
+table tr td {
+  border: 1px solid #dddddd;
+}
+
+.tableDomicilio table th {
+  background-color: #dddddd;
+  color: #525252;
+}
+
+.tableDomicilio table th,
+table td {
+  padding: 5px;
 }

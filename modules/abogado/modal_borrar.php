@@ -7,8 +7,8 @@ include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 $idPersonaFisica = $_GET['idPersonaFisica'];
 $datosEmpleado = selectModificarDatosPersonalesEmpleado($idPersonaFisica);
-foreach ($datosEmpleado as $regemp) :
-?>
+foreach ($datosEmpleado as $regemp):
+    ?>
 <div class="dashboard">
     <h1>Listado de abogados</h1>
     <section class="inicio">
@@ -25,7 +25,7 @@ foreach ($datosEmpleado as $regemp) :
                     <div class="btn-modal-posisionamientoterritorial">
                         <a href="<?php echo BASE_URL ?>modules\abogado\listado.php" class="modal_close">Cerrar</a>
                         <a href="<?php echo BASE_URL ?>modules\abogado\procesarBorrar.php?&idEmpleado=<?php echo $regemp['id_empleado'] ?>"
-                            class="modal_aceptar">Hola</a>
+                            class="modal_aceptar">Aceptar</a>
                     </div>
                 </div>
             </section>

@@ -73,6 +73,8 @@ function datosPersonalesEmpleadoDocumento($id_usuario)
     $s->close();
     return $records;
 }
+
+
 function agregarEmpleadoUsuario($usuario, $contraseña, $perfil, $id_empleado)
 {
     global $connect;
@@ -195,19 +197,19 @@ function ModificarDatosPersonalesEmpleado($idPersonaFisica, $nombre, $apellido, 
     $s->execute();
     $s->close();
 }
-function modificarDatosEmpleados($idPersonaFisica, $nombre, $apellido, $fecnac, $idSexo)
-{
-    global $connect;
-    $connect->begin_transaction();
+// function modificarDatosEmpleados($idPersonaFisica, $nombre, $apellido, $fecnac, $idSexo)
+// {
+//     global $connect;
+//     $connect->begin_transaction();
 
-    $sql = "UPDATE `sistemajuridico`.`persona_fisica` 
-    SET 
-    `persona_nombre`        = '$nombre', 
-    `persona_apellido`      = '$apellido', 
-    `persona_fec_nac`       = '$fecnac', 
-    `id_sexo`               = ''                   WHERE 
-    (`id_persona_fisica`    = '$idPersonaFisica');";
-}
+//     $sql = "UPDATE `sistemajuridico`.`persona_fisica` 
+//     SET 
+//     `persona_nombre`        = '$nombre', 
+//     `persona_apellido`      = '$apellido', 
+//     `persona_fec_nac`       = '$fecnac', 
+//     `id_sexo`               = ''                   WHERE 
+//     (`id_persona_fisica`    = '$idPersonaFisica');";
+// }
 function borrarPersonaEmpleado($idEmpleado)
 {
     global $connect;

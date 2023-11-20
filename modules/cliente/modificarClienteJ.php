@@ -58,6 +58,8 @@ $datosclientes = datosClientesJuridicosModificar($idPersona);
                             <input type="hidden" name="tipodocumento" value="3">
                             <input type="number" id="cuit" name="cuit" placeholder="cuit de la empresa"
                                 class="formulario-input" value="<?php echo $regCliente['detalle'] ?>">
+                            <input type="hidden" name="docuviejo" id="docuviejo" class="formulario-input"
+                                value="<?php echo $regCliente['detalle'] ?>">
                         </div>
                         <div>
                             <label for="nroIngresoBruto" class="formulario-label">Nro de ingreso bruto:</label>

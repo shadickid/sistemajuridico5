@@ -2,6 +2,7 @@
 /* require_once('../../../config/path.php'); */
 /* no funciona asi, pero si le pongo ../ si funciona */
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
+require_once(ROOT_PATH . 'vendor\autoload.php');
 session_start();
 if (!isset($_SESSION['usuario'])) {
     header('location:' . BASE_URL . 'modules/login/login.php');
@@ -14,6 +15,10 @@ if (isset($_GET['vali']) && $_GET['vali'] !== null) {
 } else {
     $vali = null;
 }
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,7 +35,7 @@ if (isset($_GET['vali']) && $_GET['vali'] !== null) {
         href="<?php echo BASE_URL; ?>assets\icons\uicons-regular-rounded\css\uicons-regular-rounded.css" />
     <title>Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>

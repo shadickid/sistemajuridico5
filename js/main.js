@@ -1,4 +1,67 @@
 $(document).ready(function () {
+  $("#cambiarContrasenaForm").validate({
+    errorClass: "validacion-error",
+    rules: {
+      nuevaContrasena: {
+        required: true,
+      },
+      confirmarContrasena: {
+        required: true,
+        equalTo: "#nuevaContrasena",
+      },
+    },
+    messages: {
+      nuevaContrasena: {
+        required: "Ingrese la nueva contraseña",
+      },
+      confirmarContrasena: {
+        required: "Confirme la contraseña",
+        equalTo: "Las contraseñas no coinciden",
+      },
+    },
+  });
+
+  $("#modalCambiarContrasena").dialog({
+    autoOpen: true,
+    modal: true,
+    width: 400,
+    resizable: false,
+    draggable: false,
+    closeOnEscape: false,
+    open: function (event, ui) {
+      $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+    },
+  });
+  $(document).ready(function () {
+    $("#modulo").select2();
+
+    $("#guardarBtn").on("click", function (e) {
+      e.preventDefault();
+      let moduloSeleccionado = $("#modulo").val();
+      let idPerfil = $("#idPerfilxModulo").val();
+
+      $.ajax({
+        type: "POST",
+        url: "procesarModulo.php",
+        data: { modulo: moduloSeleccionado, idPerfil: idPerfil },
+      });
+    });
+
+    $("#modulo").on("select2:unselect", function (e) {
+      let borrarModulo = e.params.data.id;
+      let idPerfil2 = $("#idPerfilxModulo").val();
+
+      $.ajax({
+        type: "POST",
+        url: "procesarEliminarModulo.php",
+        data: {
+          modulo: borrarModulo,
+          idPerfil: idPerfil2,
+        },
+      });
+    });
+  });
+
   tinymce.init({
     selector: "textarea#mytextarea",
     plugins:
@@ -28,32 +91,46 @@ $(document).ready(function () {
       nombre: "required",
       apellido: "required",
       fec_nac: "required",
-      sexo: { ForSex: true },
-      tipodocumento: { ForDoc: true },
-      doc: {
+      sexo: { requiredSelect: true },
+      tipoDocumento: { requiredSelect: true },
+      documentoValor: {
         required: true,
         digits: true,
       },
+      tipoContacto: { requiredSelect: true },
+      contactoValor: "required",
+      pais: { requiredSelect: true },
+      provincias: { requiredSelect: true },
+      localidad: { requiredSelect: true },
+      barrio: { requiredSelect: true },
+      tipoDom: { requiredSelect: true },
     },
     messages: {
       nombre: "Por favor ingrese el nombre del cliente",
-      apellido: "Por favor ingree el apellido",
+      apellido: "Por favor ingrese el apellido",
       fec_nac: "Por favor ingrese la fecha de nacimiento",
+      sexo: "Por favor seleccione el género",
+      tipoDocumento: "Por favor seleccione el tipo de documento",
+      documentoValor: {
+        required: "Por favor ingrese el número de documento",
+        digits: "Por favor ingrese solo números",
+      },
+      tipoContacto: "Por favor seleeccione un tipo de contacto",
+      contactoValor: "Por favor ingrese el contacto",
+      pais: "Por favor seleccione el país",
+      provincias: "Por favor seleccione la provincia",
+      localidad: "Por favor seleccione la localidad",
+      barrio: "Por favor seleccione el barrio",
+      tipoDom: "Por favor seleccione el tipo de domicilio",
     },
   });
+
   $.validator.addMethod(
-    "ForSex",
-    function (value, element, param) {
+    "requiredSelect",
+    function (value, element) {
       return value != "0";
     },
-    "Por favor seleccione el genero"
-  );
-  $.validator.addMethod(
-    "ForDoc",
-    function (value, element, param) {
-      return value != "0";
-    },
-    "Por favor seleccione el documento"
+    "Por favor seleccione una opción"
   );
   //Formulario de cliente juridico
   $("#formularioClienteJ").validate({
@@ -182,6 +259,95 @@ function notiBaja() {
     });
   }
 }
+$("#formularioAbogado").validate({
+  errorClass: "validacion-error",
+  rules: {
+    name: "required",
+    lastname: "required",
+    fec_nac: "required",
+    esp: {
+      required: true,
+      min: 1, // Asegúrate de que se haya seleccionado una especialización
+    },
+    sex: {
+      required: true,
+      min: 1, // Asegúrate de que se haya seleccionado un sexo
+    },
+    tipoContacto: {
+      required: true,
+      min: 1, // Asegúrate de que se haya seleccionado un tipo de contacto
+    },
+    contactoValor: "required",
+    tipoDocumento: {
+      required: true,
+      min: 1, // Asegúrate de que se haya seleccionado un tipo de documento
+    },
+    pais: {
+      required: true,
+      min: 1, // Asegúrate de que se haya seleccionado un país
+    },
+    provincias: {
+      required: true,
+      min: 1, // Asegúrate de que se haya seleccionado una provincia
+    },
+    localidad: {
+      required: true,
+      min: 1, // Asegúrate de que se haya seleccionado una localidad
+    },
+    barrio: {
+      required: true,
+      min: 1, // Asegúrate de que se haya seleccionado un barrio
+    },
+    tipoDom: {
+      required: true,
+      min: 1, // Asegúrate de que se haya seleccionado un tipo de domicilio
+    },
+    valorAtributo: "required",
+  },
+  messages: {
+    name: "Por favor ingrese el nombre del abogado",
+    lastname: "Por favor ingrese el apellido del abogado",
+    fec_nac: "Por favor ingrese la fecha de nacimiento del abogado",
+    esp: {
+      required: "Por favor seleccione la especialización",
+      min: "Por favor seleccione la especialización",
+    },
+    sex: {
+      required: "Por favor seleccione el sexo",
+      min: "Por favor seleccione el sexo",
+    },
+    tipoContacto: {
+      required: "Por favor seleccione el tipo de contacto",
+      min: "Por favor seleccione el tipo de contacto",
+    },
+    contactoValor: "Por favor ingrese el valor de contacto",
+    tipoDocumento: {
+      required: "Por favor seleccione el tipo de documento",
+      min: "Por favor seleccione el tipo de documento",
+    },
+    pais: {
+      required: "Por favor seleccione el país",
+      min: "Por favor seleccione el país",
+    },
+    provincias: {
+      required: "Por favor seleccione la provincia",
+      min: "Por favor seleccione la provincia",
+    },
+    localidad: {
+      required: "Por favor seleccione la localidad",
+      min: "Por favor seleccione la localidad",
+    },
+    barrio: {
+      required: "Por favor seleccione el barrio",
+      min: "Por favor seleccione el barrio",
+    },
+    tipoDom: {
+      required: "Por favor seleccione el tipo de domicilio",
+      min: "Por favor seleccione el tipo de domicilio",
+    },
+    valorAtributo: "Por favor ingrese el valor del atributo",
+  },
+});
 function ocultarMensajes() {
   let contenedorMensajes = document.getElementById("msj-container");
   if (contenedorMensajes) {

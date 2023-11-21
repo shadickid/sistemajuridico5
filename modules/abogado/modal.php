@@ -20,8 +20,8 @@ $id_empleado = $_GET['id_empleado'];
                     </p>
                     <div class="btn-modal-posisionamientoterritorial">
                         <a href="<?php echo BASE_URL ?>modules\abogado\listado.php" class="modal_close">No</a>
-                        <a href="<?php echo BASE_URL ?>modules/usuario/registro.php?id_empleado=" . $id_empleado;
-                            class="modal_aceptar">Si</a>
+                        <a href="<?php echo BASE_URL ?>modules/usuario/registro.php?id_empleado=<?php echo $id_empleado ?>"
+                            ; class="modal_aceptar">Si</a>
                     </div>
                 </div>
             </section>

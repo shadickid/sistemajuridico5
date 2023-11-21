@@ -16,9 +16,13 @@ $totalMovimientos = "";
 <div class="breadcrumbs">
     <a href="<?php echo BASE_URL; ?>">INICIO</a>
     <span>/</span>
-    <span>Reporte</span>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
     <span>/</span>
-    <span>Expedientes</span>
+    <a href="<?php echo BASE_URL; ?>modules/reportes/menu.php">Reporte</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\reportes\expedientes\menu.php">Expedientes</a>
+    <span>/</span>
+    <span>Por Movimiento</span>
 </div>
 <div class="dashboard">
     <h1>Reportes de Expedientes</h1>
@@ -33,11 +37,11 @@ $totalMovimientos = "";
                         <select name="expedientes" class="formulario-select" id="expedientes">
                             <option value="0">--Seleccione--</option>
                             <?php foreach ($expedientes as $regExp): ?>
-                            <option value="<?php echo $regExp['id_expediente'] ?>">
-                                <?php echo $regExp['expediente_nro'] ?>
-                                |
-                                <?php echo $regExp['expediente_nombre'] ?>
-                            </option>
+                                <option value="<?php echo $regExp['id_expediente'] ?>">
+                                    <?php echo $regExp['expediente_nro'] ?>
+                                    |
+                                    <?php echo $regExp['expediente_nombre'] ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
                     </div>

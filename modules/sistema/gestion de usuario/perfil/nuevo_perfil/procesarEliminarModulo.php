@@ -6,9 +6,4 @@ $modulos = $_POST['modulo'];
 $idPerfil = $_POST['idPerfil'];
 
 
-
-$devolver = agregarPerfilxModulo($idPerfil, $modulos);
-if ($devolver == 1) {
-    $response['vali'] = 1;
-    echo json_encode($response);
-}
+eliminarPerfilxModulo($idPerfil, $modulos);

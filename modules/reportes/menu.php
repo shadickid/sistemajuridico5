@@ -8,9 +8,9 @@ include(ROOT_PATH . 'includes\nav.php');
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
     <span>/</span>
-    <a href="<?php echo BASE_URL; ?>">algo</a>
+    <span>Reporte</span>
     <span>/</span>
-    <span>algo</span>
+
 </div>
 <div class="dashboard">
     <h1>Reportes</h1>
@@ -24,8 +24,8 @@ include(ROOT_PATH . 'includes\nav.php');
                     </a>
                 </div>
                 <div>
-                    <a href="">
-                        <button type="button">Clientes</button>
+                    <a href="<?php echo BASE_URL ?>modules\reportes\clientes\menu.php">
+                        <button type="button" class="generar">Clientes</button>
                     </a>
                 </div>
 

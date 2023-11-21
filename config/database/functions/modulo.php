@@ -64,3 +64,60 @@ function consultarPerfilxModulo($id_perfil)
     $s->close();
     return $records;
 }
+
+function agregarPerfilxModulo($id_perfil, $Modulo)
+{
+    global $connect;
+    $connect->begin_transaction();
+
+    try {
+        for ($i = 0; $i < count($Modulo); $i++) {
+            $idModulo = $Modulo[$i];
+            $sql = "INSERT INTO `sistemajuridico`.`perfilxmodulo` 
+            (`id_perfil`, `id_modulo`) VALUES (?, ?)";
+            $s = $connect->prepare($sql);
+
+            if ($s) {
+                $s->bind_param('ii', $id_perfil, $idModulo);
+                $s->execute();
+                $s->close();
+            } else {
+                throw new Exception("Error en la preparación de la consulta.");
+            }
+        }
+
+        $connect->commit();
+        return 1;
+    } catch (Exception $e) {
+        $connect->rollback();
+        return 0;
+    }
+}
+
+function eliminarPerfilxModulo($id_perfil, $id_modulo)
+{
+    global $connect;
+
+    $connect->begin_transaction();
+
+    try {
+        $sql = "DELETE FROM `sistemajuridico`.`perfilxmodulo` 
+                WHERE `id_perfil` = ? AND `id_modulo` = ?";
+
+        $stmt = $connect->prepare($sql);
+
+        if ($stmt) {
+            $stmt->bind_param('ii', $id_perfil, $id_modulo);
+            $stmt->execute();
+            $stmt->close();
+
+            $connect->commit();
+            return true;
+        } else {
+            throw new Exception("Error en la preparación de la consulta.");
+        }
+    } catch (Exception $e) {
+        $connect->rollback();
+        return false;
+    }
+}

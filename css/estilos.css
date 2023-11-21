@@ -970,3 +970,35 @@ table tr td {
 table td {
   padding: 5px;
 }
+
+#modalCambiarContrasena {
+  display: none;
+}
+
+#modalCambiarContrasena p {
+  margin-bottom: 15px;
+}
+
+#modalCambiarContrasena label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#modalCambiarContrasena input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+#modalCambiarContrasena button {
+  background-color: #1e90ff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#modalCambiarContrasena button:hover {
+  background-color: #1e5875;
+}

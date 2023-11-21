@@ -24,9 +24,13 @@ $totalExpedientes = count($registro) + count($registrosj);
 <div class="breadcrumbs">
     <a href="<?php echo BASE_URL; ?>">INICIO</a>
     <span>/</span>
-    <span>Reporte</span>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
     <span>/</span>
-    <span>Expedientes</span>
+    <a href="<?php echo BASE_URL; ?>modules/reportes/menu.php">Reporte</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\reportes\expedientes\menu.php">Expedientes</a>
+    <span>/</span>
+    <span>Por Estado</span>
 </div>
 <div class="dashboard">
     <h1>Reportes de Expedientes</h1>
@@ -42,9 +46,9 @@ $totalExpedientes = count($registro) + count($registrosj);
                             <option value="0">--Seleccione--</option>
                             <option value="50">Todos</option>
                             <?php foreach ($estadoLista as $regestado): ?>
-                            <option value="<?php echo $regestado['id_expediente_estado'] ?>">
-                                <?php echo $regestado['expediente_estado_nombre'] ?>
-                            </option>
+                                <option value="<?php echo $regestado['id_expediente_estado'] ?>">
+                                    <?php echo $regestado['expediente_estado_nombre'] ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -84,72 +88,72 @@ $totalExpedientes = count($registro) + count($registrosj);
                 </thead>
                 <tbody>
                     <?php foreach ($registro as $reg): ?>
-                    <tr>
-                        <td>
-                            <?php echo $reg['id_expediente']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['persona_nombre'] . ' ' . $reg['persona_apellido']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_nro']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_nombre']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_fecha_inicio']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_tipo_nombre']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['subtipo_exp']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_estado_nombre']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_descripcon']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_fecha_fin']; ?>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <?php echo $reg['id_expediente']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['persona_nombre'] . ' ' . $reg['persona_apellido']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_nro']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_fecha_inicio']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_tipo_nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['subtipo_exp']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_estado_nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_descripcon']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_fecha_fin']; ?>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                     <?php foreach ($registrosj as $registrosj): ?>
-                    <tr>
-                        <td>
-                            <?php echo $registrosj['id_expediente']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['razon_social'] ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_nro']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_nombre']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_fecha_inicio']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_tipo_nombre']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['subtipo_exp']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_estado_nombre']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_descripcon']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_fecha_fin']; ?>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <?php echo $registrosj['id_expediente']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['razon_social'] ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_nro']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_fecha_inicio']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_tipo_nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['subtipo_exp']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_estado_nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_descripcon']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_fecha_fin']; ?>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
 
                 </tbody>

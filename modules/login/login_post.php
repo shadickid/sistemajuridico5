@@ -42,6 +42,7 @@ if ($datos_user->num_rows == 1) {
             $apellido = $reg['persona_apellido'];
             $id_perfil = $reg['id_perfil'];
             $id_usuario = $reg['id_usuario'];
+            $contrasena = $reg['usuario_contrasena'];
         }
         session_start();
         $_SESSION['perfil'] = $perfil;
@@ -50,6 +51,7 @@ if ($datos_user->num_rows == 1) {
         $_SESSION['apellido'] = $apellido;
         $_SESSION['id_perfil'] = $id_perfil;
         $_SESSION['id_usuario'] = $id_usuario;
+        $_SESSION['contrasena'] = $contrasena;
 
         header('location:' . BASE_URL . 'modules/dashboard/dashboard.php');
     } else {

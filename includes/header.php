@@ -15,8 +15,15 @@ if (isset($_GET['vali']) && $_GET['vali'] !== null) {
 } else {
     $vali = null;
 }
+$contra = 12345;
+$contrasesion = $_SESSION['contrasena'];
 
+if (password_verify($contra, $contrasesion) == "12345") {
+    $mostrarModal = true;
 
+} else {
+    $mostrarModal = false;
+}
 
 
 ?>
@@ -35,7 +42,9 @@ if (isset($_GET['vali']) && $_GET['vali'] !== null) {
         href="<?php echo BASE_URL; ?>assets\icons\uicons-regular-rounded\css\uicons-regular-rounded.css" />
     <title>Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL ?>css/jquery-ui.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL ?>css\select2.min.css">
+
 </head>
 
 <body>

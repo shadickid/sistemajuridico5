@@ -14,7 +14,7 @@ $datosempleado = datosEmpleadoAbogado();
 </div>
 <div class="dashboard">
     <h1>Listado de abogados</h1>
-    <a href="#" onclick="window.history.go(-1); return false;" class="volver-atras-button">Volver Atrás</a>
+    <a href="<?php echo BASE_URL; ?>"" class=" volver-atras-button">Volver Atrás</a>
 
     <section class="inicio">
         <div class="contenido">

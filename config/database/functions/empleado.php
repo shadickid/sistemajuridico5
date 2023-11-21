@@ -56,6 +56,7 @@ function datosPersonalesEmpleadoContacto($id_usuario)
     $s->close();
     return $records;
 }
+
 function datosPersonalesEmpleadoDocumento($id_usuario)
 {
     global $connect;
@@ -217,4 +218,22 @@ function borrarPersonaEmpleado($idEmpleado)
     $s = $connect->prepare($sql);
     $s->execute();
     $s->close();
+}
+
+function actualizarContrasena($idUsuario, $contra)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "UPDATE `sistemajuridico`.`usuario` SET `usuario_contrasena` = '$contra' WHERE (`id_usuario` = '$idUsuario');";
+    $s = $connect->prepare($sql);
+
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+        return 1;
+    } else {
+        $connect->rollback();
+        return 0;
+    }
 }

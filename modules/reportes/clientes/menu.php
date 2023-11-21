@@ -10,7 +10,7 @@ include(ROOT_PATH . 'includes\nav.php');
     <span>/</span>
     <a href="<?php echo BASE_URL; ?>modules/reportes/menu.php">Reporte</a>
     <span>/</span>
-    <span>Expedientes</span>
+    <span>Clientes</span>
 </div>
 <div class="dashboard">
     <h1>Reportes</h1>
@@ -19,21 +19,10 @@ include(ROOT_PATH . 'includes\nav.php');
         <div class="contenido">
             <div>
                 <div>
-                    <a href="<?php echo BASE_URL ?>modules\reportes\expedientes\cantidadExpedientes\listado.php">
-                        <button type="button" class="generar">Cantidad de expedientes</button>
+                    <a href="<?php echo BASE_URL ?>">
+                        <button type="button" class="generar">Cantidad de expedientes por Cliente</button>
                     </a>
                 </div>
-                <div>
-                    <a href="<?php echo BASE_URL ?>modules\reportes\expedientes\porEstado\listado.php">
-                        <button type="button" class="generar">Por Estado</button>
-                    </a>
-                </div>
-                <div>
-                    <a href="<?php echo BASE_URL ?>modules\reportes\expedientes\porMovimiento\listado.php">
-                        <button type="button" class="generar">Por Movimiento</button>
-                    </a>
-                </div>
-
             </div>
         </div>
 

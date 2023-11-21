@@ -6,31 +6,50 @@ include(ROOT_PATH . 'config\database\functions\domicilio.php');
 include(ROOT_PATH . 'config\database\functions\empleado.php');
 include(ROOT_PATH . 'config\database\functions\documento.php');
 include(ROOT_PATH . 'config\database\functions\especializacion.php');
+
 $name = $_POST['name'];
 $lastname = $_POST['lastname'];
 $fec_nac = $_POST['fec_nac'];
 $esp = $_POST['esp'];
 $sex = $_POST['sex'];
 $tipoContacto = $_POST['tipoContacto'];
-$contacto = $_POST['contacto'];
+$contacto = $_POST['contactoValor'];
 $tipoDocumento = $_POST['tipoDocumento'];
-$documento = $_POST['Documento'];
+$documento = $_POST['documentoValor'];
 $tipopersona = $_POST['tipopersona'];
+$barrio = $_POST['barrio'];
+$tipoAtributo = $_POST['atributosSeleccionados'];
+$valorAtributo = $_POST['valoresIngresados'];
+$tipoDom = $_POST['tipoDom'];
 
-$id_persona = agregarPersona($tipopersona);
+$sql = "SELECT * FROM persona
+        inner join persona_fisica on persona_fisica.id_persona=persona.id_persona
+        inner join documentoxpersona on persona.id_persona=documentoxpersona.id_persona
+        where documentoxpersona.detalle=$documento";
 
-agregarContactoEmpleado($id_persona, $contacto, $tipoContacto);
+$verificar_datos_cliente = $connect->query($sql);
 
-agregarEmpleadoDocumento($documento, $id_persona, $tipoDocumento);
+if ($verificar_datos_cliente->num_rows > 0) {
+    header("location: formulario_abogado.php?vali=1");
+} else {
+    $id_persona = agregarPersona($tipopersona);
 
-$idPersonaFisica = agregarPersonaFisicaEmpleado($name, $lastname, $fec_nac, $sex, $id_persona);
-$idtipoempleado = 1;
-$id_empleado = agregarEmpleado($idPersonaFisica, $idtipoempleado);
-agregarEspEmpleado($id_empleado, $esp);
+    agregarContactoEmpleado($id_persona, $contacto, $tipoContacto);
 
+    agregarEmpleadoDocumento($documento, $id_persona, $tipoDocumento);
 
-//
-header("location:modal.php?id_empleado=" . $id_empleado);
+    $idPersonaFisica = agregarPersonaFisicaEmpleado($name, $lastname, $fec_nac, $sex, $id_persona);
+    $idtipoempleado = 1;
+    $id_empleado = agregarEmpleado($idPersonaFisica, $idtipoempleado);
+    agregarEspEmpleado($id_empleado, $esp);
 
-// $localizacion = BASE_URL . "modules/usuario/registro.php?id_empleado=" . $id_empleado;
-// header("location:$localizacion");
+    if ($barrio !== null && !empty($barrio)) {
+        $idDomicilio = agregarDomicilio($barrio);
+        DomicilioPersonaTipoDom($idDomicilio, $tipoDom, $id_persona);
+        DomicilioAtributo($idDomicilio, $tipoAtributo, $valorAtributo);
+        header("location:modal.php?id_empleado=$id_empleado");
+    } else {
+        header("location:modal.php?id_empleado=$id_empleado");
+    }
+}
+?>

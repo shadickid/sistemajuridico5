@@ -25,9 +25,13 @@ $totalExpedientes = count($registro) + count($registrosj);
 <div class="breadcrumbs">
     <a href="<?php echo BASE_URL; ?>">INICIO</a>
     <span>/</span>
-    <span>Reporte</span>
+    <a href="<?php echo BASE_URL; ?>modules\sistema\menu.php">SISTEMA</a>
     <span>/</span>
-    <span>Expedientes</span>
+    <a href="<?php echo BASE_URL; ?>modules/reportes/menu.php">Reporte</a>
+    <span>/</span>
+    <a href="<?php echo BASE_URL; ?>modules\reportes\expedientes\menu.php">Expedientes</a>
+    <span>/</span>
+    <span>Por Cantidad de Expedientes</span>
 </div>
 <div class="dashboard">
     <h1>Reportes de Expedientes</h1>
@@ -43,9 +47,9 @@ $totalExpedientes = count($registro) + count($registrosj);
                             <option value="0">--Seleccione--</option>
                             <option value="50">Todos</option>
                             <?php foreach ($tipo as $regtipo): ?>
-                            <option value="<?php echo $regtipo['id_expediente_tipo'] ?>">
-                                <?php echo $regtipo['expediente_tipo_nombre'] ?>
-                            </option>
+                                <option value="<?php echo $regtipo['id_expediente_tipo'] ?>">
+                                    <?php echo $regtipo['expediente_tipo_nombre'] ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -92,72 +96,72 @@ $totalExpedientes = count($registro) + count($registrosj);
                 </thead>
                 <tbody>
                     <?php foreach ($registro as $reg): ?>
-                    <tr>
-                        <td>
-                            <?php echo $reg['id_expediente']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['persona_nombre'] . ' ' . $reg['persona_apellido']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_nro']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_nombre']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_fecha_inicio']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_tipo_nombre']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['subtipo_exp']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_estado_nombre']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_descripcon']; ?>
-                        </td>
-                        <td>
-                            <?php echo $reg['expediente_fecha_fin']; ?>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <?php echo $reg['id_expediente']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['persona_nombre'] . ' ' . $reg['persona_apellido']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_nro']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_fecha_inicio']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_tipo_nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['subtipo_exp']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_estado_nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_descripcon']; ?>
+                            </td>
+                            <td>
+                                <?php echo $reg['expediente_fecha_fin']; ?>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                     <?php foreach ($registrosj as $registrosj): ?>
-                    <tr>
-                        <td>
-                            <?php echo $registrosj['id_expediente']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['razon_social'] ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_nro']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_nombre']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_fecha_inicio']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_tipo_nombre']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['subtipo_exp']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_estado_nombre']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_descripcon']; ?>
-                        </td>
-                        <td>
-                            <?php echo $registrosj['expediente_fecha_fin']; ?>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <?php echo $registrosj['id_expediente']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['razon_social'] ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_nro']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_fecha_inicio']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_tipo_nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['subtipo_exp']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_estado_nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_descripcon']; ?>
+                            </td>
+                            <td>
+                                <?php echo $registrosj['expediente_fecha_fin']; ?>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
 
                 </tbody>
@@ -177,46 +181,46 @@ $totalExpedientes = count($registro) + count($registrosj);
 </div>
 
 <script>
-function cargarTipo(id_tipo) {
-    let datos_atributos;
-    let nuevaOpcion;
+    function cargarTipo(id_tipo) {
+        let datos_atributos;
+        let nuevaOpcion;
 
-    if (id_tipo != 0) {
-        $('#expSubTipo').val('0');
+        if (id_tipo != 0) {
+            $('#expSubTipo').val('0');
 
-        // AJAX con jQuery
-        $.post("controlSubtipo.php", {
-            function: 'leerSubTipo',
-            idTipo: id_tipo
-        }, function(resultado) {
-            if (resultado != 0) {
-                datos_atributos = JSON.parse(resultado);
+            // AJAX con jQuery
+            $.post("controlSubtipo.php", {
+                function: 'leerSubTipo',
+                idTipo: id_tipo
+            }, function (resultado) {
+                if (resultado != 0) {
+                    datos_atributos = JSON.parse(resultado);
 
-                $("#expSubTipo").html("");
-                for (let i = 0; i < datos_atributos.length; i++) {
-                    nuevaOpcion = new Option(datos_atributos[i]['subtipo_exp'], datos_atributos[i][
-                        'id_exp_tipo_subtipo'
-                    ]);
-                    $('#expSubTipo').append(nuevaOpcion);
+                    $("#expSubTipo").html("");
+                    for (let i = 0; i < datos_atributos.length; i++) {
+                        nuevaOpcion = new Option(datos_atributos[i]['subtipo_exp'], datos_atributos[i][
+                            'id_exp_tipo_subtipo'
+                        ]);
+                        $('#expSubTipo').append(nuevaOpcion);
+                    }
+                } else {
+                    $("#expSubTipo").html("");
+                    var optionElement = document.createElement("option");
+                    optionElement.value = "0";
+                    optionElement.text = "--Seleccione--";
+                    $('#expSubTipo').append(optionElement);
                 }
-            } else {
-                $("#expSubTipo").html("");
-                var optionElement = document.createElement("option");
-                optionElement.value = "0";
-                optionElement.text = "--Seleccione--";
-                $('#expSubTipo').append(optionElement);
-            }
-        });
-    } else {
-        alert('Debe seleccionar una Tipo');
-        $("#expSubTipo").html("");
-        var optionElement = document.createElement("option");
-        optionElement.value = "0";
-        optionElement.text = "--Seleccione--";
-        $('#expSubTipo').append(optionElement);
-        return;
+            });
+        } else {
+            alert('Debe seleccionar una Tipo');
+            $("#expSubTipo").html("");
+            var optionElement = document.createElement("option");
+            optionElement.value = "0";
+            optionElement.text = "--Seleccione--";
+            $('#expSubTipo').append(optionElement);
+            return;
+        }
     }
-}
 </script>
 
 <?php

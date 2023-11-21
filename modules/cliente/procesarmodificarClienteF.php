@@ -46,10 +46,12 @@ if ($idPersona != null && $nombre != null && $apellido != null && $fec_nac != nu
     // agregarEmpleadoDocumento($documento, $idPersona, $tipodocumento);
 
     header("location: listado.php?vali=2");
+
+    //header("location: modificarClienteF.php?idPersona=$idPersona&idPersonaFisica=$id_persona_fisica&vali=2#datos");
     exit;
 } else {
-
-    header("location: modificarClienteF.php?idPersona=$idPersona&vali=3#datos");
+    //header("location: modificarClienteF.php?idPersona=$idPersona&idPersonaFisica=$id_persona_fisica&vali=3#datos");
+    header("location: modificarClienteF.php?idPersona=$idPersona&idPersonaFisica=$id_persona_fisica&vali=3#datos");
     exit;
 }
 ?>

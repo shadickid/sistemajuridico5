@@ -614,25 +614,36 @@ function obtenerDatosExpedientesParaGrafico()
     $connect->begin_transaction();
 
     $sql = "SELECT
-                YEAR(expediente_fecha_inicio) AS anio,
-                MONTH(expediente_fecha_inicio) AS mes,
-                MONTHNAME(expediente_fecha_inicio) AS nombre_mes,
-                COUNT(*) AS cantidad_expedientes
-            FROM
-                expediente
-            WHERE
-                YEAR(expediente_fecha_inicio) IN (2022, 2023)
-            GROUP BY
-                anio, mes, nombre_mes
-            ORDER BY
-                anio, mes;";
+    y.year AS anio,
+    m.month AS mes,
+    m.name AS nombre_mes,
+    COALESCE(COUNT(e.id_expediente), 0) AS cantidad_expedientes
+FROM
+    (SELECT 2022 AS year UNION SELECT 2023) y
+    CROSS JOIN (SELECT 1 AS month, 'enero' AS name
+                UNION SELECT 2, 'febrero'
+                UNION SELECT 3, 'marzo'
+                UNION SELECT 4, 'abril'
+                UNION SELECT 5, 'mayo'
+                UNION SELECT 6, 'junio'
+                UNION SELECT 7, 'julio'
+                UNION SELECT 8, 'agosto'
+                UNION SELECT 9, 'septiembre'
+                UNION SELECT 10, 'octubre'
+                UNION SELECT 11, 'noviembre'
+                UNION SELECT 12, 'diciembre') m 
+    LEFT JOIN expediente e ON y.year = YEAR(e.expediente_fecha_inicio) AND m.month = MONTH(e.expediente_fecha_inicio)
+GROUP BY
+    y.year, m.month, m.name
+ORDER BY
+    y.year, m.month;";
 
     $s = $connect->prepare($sql);
     $s->execute();
     $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
     $s->close();
 
-    // Separar los resultados en dos arrays (2022 y 2023)
+
     $resultados2022 = array();
     $resultados2023 = array();
 

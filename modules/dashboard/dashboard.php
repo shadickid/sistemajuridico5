@@ -3,7 +3,7 @@ require_once('../../config/path.php');
 include(ROOT_PATH . 'config\database\functions\expediente.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
-//$connect->query("SET lc_time_names = 'es_ES'");
+$connect->query("SET lc_time_names = 'es_ES'");
 $datosGrafico = obtenerDatosExpedientesParaGrafico();
 $resultados2022 = $datosGrafico['2022'];
 $resultados2023 = $datosGrafico['2023'];

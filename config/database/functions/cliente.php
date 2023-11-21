@@ -37,6 +37,23 @@ function buscarClientePersona($idPersona)
     $s->close();
     return $records;
 }
+function buscarClientePersonaJ($idPersona)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "SELECT * FROM persona
+    inner join persona_juridica on persona_juridica.id_persona=persona.id_persona
+    inner join cliente on cliente.id_persona =persona.id_persona
+    where cliente.estado=1 and persona.id_persona=$idPersona;";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}
 function datosClientesFisicosModificar($idPersona)
 {
     global $connect;

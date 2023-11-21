@@ -1,4 +1,34 @@
 $(document).ready(function () {
+  $("#formularioClienteFisicoContacto").validate({
+    errorClass: "validacion-error",
+    rules: {
+      tipoContacto: "required",
+      contactoValor: "required",
+    },
+    messages: {
+      tipoContacto: {
+        required: "Por favor, seleccione el tipo de contacto.",
+      },
+      contactoValor: {
+        required: "Por favor, ingrese el valor de contacto.",
+      },
+    },
+  });
+  $("#formularioClienteFisicoDocumento").validate({
+    errorClass: "validacion-error",
+    rules: {
+      tipodocumento: "required",
+      valordocumento: "required",
+    },
+    messages: {
+      tipodocumento: {
+        required: "Por favor, seleccione el tipo de documento.",
+      },
+      valordocumento: {
+        required: "Por favor, ingrese el valor del documento.",
+      },
+    },
+  });
   $("#cambiarContrasenaForm").validate({
     errorClass: "validacion-error",
     rules: {

@@ -41,6 +41,8 @@ $datosClientesJuridico = datosClientesJuridicos();
                 <button type="button" id="btnMostrarTodos" class="btn-filtro">Ver Todos</button>
                 <button type="button" id="btnFisicos" class="btn-filtro">Ver Persona F&iacute;sica</button>
                 <button type="button" id="btnJuridicos" class="btn-filtro">Ver Persona Jur&iacute;dica</button>
+                <button type="button" id="btnBaja" class="btn-filtro">Ver Personas dados de baja</button>
+
                 <div>
                     <a href="formularioClienteF.php" class="a-alta">Nuevo cliente fisico</a>
                     <a href="formularioClienteJ.php" class="a-alta">Nuevo cliente Juridico</a>
@@ -95,7 +97,7 @@ $datosClientesJuridico = datosClientesJuridicos();
                             </td>
                             <td>
                                 <a
-                                    href="<?php echo BASE_URL ?>modules\cliente\modificarClienteJ.php<?php echo $regClienteJuridico['id_persona_juridica'] ?>&idPersonaJuridica=<?php echo $regClienteJuridico['id_persona_juridica'] ?>">
+                                    href="<?php echo BASE_URL ?>modules\cliente\borrarClienteJ.php?idPersona=<?php echo $regClienteJuridico['id_persona'] ?>&idPersonaJuridica=<?php echo $regClienteJuridico['id_persona_juridica'] ?>">
                                     <button class="darDeBajaButton">
                                         <i class="fi-rr-eraser"></i>
                                     </button>

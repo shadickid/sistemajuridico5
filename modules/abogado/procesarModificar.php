@@ -6,13 +6,7 @@ $idPersonaFisica = $_POST['idPersonaFisica'];
 $nombre = $_POST['nombre'];
 $apellido = $_POST['apellido'];
 $fecnac = $_POST['fecnac'];
-$tipoContacto = $_POST['tipoContacto'];
-$contacto = $_POST['contacto'];
-$tipoDocumento = $_POST['tipoDocumento'];
-$documento = $_POST['Documento'];
-ModificarDatosPersonalesEmpleado($idPersonaFisica, $nombre, $apellido, $fecnac);
-agregarContactoEmpleado($idPersona, $contacto, $tipoContacto);
-agregarEmpleadoDocumento($documento, $idPerosna, $tipoDocumento);
+$sex = $_POST['sex'];
+ModificarDatosPersonalesEmpleado($idPersonaFisica, $nombre, $apellido, $fecnac, $sex);
 
-
-header("location: listado.php?vali=1");
+header("location: listado.php?vali=2");

@@ -7,11 +7,11 @@ include(ROOT_PATH . 'config\database\functions\empleado.php');
 include(ROOT_PATH . 'config\database\functions\documento.php');
 include(ROOT_PATH . 'config\database\functions\especializacion.php');
 
-$name = $_POST['name'];
-$lastname = $_POST['lastname'];
+$name = $_POST['nombre'];
+$lastname = $_POST['apellido'];
 $fec_nac = $_POST['fec_nac'];
 $esp = $_POST['esp'];
-$sex = $_POST['sex'];
+$sex = $_POST['sexo'];
 $tipoContacto = $_POST['tipoContacto'];
 $contacto = $_POST['contactoValor'];
 $tipoDocumento = $_POST['tipoDocumento'];

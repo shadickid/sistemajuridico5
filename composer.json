@@ -1,7 +1,12 @@
 {
     "require": {
-        "setasign/fpdi": "^2.3",
+        "tecnickcom/tcpdf": "6.3.*",
+        "setasign/fpdi": "^2.5",
         "setasign/fpdf": "^1.8",
-        "mpdf/mpdf": "^6.0"
+        "dompdf/dompdf": "^2.0",
+        "aspose-cloud/aspose-words-cloud": "^23.11",
+        "smalot/pdfparser": "^2.7",
+        "iio/libmergepdf": "^3.1",
+        "phpmailer/phpmailer": "^6.8"
     }
 }

@@ -6,6 +6,13 @@ include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
 include(ROOT_PATH . 'config\database\functions\empleado.php');
 $datosempleado = datosEmpleadoAbogado();
+$mostrarPersonaBaja = null;
+if ($_SESSION['id_perfil'] !== '1' || $_SESSION['id_perfil'] !== '2') {
+    $mostrarPersonaBaja = false;
+} else {
+    $mostrarPersonaBaja = true;
+}
+
 ?>
 <div class="breadcrumbs">
     <a href="<?php echo BASE_URL; ?>">INICIO</a>
@@ -15,54 +22,84 @@ $datosempleado = datosEmpleadoAbogado();
 <div class="dashboard">
     <h1>Listado de abogados</h1>
     <a href="<?php echo BASE_URL; ?>"" class=" volver-atras-button">Volver Atrás</a>
-
+    <div class="msj-container" id="msj-container">
+        <?php switch ($vali):
+            case 1: ?>
+                <span class="msj-success show">Se ha agregado correctamente</span>
+                <?php
+                break;
+            case 2: ?>
+                <span class="msj-modify show">Se ha modificado correctamente</span>
+                <?php
+                break;
+            case 3: ?>
+                <span class="msj-delete show">Se ha borrado el cliente correctamente</span>
+                <?php
+                break;
+            case 4: ?>
+                <span class="msj-error show">Se ha producido un error correctamente</span>
+        <?php endswitch ?>
+    </div>
     <section class="inicio">
+
         <div class="contenido">
-            <div>
+            <div class="btn-filtro-container">
                 <a href="formulario_abogado.php" class="a-alta">Nuevo Abogado</a>
             </div>
-            <table class="tablamodal">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombres y Apellidos</th>
-                    <th>Especialidad</th>
-                    <th>Usuario</th>
-                    <th>Modificar</th>
-                    <th>Borrar</th>
-                </tr>
-                <tr>
-                    <?php foreach ($datosempleado as $regempleado): ?>
-                        <td>
-                            <?php echo $regempleado['id_empleado'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regempleado['persona_nombre'] . " " . $regempleado['persona_apellido'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regempleado['descripcion'] ?>
-                        </td>
-                        <td>
-                            <?php echo $regempleado['usuario_nombre'] ?>
-                        </td>
-                        <td>
-                            <a
-                                href="<?php echo BASE_URL ?>modules\abogado\modificar.php?idPersonaFisica=<?php echo $regempleado['id_persona_fisica'] ?>">
-                                <button class="editarButton">
-                                    <i class="fi fi-rr-edit"></i>
-                                </button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="<?php echo BASE_URL ?>modules\abogado\modal_borrar.php?idPersonaFisica=<?php echo $regempleado['id_persona_fisica'] ?>"
-                                class="openModal">
-                                <button class="darDeBajaButtonv2">
-                                    <i class="fi-rr-eraser"></i>
-                                </button>
-                            </a>
-                        </td>
+            <?php if (!$mostrarPersonaBaja): ?>
+                <div class="btn-filtro-container">
+                    <a href="listadoPersonaBaja.php" class="a-alta"> Ver Abogados dados de baja</a>
+                </div>
+            <?php endif; ?>
+            <table class="tablamodal" id="tablaAbogado">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombres y Apellidos</th>
+                        <th>Especialidad</th>
+                        <th>Usuario</th>
+                        <th>Modificar</th>
+                        <th>Borrar</th>
                     </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <?php $contador = 1 ?>
+                        <?php foreach ($datosempleado as $regempleado): ?>
+                            <td>
+                                <?php echo $contador ?>
+                            </td>
+                            <td>
+                                <?php echo $regempleado['persona_nombre'] . " " . $regempleado['persona_apellido'] ?>
+                            </td>
+                            <td>
+                                <?php echo $regempleado['descripcion'] ?>
+                            </td>
+                            <td>
+                                <?php echo $regempleado['usuario_nombre'] ?>
+                            </td>
+                            <td>
+                                <a
+                                    href="<?php echo BASE_URL ?>modules\abogado\modificar.php?idPersonaFisica=<?php echo $regempleado['id_persona_fisica'] ?>&idPersona=<?php echo $regempleado['id_persona'] ?>">
+                                    <button class="editarButton">
+                                        <i class="fi fi-rr-edit"></i>
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="<?php echo BASE_URL ?>modules\abogado\procesarBorrar.php?&idEmpleado=<?php echo $regempleado['id_empleado'] ?>"
+                                    class="openModal">
+                                    <button class="darDeBajaButton">
+                                        <i class="fi-rr-eraser"></i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
 
-                <?php endforeach ?>
+
+                    <?php $contador++;
+                        endforeach ?>
             </table>
         </div>
     </section>

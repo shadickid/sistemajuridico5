@@ -49,9 +49,10 @@ $expedieneJ = listadoExpedienteJ();
         <table class="tablamodal">
             <thead>
                 <tr>
-                    <th>Nombres y Apellidos/Raz&oacute;n Social</th>
-                    <th>Nro de expediente</th>
+                    <th>#</th>
                     <th>Car&aacute;tula</th>
+                    <th>Nro de expediente</th>
+                    <th>Nombres y Apellidos/Raz&oacute;n Social</th>
                     <th>Fecha de inicio</th>
                     <th>Fecha de fin</th>
                     <th>Tipo</th>
@@ -63,18 +64,23 @@ $expedieneJ = listadoExpedienteJ();
                     <th>Borrar</th>
                 </tr>
             </thead>
+            <?php $contador = 1; ?>
             <?php foreach ($expedienteF as $regExpF): ?>
                 <tbody>
 
                     <tr class="clienteFisico">
                         <td>
-                            <?php echo $regExpF['persona_nombre'] . ' ' . $regExpF['persona_apellido'] ?>
+                            <?php echo $contador ?>
+                        </td>
+                        <td>
+                            <?php echo $regExpF['expediente_nombre'] ?>
                         </td>
                         <td>
                             <?php echo $regExpF['expediente_nro'] ?>
                         </td>
+
                         <td>
-                            <?php echo $regExpF['expediente_nombre'] ?>
+                            <?php echo $regExpF['persona_nombre'] . ' ' . $regExpF['persona_apellido'] ?>
                         </td>
                         <td>
                             <?php echo $regExpF['expediente_fecha_inicio'] ?>
@@ -118,9 +124,13 @@ $expedieneJ = listadoExpedienteJ();
                             </a>
                         </td>
                     </tr>
+                    <?php $contador++ ?>
                 <?php endforeach ?>
                 <?php foreach ($expedieneJ as $regExpJ): ?>
                     <tr class="clienteJuridico">
+                        <td>
+                            <?php echo $contador; ?>
+                        </td>
                         <td>
                             <?php echo $regExpJ['razon_social'] ?>
                         </td>
@@ -172,6 +182,7 @@ $expedieneJ = listadoExpedienteJ();
                                 </button>
                             </a>
                         </td>
+                        <?php $contador++ ?>
                     <?php endforeach ?>
                 </tr>
 

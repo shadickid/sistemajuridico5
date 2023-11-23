@@ -32,7 +32,7 @@ $contacto = personaContacto($idPersonaFisica);
 </div>
 <div class="dashboard">
 
-    <h1>Listado de clientes</h1>
+    <h1>Modificar datos del cliente</h1>
     <a href="<?php echo BASE_URL; ?>modules\cliente\listado.php" class="volver-atras-button">Volver Atrás</a>
     <section class="inicio">
         <div class="contenido">
@@ -120,7 +120,7 @@ $contacto = personaContacto($idPersonaFisica);
                     </div>
             </form>
             <div id="contacto">
-                <form action="procesarAltacon.php" method="post" id="formularioClienteFisicoContacto">
+                <form action="procesarAltacon.php" method="post" id="formularioContacto">
                     <h2>Contacto</h2>
                     <br>
                     <div>
@@ -172,17 +172,17 @@ $contacto = personaContacto($idPersonaFisica);
         </div>
         <div id="documentos">
             <h2>Documento</h2>
-            <form action="procesarAltadoc.php" method="POST" id="formularioJuridicoDocumento">
+            <form action="procesarAltadoc.php" method="POST" id="formularioDocumento">
                 <label for="tipodocumento" class="formulario-label">Tipo documento:</label>
-                <select id="tipodocumento" name="tipodocumento" class="formulario-select">
-                    <option value='0'>--Seleccione--</option>
+                <select id="tipodocumento" name="tipoDocumento" class="formulario-select">
+                    <option value="0">--Seleccione--</option>
                     <?php foreach ($tipodocumento as $regtipo): ?>
                         <option value="<?php echo $regtipo['id_tipo_documento'] ?>">
                             <?php echo $regtipo['descripcion'] ?>
                         </option>
                     <?php endforeach ?>
                 </select>
-                <input type="text" class="formulario-input" name="valordocumento">
+                <input type="text" class="formulario-input" name="documentoValor">
                 <input type="hidden" name="idPersona" value="<?php echo $idPersona ?>">
                 <input type="hidden" name="idPersonaFisica" value="<?php echo $idPersonaFisica ?>">
 

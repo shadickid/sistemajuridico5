@@ -3,7 +3,10 @@ require_once('../../config/path.php');
 include(ROOT_PATH . 'config\database\functions\expediente.php');
 include(ROOT_PATH . 'includes\header.php');
 include(ROOT_PATH . 'includes\nav.php');
+include(ROOT_PATH . 'config/database/functions/bd_functions.php');
+
 $connect->query("SET lc_time_names = 'es_ES'");
+
 $datosGrafico = obtenerDatosExpedientesParaGrafico();
 $resultados2022 = $datosGrafico['2022'];
 $resultados2023 = $datosGrafico['2023'];
@@ -16,7 +19,22 @@ foreach ($resultados2022 as $cantidadMensual) {
 foreach ($resultados2023 as $cantidadMensual) {
     $dataPoints2[] = array("label" => $cantidadMensual['nombre_mes'], "y" => $cantidadMensual['cantidad_expedientes']);
 }
+$contra = 12345;
 
+$conditional = [
+    'id_usuario' => $_SESSION['id_usuario']
+];
+$usuario = selectall('usuario', $conditional);
+foreach ($usuario as $usuarios) {
+    $contrasena = $usuarios['usuario_contrasena'];
+}
+$mostrarModa = null;
+if (password_verify($contra, $contrasena) == "12345") {
+    $mostrarModal = true;
+
+} else {
+    $mostrarModal = false;
+}
 ?>
 
 <div class="breadcrumbs">
@@ -47,7 +65,7 @@ foreach ($resultados2023 as $cantidadMensual) {
                 </div>
 
             <?php endif; ?>
-            <div id="chartContainer" style="height:370px;width:500px"></div>
+            <div id="chartContainer" style="height:500px;width:700px"></div>
 
         </div>
     </section>
@@ -62,7 +80,7 @@ include(ROOT_PATH . 'includes\footter.php');
             animationEnabled: true,
             theme: "light2",
             title: {
-                text: "Comparacion de expedientes",
+                text: "Expedientes al año",
             },
             axisY: {
                 title: "Cantidad de expediente del mes",

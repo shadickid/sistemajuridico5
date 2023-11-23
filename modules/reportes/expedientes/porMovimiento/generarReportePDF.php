@@ -178,7 +178,7 @@ $totalExpedientes = count($listado);
                 <tr>
 
                     <th>Número Expediente</th>
-                    <th>Nombre Expediente</th>
+                    <th>Caratula</th>
                     <th>Fecha Inicio</th>
                     <th>Tipo de Movimiento</th>
                     <th>Descripción Movimiento</th>

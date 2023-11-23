@@ -111,7 +111,7 @@ $contratoconstitutivo = selectall('contrato_constitutivo');
                     <?php endforeach; ?>
                 </form>
                 <div id="contacto">
-                    <form action="procesarAltaconJ.php" method="post" id="formularioClienteFisicoContacto">
+                    <form action="procesarAltaconJ.php" method="post" id="formularioClienteF">
                         <h2>Contacto</h2>
                         <br>
                         <div>
@@ -163,9 +163,9 @@ $contratoconstitutivo = selectall('contrato_constitutivo');
             </div>
             <div id="documentos">
                 <h2>Documento</h2>
-                <form action="procesarAltadocJ.php" method="POST" id="formularioClienteFisicoDocumento">
+                <form action="procesarAltadocJ.php" method="POST" id="formularioDocumento">
                     <label for="tipodocumento" class="formulario-label">Tipo documento:</label>
-                    <select id="tipodocumento" name="tipodocumento" class="formulario-select">
+                    <select id="tipodocumento" name="tipoDocumento" class="formulario-select">
                         <option value='0'>--Seleccione--</option>
                         <?php foreach ($tipodocumento as $regtipo): ?>
                             <option value="<?php echo $regtipo['id_tipo_documento'] ?>">
@@ -173,7 +173,7 @@ $contratoconstitutivo = selectall('contrato_constitutivo');
                             </option>
                         <?php endforeach ?>
                     </select>
-                    <input type="text" class="formulario-input" name="valordocumento">
+                    <input type="text" class="formulario-input" name="documentoValor">
                     <input type="hidden" name="idPersona" value="<?php echo $idPersona ?>">
                     <input type="hidden" name="idPersonaJuridica" value="<?php echo $idPersonaJuridica ?>">
 

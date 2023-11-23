@@ -63,7 +63,7 @@ $totalExpedientes = count($registro) + count($registrosj);
                     <input type="submit" value="Filtrar" class="btn-filtro">
 
                 </form>
-                <form method="get" action="generarReportePDF.php" id="pdfForm">
+                <form method="get" action="generarReportePDF.php" id="pdfForm" target="_blank">
                     <div>
                         <button id="generarReporteBtn" class="btn-filtro">Generar Reporte</button>
                     </div>

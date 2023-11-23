@@ -6,6 +6,8 @@ error_reporting(E_ALL);
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 require_once(ROOT_PATH . 'config/database/connect.php');
 require_once(ROOT_PATH . 'config\database\functions\expediente.php');
+require_once(ROOT_PATH . 'config\database\functions\movimiento.php');
+
 
 // $fechamov = $_POST['fechamov'];
 $descripcion = $_POST['descripcion'];
@@ -13,7 +15,6 @@ $movimiento = $_POST['movimiento'];
 $usuario = $_POST['usuario'];
 $idExpediente = $_POST['idExpediente'];
 
-$idExpedientexMovimientoxTipo = agregarExpedientexMovimientoxTipo($descripcion, $movimiento, $idExpediente, $usuario);
 $directorio = 'carpeta_expedientes/' . $idExpediente;
 $fecha_hora = date("Ymd_His");
 
@@ -32,7 +33,7 @@ foreach ($_FILES['archivo']['tmp_name'] as $key => $temp_name) {
                 $archivo_nombre = $newFileName;
                 $archivo_extension = $extension;
                 $archivo_ubicacion = $ruta;
-
+                $idExpedientexMovimientoxTipo = agregarExpedientexMovimientoxTipo($descripcion, $movimiento, $idExpediente, $usuario);
                 agregarDetalleMovimiento($archivo_nombre, $archivo_extension, $archivo_ubicacion, $idExpedientexMovimientoxTipo);
             }
         }
@@ -41,4 +42,25 @@ foreach ($_FILES['archivo']['tmp_name'] as $key => $temp_name) {
     }
 
 }
-header('location: nuevo_mov.php?id_expediente=' . $idExpediente . '&vali=1');
+
+$consultaMovimientoFecha = consultarMovimientoExpedienteDESCMensaje($idExpediente);
+
+foreach ($consultaMovimientoFecha as $consultaMovimiento) {
+    $movFecha = $consultaMovimiento['movimiento_fecha'];
+}
+
+$movimientoFecha = new DateTime($movFecha);
+$fechaActual = new DateTime();
+$tiempoParaMensaje = 60;
+
+if ($movimientoFecha->getTimestamp() - $fechaActual->getTimestamp() < $tiempoParaMensaje) {
+    $destinatario = 'shadic2014@gmail.com';
+    $asunto = 'Notificación de movimiento';
+    $mensaje = 'Se ha realizado un movimiento en su expediente.';
+
+    // Envía el correo electrónico
+    mail($destinatario, $asunto, $mensaje);
+}
+
+
+//header('location: nuevo_mov.php?id_expediente=' . $idExpediente . '&vali=1');

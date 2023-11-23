@@ -58,7 +58,7 @@ $atributoDomicilio = selectall('atributo_domiclio');
 
                 </ul>
 
-                <form class="formulario-form" action="enviar_abogado.php" method="post" id="formularioAbogado">
+                <form class="formulario-form" action="enviar_abogado.php" method="post" id="formularioClienteF">
                     <input type="hidden" value="1" name="tipopersona">
 
                     <div id="datos">
@@ -66,23 +66,23 @@ $atributoDomicilio = selectall('atributo_domiclio');
                         <br>
                         <input type="hidden" value="1" name="tipopersona">
                         <div>
-                            <label class=" formulario-label" for="name">Nombre:</label>
-                            <input class="formulario-input" type="text" name="name" id="name"
-                                placeholder="Renzo Nathaniel" autocomplete="off">
+                            <label class=" formulario-label" for="nombre">Nombre:</label>
+                            <input class="formulario-input" type="text" name="nombre" id="nombre"
+                                placeholder="Renzo Nathaniel">
                         </div>
                         <div>
                             <label class="formulario-label" for="lastname">Apellido:</label>
-                            <input class="formulario-input" type="text" name="lastname" id="lastname" autocomplete="off"
+                            <input class="formulario-input" type="text" name="apellido" id="apellido" autocomplete="off"
                                 placeholder="Tomás">
                         </div>
                         <div>
                             <label class="formulario-label" for="fec_nac">Fecha de nacimiento:</label>
-                            <input class="formulario-input" type="date" name="fec_nac" id="fec_nac" autocomplete="off">
+                            <input class="formulario-input" type="date" name="fec_nac" id="fecnac" autocomplete="off">
                         </div>
                         <div>
                             <label class="formulario-label" for="esp">Especialidad:</label>
                             <select class="formulario-select" name="esp" id="esp">
-                                <option>Escoga la especializacion</option>
+                                <option value="0">Escoga la especializacion</option>
                                 <?php foreach ($especializacion as $registroesp): ?>
                                     <option value="<?php echo $registroesp['id_especializacion'] ?>">
                                         <?php echo $registroesp['descripcion'] ?>
@@ -91,9 +91,9 @@ $atributoDomicilio = selectall('atributo_domiclio');
                             </select>
                         </div>
                         <div>
-                            <label class="formulario-label" for="sex">Sexo:</label>
-                            <select class="formulario-select" name="sex" id="sex">
-                                <option>Escoga el sexo</option>
+                            <label class="formulario-label" for="sexo">Sexo:</label>
+                            <select class="formulario-select" name="sexo" id="sexo">
+                                <option value="0">Escoga el sexo</option>
                                 <?php foreach ($sexo as $registrosexo): ?>
                                     <option value="<?php echo $registrosexo['id_sexo'] ?>">
                                         <?php echo $registrosexo['nombre'] ?>
@@ -226,7 +226,9 @@ $atributoDomicilio = selectall('atributo_domiclio');
                         </div>
                     </div>
 
-                    <button class="formulario-submit" type="submit">Guardar</button>
+                    <div>
+                        <button class="formulario-submit" type="submit">Guardar</button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -15,15 +15,7 @@ if (isset($_GET['vali']) && $_GET['vali'] !== null) {
 } else {
     $vali = null;
 }
-$contra = 12345;
-$contrasesion = $_SESSION['contrasena'];
 
-if (password_verify($contra, $contrasesion) == "12345") {
-    $mostrarModal = true;
-
-} else {
-    $mostrarModal = false;
-}
 
 
 ?>
@@ -44,7 +36,7 @@ if (password_verify($contra, $contrasesion) == "12345") {
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="<?php echo BASE_URL ?>css/jquery-ui.css">
     <link rel="stylesheet" href="<?php echo BASE_URL ?>css\select2.min.css">
-
+    <link href="<?php echo BASE_URL; ?>assets\plugins\DataTables\datatables.min.css" rel="stylesheet">
 </head>
 
 <body>

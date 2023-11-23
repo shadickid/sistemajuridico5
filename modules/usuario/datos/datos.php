@@ -2,201 +2,437 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 include(ROOT_PATH . 'config/database/functions/empleado.php');
 include(ROOT_PATH . 'config/database/functions/bd_functions.php');
-include(ROOT_PATH . 'includes\header.php');
-include(ROOT_PATH . 'includes\nav.php');
-$id_session = $_SESSION['id_usuario'];
-$datos = datosPersonalesEmpleado($id_session);
-$datosempleadocontacto = datosPersonalesEmpleadoContacto($id_session);
-$datosempleadodocumento = datosPersonalesEmpleadoDocumento($id_session);
+include(ROOT_PATH . 'includes/header.php');
+include(ROOT_PATH . 'includes/nav.php');
+include(ROOT_PATH . 'config\database\functions\persona.php');
+include(ROOT_PATH . 'config\database\functions\usuario.php');
+
+$idUsuario = $_SESSION['id_usuario'];
+$registroUsuario = consultarUsuarioPersona($idUsuario);
+foreach ($registroUsuario as $regUsuario) {
+    $idPersona = $regUsuario['id_persona'];
+    $idPersonaFisica = $regUsuario['id_persona_fisica'];
+}
+
+$pais = selectall('pais');
+$tipoDom = selectall('tipo_dom');
+$atributoDomicilio = selectall('atributo_domiclio');
+$datosEmpleado = selectModificarDatosPersonalesEmpleado($idPersonaFisica);
+
 $conditional = [
     'estado' => 1
 ];
-$records = selectall('tipo_contacto', $conditional);
-$tipodoc = selectall('documento', $conditional);
 $sexo = selectall('sexo');
-?>
-<div class="dashboard">
-    <h1> Mi informacion</h1>
+$metodocontacto = selectall('tipo_contacto', $conditional);
+$tipodocumento = selectall('documento', $conditional);
+$datosContacto = personaContacto($idPersonaFisica);
+$datosDocumento = personaDocumento($idPersonaFisica);
+$datosDomicilio = personaDomicilio($idPersonaFisica);
+foreach ($datosEmpleado as $regemp):
+    ?>
 
-    <section class="inicio">
-        <div class="contenido">
-            <?php foreach ($datos as $reg) : ?>
-            <div class="formulario-container">
-                <fieldset>
-                    <form class="formulario-form" method="POST" action="procesarFormularioInfo.php">
-                        <div>
-                            <label class="formulario-label" for="nombre">Nombres: </label>
-                            <input class="formulario-input" type="text" name="nombre" id="nombre"
-                                value="<?php echo $reg['persona_nombre'] ?>">
-                        </div>
-                        <div>
-                            <label class="formulario-label" for="apellidos">Apellido: </label>
-                            <input class="formulario-input" type="text" name="apellidos" id="apellidos"
-                                value="<?php echo $reg['persona_apellido'] ?>">
-                        </div>
-                        <div>
-                            <label class="formulario-label" for="fecnac">Fecha de nacimiento: </label>
-                            <input class="formulario-input" type="date" name="fecnac" id="fecnac"
-                                value="<?php echo $reg['persona_fec_nac'] ?>">
-                        </div>
-                        <div>
-                            <label class="formulario-label" for="sex">Sexo</label>
-                            <select name="sex" class="formulario-select">
-                                <?php foreach ($sexo as $sex) : ?>
-                                <option value="<?php echo $sex['id_sexo']; ?>"
-                                    <?php if ($sex['id_sexo'] == $reg['id_sexo']) echo 'selected'; ?>>
-                                    <?php echo $sex['nombre']; ?>
-                                </option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
+    <div class="breadcrumbs">
+        <a href="<?php echo BASE_URL; ?>">INICIO</a>
+        <span>/</span>
+        <span>Mis Datos</span>
+        <span>/</span>
 
-                        <input class="formulario-submit" type="submit" value="Guardar cambios">
+    </div>
+
+    <div class="dashboard">
+        <h1>Mis datos</h1>
+        <a href="<?php echo BASE_URL ?>" class="volver-atras-button">Volver Atrás</a>
+        <section class="inicio">
+            <div class="contenido">
+                <div class="msj-container" id="msj-container">
+                    <?php switch ($vali):
+                        case 1: ?>
+                            <span class="msj-error show">La persona ya tiene DNI asignado</span>
+                            <?php
+                            break;
+                        case 2: ?>
+                            <span class="msj-modify show">Se ha modificado correctamente</span>
+                            <?php
+                            break;
+                        case 3: ?>
+                            <span class="msj-delete show">Se ha eliminado un contacto correctamente</span>
+                            <?php
+                            break;
+                        case 4: ?>
+                            <span class="msj-delete show">Se ha eliminado un documento correctamente</span>
+                            <?php
+                            break;
+                        case 5: ?>
+                            <span class="msj-success show">Se ha agregado un documento correctamente</span>
+                            <?php
+                            break;
+                        case 6: ?>
+                            <span class="msj-success show">Se ha agregado un contacto correctamente</span>
+
+                    <?php endswitch ?>
+                </div>
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#datos">Datos Personales</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#documentos">Documento</a></li>
+                        <li><a href="#domicilio">Domicilio</a></li>
+                    </ul>
+
+                    <form class="formulario-form" action="procesarModificar.php" method="POST"
+                        id="formularioPersonaModificar">
+                        <input type="hidden" name="idPersonaFisica" value="<?php echo $idPersonaFisica; ?>">
+                        <input type="hidden" name="idPersona" value="<?php echo $idPersona; ?>">
+
+                        <div id="datos">
+                            <legend>Datos personales</legend>
+                            <br>
+
+                            <div>
+                                <label class="formulario-label" for="nombre">Nombre:</label>
+                                <input class="formulario-input" type="text" name="nombre"
+                                    value="<?php echo $regemp['persona_nombre']; ?>" autocomplete="off">
+                            </div>
+
+                            <div>
+                                <label class="formulario-label" for="apellido">Apellido:</label>
+                                <input class="formulario-input" type="text" name="apellido"
+                                    value="<?php echo $regemp['persona_apellido']; ?>" autocomplete="off">
+                            </div>
+
+                            <div>
+                                <label class="formulario-label" for="fecnac">Fecha de nacimiento:</label>
+                                <input class="formulario-input" type="date" name="fecnac"
+                                    value="<?php echo $regemp['persona_fec_nac']; ?>" autocomplete="off">
+                            </div>
+
+                            <div>
+                                <label class="formulario-label" for="sex">Sexo:</label>
+                                <select class="formulario-select" name="sex">
+                                    <?php foreach ($sexo as $sex): ?>
+                                        <option value="<?php echo $sex['id_sexo']; ?>" <?php if ($sex['id_sexo'] == $regemp['id_sexo'])
+                                               echo 'selected'; ?>>
+                                            <?php echo $sex['nombre']; ?>
+                                        </option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                            <div>
+                                <button class="formulario-submit" type="submit">Guardar</button>
+                            </div>
+                        </div>
                     </form>
-                </fieldset>
-            </div>
-            <div class="modal-container">
-                <!-- modal contacto -->
-                <label for="contacto">Contacto</label>
-                <!--Boton-->
-                <div class="boton-modal">
-                    <label for="btn-modal">
-                        Editar
-                    </label>
-                </div>
-                <!--Fin de Boton-->
-                <!--Ventana Modal-->
-                <input type="checkbox" id="btn-modal">
-                <div class="container-modal">
-                    <div class="content-modal">
-                        <h2>Contacto</h2>
-                        <form action="procesarAltacon.php" method="POST">
-                            <select name="tipocontacto">
-                                <?php foreach ($records as $reg2) : ?>
-                                <option value="<?php echo $reg2['id_tipo_contacto'] ?>">
-                                    <?php echo $reg2['tipo_contacto_nombre'] ?>
-                                </option>
-                                <?php endforeach ?>
-                            </select>
-                            <label for="contacto">Agregar contacto</label>
-                            <input type="text" class="formulario-input" name="valorcontacto">
-                            <input type="hidden" name="id_persona" value="<?php echo $reg['id_persona'] ?>">
-                            <input type="submit" class="formulario-submit" value="Guardar">
-                        </form>
-                        <table class="tablamodal">
-                            <tr>
-                                <th>Tipo contacto</th>
-                                <th>Valor</th>
-                                <th>Estado</th>
-                            </tr>
-                            <?php foreach ($datosempleadocontacto as $reg3) : ?>
-                            <tr>
-                                <td>
-                                    <?php echo $reg3['tipo_contacto_nombre'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $reg3['contacto_detalle'] ?>
-                                </td>
-                                <td>
-                                    <a href="procesarEliminarCon.php?id_contxper=<?php echo $reg3['id_contxper'] ?>">
-                                        <button class="darDeBajaButton">
-                                            <img src="<?php echo BASE_URL ?>assets\icons\delete-person-outlined-interface-button.png"
-                                                alt="Dar de Baja" width="14" height="14">
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <?php endforeach ?>
-                        </table>
-                        <div class=" btn-cerrar">
-                            <label for="btn-modal">Cerrar</label>
-                        </div>
-                    </div>
-                    <label for="btn-modal" class="cerrar-modal"></label>
-                </div>
-                <!-- modal documento -->
-                <label for="doc">Documento</label>
-                <div class="boton-modal">
-                    <label for="btn-modal2">
-                        Editar
-                    </label>
-                </div>
-                <!--Fin de Boton2-->
-                <!--Ventana Modal2-->
-                <input type="checkbox" id="btn-modal2">
-                <div class="container-modal2">
-                    <div class="content-modal">
-                        <h2>Documento</h2>
-                        <form action="procesarAltadoc.php" method="POST">
-                            <select name="tipodocumento">
-                                <?php foreach ($tipodoc as $reg4) : ?>
-                                <option value="<?php echo $reg4['id_tipo_documento'] ?>">
-                                    <?php echo $reg4['descripcion'] ?>
-                                </option>
-                                <?php endforeach ?>
-                            </select>
-                            <label for="documento">Agregar documento</label>
-                            <input type="text" class="formulario-input" name="valordocumento">
-                            <input type="hidden" name="id_persona" value="<?php echo $reg['id_persona'] ?>">
-                            <input type="submit" class="formulario-submit" value="Guardar">
-                        </form>
-                        <table class="tablamodal">
-                            <tr>
-                                <th>Tipo documento</th>
-                                <th>Valor</th>
-                                <th>Estado</th>
-                            </tr>
-                            <?php foreach ($datosempleadodocumento as $reg5) : ?>
-                            <tr>
-                                <td>
-                                    <?php echo $reg5['descripcion'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $reg5['detalle'] ?>
-                                </td>
-                                <td>
-                                    <a
-                                        href="procesarEliminarDoc.php?id_docxperso=<?php echo $reg5['id_documentoxpersona'] ?>">
-                                        <button class="darDeBajaButton">
-                                            <img src="<?php echo BASE_URL ?>assets\icons\delete-person-outlined-interface-button.png"
-                                                alt="Dar de Baja" width="16" height="16">
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <?php endforeach ?>
-                        </table>
-                        <div class="btn-cerrar">
-                            <label for="btn-modal2">Cerrar</label>
-                        </div>
-                    </div>
-                    <label for="btn-modal2" class="cerrar-modal"></label>
-                </div>
-                <!--Fin de Ventana Modal2-->
-                <label for="domicilio">Domicilio</label>
-                <div class="boton-modal">
-                    <label for="btn-modal3">
-                        Editar
-                    </label>
-                </div>
-                <!--Ventana Modal2-->
-                <input type="checkbox" id="btn-modal3">
-                <div class="container-modal3">
-                    <div class="content-modal">
-                        <h2>Domicilio</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat illum voluptas </p>
-                        <div class="btn-cerrar">
-                            <label for="btn-modal3">Cerrar</label>
-                        </div>
-                    </div>
-                    <label for="btn-modal3" class="cerrar-modal"></label>
-                </div>
-                <?php endforeach ?>
-            </div>
-        </div>
-    </section>
-</div>
 
-<?php
-include(ROOT_PATH . 'includes\footter.php');
+                    <form class="formulario-form" action="procesarAltacon.php" method="POST" id="formularioContacto">
+                        <div id="contacto">
+                            <legend>Contacto</legend>
+                            <div>
+                                <label class="formulario-label" for="contacto">Tipo de Contacto:</label>
+                                <select class="formulario-select" name="tipoContacto">
+                                    <option value="0">--Seleccione--</option>
+                                    <?php foreach ($metodocontacto as $regcontacto): ?>
+                                        <option value="<?php echo $regcontacto['id_tipo_contacto'] ?>">
+                                            <?php echo $regcontacto['tipo_contacto_nombre'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <input type="text" class="formulario-input" name="contactoValor">
+                            </div>
+                            <div>
+                                <table class="tablamodal">
+                                    <tr>
+                                        <th>Tipo contacto</th>
+                                        <th>Valor</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                    <?php foreach ($datosContacto as $registro): ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $registro['tipo_contacto_nombre'] ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $registro['contacto_detalle'] ?>
+                                            </td>
+                                            <td>
+                                                <a href="procesarEliminarCon.php?id_contxper=<?php echo $registro['id_contxper'] ?>&idPersonaFisica=<?php echo $idPersonaFisica ?>&idPersona=<?php echo $idPersona ?> "
+                                                    <button class="darDeBajaButton">
+                                                    <i class="fi-rr-eraser"></i>
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                </table>
+                            </div>
+                            <input type="hidden" name="idPersonaFisica" value="<?php echo $idPersonaFisica; ?>">
+                            <input type="hidden" name="idPersona" value="<?php echo $idPersona; ?>">
+                            <button class="formulario-submit" type="submit">Guardar</button>
+                        </div>
+                    </form>
+
+                    <form class="formulario-form" action="procesarAltadoc.php" method="POST" id="formularioDocumento">
+
+                        <div id="documentos">
+                            <legend>Documento</legend>
+                            <br>
+                            <div>
+                                <label class="formulario-label" for="tipoDocumento">Documento:</label>
+                                <select class="formulario-select" name="tipoDocumento">
+                                    <option value="0">--Seleccione--</option>
+                                    <?php foreach ($tipodocumento as $regDoc): ?>
+                                        <option value="<?php echo $regDoc['id_tipo_documento'] ?>">
+                                            <?php echo $regDoc['descripcion'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <input type="text" class="formulario-input" name="documentoValor">
+                            </div>
+                            <div>
+                                <table class="tablamodal">
+                                    <tr>
+                                        <th>Tipo contacto</th>
+                                        <th>Valor</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                    <?php foreach ($datosDocumento as $registro): ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $registro['descripcion'] ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $registro['detalle'] ?>
+                                            </td>
+                                            <td>
+                                                <a href="procesarEliminarDoc.php?id_documentoxpersona=<?php echo $registro['id_documentoxpersona'] ?>&idPersonaFisica=<?php echo $idPersonaFisica ?>&idPersona=<?php echo $idPersona ?> "
+                                                    <button class="darDeBajaButton">
+                                                    <i class="fi-rr-eraser"></i>
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                </table>
+                            </div>
+                            <div>
+                                <button class="formulario-submit" type="submit">Guardar</button>
+                            </div>
+
+                            <input type="hidden" name="idPersonaFisica" value="<?php echo $idPersonaFisica; ?>">
+                            <input type="hidden" name="idPersona" value="<?php echo $idPersona; ?>">
+
+                        </div>
+                    </form>
+
+                    <form class="formulario-form" action="procesarDomicilioCliente.php" method="POST"
+                        id="formularioDomicilio">
+                        <!-- Domicilio -->
+                        <div id="domicilio">
+                            <legend>Domicilio</legend>
+                            <br>
+                            <div>
+                                <label for="pais" class="formulario-label">Pais:</label>
+                                <select name="pais" id="pais" class="formulario-select"
+                                    onchange="cargarProvincias(this.value)">
+                                    <option value="0">--Seleccione--</option>
+                                    <?php foreach ($pais as $regpais): ?>
+                                        <option value="<?php echo $regpais['id_pais'] ?>">
+                                            <?php echo $regpais['nombre'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="provincias" class="formulario-label">Provincia:</label>
+                                <select name="provincias" id="provincias" class="formulario-select"
+                                    onchange="cargarLocalidades(this.value)">
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="localidad" class="formulario-label">Localidad:</label>
+                                <select name="localidad" id="localidad" class="formulario-select"
+                                    onchange="cargarBarrios(this.value)">
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="barrio" class="formulario-label">Barrio:</label>
+                                <select name="barrio" id="barrio" class="formulario-select">
+                                </select>
+                            </div>
+                            <div>
+                                <label for="tipoDom">Tipo de domicilio</label>
+                                <select name="tipoDom" id="tipoDom" class="formulario-select">
+                                    <option value="0">--Seleccione--</option>
+                                    <?php foreach ($tipoDom as $regTipoDom): ?>
+                                        <option value=<?php echo $regTipoDom['id_tipo_dom'] ?>>
+                                            <?php echo $regTipoDom['valor'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div>
+                                <table id="atributosDomicilios" class="tablamodal">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Atributo
+                                            </th>
+                                            <th>
+                                                Valor
+                                            </th>
+                                            <th>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <select id="tipoAtributo" name="tipoAtributo">
+                                                    <option value="0"> - Seleccionar Opci&oacute;n - </option>
+
+                                                    <?php foreach ($atributoDomicilio as $atributo) { ?>
+                                                        <option value="<?php echo $atributo['id_atri_dom']; ?>">
+                                                            <?php echo $atributo['valor']; ?>
+                                                        </option>
+                                                    <?php } ?>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <input type="text" id="valorAtributo" name="valorAtributo">
+                                            </th>
+                                            <th>
+                                                <button type="button" title="Agregar" onclick="agregarAtributo()"> +
+                                                </button>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <button class="formulario-submit" type="submit">Guardar</button>
+                            </div>
+                            <input type="hidden" name="idPersonaFisica" value="<?php echo $idPersonaFisica; ?>">
+                            <input type="hidden" name="idPersona" value="<?php echo $idPersona; ?>">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        function agregarAtributo() {
+            let tipoAtributo = document.getElementById('tipoAtributo');
+            let valorAtributo = document.getElementById('valorAtributo');
+
+            if (tipoAtributo.value === '0' || valorAtributo.value.trim() === '') {
+                alert('Por favor, seleccione un tipo de atributo y proporcione un valor.');
+                return;
+            }
+            let tipoAtributo_val = tipoAtributo.value;
+            let valorAtributo_val = valorAtributo.value;
+
+
+
+            /* Se obtiene la descripcion en texto de la opcion seleccionada */
+            let tipoAtributo_desc = tipoAtributo.options[tipoAtributo.selectedIndex].text;
+
+            /* Se crea la fila nueva */
+            let fila = document.createElement('tr');
+            fila.innerHTML = '<tr></tr>';
+
+            /* Se crean inputs ocultos para guardar los valores seleccionados */
+            let input_tipoAtributo = document.createElement('input');
+            input_tipoAtributo.setAttribute('type', 'hidden');
+            input_tipoAtributo.setAttribute('name', 'atributosSeleccionados[]');
+            input_tipoAtributo.setAttribute('value', tipoAtributo_val);
+
+            let input_valorAtributo = document.createElement('input');
+            input_valorAtributo.setAttribute('type', 'hidden');
+            input_valorAtributo.setAttribute('name', 'valoresIngresados[]');
+            input_valorAtributo.setAttribute('value', valorAtributo_val);
+
+            /* Se crean las celdas */
+            let celda_tipoAtributo = document.createElement('td');
+            celda_tipoAtributo.innerHTML = tipoAtributo_desc;
+            celda_tipoAtributo.appendChild(input_tipoAtributo);
+            fila.appendChild(celda_tipoAtributo);
+
+            let celda_valorAtributo = document.createElement('td');
+            celda_valorAtributo.innerHTML = valorAtributo_val;
+            celda_valorAtributo.appendChild(input_valorAtributo);
+            fila.appendChild(celda_valorAtributo);
+
+            let celda_boton = document.createElement('td');
+            celda_boton.innerHTML =
+                '<button type="button" class="eliminar" onclick="eliminarAtributo(this)" title="Eliminar"> X </button>';
+            fila.appendChild(celda_boton);
+
+            /* Se identifica la tabla  y le asigno la fila creada */
+            let tabla = document.getElementById('atributosDomicilios');
+            tabla.tBodies[0].appendChild(fila);
+
+            /* Se resetean el combo y la caja  de texto */
+            tipoAtributo.value = 0;
+            valorAtributo.value = "";
+
+        }
+
+        function eliminarAtributo(boton) {
+            let fila = boton.parentNode.parentNode;
+
+            let tabla = document.getElementById('atributosDomicilios');
+            tabla.tBodies[0].removeChild(fila);
+        }
+    </script>
+    <script>
+        // Obtener datos de domicilio desde PHP
+        var datosDomicilioDesdePHP = <?php echo json_encode($datosDomicilio); ?>;
+
+        // Iterar sobre los datos organizados
+        for (const domicilioId in datosDomicilioDesdePHP) {
+            if (datosDomicilioDesdePHP.hasOwnProperty(domicilioId)) {
+                const datosDomicilio = datosDomicilioDesdePHP[domicilioId];
+
+                // Llenar los campos del domicilio con los datos recuperados
+                document.getElementById('pais').value = datosDomicilio[0].nombre_pais;
+                document.getElementById('provincias').value = datosDomicilio[0].nombre_provincia;
+                document.getElementById('localidad').value = datosDomicilio[0].nombre_localidad;
+                document.getElementById('barrio').value = datosDomicilio[0].nombre_barrio;
+                document.getElementById('tipoDom').value = datosDomicilio[0].fkpersonaDOMtipoDOM;
+
+                // Iterar sobre los atributos del domicilio y agregarlos a la tabla
+                for (const atributo of datosDomicilio) {
+                    agregarAtributoDesdePHP(atributo);
+                }
+            }
+        }
+
+        function agregarAtributoDesdePHP(atributo) {
+            // Esta función debería ser similar a la función agregarAtributo en tu código original
+            // Puedes adaptarla según tus necesidades
+            let fila = document.createElement('tr');
+
+            // Crea las celdas y agrega los valores
+            let celda_tipoAtributo = document.createElement('td');
+            celda_tipoAtributo.innerHTML = atributo.valorAtri;
+            fila.appendChild(celda_tipoAtributo);
+
+            let celda_valorAtributo = document.createElement('td');
+            celda_valorAtributo.innerHTML = atributo.valorDomAtri;
+            fila.appendChild(celda_valorAtributo);
+
+            let celda_boton = document.createElement('td');
+            celda_boton.innerHTML = '<button type="button" class="eliminar" onclick="eliminarAtributo(this)" title="Eliminar"> X </button>';
+            fila.appendChild(celda_boton);
+
+            // Agrega la fila a la tabla
+            let tabla = document.getElementById('atributosDomicilios');
+            tabla.tBodies[0].appendChild(fila);
+        }
+    </script>
+
+
+    <?php
+endforeach;
+include(ROOT_PATH . 'includes/footter.php');
 ?>

@@ -31,7 +31,7 @@ $totalMovimientos = "";
     <section class="inicio">
         <div class="contenido">
             <div class="btn-filtro-container">
-                <form method="get" id="filtroForm" action="generarReportePDF.php">
+                <form method="get" id="filtroForm" action="generarReportePDF.php" target="_blank">
                     <div>
                         <label for="expedientes" class="formulario-label">Expedientes:</label>
                         <select name="expedientes" class="formulario-select" id="expedientes">

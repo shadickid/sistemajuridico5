@@ -2,7 +2,25 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 require_once(ROOT_PATH . 'config/database/connect.php');
 
+function consultarUsuarioPersona($idUsuario)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "SELECT * from persona 
+    inner join persona_fisica on persona_fisica.id_persona=persona.id_persona
+    inner join empleado on empleado.id_persona_fisica=persona_fisica.id_persona_fisica
+    inner join usuario on usuario.id_empleado=empleado.id_empleado
+    where usuario.id_usuario=$idUsuario";
+    $s = $connect->prepare($sql);
 
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+
+    return $records;
+}
 function consultarUsuarioPerfil()
 {
     global $connect;

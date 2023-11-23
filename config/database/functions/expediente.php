@@ -472,13 +472,14 @@ function agregarExpedientexMovimientoxTipo($descripcion, $idProceso, $idExpedien
 {
     global $connect;
     $connect->begin_transaction();
+
     $sql = "INSERT INTO `sistemajuridico`.`expedientexmovxtipo` 
     (`id_tipo_proceso`, 
     `id_expediente`, 
     `movimiento_fecha`, 
     `movimiento_descripcion`, 
     `id_usuario`) 
-    VALUES ('$idProceso', '$idExpediente', now(), '$descripcion', '$idUsuario');";
+    VALUES ('$idProceso', '$idExpediente',now(), '$descripcion', '$idUsuario');";
     $s = $connect->prepare($sql);
     if ($s) {
         $s->execute();
@@ -619,7 +620,7 @@ function obtenerDatosExpedientesParaGrafico()
     m.name AS nombre_mes,
     COALESCE(COUNT(e.id_expediente), 0) AS cantidad_expedientes
 FROM
-    (SELECT 2022 AS year UNION SELECT 2023) y
+    (SELECT 2022 AS year UNION SELECT 2023) y -- Genera los años deseados
     CROSS JOIN (SELECT 1 AS month, 'enero' AS name
                 UNION SELECT 2, 'febrero'
                 UNION SELECT 3, 'marzo'

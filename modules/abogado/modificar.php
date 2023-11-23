@@ -9,6 +9,7 @@ $pais = selectall('pais');
 $tipoDom = selectall('tipo_dom');
 $atributoDomicilio = selectall('atributo_domiclio');
 $idPersonaFisica = $_GET['idPersonaFisica'];
+$idPersona = $_GET['idPersona'];
 $datosEmpleado = selectModificarDatosPersonalesEmpleado($idPersonaFisica);
 
 $conditional = [
@@ -21,7 +22,6 @@ $datosContacto = personaContacto($idPersonaFisica);
 $datosDocumento = personaDocumento($idPersonaFisica);
 $datosDomicilio = personaDomicilio($idPersonaFisica);
 foreach ($datosEmpleado as $regemp):
-    $idPersona = $regemp['id_persona'];
     ?>
 
     <div class="breadcrumbs">
@@ -52,7 +52,15 @@ foreach ($datosEmpleado as $regemp):
                             <?php
                             break;
                         case 4: ?>
-                            <span class="msj-delete show">Se ha borrado el dato correctamente</span>
+                            <span class="msj-delete show">Se ha eliminado el documento correctamente</span>
+                            <?php
+                            break;
+                        case 5: ?>
+                            <span class="msj-success show">Se ha agregado un documento correctamente</span>
+                            <?php
+                            break;
+                        case 6: ?>
+                            <span class="msj-success show">Se ha agregado un contacto correctamente</span>
 
                     <?php endswitch ?>
                 </div>
@@ -60,11 +68,12 @@ foreach ($datosEmpleado as $regemp):
                     <ul>
                         <li><a href="#datos">Datos Personales</a></li>
                         <li><a href="#contacto">Contacto</a></li>
-                        <li><a href="#documento">Documento</a></li>
+                        <li><a href="#documentos">Documento</a></li>
                         <li><a href="#domicilio">Domicilio</a></li>
                     </ul>
 
-                    <form class="formulario-form" action="procesarModificar.php" method="post" id="formularioAbogado">
+                    <form class="formulario-form" action="procesarModificar.php" method="POST"
+                        id="formularioPersonaModificar">
                         <input type="hidden" name="idPersonaFisica" value="<?php echo $idPersonaFisica; ?>">
                         <input type="hidden" name="idPersona" value="<?php echo $idPersona; ?>">
 
@@ -101,8 +110,13 @@ foreach ($datosEmpleado as $regemp):
                                     <?php endforeach ?>
                                 </select>
                             </div>
+                            <div>
+                                <button class="formulario-submit" type="submit">Guardar</button>
+                            </div>
                         </div>
+                    </form>
 
+                    <form class="formulario-form" action="procesarAltacon.php" method="POST" id="formularioContacto">
                         <div id="contacto">
                             <legend>Contacto</legend>
                             <div>
@@ -133,7 +147,7 @@ foreach ($datosEmpleado as $regemp):
                                                 <?php echo $registro['contacto_detalle'] ?>
                                             </td>
                                             <td>
-                                                <a href="procesarEliminarCon.php?id_contxper=<?php echo $registro['id_contxper'] ?>&idPersonaFisica=<?php echo $idPersonaFisica ?> "
+                                                <a href="procesarEliminarCon.php?id_contxper=<?php echo $registro['id_contxper'] ?>&idPersonaFisica=<?php echo $idPersonaFisica ?>&idPersona=<?php echo $idPersona ?> "
                                                     <button class="darDeBajaButton">
                                                     <i class="fi-rr-eraser"></i>
                                                     </button>
@@ -143,9 +157,15 @@ foreach ($datosEmpleado as $regemp):
                                     <?php endforeach ?>
                                 </table>
                             </div>
+                            <input type="hidden" name="idPersonaFisica" value="<?php echo $idPersonaFisica; ?>">
+                            <input type="hidden" name="idPersona" value="<?php echo $idPersona; ?>">
+                            <button class="formulario-submit" type="submit">Guardar</button>
                         </div>
-                        <!-- Documento -->
-                        <div id="documento">
+                    </form>
+
+                    <form class="formulario-form" action="procesarAltadoc.php" method="POST" id="formularioDocumento">
+
+                        <div id="documentos">
                             <legend>Documento</legend>
                             <br>
                             <div>
@@ -158,7 +178,7 @@ foreach ($datosEmpleado as $regemp):
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
-                                <input type="text" class="formulario-input" name="contactoValor">
+                                <input type="text" class="formulario-input" name="documentoValor">
                             </div>
                             <div>
                                 <table class="tablamodal">
@@ -176,7 +196,7 @@ foreach ($datosEmpleado as $regemp):
                                                 <?php echo $registro['detalle'] ?>
                                             </td>
                                             <td>
-                                                <a href="procesarEliminarDoc.php?id_documentoxpersona=<?php echo $registro['id_documentoxpersona'] ?>&idPersonaFisica=<?php echo $idPersonaFisica ?> "
+                                                <a href="procesarEliminarDoc.php?id_documentoxpersona=<?php echo $registro['id_documentoxpersona'] ?>&idPersonaFisica=<?php echo $idPersonaFisica ?>&idPersona=<?php echo $idPersona ?> "
                                                     <button class="darDeBajaButton">
                                                     <i class="fi-rr-eraser"></i>
                                                     </button>
@@ -186,8 +206,18 @@ foreach ($datosEmpleado as $regemp):
                                     <?php endforeach ?>
                                 </table>
                             </div>
-                        </div>
+                            <div>
+                                <button class="formulario-submit" type="submit">Guardar</button>
+                            </div>
 
+                            <input type="hidden" name="idPersonaFisica" value="<?php echo $idPersonaFisica; ?>">
+                            <input type="hidden" name="idPersona" value="<?php echo $idPersona; ?>">
+
+                        </div>
+                    </form>
+
+                    <form class="formulario-form" action="procesarDomicilioCliente.php" method="POST"
+                        id="formularioDomicilio">
                         <!-- Domicilio -->
                         <div id="domicilio">
                             <legend>Domicilio</legend>
@@ -271,10 +301,12 @@ foreach ($datosEmpleado as $regemp):
                                     </tbody>
                                 </table>
                             </div>
+                            <div>
+                                <button class="formulario-submit" type="submit">Guardar</button>
+                            </div>
+                            <input type="hidden" name="idPersonaFisica" value="<?php echo $idPersonaFisica; ?>">
+                            <input type="hidden" name="idPersona" value="<?php echo $idPersona; ?>">
                         </div>
-
-
-                        <button class="formulario-submit" type="submit">Guardar</button>
                     </form>
                 </div>
             </div>

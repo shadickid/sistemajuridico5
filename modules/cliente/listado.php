@@ -38,20 +38,22 @@ $datosClientesJuridico = datosClientesJuridicos();
             </div>
             <div class="btn-filtro-container">
                 <a href="formularioCliente.php" class="a-alta">Nuevo Cliente</a>
+                <!-- <div>
+                    <a href="formularioClienteF.php" class="a-alta">Nuevo cliente fisico</a>
+                    <a href="formularioClienteJ.php" class="a-alta">Nuevo cliente Juridico</a>
+                </div> -->
+            </div>
+            <div class="btn-filtro-container">
                 <button type="button" id="btnMostrarTodos" class="btn-filtro">Ver Todos</button>
                 <button type="button" id="btnFisicos" class="btn-filtro">Ver Persona F&iacute;sica</button>
                 <button type="button" id="btnJuridicos" class="btn-filtro">Ver Persona Jur&iacute;dica</button>
-                <button type="button" id="btnBaja" class="btn-filtro">Ver Personas dados de baja</button>
-
-                <div>
-                    <a href="formularioClienteF.php" class="a-alta">Nuevo cliente fisico</a>
-                    <a href="formularioClienteJ.php" class="a-alta">Nuevo cliente Juridico</a>
-                </div>
+                <a href="listadoPersonaBaja.php" class="a-alta"> Ver Personas dados de baja</a>
             </div>
 
             <table class="tablamodal">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Nombres y Apellidos/Raz&oacute;n Social</th>
                         <th>Tipo de Persona</th>
                         <th>Modificar</th>
@@ -59,8 +61,12 @@ $datosClientesJuridico = datosClientesJuridicos();
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $contador = 1 ?>
                     <?php foreach ($datosclientesFisicos as $regclientefisico): ?>
                         <tr class="clienteFisico">
+                            <td>
+                                <?php echo $contador; ?>
+                            </td>
                             <td>
                                 <?php echo $regclientefisico['persona_nombre'] . ' ' . $regclientefisico['persona_apellido'] ?>
                             </td>
@@ -81,9 +87,13 @@ $datosClientesJuridico = datosClientesJuridicos();
                                 </a>
                             </td>
                         </tr>
+                        <?php $contador++; ?>
                     <?php endforeach ?>
                     <?php foreach ($datosClientesJuridico as $regClienteJuridico): ?>
                         <tr class="clienteJuridico">
+                            <td>
+                                <?php echo $contador; ?>
+                            </td>
                             <td>
                                 <?php echo $regClienteJuridico['razon_social'] ?>
                             </td>
@@ -104,7 +114,12 @@ $datosClientesJuridico = datosClientesJuridicos();
                                 </a>
                             </td>
                         </tr>
+                        <?php $contador++; ?>
                     <?php endforeach ?>
+                    <?php ?>
+                    <tr>
+
+                    </tr>
                 </tbody>
             </table>
         </div>

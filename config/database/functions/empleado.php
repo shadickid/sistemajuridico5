@@ -102,7 +102,8 @@ function datosEmpleadoAbogado()
     pf.persona_nombre,
     pf.persona_apellido,
     esp.descripcion,
-    pf.id_persona_fisica 
+    pf.id_persona_fisica,
+    p.id_persona 
     FROM sistemajuridico.persona p
     inner join persona_fisica pf on p.id_persona=pf.id_persona
     inner join empleado e on e.id_persona_fisica=pf.id_persona_fisica
@@ -188,11 +189,14 @@ function selectModificarDatosEmpleado($id_empleado)
     $s->close();
     return $records;
 }
-function ModificarDatosPersonalesEmpleado($idPersonaFisica, $nombre, $apellido, $fecnac)
+function ModificarDatosPersonalesEmpleado($idPersonaFisica, $nombre, $apellido, $fecnac, $sex)
 {
     global $connect;
     $sql = "UPDATE `sistemajuridico`.`persona_fisica` SET 
-            `persona_nombre` = '$nombre', `persona_apellido` = '$apellido', `persona_fec_nac` = '$fecnac' 
+            `persona_nombre` = '$nombre', 
+            `persona_apellido` = '$apellido', 
+            `persona_fec_nac` = '$fecnac',
+            `id_sexo`=$sex 
             WHERE (`id_persona_fisica` = '$idPersonaFisica');";
     $s = $connect->prepare($sql);
     $s->execute();

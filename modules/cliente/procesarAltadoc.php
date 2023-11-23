@@ -1,8 +1,8 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 include(ROOT_PATH . 'config/database/functions/documento.php');
-$tipodocumento = $_POST['tipodocumento'];
-$valordocumento = $_POST['valordocumento'];
+$tipodocumento = $_POST['tipoDocumento'];
+$valordocumento = $_POST['documentoValor'];
 $id_persona = $_POST['idPersona'];
 $id_persona_fisica = $_POST['idPersonaFisica'];
 

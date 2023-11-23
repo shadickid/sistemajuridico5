@@ -19,7 +19,7 @@ $id_empleado = $_GET['id_empleado'];
                     <p class="modal_parrafo">¿Quieres asignar un usuario al empleado ahora?
                     </p>
                     <div class="btn-modal-posisionamientoterritorial">
-                        <a href="<?php echo BASE_URL ?>modules\abogado\listado.php" class="modal_close">No</a>
+                        <a href="<?php echo BASE_URL ?>modules\abogado\listado.php?vali=1" class="modal_close">No</a>
                         <a href="<?php echo BASE_URL ?>modules/usuario/registro.php?id_empleado=<?php echo $id_empleado ?>"
                             ; class="modal_aceptar">Si</a>
                     </div>

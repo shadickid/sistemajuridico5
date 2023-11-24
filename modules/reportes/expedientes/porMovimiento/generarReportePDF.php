@@ -205,7 +205,7 @@ $totalExpedientes = count($listado);
                             <?php echo $reg['movimiento_descripcion']; ?>
                         </td>
                         <td>
-                            <?php echo $reg['usuario_nombre']; ?>
+                            <?php echo $reg['persona_nombre'] . " " . $reg["persona_apellido"] ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

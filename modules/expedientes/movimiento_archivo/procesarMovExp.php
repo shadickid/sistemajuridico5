@@ -43,24 +43,4 @@ foreach ($_FILES['archivo']['tmp_name'] as $key => $temp_name) {
 
 }
 
-$consultaMovimientoFecha = consultarMovimientoExpedienteDESCMensaje($idExpediente);
-
-foreach ($consultaMovimientoFecha as $consultaMovimiento) {
-    $movFecha = $consultaMovimiento['movimiento_fecha'];
-}
-
-$movimientoFecha = new DateTime($movFecha);
-$fechaActual = new DateTime();
-$tiempoParaMensaje = 60;
-
-if ($movimientoFecha->getTimestamp() - $fechaActual->getTimestamp() < $tiempoParaMensaje) {
-    $destinatario = 'shadic2014@gmail.com';
-    $asunto = 'Notificación de movimiento';
-    $mensaje = 'Se ha realizado un movimiento en su expediente.';
-
-    // Envía el correo electrónico
-    mail($destinatario, $asunto, $mensaje);
-}
-
-
-//header('location: nuevo_mov.php?id_expediente=' . $idExpediente . '&vali=1');
+header('location: nuevo_mov.php?id_expediente=' . $idExpediente . '&vali=1');

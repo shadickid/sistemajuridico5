@@ -33,7 +33,7 @@ if ($_SESSION['id_perfil'] !== '1' || $_SESSION['id_perfil'] !== '2') {
                 <?php
                 break;
             case 3: ?>
-                <span class="msj-delete show">Se ha borrado el cliente correctamente</span>
+                <span class="msj-delete show">Se ha borrado el abogado correctamente</span>
                 <?php
                 break;
             case 4: ?>

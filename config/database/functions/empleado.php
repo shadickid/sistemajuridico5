@@ -162,6 +162,23 @@ function datosEmpleadoAbogadoBaja()
     $s->close();
     return $records;
 }
+function empleadoBajaparaAlta($idEmpleado)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "UPDATE `sistemajuridico`.`empleado` SET `estado` = '1' WHERE (`id_empleado` = '$idEmpleado');";
+    $s = $connect->prepare($sql);
+
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+        return 1;
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}
 function datosEmpleadoAbogadosinUser()
 {
     global $connect;

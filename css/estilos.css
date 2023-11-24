@@ -228,7 +228,7 @@ body {
     width: 100%;
     height: auto;
     position: static; /* Cambiamos a posición estática para que ocupe todo el ancho */
-  /* } */
+/* } 
 
   .navbar-side .user-area {
     border-bottom: none;
@@ -1009,7 +1009,7 @@ table td {
 #modalCambiarContrasena button:hover {
   background-color: #1e5875;
 }
-@media (max-width: 1366px) {
+/* @media (max-width: 1366px) {
   .dashboard {
     padding: 10px;
   }
@@ -1025,7 +1025,7 @@ table td {
   }
 
   /* Estilos para el área del usuario y la barra de navegación */
-  .navbar-side {
+/* .navbar-side {
     width: 100%;
     position: relative;
     background-color: #d9d9d9;
@@ -1044,4 +1044,4 @@ table td {
   .navbar-side ul li {
     font-size: 20px;
   }
-}
+} */

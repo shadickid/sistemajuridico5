@@ -1,8 +1,40 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 require_once(ROOT_PATH . 'config/database/connect.php');
+function datosClientesJuridicosBaja()
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "SELECT * FROM persona
+            inner join persona_juridica on persona_juridica.id_persona=persona.id_persona
+            inner join cliente on cliente.id_persona =persona.id_persona
+            where cliente.estado=0;";
+    $s = $connect->prepare($sql);
 
+    $s->execute();
 
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}
+function datosClientesFisicosBaja()
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "SELECT * FROM persona
+            inner join persona_fisica on persona_fisica.id_persona=persona.id_persona
+            inner join cliente on cliente.id_persona =persona.id_persona
+            where cliente.estado=0;";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}
 function datosClientesFisicos()
 {
     global $connect;
@@ -11,6 +43,22 @@ function datosClientesFisicos()
             inner join persona_fisica on persona_fisica.id_persona=persona.id_persona
             inner join cliente on cliente.id_persona =persona.id_persona
             where cliente.estado=1;";
+    $s = $connect->prepare($sql);
+
+    $s->execute();
+
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}
+function buscarCliente($idPersona)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "SELECT * FROM persona
+    inner join cliente on cliente.id_persona =persona.id_persona
+    where persona.id_persona=$idPersona;";
     $s = $connect->prepare($sql);
 
     $s->execute();
@@ -79,6 +127,23 @@ function bajaClientesFisicos($idCliente)
     $connect->begin_transaction();
     $sql = "UPDATE `sistemajuridico`.`cliente` SET 
     `cliente_fec_baja` = now(), `estado` = '0' WHERE (`id_cliente` = '$idCliente');";
+    $s = $connect->prepare($sql);
+    if ($s) {
+        $s->execute();
+        $s->close();
+        $connect->commit();
+        return 1;
+    } else {
+        $connect->rollback();
+        return 0;
+    }
+}
+
+function altaCliente($idCliente)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "UPDATE `sistemajuridico`.`cliente` SET `cliente_fec_baja` = null, `estado` = '1' WHERE (`id_cliente` = '$idCliente');";
     $s = $connect->prepare($sql);
     if ($s) {
         $s->execute();

@@ -12,4 +12,4 @@ foreach ($records as $record) {
 
 borrarPersonaEmpleado($idEmpleado);
 borrarUsuario($idUsuario);
-header("location: listado.php");
+header("location: listado.php?vali=3");

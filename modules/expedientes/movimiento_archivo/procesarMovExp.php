@@ -43,4 +43,4 @@ try {
 }
 
 
-//header('location: nuevo_mov.php?id_expediente=' . $idExpediente . '&vali=1');
+header('location: nuevo_mov.php?id_expediente=' . $idExpediente . '&vali=1');

@@ -77,7 +77,8 @@ $datosempleado = datosEmpleadoAbogadoBaja();
                                 <?php echo $regEmpleado['usuario_nombre'] ?>
                             </td>
                             <td>
-                                <a href="<?php echo BASE_URL ?>" class="openModal">
+                                <a href="<?php echo BASE_URL ?>modules\abogado\darAltaAbogado.php?idEmpleado=<?php echo $regEmpleado['id_empleado'] ?>"
+                                    class="openModal">
                                     <button class="darDeAltaButton">
                                         <i class="fi fi-rr-check"></i>
                                     </button>

@@ -30,7 +30,7 @@ if ($datos_user->num_rows == 1) {
                     u.id_usuario 
                     from sistemajuridico.perfil p
     inner join usuario u on p.id_perfil=u.id_perfil
-    inner join empleado e on u.id_perfil=e.id_empleado
+    inner join empleado e on u.id_empleado=e.id_empleado
     inner join persona_fisica pf on pf.id_persona_fisica=e.id_persona_fisica where usuario_contrasena = '{$contrasena}'";
     $datos_pass = $connect->query($sql);
     if ($datos_pass->num_rows == 1 && password_verify($pass, $contrasena)) {

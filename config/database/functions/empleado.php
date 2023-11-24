@@ -2,6 +2,26 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistemajuridico5/config/path.php');
 require_once(ROOT_PATH . 'config/database/connect.php');
 
+
+function obtenerEmpleadoUsuarios($idEmpleado)
+{
+    global $connect;
+    $connect->begin_transaction();
+    $sql = "SELECT * from usuario
+    inner join empleado on empleado.id_empleado=usuario.id_usuario
+    inner join persona_fisica on persona_fisica.id_persona_fisica=empleado.id_persona_fisica
+    inner join persona on persona.id_persona=persona_fisica.id_persona
+    where empleado.id_empleado=$idEmpleado";
+    $s = $connect->prepare($sql);
+    $s->execute();
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+
+
+
+    return $records;
+}
 function agregarEmpleado($id_persona_fisica, $id_tipo_empleado)
 {
     global $connect;
@@ -111,6 +131,30 @@ function datosEmpleadoAbogado()
     inner join especializacion esp on ee.id_especializacion=esp.id_especializacion
     inner join usuario u on u.id_empleado=e.id_empleado
     where e.estado=1";
+    $s = $connect->prepare($sql);
+    $s->execute();
+    $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $s->close();
+    return $records;
+}
+function datosEmpleadoAbogadoBaja()
+{
+    global $connect;
+    $sql = "SELECT  e.id_empleado,
+    u.usuario_nombre,
+    pf.persona_nombre,
+    pf.persona_apellido,
+    esp.descripcion,
+    pf.id_persona_fisica,
+    p.id_persona 
+    FROM sistemajuridico.persona p
+    inner join persona_fisica pf on p.id_persona=pf.id_persona
+    inner join empleado e on e.id_persona_fisica=pf.id_persona_fisica
+    inner join empleadoxespecializacion ee on e.id_empleado=ee.id_empleadoxespecializacion
+    inner join especializacion esp on ee.id_especializacion=esp.id_especializacion
+    inner join usuario u on u.id_empleado=e.id_empleado
+    where e.estado=0";
     $s = $connect->prepare($sql);
     $s->execute();
     $records = $s->get_result()->fetch_all(MYSQLI_ASSOC);

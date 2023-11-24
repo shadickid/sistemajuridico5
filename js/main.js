@@ -149,8 +149,9 @@ $(document).ready(function () {
   });
   notiBaja();
   ocultarMensajes();
+  notiAlta();
 
-  $("#formularioClienteF").validate({
+  let validator = $("#formularioClienteF").validate({
     errorClass: "validacion-error",
     rules: {
       nombre: "required",
@@ -233,6 +234,19 @@ $(document).ready(function () {
       tipoDomJ: "Por favor seleccione el tipo de domicilio",
     },
   });
+  $("#tabs ul li a").click(function () {
+    if (validator.form()) {
+      var tab_id = $(this).attr("href");
+
+      $("#tabs ul li a").removeClass("current");
+      $(".tab-content").removeClass("current");
+
+      $(this).addClass("current");
+      $(tab_id).addClass("current");
+    }
+
+    return false;
+  });
 
   $.validator.addMethod(
     "requiredSelect",
@@ -283,27 +297,35 @@ $(document).ready(function () {
   $("#formularioMovExp").validate({
     errorClass: "validacion-error",
     rules: {
-      descripcion: "required",
-      movimiento: {
+      descripcion: {
         required: true,
+      },
+      movimiento: {
+        requiredSelect: true,
         min: 1,
       },
-      "archivo[]": {
+      archivo: {
         required: true,
-        extension: "pdf|doc|docx",
+        extension: "pdf",
       },
     },
     messages: {
-      descripcion: "Por favor ingrese la descripción del movimiento",
+      descripcion: {
+        required: "Por favor ingrese la descripción del movimiento",
+      },
       movimiento: {
         required: "Por favor seleccione el tipo de movimiento",
         min: "Por favor seleccione el tipo de movimiento",
       },
-      "archivo[]": {
-        required: "Por favor seleccione al menos un archivo",
+      archivo: {
+        required: "Por favor seleccione un archivo",
         extension:
           "Por favor seleccione un archivo con una extensión válida (pdf, doc, docx)",
       },
+    },
+    // Agregar handler para el envío del formulario
+    submitHandler: function (form) {
+      form.submit(); // Enviar el formulario si pasa la validación
     },
   });
 });
@@ -353,6 +375,41 @@ $.validator.addMethod(
   },
   "Por favor seleccione el subTipo del expediente"
 );
+function notiAlta() {
+  let darAlta = document.querySelectorAll(".darDeAltaButton");
+
+  darAlta.forEach((button) => {
+    button.addEventListener("click", function (ev) {
+      ev.preventDefault();
+
+      let nombre = obtenerNombreDeFila(button);
+      swal({
+        title: "¿Estás seguro de querer dar de alta a " + nombre + "?",
+        text: "",
+        icon: "warning",
+        buttons: ["Cancelar", "Sí, dar de alta"],
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          let enlace = button.closest("a");
+          let url = enlace ? enlace.href : null;
+
+          if (url) {
+            window.location.href = url;
+          }
+        }
+      });
+    });
+  });
+}
+
+function obtenerNombreDeFila(button) {
+  let fila = button.closest("tr");
+
+  let nombreColumna = fila.querySelector(":nth-child(2)").textContent;
+
+  return nombreColumna;
+}
 function notiBaja() {
   let darBaja = document.querySelectorAll(".darDeBajaButton");
 

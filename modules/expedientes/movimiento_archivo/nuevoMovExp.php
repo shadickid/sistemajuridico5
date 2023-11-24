@@ -72,7 +72,8 @@ foreach ($expediente as $regExp) {
                         <div>
                             <label for="archivo" class="formulario-label">Archivo:</label>
                             <div class="file-input-container">
-                                <input type="file" name="archivo[]" id="myfile" multiple class="formulario-file">
+                                <input type="file" name="archivo" id="myfile" class="formulario-file"
+                                    accept=".pdf, .doc, .docx">
                             </div>
                         </div>
                         <input type="hidden" value="<?php echo $idExpediente ?>" name="idExpediente">

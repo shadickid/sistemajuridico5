@@ -519,7 +519,14 @@ footer {
   border-radius: 3px;
   cursor: pointer;
 }
-
+.darDeAltaButton {
+  background-color: rgb(54, 129, 5);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
 .editarButton {
   background-color: #3498db;
   color: white;
@@ -1001,4 +1008,15 @@ table td {
 
 #modalCambiarContrasena button:hover {
   background-color: #1e5875;
+}
+@media (max-width: 1366px) {
+  .inicio {
+    padding: 10px; /* Cambia el relleno */
+    min-width: auto; /* Elimina el ancho mínimo */
+  }
+
+  .contenido {
+    max-width: 100%; /* Ajusta el contenido al 100% del ancho de la pantalla */
+    padding-right: 10px; /* Cambia el relleno derecho */
+  }
 }

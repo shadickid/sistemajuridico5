@@ -23,24 +23,24 @@ if (!file_exists($directorio)) {
 }
 
 
-foreach ($_FILES['archivo']['tmp_name'] as $key => $temp_name) {
-    try {
-        if ($_FILES['archivo']['name'][$key] && $_FILES['archivo']['error'][$key] == 0) {
-            $extension = pathinfo($_FILES['archivo']['name'][$key], PATHINFO_EXTENSION);
-            $newFileName = "$idExpediente" . "_$fecha_hora" . "_$key.$extension";
-            $ruta = $directorio . "/" . $newFileName;
-            if (move_uploaded_file($_FILES['archivo']['tmp_name'][$key], $ruta)) {
-                $archivo_nombre = $newFileName;
-                $archivo_extension = $extension;
-                $archivo_ubicacion = $ruta;
-                $idExpedientexMovimientoxTipo = agregarExpedientexMovimientoxTipo($descripcion, $movimiento, $idExpediente, $usuario);
-                agregarDetalleMovimiento($archivo_nombre, $archivo_extension, $archivo_ubicacion, $idExpedientexMovimientoxTipo);
-            }
-        }
-    } catch (Exception $e) {
-        echo 'Excepción capturada: ', $e->getMessage(), "\n";
-    }
+try {
+    if ($_FILES['archivo']['name'] && $_FILES['archivo']['error'] == 0) {
+        $extension = pathinfo($_FILES['archivo']['name'], PATHINFO_EXTENSION);
+        $newFileName = "$idExpediente" . "_$fecha_hora.$extension";
+        $ruta = $directorio . "/" . $newFileName;
 
+        if (move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta)) {
+            $archivo_nombre = $newFileName;
+            $archivo_extension = $extension;
+            $archivo_ubicacion = $ruta;
+
+            $idExpedientexMovimientoxTipo = agregarExpedientexMovimientoxTipo($descripcion, $movimiento, $idExpediente, $usuario);
+            agregarDetalleMovimiento($archivo_nombre, $archivo_extension, $archivo_ubicacion, $idExpedientexMovimientoxTipo);
+        }
+    }
+} catch (Exception $e) {
+    echo 'Excepción capturada: ', $e->getMessage(), "\n";
 }
 
-header('location: nuevo_mov.php?id_expediente=' . $idExpediente . '&vali=1');
+
+//header('location: nuevo_mov.php?id_expediente=' . $idExpediente . '&vali=1');

@@ -223,12 +223,12 @@ body {
 }
 
 /* Media query para responsividad */
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .navbar-side {
     width: 100%;
     height: auto;
     position: static; /* Cambiamos a posición estática para que ocupe todo el ancho */
-  }
+  /* } */
 
   .navbar-side .user-area {
     border-bottom: none;
@@ -253,7 +253,7 @@ body {
   .navbar-side ul li:hover ul {
     height: 0;
   }
-}
+} */
 
 .logo {
   display: block;
@@ -1010,13 +1010,38 @@ table td {
   background-color: #1e5875;
 }
 @media (max-width: 1366px) {
+  .dashboard {
+    padding: 10px;
+  }
+
   .inicio {
-    padding: 10px; /* Cambia el relleno */
-    min-width: auto; /* Elimina el ancho mínimo */
+    max-width: 100%;
+    padding: 10px;
   }
 
   .contenido {
-    max-width: 100%; /* Ajusta el contenido al 100% del ancho de la pantalla */
-    padding-right: 10px; /* Cambia el relleno derecho */
+    max-width: 100%;
+    padding-right: 10px;
+  }
+
+  /* Estilos para el área del usuario y la barra de navegación */
+  .navbar-side {
+    width: 100%;
+    position: relative;
+    background-color: #d9d9d9;
+  }
+
+  .navbar-side .icon,
+  .navbar-side .logo {
+    display: none;
+  }
+
+  .user-area,
+  .navbar-side ul {
+    padding: 10px;
+  }
+
+  .navbar-side ul li {
+    font-size: 20px;
   }
 }
